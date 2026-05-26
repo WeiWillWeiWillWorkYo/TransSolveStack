@@ -1,0 +1,47 @@
+{
+  "artifact_kind": "csr_linear_ranker_baseline",
+  "command": "scripts/tss_csr_linear_ranker.py",
+  "created_at_utc": "2026-05-26T13:59:52.375492+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_training_tensors/csr_training_tensors.json",
+      "sha256": "e202e3a7a32e1b1adad0ee55eed118aa9f1f4f2f8f8e9150add66f3d3ad5d2d2"
+    },
+    {
+      "path": "runs/phase1_csr_training_tensors/csr_training_request_index.jsonl",
+      "sha256": "0a3fb6d5b5c87595007fa8bd30239443517debae777a38ebcb99fecc478945a9"
+    },
+    {
+      "path": "transsolvestack/__init__.py",
+      "sha256": "2f55e7cb6abc78de6f110c3b44567324b049652e93f2b908f771c38517164b3e"
+    },
+    {
+      "path": "transsolvestack/api.py",
+      "sha256": "bb93c01bb0b7b57d78c7309e979bf13bc46f2fcd4f03dccd85d7cd6647334ffb"
+    },
+    {
+      "path": "transsolvestack/policies/csr_linear_ranker.py",
+      "sha256": "f91d5e5bac31017bc6c0ab11a4f2b2d7050c18123dc4fe8214fba8192100be8f"
+    },
+    {
+      "path": "scripts/tss_csr_linear_ranker.py",
+      "sha256": "5fb08b84493906e67ef50b6c623c8efb39e81f1f9d8a3876ea34bbf9fee775ee"
+    }
+  ],
+  "metadata": {
+    "eval_oracle_top1_accuracy": 0.0,
+    "eval_profiled_success_selection_rate": 0.0,
+    "git_commit": "unknown",
+    "model_family": "pairwise_linear_ranker_v1",
+    "model_trained": true,
+    "num_features": 374,
+    "num_pairwise_constraints": 110,
+    "num_pairwise_updates": 148,
+    "num_predictions": 12,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_linear_ranker_v1",
+    "status": "passed",
+    "train_oracle_top1_accuracy": 0.5
+  },
+  "python_version": "3.10.18"
+}

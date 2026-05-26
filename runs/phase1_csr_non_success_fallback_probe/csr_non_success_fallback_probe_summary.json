@@ -1,0 +1,49 @@
+{
+  "by_solver_status": {
+    "bicgstab:screened_out": 6,
+    "bicgstab:success": 2,
+    "gmres:screened_out": 3,
+    "gmres:success": 2,
+    "pcg:screened_out": 1,
+    "richardson:screened_out": 1
+  },
+  "by_status": {
+    "screened_out": 11,
+    "success": 4
+  },
+  "candidate_attempts": 15,
+  "coverage_plan_path": "runs/phase1_csr_guarded_promotion_coverage_plan/csr_guarded_promotion_coverage_scenarios.jsonl",
+  "cpu_screened_out_rows": 11,
+  "device_memory_gb": 0.25,
+  "executes_gpu": true,
+  "gpu_failed_rows": 0,
+  "gpu_success_rows": 4,
+  "max_cpu_recomputed_relative_residual": 9.953592338671738e-06,
+  "max_final_relative_residual": 9.953639089326649e-06,
+  "max_iter": 512,
+  "max_solution_relative_error": 0.0007361964264336175,
+  "next_step": "merge_resolved_fallback_rows_into_guarded_coverage_selector_fixture_and_keep_unresolved_as_documented_gaps",
+  "resolved_matrices": [
+    "suitesparse:Bai/cdde1",
+    "suitesparse:FIDAP/ex5"
+  ],
+  "resolved_matrix_count": 2,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_non_success_fallback_probe_v1",
+  "selector_rows": 15,
+  "selector_success_rows": 4,
+  "status": "passed",
+  "target_matrices": [
+    "suitesparse:Bai/cdde1",
+    "suitesparse:FIDAP/ex5",
+    "suitesparse:Gset/G17",
+    "suitesparse:Zitney/extr1b"
+  ],
+  "target_scenarios": 4,
+  "tolerance_rel": 1e-05,
+  "unresolved_matrices": [
+    "suitesparse:Gset/G17",
+    "suitesparse:Zitney/extr1b"
+  ],
+  "unresolved_matrix_count": 2
+}

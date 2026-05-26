@@ -1,0 +1,47 @@
+{
+  "artifact_kind": "csr_unresolved_fallback_cpu_screen",
+  "command": "scripts/tss_csr_unresolved_fallback_cpu_screen.py",
+  "created_at_utc": "2026-05-26T14:03:42.894302+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_unresolved_fallback_coverage_plan/csr_unresolved_fallback_candidate_plan.jsonl",
+      "sha256": "6fb449e1b12ef4d60c7fd02cee4ff4036666d2d86eff622f7d1b780fb2c53617"
+    },
+    {
+      "path": "runs/phase1_csr_unresolved_fallback_coverage_plan/csr_unresolved_fallback_coverage_plan_summary.json",
+      "sha256": "a5699783decffaf8fe2f822ff2f0ade22d1bcc5e3352315e4a2f2670b203d34d"
+    },
+    {
+      "path": "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+      "sha256": "03fcd906df8f34ef143fbb078d5091a1c7a20493d65cb2a637304ce54a3cc9bb"
+    },
+    {
+      "path": "runs/phase1_csr_micro_campaign/csr_matrices.jsonl",
+      "sha256": "66e31794c2f22c313543b69f892f128efa1599e81247e353f6451c0c26a39ad6"
+    },
+    {
+      "path": "transsolvestack/datasets/csr.py",
+      "sha256": "8f6181ce398ad210e3bcfbc348014d1062f8838aa87fb995ca3f62c833cec03f"
+    },
+    {
+      "path": "transsolvestack/profiling/csr_micro_campaign.py",
+      "sha256": "9fed1f0aee1c605f36ea5c5c439cb096c049ebde8aa87f0ab4e0d8cf96d079f3"
+    },
+    {
+      "path": "scripts/tss_csr_unresolved_fallback_cpu_screen.py",
+      "sha256": "55f30ba12f5ddf223e5dd670927d6ad64d02685d3aff1ce08457ee1466c21f6d"
+    }
+  ],
+  "metadata": {
+    "attempted_cpu_screens": 4,
+    "cpu_screened_out_rows": 4,
+    "executes_gpu": false,
+    "git_commit": "unknown",
+    "gpu_probe_ready_candidates": 0,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_unresolved_fallback_cpu_screen_v1",
+    "screen_success_rows": 0,
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

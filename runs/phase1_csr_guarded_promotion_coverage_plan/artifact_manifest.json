@@ -1,0 +1,46 @@
+{
+  "artifact_kind": "csr_guarded_promotion_coverage_plan",
+  "command": "scripts/tss_csr_guarded_promotion_coverage_plan.py",
+  "created_at_utc": "2026-05-26T14:01:30.146599+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_transformer_ready/combined_csr_selector_rows.jsonl",
+      "sha256": "67664f0381396a0ee707dcd187d81beeccaef5ed1ca961753b9f2d338980c1b3"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_predictions.jsonl",
+      "sha256": "b6d9fbe8213d7f49a3770fdd71ce64aee2904de8d0071ae51f292fcf54b13aec"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_quality_gate/csr_transformer_quality_gate_summary.json",
+      "sha256": "d7353ef33e5809d8681e218737b9ab9d2e55f6a2c78022bb23dd90aa7a2c8c9c"
+    },
+    {
+      "path": "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+      "sha256": "03fcd906df8f34ef143fbb078d5091a1c7a20493d65cb2a637304ce54a3cc9bb"
+    },
+    {
+      "path": "runs/phase1_csr_micro_campaign/csr_matrices.jsonl",
+      "sha256": "66e31794c2f22c313543b69f892f128efa1599e81247e353f6451c0c26a39ad6"
+    },
+    {
+      "path": "transsolvestack/profiling/csr_guarded_promotion_coverage.py",
+      "sha256": "39b6f23283e95022ccdb647de38487674f43b31f1064da95924022433873adce"
+    },
+    {
+      "path": "scripts/tss_csr_guarded_promotion_coverage_plan.py",
+      "sha256": "4d302b0d91f82ebfce7bd5b55d56e4d43ee26dac56b1edf5b218975771aa5f10"
+    }
+  ],
+  "metadata": {
+    "executes_gpu": false,
+    "git_commit": "unknown",
+    "plan_id": "phase1_csr_guarded_promotion_coverage_m57",
+    "planned_gpu_final_solves": 11,
+    "planned_scenarios": 15,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_guarded_promotion_coverage_plan_v1",
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

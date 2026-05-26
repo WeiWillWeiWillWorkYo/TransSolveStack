@@ -1,0 +1,982 @@
+{
+  "campaign_id": "phase1_readiness",
+  "stages": [
+    {
+      "artifact_dir": "runs/phase1_smoke_taichi",
+      "artifact_kind": "taichi_smoke_benchmark",
+      "metadata": {
+        "candidate_set": "configs/candidates/phase1_taichi_gpu.yaml",
+        "git_commit": "unknown",
+        "measurement_repeats": 3,
+        "num_oracle_records": 7,
+        "num_performance_records": 21,
+        "warmup_runs": 1,
+        "workload": "configs/workloads/phase1_smoke.yaml"
+      },
+      "row_count": 21,
+      "stage_id": "benchmark",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_smoke_expanded_solvers",
+      "artifact_kind": "taichi_smoke_benchmark",
+      "metadata": {
+        "candidate_set": "configs/candidates/phase1_taichi_gpu_expanded.yaml",
+        "git_commit": "unknown",
+        "measurement_repeats": 3,
+        "num_oracle_records": 7,
+        "num_performance_records": 35,
+        "warmup_runs": 1,
+        "workload": "configs/workloads/phase1_smoke_expanded_solvers.yaml"
+      },
+      "row_count": 35,
+      "stage_id": "expanded_solver_benchmark",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_numerical_regression",
+      "artifact_kind": "taichi_numerical_regression",
+      "metadata": {
+        "git_commit": "unknown",
+        "num_passed": 21,
+        "num_records": 21
+      },
+      "row_count": 21,
+      "stage_id": "regression",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_sequence_taichi",
+      "artifact_kind": "taichi_sequence_benchmark",
+      "metadata": {
+        "git_commit": "unknown",
+        "num_candidates": 2,
+        "num_step_records": 8,
+        "num_steps": 4,
+        "sequence_id": "anisotropy_drift_2d_32"
+      },
+      "row_count": 8,
+      "stage_id": "sequence",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_policy_selection",
+      "artifact_kind": "policy_selection",
+      "metadata": {
+        "candidate_set": "configs/candidates/phase1_taichi_gpu.yaml",
+        "evaluation": "runs/phase1_smoke_taichi/candidate_evaluation.jsonl",
+        "git_commit": "unknown",
+        "num_selected_plans": 7
+      },
+      "row_count": 7,
+      "stage_id": "policy_selection",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_policy_solve",
+      "artifact_kind": "policy_driven_taichi_solve",
+      "metadata": {
+        "evaluation": "runs/phase1_smoke_taichi/candidate_evaluation.jsonl",
+        "git_commit": "unknown",
+        "num_results": 7,
+        "num_success": 7,
+        "workload_id": "phase1_smoke"
+      },
+      "row_count": 7,
+      "stage_id": "policy_solve",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_dataset_plan",
+      "artifact_kind": "dataset_download_plan",
+      "metadata": {
+        "catalog_id": "phase1_external_small",
+        "dry_run": true,
+        "git_commit": "unknown",
+        "num_matrices": 3,
+        "total_estimated_download_gb": 0.003
+      },
+      "row_count": 3,
+      "stage_id": "dataset_plan",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_matrix_market_probe",
+      "artifact_kind": "matrix_market_metadata_probe",
+      "metadata": {
+        "git_commit": "unknown",
+        "num_matrices": 1
+      },
+      "row_count": 1,
+      "stage_id": "matrix_market_probe",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_suitesparse_selection",
+      "artifact_kind": "suitesparse_matrix_subset_selection",
+      "metadata": {
+        "candidates_after_filter": 1854,
+        "candidates_considered": 2904,
+        "git_commit": "unknown",
+        "max_matrices": 64,
+        "max_per_kind": 4,
+        "selected_matrices": 64,
+        "source_index_path": "/mnt/tss_external/TransSolveStack/datasets/suitesparse_full/index/matrix_manifest.jsonl",
+        "status": "ready",
+        "total_selected_archive_size_bytes": 152804261
+      },
+      "row_count": 64,
+      "stage_id": "suitesparse_selection",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_suitesparse_header_probe",
+      "artifact_kind": "suitesparse_archive_header_probe",
+      "metadata": {
+        "failure_count": 0,
+        "field_mismatch_count": 8,
+        "git_commit": "unknown",
+        "probed_archives": 64,
+        "selected_matrices": 64,
+        "shape_mismatch_count": 0,
+        "status": "passed",
+        "stored_nnz_mismatch_count": 31,
+        "success_count": 64
+      },
+      "row_count": 64,
+      "stage_id": "suitesparse_header_probe",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_suitesparse_csr_import",
+      "artifact_kind": "suitesparse_csr_import_boundary",
+      "metadata": {
+        "attempted_imports": 12,
+        "eligible_rows": 48,
+        "failed_imports": 0,
+        "git_commit": "unknown",
+        "imported_matrices": 12,
+        "max_cols": 10000,
+        "max_matrices": 12,
+        "max_rows": 10000,
+        "max_stored_entries": 100000,
+        "status": "passed",
+        "total_csr_nnz": 118312
+      },
+      "row_count": 12,
+      "stage_id": "suitesparse_csr_import",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_taichi_csr_matvec",
+      "artifact_kind": "taichi_csr_matvec_smoke",
+      "metadata": {
+        "git_commit": "unknown",
+        "max_abs_error": 9.111999988555908,
+        "max_relative_l2_error": 1.3329161593679764e-07,
+        "num_failed": 0,
+        "num_matrices": 4,
+        "num_success": 4,
+        "status": "passed"
+      },
+      "row_count": 4,
+      "stage_id": "taichi_csr_matvec",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_taichi_csr_primitives",
+      "artifact_kind": "taichi_csr_primitives_smoke",
+      "metadata": {
+        "git_commit": "unknown",
+        "max_dot_relative_error": 5.819167907126456e-08,
+        "max_matvec_relative_l2_error": 1.3329161593679764e-07,
+        "max_residual_relative_norm": 1.478916831603647e-07,
+        "num_failed": 0,
+        "num_matrices": 4,
+        "num_success": 4,
+        "status": "passed"
+      },
+      "row_count": 4,
+      "stage_id": "taichi_csr_primitives",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_taichi_csr_solve",
+      "artifact_kind": "taichi_csr_solve_smoke",
+      "metadata": {
+        "git_commit": "unknown",
+        "max_final_relative_residual": 6.694982418681676e-06,
+        "max_solution_relative_error": 7.720591625641639e-06,
+        "measurement_repeats": 3,
+        "num_failed": 0,
+        "num_selected_matrices": 2,
+        "num_solves": 4,
+        "num_success": 4,
+        "precision": "float64",
+        "status": "passed"
+      },
+      "row_count": 4,
+      "stage_id": "taichi_csr_solve",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_taichi_csr_bicgstab",
+      "artifact_kind": "taichi_csr_bicgstab_smoke",
+      "metadata": {
+        "git_commit": "unknown",
+        "max_final_relative_residual": 8.729656304521325e-06,
+        "max_solution_relative_error": 0.00042280635566429453,
+        "measurement_repeats": 3,
+        "num_failed": 0,
+        "num_selected_matrices": 2,
+        "num_solves": 4,
+        "num_success": 4,
+        "precision": "float64",
+        "status": "passed"
+      },
+      "row_count": 4,
+      "stage_id": "taichi_csr_bicgstab",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_taichi_csr_gmres",
+      "artifact_kind": "taichi_csr_gmres_smoke",
+      "metadata": {
+        "git_commit": "unknown",
+        "max_final_relative_residual": 9.748360180473853e-06,
+        "max_solution_relative_error": 0.0008174089499661003,
+        "measurement_repeats": 3,
+        "num_failed": 0,
+        "num_restarts": 3,
+        "num_selected_matrices": 2,
+        "num_solves": 5,
+        "num_success": 5,
+        "precision": "float64",
+        "restarts": [
+          8,
+          16,
+          32
+        ],
+        "status": "passed"
+      },
+      "row_count": 5,
+      "stage_id": "taichi_csr_gmres",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_taichi_csr_richardson",
+      "artifact_kind": "taichi_csr_richardson_smoke",
+      "metadata": {
+        "git_commit": "unknown",
+        "max_final_relative_residual": 8.139331910289324e-06,
+        "max_solution_relative_error": 9.748507883488471e-05,
+        "measurement_repeats": 3,
+        "num_failed": 0,
+        "num_selected_matrices": 1,
+        "num_solves": 1,
+        "num_success": 1,
+        "omega": 0.6666666666666666,
+        "precision": "float64",
+        "status": "passed"
+      },
+      "row_count": 1,
+      "stage_id": "taichi_csr_richardson",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_taichi_csr_chebyshev",
+      "artifact_kind": "taichi_csr_chebyshev_smoke",
+      "metadata": {
+        "git_commit": "unknown",
+        "max_final_relative_residual": 4.743802685350028e-06,
+        "max_solution_relative_error": 5.968546842613615e-06,
+        "measurement_repeats": 3,
+        "num_failed": 0,
+        "num_selected_matrices": 1,
+        "num_solves": 1,
+        "num_success": 1,
+        "precision": "float64",
+        "status": "passed"
+      },
+      "row_count": 1,
+      "stage_id": "taichi_csr_chebyshev",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_taichi_csr_symmetric_equilibration",
+      "artifact_kind": "taichi_csr_symmetric_equilibration_smoke",
+      "metadata": {
+        "candidate_promoted": false,
+        "executes_gpu": true,
+        "git_commit": "unknown",
+        "gpu_executed_rows": 1,
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_taichi_csr_symmetric_equilibration_v1",
+        "status": "passed"
+      },
+      "row_count": 1,
+      "stage_id": "taichi_csr_symmetric_equilibration",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_taichi_csr_row_column_equilibration",
+      "artifact_kind": "taichi_csr_row_column_equilibration_smoke",
+      "metadata": {
+        "candidate_promoted_rows": 1,
+        "executes_gpu": true,
+        "failed_numeric_gate_rows": 1,
+        "git_commit": "unknown",
+        "gpu_executed_rows": 2,
+        "numeric_success_rows": 1,
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_taichi_csr_row_column_equilibration_v1",
+        "status": "passed"
+      },
+      "row_count": 2,
+      "stage_id": "taichi_csr_row_column_equilibration",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_taichi_csr_ilu0",
+      "artifact_kind": "taichi_csr_ilu0_smoke",
+      "metadata": {
+        "candidate_promoted_rows": 1,
+        "executes_gpu": true,
+        "failed_numeric_gate_rows": 1,
+        "git_commit": "unknown",
+        "gpu_executed_rows": 2,
+        "numeric_success_rows": 1,
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_taichi_csr_ilu0_v1",
+        "status": "passed"
+      },
+      "row_count": 2,
+      "stage_id": "taichi_csr_ilu0",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_selector_readiness",
+      "artifact_kind": "csr_selector_readiness_export",
+      "metadata": {
+        "git_commit": "unknown",
+        "num_applicability_rows": 78,
+        "num_diagnostic_rows": 12,
+        "num_failed_rows": 15,
+        "num_oracle_rows": 4,
+        "num_selector_rows": 108,
+        "num_success_rows": 15,
+        "schema_version": "phase1_csr_selector_features_v8",
+        "screened_result_sources": [
+          "runs/phase1_taichi_csr_solve/csr_solve_summary.json",
+          "runs/phase1_taichi_csr_bicgstab/csr_bicgstab_summary.json",
+          "runs/phase1_taichi_csr_gmres/csr_gmres_summary.json",
+          "runs/phase1_taichi_csr_richardson/csr_richardson_summary.json",
+          "runs/phase1_taichi_csr_chebyshev/csr_chebyshev_summary.json"
+        ],
+        "solve_result_sources": [
+          "runs/phase1_taichi_csr_solve/csr_solve_results.jsonl",
+          "runs/phase1_taichi_csr_bicgstab/csr_bicgstab_results.jsonl",
+          "runs/phase1_taichi_csr_gmres/csr_gmres_results.jsonl",
+          "runs/phase1_taichi_csr_richardson/csr_richardson_results.jsonl",
+          "runs/phase1_taichi_csr_chebyshev/csr_chebyshev_results.jsonl"
+        ],
+        "status": "passed"
+      },
+      "row_count": 108,
+      "stage_id": "csr_selector_readiness",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_selector_policy",
+      "artifact_kind": "csr_selector_policy_smoke",
+      "metadata": {
+        "git_commit": "5aee244aead1235a247ae80493f8f184835b7bed",
+        "num_selected_plans": 4,
+        "num_solve_checks": 2,
+        "num_successful_solve_checks": 2,
+        "status": "passed"
+      },
+      "row_count": 4,
+      "stage_id": "csr_selector_policy",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_auto_solve",
+      "artifact_kind": "csr_auto_solve_smoke",
+      "metadata": {
+        "git_commit": "5aee244aead1235a247ae80493f8f184835b7bed",
+        "num_failed": 0,
+        "num_solves": 2,
+        "num_success": 2,
+        "selected_solver_set": [
+          "bicgstab",
+          "chebyshev"
+        ],
+        "status": "passed"
+      },
+      "row_count": 2,
+      "stage_id": "csr_auto_solve",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_learning_readiness",
+      "artifact_kind": "csr_learning_readiness_export",
+      "metadata": {
+        "baseline_id": "candidate_prior_success_median_v1",
+        "eval_oracle_top1_accuracy": 0.3333333333333333,
+        "eval_profiled_success_rate": 0.6666666666666666,
+        "git_commit": "unknown",
+        "num_eval_predictions": 3,
+        "num_eval_rows": 27,
+        "num_rows": 108,
+        "num_train_rows": 81,
+        "schema_version": "phase1_csr_learning_features_v1",
+        "status": "passed"
+      },
+      "row_count": 108,
+      "stage_id": "csr_learning_readiness",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_model_contract",
+      "artifact_kind": "csr_model_contract_export",
+      "metadata": {
+        "eval_oracle_top1_accuracy": 0.3333333333333333,
+        "eval_profiled_selection_rate": 0.6666666666666666,
+        "git_commit": "unknown",
+        "model_required": false,
+        "num_predictions": 3,
+        "num_requests": 12,
+        "prediction_source": "csr_learning_baseline_adapter_v1",
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_csr_model_contract_v1",
+        "status": "passed"
+      },
+      "row_count": 12,
+      "stage_id": "csr_model_contract",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_training_tensors",
+      "artifact_kind": "csr_training_tensor_export",
+      "metadata": {
+        "candidate_feature_dim": 16,
+        "git_commit": "unknown",
+        "matrix_feature_dim": 21,
+        "model_required": false,
+        "num_global_candidates": 9,
+        "num_requests": 12,
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_csr_training_tensors_v1",
+        "status": "passed",
+        "storage_format": "json_numeric_arrays_v1"
+      },
+      "row_count": 12,
+      "stage_id": "csr_training_tensors",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_linear_ranker",
+      "artifact_kind": "csr_linear_ranker_baseline",
+      "metadata": {
+        "eval_oracle_top1_accuracy": 0.0,
+        "eval_profiled_success_selection_rate": 0.0,
+        "git_commit": "unknown",
+        "model_family": "pairwise_linear_ranker_v1",
+        "model_trained": true,
+        "num_features": 374,
+        "num_pairwise_constraints": 110,
+        "num_pairwise_updates": 148,
+        "num_predictions": 12,
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_csr_linear_ranker_v1",
+        "status": "passed",
+        "train_oracle_top1_accuracy": 0.5
+      },
+      "row_count": 12,
+      "stage_id": "csr_linear_ranker",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_selector_model_eval",
+      "artifact_kind": "csr_selector_model_quality_gate",
+      "metadata": {
+        "baseline_model_id": "candidate_prior_success_median_v1",
+        "best_offline_model_id": "candidate_prior_success_median_v1",
+        "challenger_model_id": "csr_pairwise_linear_ranker_v1",
+        "challenger_runtime_eligible": false,
+        "git_commit": "unknown",
+        "num_eval_oracle_requests": 2,
+        "num_eval_predictions": 3,
+        "num_models": 2,
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_csr_selector_model_eval_v1",
+        "status": "passed"
+      },
+      "row_count": 2,
+      "stage_id": "csr_selector_model_eval",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_benchmark_expansion_plan",
+      "artifact_kind": "csr_benchmark_expansion_plan",
+      "metadata": {
+        "executes_gpu": false,
+        "git_commit": "unknown",
+        "plan_id": "phase1_csr_benchmark_expansion_m49",
+        "planned_candidate_jobs": 24,
+        "planned_gpu_solve_attempts": 24,
+        "planned_matrices": 8,
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_csr_benchmark_expansion_plan_v1",
+        "status": "passed"
+      },
+      "row_count": 24,
+      "stage_id": "csr_benchmark_expansion_plan",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_micro_campaign",
+      "artifact_kind": "csr_micro_campaign",
+      "metadata": {
+        "candidate_jobs": 24,
+        "cpu_screened_out_rows": 16,
+        "executes_gpu": true,
+        "git_commit": "unknown",
+        "gpu_failed_rows": 0,
+        "gpu_success_rows": 8,
+        "imported_matrices": 8,
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_csr_micro_campaign_v1",
+        "selector_oracle_rows": 4,
+        "selector_rows": 24,
+        "status": "passed"
+      },
+      "row_count": 24,
+      "stage_id": "csr_micro_campaign",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_transformer_ready",
+      "artifact_kind": "csr_transformer_ready_bundle",
+      "metadata": {
+        "candidate_feature_dim": 16,
+        "git_commit": "unknown",
+        "matrix_feature_dim": 21,
+        "num_global_candidates": 9,
+        "num_model_requests": 20,
+        "num_selector_rows": 132,
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_csr_transformer_ready_v1",
+        "status": "passed",
+        "transformer_connectable": true,
+        "validation_error_count": 0
+      },
+      "row_count": 20,
+      "stage_id": "csr_transformer_ready",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_transformer_ranker",
+      "artifact_kind": "csr_transformer_ranker",
+      "metadata": {
+        "eval_non_success_selection_count": 2,
+        "eval_oracle_top1_accuracy": 0.5,
+        "eval_profiled_success_selection_rate": 0.6,
+        "git_commit": "unknown",
+        "model_family": "masked_self_attention_ranker_v1",
+        "model_id": "csr_masked_self_attention_ranker_v1",
+        "model_trained": true,
+        "num_eval_oracle_requests": 4,
+        "num_eval_requests": 5,
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_csr_transformer_ranker_v1",
+        "status": "passed"
+      },
+      "row_count": 20,
+      "stage_id": "csr_transformer_ranker",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_transformer_quality_gate",
+      "artifact_kind": "csr_transformer_quality_gate",
+      "metadata": {
+        "baseline_model_id": "candidate_prior_success_median_v1",
+        "best_offline_model_id": "candidate_prior_success_median_v1",
+        "challenger_model_id": "csr_masked_self_attention_ranker_v1",
+        "challenger_runtime_eligible": false,
+        "git_commit": "unknown",
+        "min_required_eval_oracle_requests": 4,
+        "num_eval_oracle_requests": 4,
+        "num_eval_predictions": 5,
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_csr_selector_model_eval_v1",
+        "status": "passed"
+      },
+      "row_count": 2,
+      "stage_id": "csr_transformer_quality_gate",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_transformer_training_entrypoint",
+      "artifact_kind": "csr_transformer_training_entrypoint",
+      "metadata": {
+        "current_quality_gate_runtime_eligible": false,
+        "git_commit": "unknown",
+        "model_trained": false,
+        "model_training_required": true,
+        "num_model_requests": 20,
+        "num_tensor_requests": 20,
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_csr_transformer_training_entrypoint_v1",
+        "status": "passed",
+        "training_entrypoint_ready": true,
+        "transformer_connectable": true
+      },
+      "row_count": 6,
+      "stage_id": "csr_transformer_training_entrypoint",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_learned_guard",
+      "artifact_kind": "csr_learned_runtime_guard",
+      "metadata": {
+        "git_commit": "unknown",
+        "promotion_fixture_checked": true,
+        "quality_gate_blocks_checked": true,
+        "runtime_fallback_checked": true,
+        "runtime_selector_changed": false,
+        "shadow_mode_checked": true,
+        "status": "passed"
+      },
+      "row_count": 4,
+      "stage_id": "csr_learned_runtime_guard",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_guarded_auto_solve",
+      "artifact_kind": "csr_guarded_auto_solve_smoke",
+      "metadata": {
+        "git_commit": "5aee244aead1235a247ae80493f8f184835b7bed",
+        "learned_runtime_promotions": 0,
+        "num_failed": 0,
+        "num_solves": 2,
+        "num_success": 2,
+        "quality_gate_blocks": 2,
+        "runtime_selector_changed": false,
+        "status": "passed"
+      },
+      "row_count": 2,
+      "stage_id": "csr_guarded_auto_solve",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_guarded_promotion_readiness",
+      "artifact_kind": "csr_guarded_promotion_readiness",
+      "metadata": {
+        "current_quality_gate_blocks": 1,
+        "current_runtime_selector_changed": false,
+        "fixture_learned_promotions": 1,
+        "git_commit": "5aee244aead1235a247ae80493f8f184835b7bed",
+        "num_scenarios": 3,
+        "num_success": 3,
+        "runtime_exception_fallbacks": 1,
+        "runtime_fallback_used_count": 1,
+        "status": "passed"
+      },
+      "row_count": 3,
+      "stage_id": "csr_guarded_promotion_readiness",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_guarded_promotion_coverage_plan",
+      "artifact_kind": "csr_guarded_promotion_coverage_plan",
+      "metadata": {
+        "executes_gpu": false,
+        "git_commit": "unknown",
+        "plan_id": "phase1_csr_guarded_promotion_coverage_m57",
+        "planned_gpu_final_solves": 11,
+        "planned_scenarios": 15,
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_csr_guarded_promotion_coverage_plan_v1",
+        "status": "passed"
+      },
+      "row_count": 15,
+      "stage_id": "csr_guarded_promotion_coverage_plan",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_guarded_promotion_coverage_exec",
+      "artifact_kind": "csr_guarded_promotion_coverage_exec",
+      "metadata": {
+        "current_quality_gate_blocks": 4,
+        "current_runtime_selector_changed": false,
+        "executed_gpu_scenarios": 8,
+        "fixture_learned_promotions": 2,
+        "git_commit": "unknown",
+        "guard_only_scenarios": 4,
+        "non_success_blocks": 4,
+        "num_scenarios": 12,
+        "runtime_exception_fallbacks": 2,
+        "schema_version": "phase1_csr_guarded_promotion_coverage_exec_v1",
+        "status": "passed"
+      },
+      "row_count": 12,
+      "stage_id": "csr_guarded_promotion_coverage_exec",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_non_success_fallback_probe",
+      "artifact_kind": "csr_non_success_fallback_probe",
+      "metadata": {
+        "candidate_attempts": 15,
+        "cpu_screened_out_rows": 11,
+        "executes_gpu": true,
+        "git_commit": "unknown",
+        "gpu_success_rows": 4,
+        "resolved_matrix_count": 2,
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_csr_non_success_fallback_probe_v1",
+        "status": "passed",
+        "target_scenarios": 4,
+        "unresolved_matrix_count": 2
+      },
+      "row_count": 15,
+      "stage_id": "csr_non_success_fallback_probe",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_guarded_non_success_fallback_integration",
+      "artifact_kind": "csr_guarded_non_success_fallback_integration",
+      "metadata": {
+        "executed_gpu_scenarios": 2,
+        "git_commit": "unknown",
+        "guard_only_scenarios": 2,
+        "resolved_exact_fallback_scenarios": 2,
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_csr_guarded_non_success_fallback_integration_v1",
+        "status": "passed",
+        "target_non_success_scenarios": 4,
+        "unresolved_exact_fallback_scenarios": 2
+      },
+      "row_count": 4,
+      "stage_id": "csr_guarded_non_success_fallback_integration",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_ilu0_guarded_integration",
+      "artifact_kind": "csr_ilu0_guarded_integration",
+      "metadata": {
+        "executed_gpu_scenarios": 1,
+        "failed_numeric_gate_rows_blocked": 1,
+        "git_commit": "unknown",
+        "ilu0_selector_rows": 2,
+        "ilu0_success_rows_imported": 1,
+        "production_runtime_selector_changed": false,
+        "schema_version": "phase1_csr_ilu0_guarded_integration_v1",
+        "status": "passed"
+      },
+      "row_count": 2,
+      "stage_id": "csr_ilu0_guarded_integration",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_ilu0_coverage_expansion",
+      "artifact_kind": "csr_ilu0_coverage_expansion",
+      "metadata": {
+        "candidate_rows": 8,
+        "failed_numeric_gate_rows": 1,
+        "git_commit": "unknown",
+        "gpu_solve_rows": 4,
+        "merge_ready_success_rows": 3,
+        "merged_into_main_transformer_ready": false,
+        "numeric_success_rows": 3,
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_csr_ilu0_coverage_expansion_v1",
+        "setup_failed_rows": 4,
+        "status": "passed"
+      },
+      "row_count": 8,
+      "stage_id": "csr_ilu0_coverage_expansion",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_unresolved_fallback_coverage_plan",
+      "artifact_kind": "csr_unresolved_fallback_coverage_plan",
+      "metadata": {
+        "candidate_plan_rows": 6,
+        "cpu_screen_ready_candidates": 4,
+        "executes_gpu": false,
+        "future_dependency_candidates": 2,
+        "git_commit": "unknown",
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_csr_unresolved_fallback_coverage_plan_v1",
+        "status": "passed",
+        "unresolved_matrix_count": 2
+      },
+      "row_count": 6,
+      "stage_id": "csr_unresolved_fallback_coverage_plan",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_unresolved_fallback_cpu_screen",
+      "artifact_kind": "csr_unresolved_fallback_cpu_screen",
+      "metadata": {
+        "attempted_cpu_screens": 4,
+        "cpu_screened_out_rows": 4,
+        "executes_gpu": false,
+        "git_commit": "unknown",
+        "gpu_probe_ready_candidates": 0,
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_csr_unresolved_fallback_cpu_screen_v1",
+        "screen_success_rows": 0,
+        "status": "passed"
+      },
+      "row_count": 4,
+      "stage_id": "csr_unresolved_fallback_cpu_screen",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_unresolved_matrix_diagnostics",
+      "artifact_kind": "csr_unresolved_matrix_diagnostics",
+      "metadata": {
+        "diagnosed_matrices": 2,
+        "executes_gpu": false,
+        "git_commit": "unknown",
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_csr_unresolved_matrix_diagnostics_v1",
+        "status": "passed"
+      },
+      "row_count": 2,
+      "stage_id": "csr_unresolved_matrix_diagnostics",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_public_release_hygiene",
+      "artifact_kind": "public_release_hygiene",
+      "metadata": {
+        "git_commit": "c2c807ff537c5c0425ea9625c4a90bb68df34cc6",
+        "git_init_required": false,
+        "git_repository_initialized": true,
+        "large_unignored_file_count": 0,
+        "public_release_hygiene_ready": true,
+        "runtime_selector_changed": false,
+        "schema_version": "phase1_public_release_hygiene_v1",
+        "secret_like_file_count": 0,
+        "status": "passed",
+        "validation_error_count": 0
+      },
+      "row_count": 79,
+      "stage_id": "public_release_hygiene",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_transformer_readiness",
+      "artifact_kind": "transformer_readiness_export",
+      "metadata": {
+        "evaluation": "runs/phase1_smoke_taichi/candidate_evaluation.jsonl",
+        "git_commit": "unknown",
+        "num_oracle_rows": 7,
+        "num_rows": 21,
+        "workload": "configs/workloads/phase1_smoke.yaml"
+      },
+      "row_count": 21,
+      "stage_id": "transformer_readiness",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_public_api_smoke",
+      "artifact_kind": "public_api_smoke",
+      "metadata": {
+        "git_commit": "5aee244aead1235a247ae80493f8f184835b7bed",
+        "num_dataset_plan_entries": 3,
+        "num_training_rows": 21,
+        "status": "success"
+      },
+      "row_count": 1,
+      "stage_id": "public_api_smoke",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_csr_public_api",
+      "artifact_kind": "csr_public_api_smoke",
+      "metadata": {
+        "git_commit": "5aee244aead1235a247ae80493f8f184835b7bed",
+        "num_failed": 0,
+        "num_solves": 5,
+        "num_success": 5,
+        "precision": "float64",
+        "status": "passed"
+      },
+      "row_count": 1,
+      "stage_id": "csr_public_api_smoke",
+      "stale_paths": [],
+      "status": "passed"
+    },
+    {
+      "artifact_dir": "runs/phase1_solver_functional",
+      "artifact_kind": "solver_functional_smoke",
+      "metadata": {
+        "candidate_set": "phase1_solver_expansion",
+        "git_commit": "unknown",
+        "num_records": 2,
+        "num_success": 2
+      },
+      "row_count": 2,
+      "stage_id": "solver_functional",
+      "stale_paths": [],
+      "status": "passed"
+    }
+  ],
+  "status": "passed"
+}

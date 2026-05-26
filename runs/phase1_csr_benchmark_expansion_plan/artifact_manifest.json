@@ -1,0 +1,39 @@
+{
+  "artifact_kind": "csr_benchmark_expansion_plan",
+  "command": "scripts/tss_csr_benchmark_expansion_plan.py",
+  "created_at_utc": "2026-05-26T14:00:00.566297+00:00",
+  "file_hashes": [
+    {
+      "path": "configs/runtime/resource_limits.yaml",
+      "sha256": "f9c6003c3c3d9ca08e2a16b3dc4c8788167e7d916dab25cec6800d35093bc048"
+    },
+    {
+      "path": "runs/phase1_suitesparse_selection/selected_matrices.jsonl",
+      "sha256": "a4babfb0deb0cc1f3ce9460ad31278694f62f40a4e13256fb0b1c971b64d6f56"
+    },
+    {
+      "path": "runs/phase1_csr_selector_readiness/csr_selector_rows.jsonl",
+      "sha256": "180351207cc9c630c6e01f7d13f2abe8bcaa7cc3c48fc172eca76efdb9550585"
+    },
+    {
+      "path": "transsolvestack/profiling/csr_benchmark_expansion.py",
+      "sha256": "b21399eb513d9fdf3e4009a3bbc017ab6884868d382d7ffe5926432079fff50b"
+    },
+    {
+      "path": "scripts/tss_csr_benchmark_expansion_plan.py",
+      "sha256": "0fe49baf4684ab0e872b93d2552396bf3bb415c2d6e0b594e293115605fd8638"
+    }
+  ],
+  "metadata": {
+    "executes_gpu": false,
+    "git_commit": "unknown",
+    "plan_id": "phase1_csr_benchmark_expansion_m49",
+    "planned_candidate_jobs": 24,
+    "planned_gpu_solve_attempts": 24,
+    "planned_matrices": 8,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_benchmark_expansion_plan_v1",
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

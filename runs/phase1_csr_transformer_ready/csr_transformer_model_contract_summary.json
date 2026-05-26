@@ -1,0 +1,29 @@
+{
+  "eval_max_regret_ms": 109.69076957553625,
+  "eval_mean_regret_ms": 27.422692393884063,
+  "eval_oracle_top1_accuracy": 0.6,
+  "eval_profiled_selection_rate": 0.8,
+  "max_candidates_per_request": 9,
+  "min_candidates_per_request": 3,
+  "model_required": false,
+  "num_eval_requests": 5,
+  "num_predictions": 5,
+  "num_predictions_with_profiled_success_selection": 4,
+  "num_predictions_with_selected_candidate": 4,
+  "num_request_candidates": 132,
+  "num_requests": 20,
+  "num_targets": 20,
+  "num_train_requests": 15,
+  "prediction_source": "csr_transformer_ready_baseline_adapter_v1",
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_model_contract_v1",
+  "status": "passed",
+  "target_label_class_counts": {
+    "not_applicable": 34,
+    "not_profiled": 44,
+    "screened_out": 31,
+    "success_non_oracle": 15,
+    "success_oracle": 8
+  },
+  "validation_error_count": 0
+}

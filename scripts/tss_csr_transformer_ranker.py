@@ -1,0 +1,109 @@
+"""Train the lightweight CSR masked self-attention ranker."""
+
+from __future__ import annotations
+
+import argparse
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from transsolvestack.policies.csr_transformer_ranker import (
+    train_csr_transformer_ranker_from_tensor_file,
+    write_csr_transformer_ranker_model,
+    write_csr_transformer_ranker_predictions,
+    write_csr_transformer_ranker_report,
+    write_csr_transformer_ranker_schema,
+    write_csr_transformer_ranker_summary,
+)
+from transsolvestack.profiling.provenance import (
+    CORE_CSR_TRANSFORMER_RANKER_PROVENANCE_FILES,
+    build_artifact_manifest,
+    git_commit_or_unknown,
+    write_manifest,
+)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--tensors",
+        default="runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json",
+    )
+    parser.add_argument(
+        "--request-index",
+        default="runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl",
+    )
+    parser.add_argument("--out", default="runs/phase1_csr_transformer_ranker")
+    parser.add_argument("--epochs", type=int, default=160)
+    parser.add_argument("--learning-rate", type=float, default=0.03)
+    parser.add_argument("--l2-regularization", type=float, default=1.0e-4)
+    parser.add_argument("--d-model", type=int, default=24)
+    parser.add_argument("--attention-heads", type=int, default=4)
+    parser.add_argument("--feedforward-dim", type=int, default=48)
+    parser.add_argument("--seed", type=int, default=18)
+    args = parser.parse_args()
+
+    export = train_csr_transformer_ranker_from_tensor_file(
+        args.tensors,
+        args.request_index,
+        epochs=args.epochs,
+        learning_rate=args.learning_rate,
+        l2_regularization=args.l2_regularization,
+        d_model=args.d_model,
+        num_attention_heads=args.attention_heads,
+        feedforward_dim=args.feedforward_dim,
+        seed=args.seed,
+    )
+    output = Path(args.out)
+    output.mkdir(parents=True, exist_ok=True)
+    paths = {
+        "model": output / "csr_transformer_ranker_model.json",
+        "predictions": output / "csr_transformer_ranker_predictions.jsonl",
+        "summary": output / "csr_transformer_ranker_summary.json",
+        "schema": output / "csr_transformer_ranker_schema.json",
+        "report": output / "csr_transformer_ranker_report.md",
+        "manifest": output / "artifact_manifest.json",
+    }
+    write_csr_transformer_ranker_model(export.model, paths["model"])
+    write_csr_transformer_ranker_predictions(export.predictions, paths["predictions"])
+    write_csr_transformer_ranker_summary(export.summary, paths["summary"])
+    write_csr_transformer_ranker_schema(export.schema, paths["schema"])
+    write_csr_transformer_ranker_report(export, paths["report"])
+    write_manifest(
+        build_artifact_manifest(
+            artifact_kind="csr_transformer_ranker",
+            command="scripts/tss_csr_transformer_ranker.py",
+            tracked_files=CORE_CSR_TRANSFORMER_RANKER_PROVENANCE_FILES,
+            metadata={
+                "git_commit": git_commit_or_unknown(),
+                "status": export.summary.status,
+                "schema_version": export.summary.schema_version,
+                "model_family": export.summary.model_family,
+                "model_id": export.summary.model_id,
+                "model_trained": export.summary.model_trained,
+                "runtime_selector_changed": export.summary.runtime_selector_changed,
+                "num_eval_requests": export.summary.num_eval_requests,
+                "num_eval_oracle_requests": export.summary.num_eval_oracle_requests,
+                "eval_oracle_top1_accuracy": export.summary.eval_oracle_top1_accuracy,
+                "eval_profiled_success_selection_rate": (
+                    export.summary.eval_profiled_success_selection_rate
+                ),
+                "eval_non_success_selection_count": (
+                    export.summary.eval_non_success_selection_count
+                ),
+            },
+        ),
+        paths["manifest"],
+    )
+    for key, value in paths.items():
+        print(f"{key}: {value}")
+    print(f"status: {export.summary.status}")
+    if export.summary.status != "passed":
+        raise SystemExit(2)
+
+
+if __name__ == "__main__":
+    main()

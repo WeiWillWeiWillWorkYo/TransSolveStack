@@ -1,0 +1,44 @@
+{
+  "artifact_kind": "csr_model_contract_export",
+  "command": "scripts/tss_csr_model_contract.py",
+  "created_at_utc": "2026-05-26T13:59:43.062865+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_learning_readiness/csr_learning_rows.jsonl",
+      "sha256": "31f23fc5cd5dcaa24f7631b4cc6c5cdf9743c4d1672dbb64a3a56dc53356363c"
+    },
+    {
+      "path": "runs/phase1_csr_learning_readiness/csr_baseline_predictions.jsonl",
+      "sha256": "414bc28b36360d45e8007de2981010df2dd328b66c2406ce2eadcda7aaec9c77"
+    },
+    {
+      "path": "transsolvestack/__init__.py",
+      "sha256": "2f55e7cb6abc78de6f110c3b44567324b049652e93f2b908f771c38517164b3e"
+    },
+    {
+      "path": "transsolvestack/api.py",
+      "sha256": "bb93c01bb0b7b57d78c7309e979bf13bc46f2fcd4f03dccd85d7cd6647334ffb"
+    },
+    {
+      "path": "transsolvestack/policies/csr_model_contract.py",
+      "sha256": "16f3aa9ee6ffd44cb0efbb14a528eea7e53644dc28edb20d093994770be7c4e7"
+    },
+    {
+      "path": "scripts/tss_csr_model_contract.py",
+      "sha256": "01f80881823be6c3da0a86aca2d0f24c2cbba426a935f7158ce694ce2c54920d"
+    }
+  ],
+  "metadata": {
+    "eval_oracle_top1_accuracy": 0.3333333333333333,
+    "eval_profiled_selection_rate": 0.6666666666666666,
+    "git_commit": "unknown",
+    "model_required": false,
+    "num_predictions": 3,
+    "num_requests": 12,
+    "prediction_source": "csr_learning_baseline_adapter_v1",
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_model_contract_v1",
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

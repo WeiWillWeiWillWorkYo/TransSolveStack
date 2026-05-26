@@ -1,0 +1,15 @@
+{
+  "confidence_threshold_checked": true,
+  "fallback_chain_enforced_checked": true,
+  "guard_id": "csr_learned_policy_runtime_guard_v1",
+  "num_checks": 4,
+  "preemptive_gpu_kill_supported": false,
+  "promotion_fixture_checked": true,
+  "quality_gate_blocks_checked": true,
+  "runtime_fallback_checked": true,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_learned_runtime_guard_v1",
+  "shadow_mode_checked": true,
+  "status": "passed",
+  "timeout_guard_checked": true
+}

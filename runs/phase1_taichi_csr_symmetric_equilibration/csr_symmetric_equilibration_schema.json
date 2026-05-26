@@ -1,0 +1,14 @@
+{
+  "integration_boundary": {
+    "candidate_promotion_requires_numeric_success": true,
+    "executes_gpu": true,
+    "runtime_selector_changed": false
+  },
+  "numeric_gate": [
+    "solver status must be success",
+    "trace and CPU recomputed residuals must pass",
+    "solution relative error must be <= 5e-3 for rhs=A@ones"
+  ],
+  "schema_version": "phase1_taichi_csr_symmetric_equilibration_v1",
+  "task": "execute_taichi_gpu_symmetric_equilibration_pcg_probe"
+}

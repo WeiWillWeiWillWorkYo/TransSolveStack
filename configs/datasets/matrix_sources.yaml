@@ -1,0 +1,26 @@
+sources:
+  suitesparse:
+    base_url: "https://sparse.tamu.edu"
+    download_policy: "manifest_only_until_selected"
+    license_note: "CC-BY 4.0 for matrices; preserve matrix metadata and citations."
+    phase1_selection:
+      max_download_gb: 2
+      larger_downloads_require_explicit_opt_in: true
+      prefer_groups:
+        - structural_engineering
+        - computational_fluid_dynamics
+        - thermal
+        - circuit_simulation
+      size_bands:
+        smoke:
+          max_n: 100000
+          max_nnz: 2000000
+        medium:
+          enabled_by_default: false
+          max_n: 1000000
+          max_nnz: 20000000
+  nist_matrix_market:
+    base_url: "https://math.nist.gov/MatrixMarket/"
+    download_policy: "small_reference_only"
+    phase1_selection:
+      purpose: "format parser and small correctness reference"

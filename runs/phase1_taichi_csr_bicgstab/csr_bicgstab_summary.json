@@ -1,0 +1,179 @@
+{
+  "device_memory_gb": 0.25,
+  "max_cpu_recomputed_relative_residual": 8.729656304514155e-06,
+  "max_final_relative_residual": 8.729656304521325e-06,
+  "max_iter": 512,
+  "max_solution_relative_error": 0.00042280635566429453,
+  "measurement_repeats": 3,
+  "num_failed": 0,
+  "num_selected_matrices": 2,
+  "num_solves": 4,
+  "num_success": 4,
+  "precision": "float64",
+  "selected_matrices": [
+    "suitesparse:Grund/b1_ss",
+    "suitesparse:HB/curtis54"
+  ],
+  "skipped_candidates": [
+    {
+      "matrix_id": "suitesparse:HB/fs_183_1",
+      "reason": "cpu_reference_bicgstab_screen_failed",
+      "screens": {
+        "jacobi": {
+          "breakdown": null,
+          "iterations": 9,
+          "relative_residual": 1.3004167466570424e-06,
+          "residual_history_head": [
+            1.0,
+            0.4129743240700178,
+            0.25206649756292154,
+            0.47080122352761433,
+            0.0037862523098333954,
+            0.006693177768131552,
+            0.0042792669883629725,
+            3.599415997590143e-05
+          ],
+          "residual_history_length": 10,
+          "residual_history_tail": [
+            0.25206649756292154,
+            0.47080122352761433,
+            0.0037862523098333954,
+            0.006693177768131552,
+            0.0042792669883629725,
+            3.599415997590143e-05,
+            1.1773088349079269e-05,
+            1.3004167466570424e-06
+          ],
+          "solution_relative_error": 32420.460024486987,
+          "success": false
+        },
+        "none": {
+          "breakdown": null,
+          "iterations": 7,
+          "relative_residual": 9.85754720566711e-06,
+          "residual_history_head": [
+            1.0,
+            0.002197505629026673,
+            0.0021721917570318755,
+            0.002082681460452,
+            3.059227353793792e-05,
+            3.0399369301549548e-05,
+            1.6876524784279636e-05,
+            9.85754720566711e-06
+          ],
+          "residual_history_length": 8,
+          "residual_history_tail": [
+            1.0,
+            0.002197505629026673,
+            0.0021721917570318755,
+            0.002082681460452,
+            3.059227353793792e-05,
+            3.0399369301549548e-05,
+            1.6876524784279636e-05,
+            9.85754720566711e-06
+          ],
+          "solution_relative_error": 1.2556694004977076,
+          "success": false
+        }
+      }
+    },
+    {
+      "matrix_id": "suitesparse:HB/young3c",
+      "reason": "cpu_reference_bicgstab_screen_failed",
+      "screens": {
+        "jacobi": {
+          "breakdown": null,
+          "iterations": 512,
+          "relative_residual": 0.0008118455982127955,
+          "residual_history_head": [
+            1.0,
+            1.4445799341702121,
+            1.2845344184739527,
+            0.7994707774991459,
+            0.8090842580279133,
+            0.3506989769399522,
+            1.3816044531947185,
+            0.31568224689099034
+          ],
+          "residual_history_length": 513,
+          "residual_history_tail": [
+            0.0010197141681446593,
+            0.0009504158418637334,
+            0.0008488916853217208,
+            0.0011969382724326138,
+            0.006617457790942766,
+            0.003570661764016511,
+            0.0028520411362601694,
+            0.0008118455982127955
+          ],
+          "solution_relative_error": 0.009615620256148111,
+          "success": false
+        },
+        "none": {
+          "breakdown": null,
+          "iterations": 512,
+          "relative_residual": 0.00013937465259346657,
+          "residual_history_head": [
+            1.0,
+            1.535274167481393,
+            0.793260812627115,
+            0.24382326411943625,
+            0.18240957675154676,
+            0.1841572443717258,
+            0.2356961614699289,
+            0.6753577855717646
+          ],
+          "residual_history_length": 513,
+          "residual_history_tail": [
+            0.0005373025791957696,
+            0.00011157770162147252,
+            0.0001150881332423318,
+            0.00016816895007334704,
+            0.0001905815429648519,
+            0.00016175113572723578,
+            0.00027237135772656927,
+            0.00013937465259346657
+          ],
+          "solution_relative_error": 0.0033601801505560042,
+          "success": false
+        }
+      }
+    },
+    {
+      "matrix_id": "suitesparse:Zitney/extr1b",
+      "reason": "after_selection_limit"
+    },
+    {
+      "matrix_id": "suitesparse:Hamrle/Hamrle1",
+      "reason": "after_selection_limit"
+    },
+    {
+      "matrix_id": "suitesparse:Sandia/oscil_dcop_01",
+      "reason": "after_selection_limit"
+    },
+    {
+      "matrix_id": "suitesparse:JGD_Trefethen/Trefethen_20b",
+      "reason": "after_selection_limit"
+    },
+    {
+      "matrix_id": "suitesparse:Negre/dendrimer",
+      "reason": "after_selection_limit"
+    },
+    {
+      "matrix_id": "suitesparse:Goodwin/Goodwin_010",
+      "reason": "after_selection_limit"
+    },
+    {
+      "matrix_id": "suitesparse:FIDAP/ex5",
+      "reason": "after_selection_limit"
+    },
+    {
+      "matrix_id": "suitesparse:Bai/cdde1",
+      "reason": "after_selection_limit"
+    }
+  ],
+  "source_csr_path": "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+  "status": "passed",
+  "tolerance_rel": 1e-05,
+  "total_csr_nnz": 612
+}

@@ -1,0 +1,30 @@
+{
+  "expected_outputs": {
+    "model": "runs/phase1_csr_transformer_training_entrypoint/future_csr_transformer_policy_model.json",
+    "predictions": "runs/phase1_csr_transformer_training_entrypoint/future_csr_transformer_policy_predictions.jsonl",
+    "schema": "runs/phase1_csr_transformer_training_entrypoint/future_csr_transformer_policy_schema.json",
+    "summary": "runs/phase1_csr_transformer_training_entrypoint/future_csr_transformer_policy_summary.json"
+  },
+  "inputs": {
+    "model_requests": "runs/phase1_csr_transformer_ready/csr_transformer_model_requests.jsonl",
+    "offline_targets": "runs/phase1_csr_transformer_ready/csr_transformer_model_targets.jsonl",
+    "request_index": "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl",
+    "tensor_arrays": "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json"
+  },
+  "job_kind": "csr_transformer_policy_training",
+  "model_family": "csr_transformer_policy_v1",
+  "non_goals": [
+    "do_not_train_inside_this_entrypoint_artifact",
+    "do_not_change_runtime_selector",
+    "do_not_execute_gpu_benchmarks"
+  ],
+  "required_post_training_checks": [
+    "validate_predictions_against_phase1_csr_model_contract_v1",
+    "run_csr_selector_model_quality_gate",
+    "require_no_non_success_runtime_selections",
+    "require_profiled_success_fallback_chain_for_promotions",
+    "keep_runtime_selector_artifact_backed_until_gate_passes"
+  ],
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_transformer_training_entrypoint_v1"
+}

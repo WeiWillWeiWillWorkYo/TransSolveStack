@@ -1,0 +1,61 @@
+{
+  "artifact_kind": "csr_ilu0_coverage_expansion",
+  "command": "scripts/tss_csr_ilu0_coverage_expansion.py",
+  "created_at_utc": "2026-05-26T14:54:20.476028+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_taichi_csr_ilu0/csr_ilu0_results.jsonl",
+      "sha256": "a37ff004186c03e3c702075a5a534db4e5168d606b1d9c05e26840337376121a"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_ready/combined_csr_selector_rows.jsonl",
+      "sha256": "67664f0381396a0ee707dcd187d81beeccaef5ed1ca961753b9f2d338980c1b3"
+    },
+    {
+      "path": "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+      "sha256": "03fcd906df8f34ef143fbb078d5091a1c7a20493d65cb2a637304ce54a3cc9bb"
+    },
+    {
+      "path": "runs/phase1_csr_micro_campaign/csr_matrices.jsonl",
+      "sha256": "66e31794c2f22c313543b69f892f128efa1599e81247e353f6451c0c26a39ad6"
+    },
+    {
+      "path": "transsolvestack/datasets/csr.py",
+      "sha256": "8f6181ce398ad210e3bcfbc348014d1062f8838aa87fb995ca3f62c833cec03f"
+    },
+    {
+      "path": "transsolvestack/operators/taichi_csr.py",
+      "sha256": "a00caa2a43d65338aa5dbd2bf45fa6a1e1834bbaac683f1b670c05b917b55682"
+    },
+    {
+      "path": "transsolvestack/operators/taichi_diffusion2d.py",
+      "sha256": "6bf700ef35512042a4d51ed9386c1cfca5b04b84ce1b4cd7aa70c92f4a60d21d"
+    },
+    {
+      "path": "transsolvestack/runtime/engine.py",
+      "sha256": "48e53362b4b7cb3954005a7f29b8ce546f63192a170fa98d48ad97c8cc6c3e21"
+    },
+    {
+      "path": "scripts/tss_taichi_csr_ilu0_smoke.py",
+      "sha256": "3d94f22ffdda46889ce7ea686e1dd44e8fbdd03ceb1af42bf5f446373c943071"
+    },
+    {
+      "path": "scripts/tss_csr_ilu0_coverage_expansion.py",
+      "sha256": "d5b6832371c63d42188fa4969a1d623a2f2328bdab8da8cf5423587f77cf8852"
+    }
+  ],
+  "metadata": {
+    "candidate_rows": 8,
+    "failed_numeric_gate_rows": 1,
+    "git_commit": "unknown",
+    "gpu_solve_rows": 4,
+    "merge_ready_success_rows": 3,
+    "merged_into_main_transformer_ready": false,
+    "numeric_success_rows": 3,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_ilu0_coverage_expansion_v1",
+    "setup_failed_rows": 4,
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

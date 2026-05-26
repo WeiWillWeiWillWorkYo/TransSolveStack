@@ -1,0 +1,17 @@
+{
+  "pass_conditions": [
+    "all solves succeed numerically",
+    "learned guard blocks current ranker by quality gate",
+    "no learned runtime promotion occurs",
+    "fallback chain is enforced",
+    "runtime guard records success"
+  ],
+  "runtime": {
+    "backend": "taichi_gpu",
+    "expected_current_guard_status": "blocked_quality_gate",
+    "expected_runtime_selection_source": "artifact",
+    "learned_policy_mode": "promote_if_safe"
+  },
+  "schema_version": "phase1_csr_guarded_auto_solve_v1",
+  "task": "real_gpu_csr_auto_solve_through_learned_policy_runtime_guard"
+}

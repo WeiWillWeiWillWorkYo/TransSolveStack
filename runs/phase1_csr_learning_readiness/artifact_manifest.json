@@ -1,0 +1,40 @@
+{
+  "artifact_kind": "csr_learning_readiness_export",
+  "command": "scripts/tss_csr_learning_readiness.py",
+  "created_at_utc": "2026-05-26T13:59:38.591275+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_selector_readiness/csr_selector_rows.jsonl",
+      "sha256": "180351207cc9c630c6e01f7d13f2abe8bcaa7cc3c48fc172eca76efdb9550585"
+    },
+    {
+      "path": "transsolvestack/__init__.py",
+      "sha256": "2f55e7cb6abc78de6f110c3b44567324b049652e93f2b908f771c38517164b3e"
+    },
+    {
+      "path": "transsolvestack/api.py",
+      "sha256": "bb93c01bb0b7b57d78c7309e979bf13bc46f2fcd4f03dccd85d7cd6647334ffb"
+    },
+    {
+      "path": "transsolvestack/policies/csr_learning.py",
+      "sha256": "0b4581cd594b271a7b80f6f7c7adc08e9a404ef4904d1d18f48cc791cc0d3533"
+    },
+    {
+      "path": "scripts/tss_csr_learning_readiness.py",
+      "sha256": "f64e189c9119006dbfe83b0f1037060df1dbf2bb447e06fa7f499c34f2c9c0aa"
+    }
+  ],
+  "metadata": {
+    "baseline_id": "candidate_prior_success_median_v1",
+    "eval_oracle_top1_accuracy": 0.3333333333333333,
+    "eval_profiled_success_rate": 0.6666666666666666,
+    "git_commit": "unknown",
+    "num_eval_predictions": 3,
+    "num_eval_rows": 27,
+    "num_rows": 108,
+    "num_train_rows": 81,
+    "schema_version": "phase1_csr_learning_features_v1",
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

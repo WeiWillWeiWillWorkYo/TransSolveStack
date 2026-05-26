@@ -1,0 +1,36 @@
+workload_id: "phase1_sequence"
+backend: "taichi_gpu"
+family_id: "anisotropic_diffusion_2d"
+operator_kind: "structured_stencil"
+size: [32, 32]
+context:
+  context_id: "sequence_f32"
+  tolerance_rel: 1.0e-6
+  tolerance_abs: 1.0e-8
+  max_iter: 300
+  precision: "float32"
+sequence:
+  sequence_id: "anisotropy_drift_2d_32"
+  steps:
+    - step_id: "s0"
+      ax: 2.0
+      ay: 1.0
+      az: 0.0
+    - step_id: "s1"
+      ax: 4.0
+      ay: 1.0
+      az: 0.0
+    - step_id: "s2"
+      ax: 8.0
+      ay: 1.0
+      az: 0.0
+    - step_id: "s3"
+      ax: 16.0
+      ay: 1.0
+      az: 0.0
+candidate_ids:
+  - "taichi_cg_none_f32"
+  - "taichi_pcg_jacobi_f32"
+resource_limits: "configs/runtime/resource_limits.yaml"
+candidate_set: "configs/candidates/phase1_taichi_gpu.yaml"
+

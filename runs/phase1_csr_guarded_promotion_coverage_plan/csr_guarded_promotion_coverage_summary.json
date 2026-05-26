@@ -1,0 +1,58 @@
+{
+  "by_runtime_solver": {
+    "bicgstab": 3,
+    "chebyshev": 3,
+    "gmres": 4,
+    "pcg": 1
+  },
+  "by_scenario_kind": {
+    "current_ranker_quality_gate_block": 4,
+    "fixture_non_success_candidate_block": 4,
+    "fixture_profiled_success_promotion": 4,
+    "runtime_exception_fallback": 3
+  },
+  "by_selected_target_status": {
+    "not_applicable": 1,
+    "not_profiled": 1,
+    "screened_out": 2,
+    "success": 8
+  },
+  "current_blocked_scenarios": 4,
+  "exact_profiled_success_matrices": 8,
+  "executes_gpu": false,
+  "fixture_promotion_scenarios": 4,
+  "fixture_promotions_changing_candidate": 3,
+  "max_current_blocked": 4,
+  "max_fixture_promotions": 4,
+  "max_non_success_blocks": 4,
+  "max_runtime_fallbacks": 3,
+  "model_id": "csr_masked_self_attention_ranker_v1",
+  "next_step": "execute_selected_m57_scenarios_as_light_gpu_guarded_runtime_coverage",
+  "non_success_block_scenarios": 4,
+  "non_success_predictions": 13,
+  "num_predictions": 20,
+  "plan_id": "phase1_csr_guarded_promotion_coverage_m57",
+  "planned_gpu_final_solves": 11,
+  "planned_guard_only_scenarios": 4,
+  "planned_scenarios": 15,
+  "profiled_success_predictions": 7,
+  "quality_gate_failures": [
+    "below_min_profiled_success_rate",
+    "below_baseline_oracle_top1",
+    "below_baseline_profiled_success_rate",
+    "non_success_eval_selections"
+  ],
+  "quality_gate_runtime_eligible": false,
+  "runtime_fallback_scenarios": 3,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_guarded_promotion_coverage_plan_v1",
+  "selected_matrix_count": 11,
+  "source_csr_paths": [
+    "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+    "runs/phase1_csr_micro_campaign/csr_matrices.jsonl"
+  ],
+  "source_predictions_path": "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_predictions.jsonl",
+  "source_quality_gate_summary_path": "runs/phase1_csr_transformer_quality_gate/csr_transformer_quality_gate_summary.json",
+  "source_selector_rows_path": "runs/phase1_csr_transformer_ready/combined_csr_selector_rows.jsonl",
+  "status": "passed"
+}

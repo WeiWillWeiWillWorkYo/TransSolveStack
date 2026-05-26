@@ -1,0 +1,68 @@
+{
+  "artifact_kind": "public_release_hygiene",
+  "command": "scripts/tss_public_release_hygiene.py",
+  "created_at_utc": "2026-05-26T17:28:07.746139+00:00",
+  "file_hashes": [
+    {
+      "path": ".gitignore",
+      "sha256": "2dca0376e5ef5d8a6fec9a7ca3991df33cedd37f9fb29c09f27a499297fc6408"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "86327533408ef7627f8638663ead598b375e77ecba3034a534c62f04ad380c27"
+    },
+    {
+      "path": "README.md",
+      "sha256": "f3e1f4643e2330472a7f226469cb18ac68550dd142753056320dbfe159144c1d"
+    },
+    {
+      "path": "docs/PROJECT_OVERVIEW.md",
+      "sha256": "08aea663eb85d5b5582afe4ef64eef8ab5079f7cfa496c4c8a7d3a20085bbb58"
+    },
+    {
+      "path": "LICENSE_POLICY.md",
+      "sha256": "bd6262cf7f70330895b57b4dc1e996d5826eeb8a31c97756aa305e4b25ecf1ca"
+    },
+    {
+      "path": "COMMERCIAL_USE.md",
+      "sha256": "3c66b88006c2793e44be57ba761588a0f4f747f2a6af72a2a0d375cc42c910fb"
+    },
+    {
+      "path": "MODEL_CONTRIBUTION_TERMS.md",
+      "sha256": "09c5c659cdbc2946a60f6c34528b7c8a31571e98ab669b2b2ffccf95f6c640dc"
+    },
+    {
+      "path": "CONTRIBUTOR_LICENSE_AGREEMENT.md",
+      "sha256": "ad60405c225affb9bc3e0a8d737da9aec7d0282851c77d3ed24ce6b990171392"
+    },
+    {
+      "path": "CITATION.cff",
+      "sha256": "6e11f52f4acd2f96811bd74ddae8e388b660d8e26cd852dbfa57bd64d76843ff"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "07487cf2086ba560dd16170b85720d7b9bf20d618af2ecce0007855697e2a4af"
+    },
+    {
+      "path": "transsolvestack/profiling/public_release_hygiene.py",
+      "sha256": "94846759a861bd09a4738be46cc5a662c7868e5a6492f077022d0917aaec0a4e"
+    },
+    {
+      "path": "scripts/tss_public_release_hygiene.py",
+      "sha256": "19d1ca55077551eef7729837f69c8b7a6447ba2305d31d1259f88134a03b428a"
+    }
+  ],
+  "metadata": {
+    "git_commit": "c2c807ff537c5c0425ea9625c4a90bb68df34cc6",
+    "git_init_required": false,
+    "git_repository_initialized": true,
+    "large_unignored_file_count": 0,
+    "public_release_hygiene_ready": true,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_public_release_hygiene_v1",
+    "secret_like_file_count": 0,
+    "status": "passed",
+    "validation_error_count": 0
+  },
+  "python_version": "3.10.18"
+}

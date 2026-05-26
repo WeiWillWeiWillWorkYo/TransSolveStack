@@ -1,0 +1,31 @@
+{
+  "by_execution_stage": {
+    "blocked_until_preconditioner_exists": 1,
+    "cpu_screen_ready": 4,
+    "diagnostic_only_no_gpu": 1
+  },
+  "by_plan_kind": {
+    "existing_solver_parameter_sweep": 4,
+    "future_preconditioner_required": 1,
+    "matrix_formulation_diagnostic": 1
+  },
+  "candidate_plan_rows": 6,
+  "cpu_screen_ready_candidates": 4,
+  "executes_gpu": false,
+  "fallback_probe_results_path": "runs/phase1_csr_non_success_fallback_probe/csr_non_success_fallback_probe_results.jsonl",
+  "future_dependency_candidates": 2,
+  "integration_results_path": "runs/phase1_csr_guarded_non_success_fallback_integration/csr_guarded_non_success_fallback_integration_results.jsonl",
+  "integration_summary_path": "runs/phase1_csr_guarded_non_success_fallback_integration/csr_guarded_non_success_fallback_integration_summary.json",
+  "next_step": "run_cpu_screen_only_for_cpu_screen_ready_candidates_before_any_gpu_execution",
+  "plan_id": "phase1_csr_unresolved_fallback_coverage_m61",
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_unresolved_fallback_coverage_plan_v1",
+  "source_integration_status": "passed",
+  "source_probe_attempts": 15,
+  "status": "passed",
+  "unresolved_matrices": [
+    "suitesparse:Gset/G17",
+    "suitesparse:Zitney/extr1b"
+  ],
+  "unresolved_matrix_count": 2
+}

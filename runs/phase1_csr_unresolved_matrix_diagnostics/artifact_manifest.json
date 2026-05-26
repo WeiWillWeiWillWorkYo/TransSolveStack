@@ -1,0 +1,44 @@
+{
+  "artifact_kind": "csr_unresolved_matrix_diagnostics",
+  "command": "scripts/tss_csr_unresolved_matrix_diagnostics.py",
+  "created_at_utc": "2026-05-26T14:03:48.136622+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_unresolved_fallback_cpu_screen/csr_unresolved_fallback_cpu_screen_results.jsonl",
+      "sha256": "1fe4662ce16bc6d05a17bdd502763912af06d47ec59835f53ecd5a9558887202"
+    },
+    {
+      "path": "runs/phase1_csr_unresolved_fallback_cpu_screen/csr_unresolved_fallback_cpu_screen_summary.json",
+      "sha256": "6306f3a560798d54340192011059ab2c83863c2840d5cfb39347cead999875e2"
+    },
+    {
+      "path": "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+      "sha256": "03fcd906df8f34ef143fbb078d5091a1c7a20493d65cb2a637304ce54a3cc9bb"
+    },
+    {
+      "path": "runs/phase1_csr_micro_campaign/csr_matrices.jsonl",
+      "sha256": "66e31794c2f22c313543b69f892f128efa1599e81247e353f6451c0c26a39ad6"
+    },
+    {
+      "path": "transsolvestack/datasets/csr.py",
+      "sha256": "8f6181ce398ad210e3bcfbc348014d1062f8838aa87fb995ca3f62c833cec03f"
+    },
+    {
+      "path": "transsolvestack/datasets/csr_diagnostics.py",
+      "sha256": "3855ed4dc3658cfa9077bbbdfd7e4b95c311942bfa6c28a76604de9d9931b139"
+    },
+    {
+      "path": "scripts/tss_csr_unresolved_matrix_diagnostics.py",
+      "sha256": "da10fa0813a6097a3982c653b9c8996b69cba970f6c5ae84a9e8ace8362188e6"
+    }
+  ],
+  "metadata": {
+    "diagnosed_matrices": 2,
+    "executes_gpu": false,
+    "git_commit": "unknown",
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_unresolved_matrix_diagnostics_v1",
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

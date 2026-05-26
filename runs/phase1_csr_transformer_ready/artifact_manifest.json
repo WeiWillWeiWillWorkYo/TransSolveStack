@@ -1,0 +1,49 @@
+{
+  "artifact_kind": "csr_transformer_ready_bundle",
+  "command": "scripts/tss_csr_transformer_ready.py",
+  "created_at_utc": "2026-05-26T14:00:43.021299+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_selector_readiness/csr_selector_rows.jsonl",
+      "sha256": "180351207cc9c630c6e01f7d13f2abe8bcaa7cc3c48fc172eca76efdb9550585"
+    },
+    {
+      "path": "runs/phase1_csr_micro_campaign/csr_micro_selector_rows.jsonl",
+      "sha256": "ea3b2a95eff3867177c21ea7adf4af6b2403149080a0e4e3bd12d8e3f64e43a5"
+    },
+    {
+      "path": "transsolvestack/policies/csr_transformer_ready.py",
+      "sha256": "5d7a7581d3de6f9ea13cf46944eeb6a1030b987624e9a119922de5f8e385efff"
+    },
+    {
+      "path": "transsolvestack/policies/csr_learning.py",
+      "sha256": "0b4581cd594b271a7b80f6f7c7adc08e9a404ef4904d1d18f48cc791cc0d3533"
+    },
+    {
+      "path": "transsolvestack/policies/csr_model_contract.py",
+      "sha256": "16f3aa9ee6ffd44cb0efbb14a528eea7e53644dc28edb20d093994770be7c4e7"
+    },
+    {
+      "path": "transsolvestack/policies/csr_tensor_export.py",
+      "sha256": "a137ef00f23703ced8a81e0e8ce281a45ab872eb5f76e3cac9664124b3790249"
+    },
+    {
+      "path": "scripts/tss_csr_transformer_ready.py",
+      "sha256": "55b3f167ec8ec25dbeed1e6fe6389a965af2f3fcedde4918734c3023e51ae7f6"
+    }
+  ],
+  "metadata": {
+    "candidate_feature_dim": 16,
+    "git_commit": "unknown",
+    "matrix_feature_dim": 21,
+    "num_global_candidates": 9,
+    "num_model_requests": 20,
+    "num_selector_rows": 132,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_transformer_ready_v1",
+    "status": "passed",
+    "transformer_connectable": true,
+    "validation_error_count": 0
+  },
+  "python_version": "3.10.18"
+}

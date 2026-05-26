@@ -1,0 +1,21 @@
+{
+  "algorithm": [
+    "copy CSR values into ILU0 factor storage on device",
+    "perform Doolittle ILU(0) factorization over the existing CSR pattern",
+    "apply unit-lower and upper triangular solves as Taichi GPU kernels",
+    "use the ILU0 right preconditioner inside BiCGSTAB",
+    "gate promotion on original residual and rhs=A@ones solution error"
+  ],
+  "integration_boundary": {
+    "candidate_promotion_requires_numeric_success": true,
+    "executes_gpu": true,
+    "runtime_selector_changed": false
+  },
+  "numeric_gate": [
+    "solver status must be success",
+    "trace and CPU recomputed residuals must pass",
+    "solution relative error must be <= 5e-3 for rhs=A@ones"
+  ],
+  "schema_version": "phase1_taichi_csr_ilu0_v1",
+  "task": "execute_taichi_gpu_ilu0_probe"
+}

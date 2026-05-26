@@ -1,0 +1,16 @@
+{
+  "expected_outcome": "partial_resolution_allowed_but_unresolved_matrices_must_be_recorded",
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_non_success_fallback_probe_v1",
+  "screening_policy": {
+    "cpu_screen_required": true,
+    "gpu_execution": "only_after_candidate_cpu_screen_success",
+    "success_requires": [
+      "relative_residual_within_tolerance",
+      "solution_error_to_ones_within_5e-3",
+      "no_gpu_failure"
+    ]
+  },
+  "source_plan_schema": "phase1_csr_guarded_promotion_coverage_plan_v1",
+  "task": "cpu_screened_probe_for_exact_profiled_success_fallbacks"
+}

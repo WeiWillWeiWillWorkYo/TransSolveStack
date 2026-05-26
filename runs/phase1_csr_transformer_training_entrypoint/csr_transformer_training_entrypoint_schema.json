@@ -1,0 +1,19 @@
+{
+  "input_contract": {
+    "model_contract_schema": "phase1_csr_model_contract_v1",
+    "ready_bundle_schema": "phase1_csr_transformer_ready_v1",
+    "tensor_schema": "phase1_csr_training_tensors_v1"
+  },
+  "model_trained": false,
+  "model_training_required": true,
+  "runtime_integration": {
+    "automatic_runtime_promotion": false,
+    "learned_guard_required": true,
+    "quality_gate_required": true,
+    "selector_before_training": "artifact_backed"
+  },
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_transformer_training_entrypoint_v1",
+  "task": "formalize_csr_transformer_training_boundary",
+  "training_entrypoint_ready": true
+}

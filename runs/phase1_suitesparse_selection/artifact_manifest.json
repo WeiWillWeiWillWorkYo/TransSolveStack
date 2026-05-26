@@ -1,0 +1,35 @@
+{
+  "artifact_kind": "suitesparse_matrix_subset_selection",
+  "command": "scripts/tss_select_suitesparse_subset.py",
+  "created_at_utc": "2026-05-23T07:46:26.076766+00:00",
+  "file_hashes": [
+    {
+      "path": "configs/runtime/storage_paths.yaml",
+      "sha256": "fe0d433b486f88d72238e986577c2678be74ad898ad866456fd60bdb7821d444"
+    },
+    {
+      "path": "transsolvestack/datasets/suitesparse_index.py",
+      "sha256": "a54584ca6509bc8a5e02e91f4ab26cb096440d5ca4c955c4971c2b5c5943ae2d"
+    },
+    {
+      "path": "transsolvestack/datasets/selection.py",
+      "sha256": "dd4b38016aa9fd836e36537d9399a64e475877299bf0b2473715965e148d1631"
+    },
+    {
+      "path": "scripts/tss_select_suitesparse_subset.py",
+      "sha256": "155b9d28dfd63b89bff11faba14caac41e5161dd05e6774c17658836db5ac444"
+    }
+  ],
+  "metadata": {
+    "candidates_after_filter": 1854,
+    "candidates_considered": 2904,
+    "git_commit": "unknown",
+    "max_matrices": 64,
+    "max_per_kind": 4,
+    "selected_matrices": 64,
+    "source_index_path": "/mnt/tss_external/TransSolveStack/datasets/suitesparse_full/index/matrix_manifest.jsonl",
+    "status": "ready",
+    "total_selected_archive_size_bytes": 152804261
+  },
+  "python_version": "3.10.18"
+}

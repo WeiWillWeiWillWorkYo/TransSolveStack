@@ -1,0 +1,39 @@
+{
+  "artifact_kind": "transformer_readiness_export",
+  "command": "scripts/tss_export_policy_training_rows.py",
+  "created_at_utc": "2026-05-26T13:54:12.616629+00:00",
+  "file_hashes": [
+    {
+      "path": "configs/workloads/phase1_smoke.yaml",
+      "sha256": "b074620167ce96304c22a7c0153443b255561aa42bc3b73718170c7d1e6bef9c"
+    },
+    {
+      "path": "runs/phase1_smoke_taichi/candidate_evaluation.jsonl",
+      "sha256": "db29c2f0b5234c77f25d7aa92dbefd2ece45428428f39b148b0e712eb6c7652e"
+    },
+    {
+      "path": "transsolvestack/benchmarks/expand.py",
+      "sha256": "7c85c138ce79793d73f1ceaa2c91a52ff8ed0484d76873f7fdbae0b2f46bd009"
+    },
+    {
+      "path": "transsolvestack/policies/training_data.py",
+      "sha256": "d6c7d701679021b84ca2745e2930a783d663bfcce47a23a1aea9cc3cd7abc261"
+    },
+    {
+      "path": "transsolvestack/policies/transformer_contract.py",
+      "sha256": "0af2c3d1234239fbbf2fdbb166d200842553966a2ec412fa2ce5ea18e87a444b"
+    },
+    {
+      "path": "scripts/tss_export_policy_training_rows.py",
+      "sha256": "897aa8ad8e836e505b91eb0f99b8b65ce2161dae1f7c2965a2c29058c40bdc62"
+    }
+  ],
+  "metadata": {
+    "evaluation": "runs/phase1_smoke_taichi/candidate_evaluation.jsonl",
+    "git_commit": "unknown",
+    "num_oracle_rows": 7,
+    "num_rows": 21,
+    "workload": "configs/workloads/phase1_smoke.yaml"
+  },
+  "python_version": "3.10.18"
+}

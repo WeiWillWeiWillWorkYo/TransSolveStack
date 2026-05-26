@@ -1,0 +1,45 @@
+{
+  "attempted_cpu_screens": 4,
+  "by_matrix_status": {
+    "suitesparse:Gset/G17:screened_out": 2,
+    "suitesparse:Zitney/extr1b:screened_out": 2
+  },
+  "by_solver_status": {
+    "bicgstab:screened_out": 1,
+    "gmres:screened_out": 3
+  },
+  "by_status": {
+    "screened_out": 4
+  },
+  "candidate_plan_path": "runs/phase1_csr_unresolved_fallback_coverage_plan/csr_unresolved_fallback_candidate_plan.jsonl",
+  "cpu_screened_out_rows": 4,
+  "csr_record_paths": [
+    "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+    "runs/phase1_csr_micro_campaign/csr_matrices.jsonl"
+  ],
+  "executes_gpu": false,
+  "gpu_probe_ready_candidates": 0,
+  "max_success_relative_residual": null,
+  "max_success_solution_relative_error": null,
+  "min_screened_out_relative_residual": 9.961647784865096e-06,
+  "min_screened_out_solution_relative_error": 0.008229896666331749,
+  "next_step": "defer_unresolved_to_future_preconditioners_or_formulation_diagnostics",
+  "plan_summary_path": "runs/phase1_csr_unresolved_fallback_coverage_plan/csr_unresolved_fallback_coverage_plan_summary.json",
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_unresolved_fallback_cpu_screen_v1",
+  "screen_id": "phase1_csr_unresolved_fallback_cpu_screen_m62",
+  "screen_success_rows": 0,
+  "screened_out_candidate_keys": [
+    "suitesparse:Gset/G17:taichi_csr_gmres_none_restart64_float64",
+    "suitesparse:Gset/G17:taichi_csr_bicgstab_none_maxiter2048_float64",
+    "suitesparse:Zitney/extr1b:taichi_csr_gmres_none_restart64_float64",
+    "suitesparse:Zitney/extr1b:taichi_csr_gmres_jacobi_restart64_float64"
+  ],
+  "source_candidate_plan_rows": 6,
+  "source_cpu_screen_ready_candidates": 4,
+  "source_plan_status": "passed",
+  "status": "passed",
+  "success_candidate_keys": [],
+  "tolerance_rel": 1e-05,
+  "unresolved_after_cpu_screen": 4
+}

@@ -1,0 +1,24 @@
+{
+  "by_numeric_status": {
+    "failed_numeric_gate": 1
+  },
+  "candidate_promoted": false,
+  "candidate_rows": 1,
+  "csr_record_paths": [
+    "runs/phase1_csr_micro_campaign/csr_matrices.jsonl",
+    "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl"
+  ],
+  "device_memory_gb": 0.25,
+  "executes_gpu": true,
+  "failed_numeric_gate_rows": 1,
+  "gpu_executed_rows": 1,
+  "max_cpu_recomputed_relative_residual": 6.167270315832858e-06,
+  "max_final_relative_residual": 6.167270315822203e-06,
+  "max_iter": 2048,
+  "max_solution_relative_error": 0.08103661041504283,
+  "next_step": "do_not_promote_symmetric_equilibration_for_bcsstk07_without_ic0_or_better_gate",
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_taichi_csr_symmetric_equilibration_v1",
+  "status": "passed",
+  "tolerance_rel": 1e-05
+}

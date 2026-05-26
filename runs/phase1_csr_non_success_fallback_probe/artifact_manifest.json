@@ -1,0 +1,57 @@
+{
+  "artifact_kind": "csr_non_success_fallback_probe",
+  "command": "scripts/tss_csr_non_success_fallback_probe.py",
+  "created_at_utc": "2026-05-26T14:02:39.796973+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_guarded_promotion_coverage_plan/csr_guarded_promotion_coverage_scenarios.jsonl",
+      "sha256": "8961ec9fada64957d627ac1f7d4e092d46b2c953ee4746aa4fa858a603ce35af"
+    },
+    {
+      "path": "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+      "sha256": "03fcd906df8f34ef143fbb078d5091a1c7a20493d65cb2a637304ce54a3cc9bb"
+    },
+    {
+      "path": "runs/phase1_csr_micro_campaign/csr_matrices.jsonl",
+      "sha256": "66e31794c2f22c313543b69f892f128efa1599e81247e353f6451c0c26a39ad6"
+    },
+    {
+      "path": "transsolvestack/datasets/csr.py",
+      "sha256": "8f6181ce398ad210e3bcfbc348014d1062f8838aa87fb995ca3f62c833cec03f"
+    },
+    {
+      "path": "transsolvestack/operators/taichi_csr.py",
+      "sha256": "a00caa2a43d65338aa5dbd2bf45fa6a1e1834bbaac683f1b670c05b917b55682"
+    },
+    {
+      "path": "transsolvestack/policies/csr_selector_data.py",
+      "sha256": "d7b02f7b6a2c7816e19f62a186f6aa5e645467f3c7431f28fc361d84e56bd12a"
+    },
+    {
+      "path": "transsolvestack/profiling/csr_micro_campaign.py",
+      "sha256": "9fed1f0aee1c605f36ea5c5c439cb096c049ebde8aa87f0ab4e0d8cf96d079f3"
+    },
+    {
+      "path": "transsolvestack/runtime/engine.py",
+      "sha256": "48e53362b4b7cb3954005a7f29b8ce546f63192a170fa98d48ad97c8cc6c3e21"
+    },
+    {
+      "path": "scripts/tss_csr_non_success_fallback_probe.py",
+      "sha256": "65c7a3a532ac7372cf08b3a4900965862343b0edd0db77a24fa77c9f75c62657"
+    }
+  ],
+  "metadata": {
+    "candidate_attempts": 15,
+    "cpu_screened_out_rows": 11,
+    "executes_gpu": true,
+    "git_commit": "unknown",
+    "gpu_success_rows": 4,
+    "resolved_matrix_count": 2,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_non_success_fallback_probe_v1",
+    "status": "passed",
+    "target_scenarios": 4,
+    "unresolved_matrix_count": 2
+  },
+  "python_version": "3.10.18"
+}

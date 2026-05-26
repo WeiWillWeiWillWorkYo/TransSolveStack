@@ -1,0 +1,77 @@
+{
+  "device_memory_gb": 0.25,
+  "max_cpu_recomputed_relative_residual": 6.695278402323364e-06,
+  "max_final_relative_residual": 6.694982418681676e-06,
+  "max_iter": 256,
+  "max_solution_relative_error": 7.720591625641639e-06,
+  "measurement_repeats": 3,
+  "num_failed": 0,
+  "num_selected_matrices": 2,
+  "num_solves": 4,
+  "num_success": 4,
+  "precision": "float64",
+  "selected_matrices": [
+    "suitesparse:FIDAP/ex5",
+    "suitesparse:JGD_Trefethen/Trefethen_20b"
+  ],
+  "skipped_candidates": [
+    {
+      "matrix_id": "suitesparse:HB/curtis54",
+      "reason": "not_symmetric"
+    },
+    {
+      "matrix_id": "suitesparse:HB/fs_183_1",
+      "reason": "not_symmetric"
+    },
+    {
+      "matrix_id": "suitesparse:HB/young3c",
+      "reason": "not_symmetric"
+    },
+    {
+      "matrix_id": "suitesparse:Grund/b1_ss",
+      "reason": "not_symmetric"
+    },
+    {
+      "matrix_id": "suitesparse:Zitney/extr1b",
+      "reason": "not_symmetric"
+    },
+    {
+      "matrix_id": "suitesparse:Hamrle/Hamrle1",
+      "reason": "not_symmetric"
+    },
+    {
+      "matrix_id": "suitesparse:Sandia/oscil_dcop_01",
+      "reason": "not_symmetric"
+    },
+    {
+      "cg_screen": {
+        "breakdown": "non_positive_curvature",
+        "iterations": 4,
+        "relative_residual": 0.008851492881931532,
+        "solution_relative_error": 1.1090789045721834,
+        "success": false
+      },
+      "matrix_id": "suitesparse:Negre/dendrimer",
+      "pcg_screen": {
+        "breakdown": "non_positive_curvature",
+        "iterations": 7,
+        "relative_residual": 0.02120973699913137,
+        "solution_relative_error": 1.311783249477895,
+        "success": false
+      },
+      "reason": "cpu_reference_cg_screen_failed"
+    },
+    {
+      "matrix_id": "suitesparse:Goodwin/Goodwin_010",
+      "reason": "not_symmetric"
+    },
+    {
+      "matrix_id": "suitesparse:Bai/cdde1",
+      "reason": "after_selection_limit"
+    }
+  ],
+  "source_csr_path": "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+  "status": "passed",
+  "tolerance_rel": 1e-05,
+  "total_csr_nnz": 852
+}

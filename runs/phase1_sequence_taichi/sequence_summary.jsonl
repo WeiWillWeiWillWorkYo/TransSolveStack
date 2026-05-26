@@ -1,0 +1,2 @@
+{"candidate_id": "taichi_pcg_jacobi_f32", "max_final_residual_norm": 8.866103582365057e-07, "max_relative_error_to_true": 8.148875617304917e-07, "num_steps": 4, "sequence_id": "anisotropy_drift_2d_32", "status": "success", "total_iterations": 314, "total_sequence_time_ms": 1629.7904723323882}
+{"candidate_id": "taichi_cg_none_f32", "max_final_residual_norm": 8.86365956105642e-07, "max_relative_error_to_true": 8.28163118745334e-07, "num_steps": 4, "sequence_id": "anisotropy_drift_2d_32", "status": "success", "total_iterations": 314, "total_sequence_time_ms": 447.2022061236203}

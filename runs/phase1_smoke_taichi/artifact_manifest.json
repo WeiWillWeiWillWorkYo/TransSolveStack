@@ -1,0 +1,69 @@
+{
+  "artifact_kind": "taichi_smoke_benchmark",
+  "command": "scripts/tss_taichi_smoke_benchmark.py",
+  "created_at_utc": "2026-05-26T13:52:41.210131+00:00",
+  "file_hashes": [
+    {
+      "path": "configs/workloads/phase1_smoke.yaml",
+      "sha256": "b074620167ce96304c22a7c0153443b255561aa42bc3b73718170c7d1e6bef9c"
+    },
+    {
+      "path": "configs/candidates/phase1_taichi_gpu.yaml",
+      "sha256": "b0406336b23ee4c5dba1955ab681083542a642533e9f5f25ed7f29f17b74e85d"
+    },
+    {
+      "path": "configs/runtime/resource_limits.yaml",
+      "sha256": "f9c6003c3c3d9ca08e2a16b3dc4c8788167e7d916dab25cec6800d35093bc048"
+    },
+    {
+      "path": "transsolvestack/operators/synthetic.py",
+      "sha256": "e524d6f67bc33ac7903de4146321ce00f7517173e66920faba63da533d63daef"
+    },
+    {
+      "path": "transsolvestack/operators/taichi_diffusion2d.py",
+      "sha256": "6bf700ef35512042a4d51ed9386c1cfca5b04b84ce1b4cd7aa70c92f4a60d21d"
+    },
+    {
+      "path": "transsolvestack/solvers/taichi_cg.py",
+      "sha256": "e0de7c648286c8deaa4ff8b9849b752b155e9120833a22bfbe351f0d9a2669d3"
+    },
+    {
+      "path": "transsolvestack/solvers/registry.py",
+      "sha256": "c990ab0040c1253503711ff5fe3039c88e596ccb15298a5baf72c58449ccfaf8"
+    },
+    {
+      "path": "transsolvestack/backends/registry.py",
+      "sha256": "35c90892cc588d7444923deed6bf937b9a6da1a71cdb9acf3dd26d88ca077035"
+    },
+    {
+      "path": "transsolvestack/runtime/engine.py",
+      "sha256": "48e53362b4b7cb3954005a7f29b8ce546f63192a170fa98d48ad97c8cc6c3e21"
+    },
+    {
+      "path": "transsolvestack/runtime/plan_resolver.py",
+      "sha256": "98ab531e7a28b51bc139436a0200ce8fec0299b90b9554ae918242b728f5e7e6"
+    },
+    {
+      "path": "transsolvestack/profiling/artifacts.py",
+      "sha256": "1ccbfa01c1d1cd0c671cd057ae1e58a9bad396d9d061852890feccf09e541da2"
+    },
+    {
+      "path": "transsolvestack/profiling/taichi_benchmark.py",
+      "sha256": "31108b81e555a6c5f3271ee4ae74293f8d7f53e557465f1e2ea0a46b0d29ee50"
+    },
+    {
+      "path": "transsolvestack/profiling/protocol.py",
+      "sha256": "df7cde74288d6bd81c1d1f96e30f16d4e7275ec8ea9dec316b958dce308ad9f2"
+    }
+  ],
+  "metadata": {
+    "candidate_set": "configs/candidates/phase1_taichi_gpu.yaml",
+    "git_commit": "unknown",
+    "measurement_repeats": 3,
+    "num_oracle_records": 7,
+    "num_performance_records": 21,
+    "warmup_runs": 1,
+    "workload": "configs/workloads/phase1_smoke.yaml"
+  },
+  "python_version": "3.10.18"
+}

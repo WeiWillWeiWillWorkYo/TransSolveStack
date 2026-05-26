@@ -1,0 +1,73 @@
+{
+  "artifact_kind": "csr_transformer_training_entrypoint",
+  "command": "scripts/tss_csr_transformer_training_entrypoint.py",
+  "created_at_utc": "2026-05-26T14:00:58.084171+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_transformer_ready/csr_transformer_ready_summary.json",
+      "sha256": "a9e7628c084bb2fe45afc370e327995db79ed64dfffa306c1c2d2e72610afbd1"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_ready/csr_transformer_ready_schema.json",
+      "sha256": "433dc811d937d68342debc5a8955e03e2a1ba90866d8d454b3e1af893915b9e9"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_ready/csr_transformer_tensor_summary.json",
+      "sha256": "40edfcabce2cf4be9b2bb5b08d8414215a7c7e5babe01997af155ececb47bc1e"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_ready/csr_transformer_model_contract_summary.json",
+      "sha256": "6e626cbed2d2848e3b1a56443ab37c858115bcc46aa9dbf2249d9e50487ad91c"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_ready/csr_transformer_model_requests.jsonl",
+      "sha256": "00bc68c91b944a745c013a8b5359d53d89131a18f95ade3dc3e0d23a3a5b0e75"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_ready/csr_transformer_model_targets.jsonl",
+      "sha256": "d085fabde375c3d4fc005758976606ea93f228f6a9c3749f617717de016dc42e"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json",
+      "sha256": "27c3c99dd7706e596f40ea260bd0a33765fb4eddae13a7a470200a04417134be"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl",
+      "sha256": "7a76140b19e8d9ff33b753193aa6011e2f6ee392b96a3f3feb179731963a1b27"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_quality_gate/csr_transformer_quality_gate_summary.json",
+      "sha256": "d7353ef33e5809d8681e218737b9ab9d2e55f6a2c78022bb23dd90aa7a2c8c9c"
+    },
+    {
+      "path": "transsolvestack/__init__.py",
+      "sha256": "2f55e7cb6abc78de6f110c3b44567324b049652e93f2b908f771c38517164b3e"
+    },
+    {
+      "path": "transsolvestack/api.py",
+      "sha256": "bb93c01bb0b7b57d78c7309e979bf13bc46f2fcd4f03dccd85d7cd6647334ffb"
+    },
+    {
+      "path": "transsolvestack/policies/csr_transformer_training_entrypoint.py",
+      "sha256": "4d09e514587e5663adbc7e4b97b5badcce1447b978bb2cef8e33b13bf5ee90b8"
+    },
+    {
+      "path": "scripts/tss_csr_transformer_training_entrypoint.py",
+      "sha256": "4ed11ae9f703dd2c9d644e1a609a02013db75f1f0e8a764d1f1da3ed0b1fdac5"
+    }
+  ],
+  "metadata": {
+    "current_quality_gate_runtime_eligible": false,
+    "git_commit": "unknown",
+    "model_trained": false,
+    "model_training_required": true,
+    "num_model_requests": 20,
+    "num_tensor_requests": 20,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_transformer_training_entrypoint_v1",
+    "status": "passed",
+    "training_entrypoint_ready": true,
+    "transformer_connectable": true
+  },
+  "python_version": "3.10.18"
+}

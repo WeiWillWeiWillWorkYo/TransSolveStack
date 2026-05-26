@@ -1,0 +1,93 @@
+{
+  "artifact_kind": "csr_selector_readiness_export",
+  "command": "scripts/tss_export_csr_selector_rows.py",
+  "created_at_utc": "2026-05-26T13:59:10.721577+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+      "sha256": "03fcd906df8f34ef143fbb078d5091a1c7a20493d65cb2a637304ce54a3cc9bb"
+    },
+    {
+      "path": "runs/phase1_taichi_csr_solve/csr_solve_results.jsonl",
+      "sha256": "ca6979cc06b7706ad7007f2a7bedc7a149458bb15b2080aebf8f193dbb6e557d"
+    },
+    {
+      "path": "runs/phase1_taichi_csr_solve/csr_solve_summary.json",
+      "sha256": "47b6e0e1d10bc50bcd787664778574100fa3fc29f22f0d61a6d778bbec1cfcb1"
+    },
+    {
+      "path": "runs/phase1_taichi_csr_bicgstab/csr_bicgstab_results.jsonl",
+      "sha256": "f10f2385919b207700e0e011f6d22e81c310a4a553333c5da85db8cf1d31795d"
+    },
+    {
+      "path": "runs/phase1_taichi_csr_bicgstab/csr_bicgstab_summary.json",
+      "sha256": "c6dd369cb1d7b4794452f1f0da4091e812d87ef59bc204fe0892dc5ae76e809b"
+    },
+    {
+      "path": "runs/phase1_taichi_csr_gmres/csr_gmres_results.jsonl",
+      "sha256": "409bce8342c1162245ae7924bbe8b75ce365ae8735cdf8db74e973a492cbcb5b"
+    },
+    {
+      "path": "runs/phase1_taichi_csr_gmres/csr_gmres_summary.json",
+      "sha256": "810853c41ce99c56495df6fb1a335286cf990e17f9dde646b4d69592210b0055"
+    },
+    {
+      "path": "runs/phase1_taichi_csr_richardson/csr_richardson_results.jsonl",
+      "sha256": "f73c371b36ac2d8459f08d5c87c681db43e19029fdd1655d71d4f01f55f05840"
+    },
+    {
+      "path": "runs/phase1_taichi_csr_richardson/csr_richardson_summary.json",
+      "sha256": "66907fe64e71be4e1e5f4ed65f715c9a437cce90737e75fb5faa0aebd90fc0c0"
+    },
+    {
+      "path": "runs/phase1_taichi_csr_chebyshev/csr_chebyshev_results.jsonl",
+      "sha256": "4fba60d2ebc2d2d44faca091d3f1ba126a39ab9f8a9920c7f184848227a918b5"
+    },
+    {
+      "path": "runs/phase1_taichi_csr_chebyshev/csr_chebyshev_summary.json",
+      "sha256": "18d169e31805c453d42c511c103945b077899bd2892c73029ffc08728f46c9ac"
+    },
+    {
+      "path": "transsolvestack/datasets/csr.py",
+      "sha256": "8f6181ce398ad210e3bcfbc348014d1062f8838aa87fb995ca3f62c833cec03f"
+    },
+    {
+      "path": "transsolvestack/datasets/diagnostics.py",
+      "sha256": "15882899bde6e8f8f9f4fc41e712c49d981fa5b7c34efd85d07ad4c8f2472723"
+    },
+    {
+      "path": "transsolvestack/policies/csr_selector_data.py",
+      "sha256": "d7b02f7b6a2c7816e19f62a186f6aa5e645467f3c7431f28fc361d84e56bd12a"
+    },
+    {
+      "path": "scripts/tss_export_csr_selector_rows.py",
+      "sha256": "0fc5cd112df612d8a1cf8f3d9bb23940f07d0cc75c6de1463c0a71ee16dedc39"
+    }
+  ],
+  "metadata": {
+    "git_commit": "unknown",
+    "num_applicability_rows": 78,
+    "num_diagnostic_rows": 12,
+    "num_failed_rows": 15,
+    "num_oracle_rows": 4,
+    "num_selector_rows": 108,
+    "num_success_rows": 15,
+    "schema_version": "phase1_csr_selector_features_v8",
+    "screened_result_sources": [
+      "runs/phase1_taichi_csr_solve/csr_solve_summary.json",
+      "runs/phase1_taichi_csr_bicgstab/csr_bicgstab_summary.json",
+      "runs/phase1_taichi_csr_gmres/csr_gmres_summary.json",
+      "runs/phase1_taichi_csr_richardson/csr_richardson_summary.json",
+      "runs/phase1_taichi_csr_chebyshev/csr_chebyshev_summary.json"
+    ],
+    "solve_result_sources": [
+      "runs/phase1_taichi_csr_solve/csr_solve_results.jsonl",
+      "runs/phase1_taichi_csr_bicgstab/csr_bicgstab_results.jsonl",
+      "runs/phase1_taichi_csr_gmres/csr_gmres_results.jsonl",
+      "runs/phase1_taichi_csr_richardson/csr_richardson_results.jsonl",
+      "runs/phase1_taichi_csr_chebyshev/csr_chebyshev_results.jsonl"
+    ],
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

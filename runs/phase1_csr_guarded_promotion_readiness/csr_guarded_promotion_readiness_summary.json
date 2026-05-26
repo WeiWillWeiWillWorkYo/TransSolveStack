@@ -1,0 +1,29 @@
+{
+  "current_quality_gate_blocks": 1,
+  "current_runtime_selector_changed": false,
+  "device_memory_gb": 0.25,
+  "fixture_learned_promotions": 1,
+  "fixture_predictions_path": "runs/phase1_csr_guarded_promotion_readiness/fixture_promotable_predictions.jsonl",
+  "fixture_quality_gate_path": "runs/phase1_csr_guarded_promotion_readiness/fixture_runtime_eligible_quality_gate_summary.json",
+  "fixture_runtime_selector_changed_count": 1,
+  "learned_predictions_path": "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_predictions.jsonl",
+  "max_cpu_recomputed_relative_residual": 8.729656304514155e-06,
+  "max_final_relative_residual": 8.729656304521325e-06,
+  "max_solution_relative_error": 0.00042280635566429453,
+  "num_failed": 0,
+  "num_scenarios": 3,
+  "num_success": 3,
+  "quality_gate_summary_path": "runs/phase1_csr_transformer_quality_gate/csr_transformer_quality_gate_summary.json",
+  "real_gpu_final_result_count": 3,
+  "runtime_exception_fallbacks": 1,
+  "runtime_fallback_used_count": 1,
+  "runtime_guard_success_count": 3,
+  "schema_version": "phase1_csr_guarded_promotion_readiness_v1",
+  "selected_solver_set": [
+    "bicgstab",
+    "pcg"
+  ],
+  "selector_rows_path": "runs/phase1_csr_selector_readiness/csr_selector_rows.jsonl",
+  "source_csr_path": "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+  "status": "passed"
+}

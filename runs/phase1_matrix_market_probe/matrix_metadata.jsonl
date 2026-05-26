@@ -1,0 +1,1 @@
+{"compressed": false, "field": "real", "n_cols": 3, "n_rows": 3, "nnz": 5, "object_type": "matrix", "path": "tests/fixtures/tiny_spd.mtx", "storage_format": "coordinate", "symmetry": "symmetric"}

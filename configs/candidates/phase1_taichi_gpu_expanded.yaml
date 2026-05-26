@@ -1,0 +1,54 @@
+candidate_set_id: "phase1_taichi_gpu_expanded"
+backend: "taichi_gpu"
+candidates:
+  - candidate_id: "taichi_pcg_jacobi_f32"
+    solver:
+      name: "pcg"
+      precision: "float32"
+      max_iter: 300
+    preconditioner:
+      name: "jacobi"
+    reuse:
+      device_buffers: true
+      warm_start: false
+  - candidate_id: "taichi_cg_none_f32"
+    solver:
+      name: "cg"
+      precision: "float32"
+      max_iter: 300
+    preconditioner:
+      name: "none"
+    reuse:
+      device_buffers: true
+      warm_start: false
+  - candidate_id: "taichi_bicgstab_jacobi_f32"
+    solver:
+      name: "bicgstab"
+      precision: "float32"
+      max_iter: 300
+    preconditioner:
+      name: "jacobi"
+    reuse:
+      device_buffers: true
+      warm_start: false
+  - candidate_id: "taichi_richardson_jacobi_f32"
+    solver:
+      name: "richardson"
+      precision: "float32"
+      max_iter: 300
+      omega: 0.9
+    preconditioner:
+      name: "jacobi"
+    reuse:
+      device_buffers: true
+      warm_start: false
+  - candidate_id: "taichi_chebyshev_jacobi_f32"
+    solver:
+      name: "chebyshev"
+      precision: "float32"
+      max_iter: 300
+    preconditioner:
+      name: "jacobi"
+    reuse:
+      device_buffers: true
+      warm_start: false

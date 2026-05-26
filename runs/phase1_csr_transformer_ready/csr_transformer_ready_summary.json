@@ -1,0 +1,45 @@
+{
+  "candidate_feature_dim": 16,
+  "eval_oracle_top1_accuracy": 0.6,
+  "eval_profiled_selection_rate": 0.8,
+  "label_class_counts": {
+    "not_applicable": 34,
+    "not_profiled": 44,
+    "screened_out": 31,
+    "success_non_oracle": 15,
+    "success_oracle": 8
+  },
+  "matrix_feature_dim": 21,
+  "model_required": false,
+  "num_active_candidate_slots": 132,
+  "num_global_candidates": 9,
+  "num_learning_eval_rows": 33,
+  "num_learning_rows": 132,
+  "num_learning_train_rows": 99,
+  "num_matrices": 20,
+  "num_model_predictions": 5,
+  "num_model_requests": 20,
+  "num_model_targets": 20,
+  "num_oracle_rows": 8,
+  "num_oracle_targets": 8,
+  "num_requests_without_oracle": 12,
+  "num_screened_out_rows": 31,
+  "num_selector_rows": 132,
+  "num_success_rows": 23,
+  "num_tensor_requests": 20,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_transformer_ready_v1",
+  "source_selector_paths": [
+    "runs/phase1_csr_selector_readiness/csr_selector_rows.jsonl",
+    "runs/phase1_csr_micro_campaign/csr_micro_selector_rows.jsonl"
+  ],
+  "status": "passed",
+  "target_status_counts": {
+    "not_applicable": 34,
+    "not_profiled": 44,
+    "screened_out": 31,
+    "success": 23
+  },
+  "transformer_connectable": true,
+  "validation_error_count": 0
+}

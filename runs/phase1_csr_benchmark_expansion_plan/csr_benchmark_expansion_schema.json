@@ -1,0 +1,19 @@
+{
+  "candidate_queue": {
+    "measurement_repeats_default": 1,
+    "planned_status": "queued_cpu_screen_required",
+    "requires_cpu_screen": true
+  },
+  "executes_gpu": false,
+  "integration_boundary": {
+    "next_step": "execute_this_queue_with_existing_csr_import_and_solver_smoke_boundaries",
+    "status": "plan_only_no_benchmark_execution"
+  },
+  "matrix_queue": {
+    "planned_gpu_benchmark": "matrix is selected for future CPU-screened Taichi CSR solves",
+    "planned_import": "matrix is selected for a future bounded CSR import"
+  },
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_benchmark_expansion_plan_v1",
+  "task": "resource_safe_real_csr_benchmark_scaleout_planning"
+}

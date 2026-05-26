@@ -1,0 +1,21 @@
+{
+  "algorithm": [
+    "initialize Dr and Dc to identity",
+    "repeat fixed L1 equilibration passes on the scaled matrix Dr A Dc",
+    "solve Dr A Dc y = Dr b on Taichi GPU",
+    "recover original solution with x = Dc y",
+    "gate promotion on original residual and rhs=A@ones solution error"
+  ],
+  "integration_boundary": {
+    "candidate_promotion_requires_numeric_success": true,
+    "executes_gpu": true,
+    "runtime_selector_changed": false
+  },
+  "numeric_gate": [
+    "solver status must be success",
+    "trace and CPU recomputed residuals must pass",
+    "solution relative error must be <= 5e-3 for rhs=A@ones"
+  ],
+  "schema_version": "phase1_taichi_csr_row_column_equilibration_v1",
+  "task": "execute_taichi_gpu_row_column_equilibration_probe"
+}

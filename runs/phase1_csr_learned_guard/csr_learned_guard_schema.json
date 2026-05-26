@@ -1,0 +1,18 @@
+{
+  "default_mode": "shadow",
+  "guard_id": "csr_learned_policy_runtime_guard_v1",
+  "promotion_requires": [
+    "offline_quality_gate_runtime_eligible",
+    "confidence_at_or_above_threshold",
+    "learned_candidate_is_profiled_success_for_exact_matrix_context",
+    "fallback_chain_contains_only_profiled_success_candidates"
+  ],
+  "runtime_guard": {
+    "fallback_on_exception": true,
+    "fallback_on_failed_status": true,
+    "fallback_on_timeout": true,
+    "preemptive_gpu_kill_supported": false,
+    "timeout_semantics": "post_attempt_wall_clock_guard"
+  },
+  "schema_version": "phase1_csr_learned_runtime_guard_v1"
+}

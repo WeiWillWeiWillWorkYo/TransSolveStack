@@ -1,0 +1,1 @@
+{"best_candidate_id": null, "best_total_time_ms": null, "context_id": "default_f32", "fallback_candidate_id": null, "objective": "min_total_time_success", "oracle_plan_id": "oracle:default_f32:empty", "regret_baselines": {}, "safe_candidate_id": null}

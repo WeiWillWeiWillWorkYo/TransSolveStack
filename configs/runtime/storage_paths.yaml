@@ -1,0 +1,17 @@
+storage_policy_id: "tss_external_dataset_storage"
+data_root: "/mnt/tss_external/TransSolveStack/datasets"
+cache_root: "/mnt/tss_external/TransSolveStack/cache"
+matrix_root: "/mnt/tss_external/TransSolveStack/matrices"
+artifact_root: "runs"
+external_drive:
+  device_uuid: "2AB8005CB80028C1"
+  expected_device: "/dev/sda1"
+  model: "WDC WD20EARX-00PASB0"
+  filesystem: "ntfs"
+  expected_mountpoint: "/mnt/tss_external"
+policy:
+  use_external_drive_for_large_tss_data: true
+  keep_large_datasets_out_of_repo: true
+  keep_large_datasets_out_of_home: true
+  require_mount_before_download: true
+  allow_small_repo_manifests: true

@@ -1,0 +1,56 @@
+{
+  "artifact_kind": "taichi_csr_chebyshev_smoke",
+  "command": "scripts/tss_taichi_csr_chebyshev_smoke.py",
+  "created_at_utc": "2026-05-26T13:58:05.555360+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+      "sha256": "03fcd906df8f34ef143fbb078d5091a1c7a20493d65cb2a637304ce54a3cc9bb"
+    },
+    {
+      "path": "transsolvestack/datasets/csr.py",
+      "sha256": "8f6181ce398ad210e3bcfbc348014d1062f8838aa87fb995ca3f62c833cec03f"
+    },
+    {
+      "path": "transsolvestack/operators/taichi_csr.py",
+      "sha256": "a00caa2a43d65338aa5dbd2bf45fa6a1e1834bbaac683f1b670c05b917b55682"
+    },
+    {
+      "path": "transsolvestack/solvers/taichi_cg.py",
+      "sha256": "e0de7c648286c8deaa4ff8b9849b752b155e9120833a22bfbe351f0d9a2669d3"
+    },
+    {
+      "path": "transsolvestack/solvers/registry.py",
+      "sha256": "c990ab0040c1253503711ff5fe3039c88e596ccb15298a5baf72c58449ccfaf8"
+    },
+    {
+      "path": "transsolvestack/backends/registry.py",
+      "sha256": "35c90892cc588d7444923deed6bf937b9a6da1a71cdb9acf3dd26d88ca077035"
+    },
+    {
+      "path": "transsolvestack/runtime/engine.py",
+      "sha256": "48e53362b4b7cb3954005a7f29b8ce546f63192a170fa98d48ad97c8cc6c3e21"
+    },
+    {
+      "path": "transsolvestack/profiling/repeats.py",
+      "sha256": "d4d4af58c8819aad825b46ae9941efb8a357a2717f1a92d52050d1a02cee922d"
+    },
+    {
+      "path": "scripts/tss_taichi_csr_chebyshev_smoke.py",
+      "sha256": "30f36eeac70cc08fb7c7b47619bf9af5722fbc575b1a236a80276f6e59aa6e66"
+    }
+  ],
+  "metadata": {
+    "git_commit": "unknown",
+    "max_final_relative_residual": 4.743802685350028e-06,
+    "max_solution_relative_error": 5.968546842613615e-06,
+    "measurement_repeats": 3,
+    "num_failed": 0,
+    "num_selected_matrices": 1,
+    "num_solves": 1,
+    "num_success": 1,
+    "precision": "float64",
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

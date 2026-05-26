@@ -1,0 +1,31 @@
+{
+  "artifact_kind": "dataset_download_plan",
+  "command": "scripts/tss_plan_dataset_downloads.py",
+  "created_at_utc": "2026-05-16T05:39:08.759922+00:00",
+  "file_hashes": [
+    {
+      "path": "configs/datasets/phase1_external_small.yaml",
+      "sha256": "32c32c05b371d08faf3b49a12f6e7690fc2f6f1d84b39bff7d4faa6b38a5291a"
+    },
+    {
+      "path": "configs/runtime/resource_limits.yaml",
+      "sha256": "f9c6003c3c3d9ca08e2a16b3dc4c8788167e7d916dab25cec6800d35093bc048"
+    },
+    {
+      "path": "transsolvestack/datasets/catalog.py",
+      "sha256": "1d6c01c39c51332bdaa39de14a5d8956942f9fdfc281ae4a7d670558ca4c17be"
+    },
+    {
+      "path": "scripts/tss_plan_dataset_downloads.py",
+      "sha256": "baa4fff583754f7c11b3350375f35ee6d9a177da38c3a041f4496b37f7315fe5"
+    }
+  ],
+  "metadata": {
+    "catalog_id": "phase1_external_small",
+    "dry_run": true,
+    "git_commit": "unknown",
+    "num_matrices": 3,
+    "total_estimated_download_gb": 0.003
+  },
+  "python_version": "3.10.18"
+}

@@ -1,0 +1,33 @@
+{
+  "by_matrix_numeric_status": {
+    "suitesparse:HB/curtis54": "success",
+    "suitesparse:Zitney/extr1b": "failed_numeric_gate"
+  },
+  "by_numeric_status": {
+    "failed_numeric_gate": 1,
+    "success": 1
+  },
+  "candidate_promoted_rows": 1,
+  "candidate_rows": 2,
+  "csr_record_paths": [
+    "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+    "runs/phase1_csr_micro_campaign/csr_matrices.jsonl"
+  ],
+  "device_memory_gb": 0.25,
+  "executes_gpu": true,
+  "failed_numeric_gate_rows": 1,
+  "gmres_restart": null,
+  "gpu_executed_rows": 2,
+  "max_cpu_recomputed_relative_residual": 12.049767004529416,
+  "max_final_relative_residual": 12.04976700452941,
+  "max_iter": 512,
+  "max_solution_relative_error": 130702.55619119745,
+  "next_step": "merge_successful_row_column_scaled_candidates_into_guarded_fallback only after exact-matrix selector rows and fallback-chain gates are updated",
+  "numeric_success_rows": 1,
+  "runtime_selector_changed": false,
+  "scaling_passes": 4,
+  "schema_version": "phase1_taichi_csr_row_column_equilibration_v1",
+  "solver": "bicgstab",
+  "status": "passed",
+  "tolerance_rel": 1e-05
+}

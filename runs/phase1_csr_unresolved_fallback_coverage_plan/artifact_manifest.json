@@ -1,0 +1,35 @@
+{
+  "artifact_kind": "csr_unresolved_fallback_coverage_plan",
+  "command": "scripts/tss_csr_unresolved_fallback_coverage_plan.py",
+  "created_at_utc": "2026-05-26T14:02:53.341125+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_non_success_fallback_probe/csr_non_success_fallback_probe_results.jsonl",
+      "sha256": "c27b3bc59f901e7584059ae3acc331d52274773342125f56634efe3e41298fa6"
+    },
+    {
+      "path": "runs/phase1_csr_guarded_non_success_fallback_integration/csr_guarded_non_success_fallback_integration_results.jsonl",
+      "sha256": "89fde3713b1ce20bd77d2cb2a574d16a4907892b046b0bb7bec827ee4d32ca6e"
+    },
+    {
+      "path": "runs/phase1_csr_guarded_non_success_fallback_integration/csr_guarded_non_success_fallback_integration_summary.json",
+      "sha256": "a4111bcd0266509d182079d776c20cb33eaf9c4cd313205f72490f9eccef1318"
+    },
+    {
+      "path": "scripts/tss_csr_unresolved_fallback_coverage_plan.py",
+      "sha256": "8b57e3443590d1aa54d926cece59d367a1ca8d739106fca68c175b6c89f279a8"
+    }
+  ],
+  "metadata": {
+    "candidate_plan_rows": 6,
+    "cpu_screen_ready_candidates": 4,
+    "executes_gpu": false,
+    "future_dependency_candidates": 2,
+    "git_commit": "unknown",
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_unresolved_fallback_coverage_plan_v1",
+    "status": "passed",
+    "unresolved_matrix_count": 2
+  },
+  "python_version": "3.10.18"
+}

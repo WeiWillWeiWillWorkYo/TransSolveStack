@@ -1,0 +1,13 @@
+mode: "coexistence"
+notes: "Default assumes another CPU/GPU simulation may be running."
+limits:
+  max_gpu_memory_fraction: 0.20
+  max_host_threads: 2
+  max_wall_time_s: 30
+  max_problem_n: 65536
+  max_effective_nnz: 1000000
+  max_default_iterations: 300
+  max_dataset_download_gb: 2
+  require_confirmation_above_smoke: true
+  allow_background_benchmark: false
+

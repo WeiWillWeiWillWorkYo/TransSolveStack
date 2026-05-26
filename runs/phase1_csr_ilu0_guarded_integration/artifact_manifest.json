@@ -1,0 +1,82 @@
+{
+  "artifact_kind": "csr_ilu0_guarded_integration",
+  "command": "scripts/tss_csr_ilu0_guarded_integration.py",
+  "created_at_utc": "2026-05-26T14:36:31.823705+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_taichi_csr_ilu0/csr_ilu0_results.jsonl",
+      "sha256": "a37ff004186c03e3c702075a5a534db4e5168d606b1d9c05e26840337376121a"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_ready/combined_csr_selector_rows.jsonl",
+      "sha256": "67664f0381396a0ee707dcd187d81beeccaef5ed1ca961753b9f2d338980c1b3"
+    },
+    {
+      "path": "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+      "sha256": "03fcd906df8f34ef143fbb078d5091a1c7a20493d65cb2a637304ce54a3cc9bb"
+    },
+    {
+      "path": "runs/phase1_csr_micro_campaign/csr_matrices.jsonl",
+      "sha256": "66e31794c2f22c313543b69f892f128efa1599e81247e353f6451c0c26a39ad6"
+    },
+    {
+      "path": "transsolvestack/__init__.py",
+      "sha256": "2f55e7cb6abc78de6f110c3b44567324b049652e93f2b908f771c38517164b3e"
+    },
+    {
+      "path": "transsolvestack/api.py",
+      "sha256": "bb93c01bb0b7b57d78c7309e979bf13bc46f2fcd4f03dccd85d7cd6647334ffb"
+    },
+    {
+      "path": "transsolvestack/datasets/csr.py",
+      "sha256": "8f6181ce398ad210e3bcfbc348014d1062f8838aa87fb995ca3f62c833cec03f"
+    },
+    {
+      "path": "transsolvestack/policies/csr_artifact_selector.py",
+      "sha256": "6b839c084e7b3a54c86d6d4000a403aba93abd4d547bc175e92b025b689bd860"
+    },
+    {
+      "path": "transsolvestack/policies/csr_learned_guard.py",
+      "sha256": "c9f15f9527d6a13eb442b2c7f00785092c597fdd7cf41a7f2c64db9f1362c75b"
+    },
+    {
+      "path": "transsolvestack/runtime/guarded_fallback.py",
+      "sha256": "e016c260d236c2c4b6ed9d515c6ee78e5c7e80f29ce869e44247b41b3088dd7c"
+    },
+    {
+      "path": "transsolvestack/operators/taichi_csr.py",
+      "sha256": "a00caa2a43d65338aa5dbd2bf45fa6a1e1834bbaac683f1b670c05b917b55682"
+    },
+    {
+      "path": "transsolvestack/solvers/taichi_cg.py",
+      "sha256": "e0de7c648286c8deaa4ff8b9849b752b155e9120833a22bfbe351f0d9a2669d3"
+    },
+    {
+      "path": "transsolvestack/solvers/registry.py",
+      "sha256": "c990ab0040c1253503711ff5fe3039c88e596ccb15298a5baf72c58449ccfaf8"
+    },
+    {
+      "path": "transsolvestack/backends/registry.py",
+      "sha256": "35c90892cc588d7444923deed6bf937b9a6da1a71cdb9acf3dd26d88ca077035"
+    },
+    {
+      "path": "transsolvestack/runtime/engine.py",
+      "sha256": "48e53362b4b7cb3954005a7f29b8ce546f63192a170fa98d48ad97c8cc6c3e21"
+    },
+    {
+      "path": "scripts/tss_csr_ilu0_guarded_integration.py",
+      "sha256": "5e4e8df61b5468b843b3b71e8642634bd647fed8ffe3159ddf3d0084ea703582"
+    }
+  ],
+  "metadata": {
+    "executed_gpu_scenarios": 1,
+    "failed_numeric_gate_rows_blocked": 1,
+    "git_commit": "unknown",
+    "ilu0_selector_rows": 2,
+    "ilu0_success_rows_imported": 1,
+    "production_runtime_selector_changed": false,
+    "schema_version": "phase1_csr_ilu0_guarded_integration_v1",
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

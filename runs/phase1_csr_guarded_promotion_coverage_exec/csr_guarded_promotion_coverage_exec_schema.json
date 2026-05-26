@@ -1,0 +1,19 @@
+{
+  "execution_policy": {
+    "current_ranker_quality_gate_block": "execute_gpu",
+    "fixture_non_success_candidate_block": "guard_only_no_gpu",
+    "fixture_profiled_success_promotion": "execute_gpu; changed-candidate promotions are prioritized",
+    "runtime_exception_fallback": "execute_gpu"
+  },
+  "pass_conditions": [
+    "current ranker remains blocked by real quality gate",
+    "fixture profiled-success promotions solve on GPU",
+    "at least one fixture promotion changes the runtime candidate",
+    "non-success candidates are blocked before GPU execution",
+    "runtime exception fallbacks end in profiled GPU solves",
+    "all final GPU solves satisfy residual and solution checks"
+  ],
+  "schema_version": "phase1_csr_guarded_promotion_coverage_exec_v1",
+  "source_plan_schema": "phase1_csr_guarded_promotion_coverage_plan_v1",
+  "task": "execute_light_guarded_learned_policy_runtime_coverage_subset"
+}

@@ -1,0 +1,29 @@
+{
+  "checks": {
+    "external_dataset_policy": true,
+    "git_repository_required_for_upload": true,
+    "gitignore_required": true,
+    "large_file_scan": true,
+    "license_policy_required": true,
+    "release_docs_required": true,
+    "secret_name_scan": true
+  },
+  "license_policy": {
+    "commercial_use_requires_permission": true,
+    "formal_license_finalized": true,
+    "github_upload_ready": true,
+    "license_route_selected": true,
+    "permissive_license_family_rejected": true,
+    "project_owner": "Wei CUI",
+    "source_code_license": "PolyForm Noncommercial License 1.0.0"
+  },
+  "non_goals": [
+    "does_not_modify_git_state",
+    "does_not_delete_local_generated_files",
+    "does_not_upload_to_github"
+  ],
+  "public_release_hygiene_ready": true,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_public_release_hygiene_v1",
+  "task": "public_repository_hygiene_gate"
+}

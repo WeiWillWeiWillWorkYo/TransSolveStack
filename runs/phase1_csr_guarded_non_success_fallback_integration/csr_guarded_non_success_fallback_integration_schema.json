@@ -1,0 +1,11 @@
+{
+  "safety_policy": {
+    "gpu_execution": "only_when_exact_matrix_context_profiled_success_fallback_exists",
+    "learned_non_success_candidate": "must_remain_blocked",
+    "runtime_selector_changed": false,
+    "unresolved_matrices": "guard_only_no_gpu"
+  },
+  "schema_version": "phase1_csr_guarded_non_success_fallback_integration_v1",
+  "source_probe_schema": "phase1_csr_non_success_fallback_probe_v1",
+  "task": "integrate_resolved_non_success_fallback_rows_without_promoting_non_success_learned_candidates"
+}

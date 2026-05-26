@@ -1,0 +1,30 @@
+{
+  "pass_conditions": [
+    "current learned ranker is blocked by the real quality gate",
+    "fixture runtime-eligible learned prediction promotes only when it is a profiled success",
+    "runtime exception fallback reaches a profiled artifact GPU candidate",
+    "all final solve results satisfy numeric residual and solution checks"
+  ],
+  "runtime": {
+    "backend": "taichi_gpu",
+    "fixture_promotion_allowed": true,
+    "learned_policy_mode": "promote_if_safe",
+    "production_runtime_selector_changed": false
+  },
+  "scenarios": [
+    {
+      "expectation": "current Transformer ranker remains blocked by quality gate",
+      "scenario_kind": "current_ranker_blocked"
+    },
+    {
+      "expectation": "runtime-eligible high-confidence profiled-success learned candidate promotes and solves on GPU",
+      "scenario_kind": "fixture_learned_promotion"
+    },
+    {
+      "expectation": "runtime exception triggers fallback retry and the fallback solves on GPU",
+      "scenario_kind": "runtime_exception_fallback"
+    }
+  ],
+  "schema_version": "phase1_csr_guarded_promotion_readiness_v1",
+  "task": "learned_policy_runtime_promotion_readiness_matrix"
+}

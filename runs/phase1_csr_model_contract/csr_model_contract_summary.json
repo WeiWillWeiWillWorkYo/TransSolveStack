@@ -1,0 +1,29 @@
+{
+  "eval_max_regret_ms": 4753.086247015744,
+  "eval_mean_regret_ms": 2376.543123507872,
+  "eval_oracle_top1_accuracy": 0.3333333333333333,
+  "eval_profiled_selection_rate": 0.6666666666666666,
+  "max_candidates_per_request": 9,
+  "min_candidates_per_request": 9,
+  "model_required": false,
+  "num_eval_requests": 3,
+  "num_predictions": 3,
+  "num_predictions_with_profiled_success_selection": 2,
+  "num_predictions_with_selected_candidate": 2,
+  "num_request_candidates": 108,
+  "num_requests": 12,
+  "num_targets": 12,
+  "num_train_requests": 9,
+  "prediction_source": "csr_learning_baseline_adapter_v1",
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_model_contract_v1",
+  "status": "passed",
+  "target_label_class_counts": {
+    "not_applicable": 34,
+    "not_profiled": 44,
+    "screened_out": 15,
+    "success_non_oracle": 11,
+    "success_oracle": 4
+  },
+  "validation_error_count": 0
+}

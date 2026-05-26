@@ -1,0 +1,33 @@
+{
+  "artifact_kind": "taichi_csr_matvec_smoke",
+  "command": "scripts/tss_taichi_csr_matvec_smoke.py",
+  "created_at_utc": "2026-05-26T13:54:49.878538+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+      "sha256": "03fcd906df8f34ef143fbb078d5091a1c7a20493d65cb2a637304ce54a3cc9bb"
+    },
+    {
+      "path": "transsolvestack/datasets/csr.py",
+      "sha256": "8f6181ce398ad210e3bcfbc348014d1062f8838aa87fb995ca3f62c833cec03f"
+    },
+    {
+      "path": "transsolvestack/operators/taichi_csr.py",
+      "sha256": "a00caa2a43d65338aa5dbd2bf45fa6a1e1834bbaac683f1b670c05b917b55682"
+    },
+    {
+      "path": "scripts/tss_taichi_csr_matvec_smoke.py",
+      "sha256": "0143af0776f6eb0fad46a36699a0389c5e0c7264767d235f4a25b56af9343a39"
+    }
+  ],
+  "metadata": {
+    "git_commit": "unknown",
+    "max_abs_error": 9.111999988555908,
+    "max_relative_l2_error": 1.3329161593679764e-07,
+    "num_failed": 0,
+    "num_matrices": 4,
+    "num_success": 4,
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

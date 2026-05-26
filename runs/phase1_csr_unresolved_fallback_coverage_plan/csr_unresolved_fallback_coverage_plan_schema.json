@@ -1,0 +1,14 @@
+{
+  "execution_rules": [
+    "cpu_screen_ready candidates must pass CPU residual and solution-error gates before GPU",
+    "future_preconditioner_required rows are not executable until the named preconditioner exists",
+    "matrix_formulation_diagnostic rows must not be treated as same-system solver candidates"
+  ],
+  "integration_boundary": {
+    "executes_gpu": false,
+    "plan_only": true,
+    "runtime_selector_changed": false
+  },
+  "schema_version": "phase1_csr_unresolved_fallback_coverage_plan_v1",
+  "task": "minimal_plan_for_remaining_unresolved_guarded_fallback_gaps"
+}

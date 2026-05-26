@@ -1,0 +1,68 @@
+{
+  "model_required": false,
+  "prediction": {
+    "required_fields": [
+      "ranked_candidate_ids",
+      "scores",
+      "selected_candidate_id",
+      "model_id"
+    ],
+    "validation": [
+      "schema_version matches request",
+      "request/matrix/context/split match",
+      "ranked_candidate_ids contain each requested candidate exactly once",
+      "scores are finite for every requested candidate",
+      "selected_candidate_id is null or ranked first"
+    ]
+  },
+  "request": {
+    "candidate_features": [
+      "candidate_id",
+      "solver",
+      "preconditioner",
+      "precision",
+      "solver_parameters"
+    ],
+    "candidate_ids": "all candidate rows for the matrix/context",
+    "label_free": true,
+    "matrix_features": [
+      "actual_symmetric",
+      "cg_candidate",
+      "csr_nnz",
+      "declared_symmetry",
+      "diagonal_present_count",
+      "field",
+      "has_nonpositive_diagonal",
+      "is_square",
+      "max_abs_diagonal",
+      "min_abs_diagonal",
+      "n_cols",
+      "n_rows",
+      "recommended_precision",
+      "symmetry_max_abs_error",
+      "symmetry_missing_pairs",
+      "symmetry_relative_error",
+      "zero_diagonal_count"
+    ],
+    "unit": "matrix_id_context_id_split"
+  },
+  "runtime_integration": {
+    "current_runtime_selector": "csr_artifact_success_rows",
+    "next_step": "train_or_connect_ranker_then_gate_against_artifact_selector",
+    "runtime_selector_changed": false,
+    "status": "contract_only_not_runtime_selector"
+  },
+  "schema_version": "phase1_csr_model_contract_v1",
+  "target": {
+    "fields": [
+      "oracle_candidate_id",
+      "profiled_success_candidate_ids",
+      "candidate_label_classes",
+      "candidate_target_statuses",
+      "candidate_median_solve_time_ms",
+      "candidate_regret_vs_oracle_ms"
+    ],
+    "offline_only": true
+  },
+  "task": "rank_real_csr_solver_candidates"
+}

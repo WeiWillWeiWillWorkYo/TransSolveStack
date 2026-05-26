@@ -1,0 +1,63 @@
+{
+  "artifact_kind": "policy_driven_taichi_solve",
+  "command": "scripts/tss_policy_solve_smoke.py",
+  "created_at_utc": "2026-05-26T13:54:07.248328+00:00",
+  "file_hashes": [
+    {
+      "path": "configs/workloads/phase1_smoke.yaml",
+      "sha256": "b074620167ce96304c22a7c0153443b255561aa42bc3b73718170c7d1e6bef9c"
+    },
+    {
+      "path": "configs/candidates/phase1_taichi_gpu.yaml",
+      "sha256": "b0406336b23ee4c5dba1955ab681083542a642533e9f5f25ed7f29f17b74e85d"
+    },
+    {
+      "path": "configs/runtime/resource_limits.yaml",
+      "sha256": "f9c6003c3c3d9ca08e2a16b3dc4c8788167e7d916dab25cec6800d35093bc048"
+    },
+    {
+      "path": "runs/phase1_smoke_taichi/candidate_evaluation.jsonl",
+      "sha256": "db29c2f0b5234c77f25d7aa92dbefd2ece45428428f39b148b0e712eb6c7652e"
+    },
+    {
+      "path": "transsolvestack/operators/synthetic.py",
+      "sha256": "e524d6f67bc33ac7903de4146321ce00f7517173e66920faba63da533d63daef"
+    },
+    {
+      "path": "transsolvestack/operators/taichi_diffusion2d.py",
+      "sha256": "6bf700ef35512042a4d51ed9386c1cfca5b04b84ce1b4cd7aa70c92f4a60d21d"
+    },
+    {
+      "path": "transsolvestack/solvers/registry.py",
+      "sha256": "c990ab0040c1253503711ff5fe3039c88e596ccb15298a5baf72c58449ccfaf8"
+    },
+    {
+      "path": "transsolvestack/backends/registry.py",
+      "sha256": "35c90892cc588d7444923deed6bf937b9a6da1a71cdb9acf3dd26d88ca077035"
+    },
+    {
+      "path": "transsolvestack/policies/artifact_selector.py",
+      "sha256": "447e6caba3c19b387f391798e43199945087b1085d488a421171a2dbb79c2791"
+    },
+    {
+      "path": "transsolvestack/runtime/engine.py",
+      "sha256": "48e53362b4b7cb3954005a7f29b8ce546f63192a170fa98d48ad97c8cc6c3e21"
+    },
+    {
+      "path": "transsolvestack/runtime/policy_solve.py",
+      "sha256": "04975540455dc369ec4e6a4b816cd6ea360b962361e569a10a7fd5bdc44eb8d9"
+    },
+    {
+      "path": "scripts/tss_policy_solve_smoke.py",
+      "sha256": "c996983c1c147f1559e8e2956c5d0eaf82ce1c1ca1682687defefc73cfed5669"
+    }
+  ],
+  "metadata": {
+    "evaluation": "runs/phase1_smoke_taichi/candidate_evaluation.jsonl",
+    "git_commit": "unknown",
+    "num_results": 7,
+    "num_success": 7,
+    "workload_id": "phase1_smoke"
+  },
+  "python_version": "3.10.18"
+}

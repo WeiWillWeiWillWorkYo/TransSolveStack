@@ -1,0 +1,287 @@
+{
+  "device_memory_gb": 0.25,
+  "max_cpu_recomputed_relative_residual": 9.748360180473853e-06,
+  "max_final_relative_residual": 9.748360180473853e-06,
+  "max_iter": 512,
+  "max_solution_relative_error": 0.0008174089499661003,
+  "measurement_repeats": 3,
+  "num_failed": 0,
+  "num_restarts": 3,
+  "num_selected_matrices": 2,
+  "num_solves": 5,
+  "num_success": 5,
+  "precision": "float64",
+  "restarts": [
+    8,
+    16,
+    32
+  ],
+  "screened_out_restart_configs": [
+    {
+      "matrix_id": "suitesparse:HB/curtis54",
+      "preconditioner": "jacobi",
+      "restart": 8,
+      "screen": {
+        "breakdown": null,
+        "iterations": 512,
+        "relative_residual": 5.852520153040626e-05,
+        "residual_history_head": [
+          1.0,
+          0.15208411213930917,
+          0.07533560723099729,
+          0.0682047797048548,
+          0.03379767270016322,
+          0.02324771954157864,
+          0.02318828787022894,
+          0.018734547976543645
+        ],
+        "residual_history_length": 513,
+        "residual_history_tail": [
+          5.9859502968901504e-05,
+          5.95765627995645e-05,
+          5.923244685013049e-05,
+          5.921480508709596e-05,
+          5.9036629438706684e-05,
+          5.887860283093742e-05,
+          5.886340066759087e-05,
+          5.852520153040626e-05
+        ],
+        "restart": 8,
+        "solution_relative_error": 0.004931563087922689,
+        "success": false
+      }
+    }
+  ],
+  "selected_matrices": [
+    "suitesparse:Grund/b1_ss",
+    "suitesparse:HB/curtis54"
+  ],
+  "skipped_candidates": [
+    {
+      "matrix_id": "suitesparse:HB/fs_183_1",
+      "reason": "cpu_reference_gmres_screen_failed",
+      "screens": {
+        "jacobi": {
+          "16": {
+            "breakdown": null,
+            "iterations": 512,
+            "relative_residual": 0.033910790706925965,
+            "residual_history_head": [
+              1.0,
+              1.000100774456523,
+              1.0001012363217712,
+              1.0016546041992775,
+              1.0064531018857459,
+              0.9562492883333479,
+              0.5987439869058307,
+              0.14689036673251096
+            ],
+            "residual_history_length": 513,
+            "residual_history_tail": [
+              0.03391079070689746,
+              0.033910790706311075,
+              0.03391079069837278,
+              0.033910789365038066,
+              0.03391078390412123,
+              0.03391079070692607,
+              0.03391079070692607,
+              0.033910790706925965
+            ],
+            "restart": 16,
+            "solution_relative_error": 1853336464.7682161,
+            "success": false
+          },
+          "32": {
+            "breakdown": null,
+            "iterations": 17,
+            "relative_residual": 4.170808757285802e-08,
+            "residual_history_head": [
+              1.0,
+              1.000100774456523,
+              1.0001012363217712,
+              1.0016546041992775,
+              1.0064531018857459,
+              0.9562492883333479,
+              0.5987439869058307,
+              0.14689036673251096
+            ],
+            "residual_history_length": 18,
+            "residual_history_tail": [
+              0.04742673654573913,
+              0.04361999443199135,
+              0.050382723583648,
+              0.03863853759313846,
+              0.03710317686397911,
+              0.03551946228580116,
+              0.033910791236335884,
+              4.170808757285802e-08
+            ],
+            "restart": 32,
+            "solution_relative_error": 454.1490765093795,
+            "success": false
+          },
+          "8": {
+            "breakdown": null,
+            "iterations": 512,
+            "relative_residual": 0.036163077602351254,
+            "residual_history_head": [
+              1.0,
+              1.000100774456523,
+              1.0001012363217712,
+              1.0016546041992775,
+              1.0064531018857459,
+              0.9562492883333479,
+              0.5987439869058307,
+              0.14689036673251096
+            ],
+            "residual_history_length": 513,
+            "residual_history_tail": [
+              0.036163077602340624,
+              0.0361630776023407,
+              0.03616307760233949,
+              0.03616307760234005,
+              0.03616307760234687,
+              0.03616307760235024,
+              0.03616307760235099,
+              0.036163077602351254
+            ],
+            "restart": 8,
+            "solution_relative_error": 2518748489.652469,
+            "success": false
+          }
+        }
+      }
+    },
+    {
+      "matrix_id": "suitesparse:HB/young3c",
+      "reason": "cpu_reference_gmres_screen_failed",
+      "screens": {
+        "jacobi": {
+          "16": {
+            "breakdown": null,
+            "iterations": 512,
+            "relative_residual": 0.0006470501041143204,
+            "residual_history_head": [
+              1.0,
+              0.9013212133818425,
+              0.9104782204385413,
+              0.842432125905298,
+              0.7513134792882972,
+              0.5654603249882918,
+              0.5701933695482325,
+              0.46625005510894824
+            ],
+            "residual_history_length": 513,
+            "residual_history_tail": [
+              0.0006708054480451784,
+              0.0006691909099412686,
+              0.0006662625520673082,
+              0.000664584592409877,
+              0.0006634654712041685,
+              0.0006620248560385639,
+              0.0006625965611794613,
+              0.0006470501041143204
+            ],
+            "restart": 16,
+            "solution_relative_error": 0.010877346358518128,
+            "success": false
+          },
+          "32": {
+            "breakdown": null,
+            "iterations": 512,
+            "relative_residual": 0.00015018643989435403,
+            "residual_history_head": [
+              1.0,
+              0.9013212133818425,
+              0.9104782204385413,
+              0.842432125905298,
+              0.7513134792882972,
+              0.5654603249882918,
+              0.5701933695482325,
+              0.46625005510894824
+            ],
+            "residual_history_length": 513,
+            "residual_history_tail": [
+              0.0001680961458736657,
+              0.00016795925440366515,
+              0.00016668715953067556,
+              0.00016315609700753638,
+              0.0001602690290514325,
+              0.00016030782777356155,
+              0.00015705538530066016,
+              0.00015018643989435403
+            ],
+            "restart": 32,
+            "solution_relative_error": 0.0027821968448627945,
+            "success": false
+          },
+          "8": {
+            "breakdown": null,
+            "iterations": 512,
+            "relative_residual": 0.001832206731816407,
+            "residual_history_head": [
+              1.0,
+              0.9013212133818425,
+              0.9104782204385413,
+              0.842432125905298,
+              0.7513134792882972,
+              0.5654603249882918,
+              0.5701933695482325,
+              0.46625005510894824
+            ],
+            "residual_history_length": 513,
+            "residual_history_tail": [
+              0.0018525122850213955,
+              0.001855713197181184,
+              0.001851208474681019,
+              0.0018506917533174408,
+              0.0018550649218188758,
+              0.0018492330236633638,
+              0.0018322325526849675,
+              0.001832206731816407
+            ],
+            "restart": 8,
+            "solution_relative_error": 0.023837021498440122,
+            "success": false
+          }
+        }
+      }
+    },
+    {
+      "matrix_id": "suitesparse:Zitney/extr1b",
+      "reason": "after_selection_limit"
+    },
+    {
+      "matrix_id": "suitesparse:Hamrle/Hamrle1",
+      "reason": "after_selection_limit"
+    },
+    {
+      "matrix_id": "suitesparse:Sandia/oscil_dcop_01",
+      "reason": "after_selection_limit"
+    },
+    {
+      "matrix_id": "suitesparse:JGD_Trefethen/Trefethen_20b",
+      "reason": "after_selection_limit"
+    },
+    {
+      "matrix_id": "suitesparse:Negre/dendrimer",
+      "reason": "after_selection_limit"
+    },
+    {
+      "matrix_id": "suitesparse:Goodwin/Goodwin_010",
+      "reason": "after_selection_limit"
+    },
+    {
+      "matrix_id": "suitesparse:FIDAP/ex5",
+      "reason": "after_selection_limit"
+    },
+    {
+      "matrix_id": "suitesparse:Bai/cdde1",
+      "reason": "after_selection_limit"
+    }
+  ],
+  "source_csr_path": "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+  "status": "passed",
+  "tolerance_rel": 1e-05,
+  "total_csr_nnz": 627
+}

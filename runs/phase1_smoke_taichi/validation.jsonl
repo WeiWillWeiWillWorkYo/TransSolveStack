@@ -1,0 +1,1 @@
+{"validation": {"backend": "taichi_gpu", "budget_mode": "coexistence", "candidate_set_id": "phase1_taichi_gpu", "max_candidate_iter": 300, "max_effective_nnz": 28672, "max_problem_n": 4096, "num_candidates": 3, "num_contexts": 1, "num_families": 4, "num_systems": 7, "warnings": [], "workload_id": "phase1_smoke"}}

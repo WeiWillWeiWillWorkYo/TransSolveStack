@@ -1,0 +1,33 @@
+workload_id: "phase1_smoke"
+backend: "taichi_gpu"
+families:
+  - family_id: "poisson_2d_stencil"
+    operator_kind: "structured_stencil"
+    sizes:
+      - [32, 32]
+      - [64, 64]
+  - family_id: "anisotropic_diffusion_2d"
+    operator_kind: "structured_stencil"
+    sizes:
+      - [32, 32]
+      - [64, 64]
+  - family_id: "strong_anisotropic_diffusion_2d"
+    operator_kind: "structured_stencil"
+    sizes:
+      - [32, 32]
+  - family_id: "poisson_3d_stencil"
+    operator_kind: "structured_stencil"
+    sizes:
+      - [12, 12, 12]
+      - [16, 16, 16]
+contexts:
+  - context_id: "default_f32"
+    tolerance_rel: 1.0e-6
+    tolerance_abs: 1.0e-8
+    max_iter: 300
+    precision: "float32"
+resource_limits: "configs/runtime/resource_limits.yaml"
+benchmark_protocol:
+  warmup_runs: 1
+  measurement_repeats: 3
+candidate_set: "configs/candidates/phase1_taichi_gpu.yaml"

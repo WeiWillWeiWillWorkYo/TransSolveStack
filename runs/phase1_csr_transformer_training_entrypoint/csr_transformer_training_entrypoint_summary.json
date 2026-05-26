@@ -1,0 +1,33 @@
+{
+  "candidate_feature_dim": 16,
+  "current_quality_gate_failures": [
+    "below_min_profiled_success_rate",
+    "below_baseline_oracle_top1",
+    "below_baseline_profiled_success_rate",
+    "non_success_eval_selections"
+  ],
+  "current_quality_gate_runtime_eligible": false,
+  "matrix_feature_dim": 21,
+  "model_family": "csr_transformer_policy_v1",
+  "model_trained": false,
+  "model_training_required": true,
+  "next_step": "run_large_scale_transformer_training_then_quality_gate",
+  "num_active_candidate_slots": 132,
+  "num_global_candidates": 9,
+  "num_matrices": 20,
+  "num_model_requests": 20,
+  "num_oracle_rows": 8,
+  "num_screened_out_rows": 31,
+  "num_selector_rows": 132,
+  "num_success_rows": 23,
+  "num_tensor_requests": 20,
+  "public_release_boundary": "platform_closed_for_training_contract_runtime_stays_artifact_backed",
+  "quality_gate_enforced": true,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_transformer_training_entrypoint_v1",
+  "status": "passed",
+  "training_entrypoint_ready": true,
+  "transformer_connectable": true,
+  "validation_error_count": 0,
+  "validation_errors": []
+}

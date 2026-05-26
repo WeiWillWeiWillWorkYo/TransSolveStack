@@ -1,0 +1,45 @@
+{
+  "artifact_kind": "csr_transformer_quality_gate",
+  "command": "scripts/tss_csr_transformer_quality_gate.py",
+  "created_at_utc": "2026-05-26T14:00:53.666660+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_transformer_ready/combined_csr_learning_summary.json",
+      "sha256": "f98b91ed5ce35b209fb46909b4c3d073afb123231646773ccfb29c9d6372629d"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_ready/combined_csr_baseline_predictions.jsonl",
+      "sha256": "bcfa3f9cf8e00aef82ddc25380f52c407f940df50739e6617b0e5de7223ee8cd"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_summary.json",
+      "sha256": "13eb884acf2b8525abb17a5cbc5ace3ef6c5e895c7aa5c1e32ac43b6715c973e"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_predictions.jsonl",
+      "sha256": "b6d9fbe8213d7f49a3770fdd71ce64aee2904de8d0071ae51f292fcf54b13aec"
+    },
+    {
+      "path": "transsolvestack/policies/csr_selector_model_eval.py",
+      "sha256": "a7d3fc38d02c3ad70d99f18d0745a46238904ee6955f0d43a045df955962d472"
+    },
+    {
+      "path": "scripts/tss_csr_transformer_quality_gate.py",
+      "sha256": "882aa82057d4083ab2eba206c07da9ae6e5a537157346c7b146051780c053176"
+    }
+  ],
+  "metadata": {
+    "baseline_model_id": "candidate_prior_success_median_v1",
+    "best_offline_model_id": "candidate_prior_success_median_v1",
+    "challenger_model_id": "csr_masked_self_attention_ranker_v1",
+    "challenger_runtime_eligible": false,
+    "git_commit": "unknown",
+    "min_required_eval_oracle_requests": 4,
+    "num_eval_oracle_requests": 4,
+    "num_eval_predictions": 5,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_selector_model_eval_v1",
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

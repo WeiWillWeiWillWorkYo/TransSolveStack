@@ -1,0 +1,46 @@
+{
+  "artifact_kind": "csr_transformer_ranker",
+  "command": "scripts/tss_csr_transformer_ranker.py",
+  "created_at_utc": "2026-05-26T14:00:48.266706+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json",
+      "sha256": "27c3c99dd7706e596f40ea260bd0a33765fb4eddae13a7a470200a04417134be"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl",
+      "sha256": "7a76140b19e8d9ff33b753193aa6011e2f6ee392b96a3f3feb179731963a1b27"
+    },
+    {
+      "path": "transsolvestack/__init__.py",
+      "sha256": "2f55e7cb6abc78de6f110c3b44567324b049652e93f2b908f771c38517164b3e"
+    },
+    {
+      "path": "transsolvestack/api.py",
+      "sha256": "bb93c01bb0b7b57d78c7309e979bf13bc46f2fcd4f03dccd85d7cd6647334ffb"
+    },
+    {
+      "path": "transsolvestack/policies/csr_transformer_ranker.py",
+      "sha256": "1181da7b02a9fd183131a5853c6ac6dc1728f69003665dcd850dc4afe5dee37e"
+    },
+    {
+      "path": "scripts/tss_csr_transformer_ranker.py",
+      "sha256": "2ed8a36ade44c37ccef40d78c1fe4f642ba649b5432067313930c2e01be4c676"
+    }
+  ],
+  "metadata": {
+    "eval_non_success_selection_count": 2,
+    "eval_oracle_top1_accuracy": 0.5,
+    "eval_profiled_success_selection_rate": 0.6,
+    "git_commit": "unknown",
+    "model_family": "masked_self_attention_ranker_v1",
+    "model_id": "csr_masked_self_attention_ranker_v1",
+    "model_trained": true,
+    "num_eval_oracle_requests": 4,
+    "num_eval_requests": 5,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_transformer_ranker_v1",
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

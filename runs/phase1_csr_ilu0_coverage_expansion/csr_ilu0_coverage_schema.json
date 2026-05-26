@@ -1,0 +1,20 @@
+{
+  "integration_boundary": {
+    "executes_gpu": true,
+    "merged_into_main_transformer_ready": false,
+    "non_success_rows_remain_negative_evidence": true,
+    "production_runtime_selector_changed": false,
+    "success_rows_are_merge_candidates": true
+  },
+  "numeric_gate": [
+    "success rows must have solver status success",
+    "success rows must satisfy trace residual <= tolerance_rel",
+    "success rows must satisfy CPU recomputed residual <= 1e-4",
+    "success rows must satisfy rhs=A@ones solution error <= 5e-3",
+    "setup failures and numeric failures must not be promoted"
+  ],
+  "schema_version": "phase1_csr_ilu0_coverage_expansion_v1",
+  "selector_schema_version": "phase1_csr_selector_features_v8",
+  "source_probe_schema_version": "phase1_taichi_csr_ilu0_v1",
+  "task": "expand_ilu0_success_and_negative_coverage_for_selector_training"
+}

@@ -1,0 +1,63 @@
+from transsolvestack.profiling.campaign import build_phase1_campaign_report
+
+
+def test_phase1_campaign_report_passes_current_artifacts():
+    report = build_phase1_campaign_report("runs")
+    assert report.campaign_id == "phase1_readiness"
+    assert report.status == "passed"
+    assert report.num_stages == 52
+    assert {stage.stage_id for stage in report.stages} == {
+        "benchmark",
+        "expanded_solver_benchmark",
+        "regression",
+        "sequence",
+        "policy_selection",
+        "policy_solve",
+        "dataset_plan",
+        "matrix_market_probe",
+        "suitesparse_selection",
+        "suitesparse_header_probe",
+        "suitesparse_csr_import",
+        "taichi_csr_matvec",
+        "taichi_csr_primitives",
+        "taichi_csr_solve",
+        "taichi_csr_bicgstab",
+        "taichi_csr_gmres",
+        "taichi_csr_richardson",
+        "taichi_csr_chebyshev",
+        "taichi_csr_symmetric_equilibration",
+        "taichi_csr_row_column_equilibration",
+        "taichi_csr_ilu0",
+        "csr_selector_readiness",
+        "csr_selector_policy",
+        "csr_auto_solve",
+        "csr_learning_readiness",
+        "csr_model_contract",
+        "csr_training_tensors",
+        "csr_linear_ranker",
+        "csr_selector_model_eval",
+        "csr_benchmark_expansion_plan",
+        "csr_micro_campaign",
+        "csr_transformer_ready",
+        "csr_transformer_ranker",
+        "csr_transformer_quality_gate",
+        "csr_transformer_training_entrypoint",
+        "csr_learned_runtime_guard",
+        "csr_guarded_auto_solve",
+        "csr_guarded_promotion_readiness",
+        "csr_guarded_promotion_coverage_plan",
+        "csr_guarded_promotion_coverage_exec",
+        "csr_non_success_fallback_probe",
+        "csr_guarded_non_success_fallback_integration",
+        "csr_ilu0_guarded_integration",
+        "csr_ilu0_coverage_expansion",
+        "csr_unresolved_fallback_coverage_plan",
+        "csr_unresolved_fallback_cpu_screen",
+        "csr_unresolved_matrix_diagnostics",
+        "public_release_hygiene",
+        "transformer_readiness",
+        "public_api_smoke",
+        "csr_public_api_smoke",
+        "solver_functional",
+    }
+    assert all(stage.row_count > 0 for stage in report.stages)

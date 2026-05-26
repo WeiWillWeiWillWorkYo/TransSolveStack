@@ -1,0 +1,14 @@
+{
+  "attempted_imports": 12,
+  "eligible_rows": 48,
+  "failed_imports": 0,
+  "imported_matrices": 12,
+  "max_archive_size_bytes": 8000000,
+  "max_cols": 10000,
+  "max_rows": 10000,
+  "max_stored_entries": 100000,
+  "source_header_probe_path": "runs/phase1_suitesparse_header_probe/archive_header_probe.jsonl",
+  "source_selection_path": "runs/phase1_suitesparse_selection/selected_matrices.jsonl",
+  "status": "passed",
+  "total_csr_nnz": 118312
+}

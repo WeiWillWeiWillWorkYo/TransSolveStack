@@ -1,0 +1,98 @@
+{
+  "device_memory_gb": 0.25,
+  "max_cpu_recomputed_relative_residual": 8.139331910248417e-06,
+  "max_final_relative_residual": 8.139331910289324e-06,
+  "max_iter": 2048,
+  "max_nnz": 2000,
+  "max_rows": 128,
+  "max_solution_relative_error": 9.748507883488471e-05,
+  "measurement_repeats": 3,
+  "num_failed": 0,
+  "num_selected_matrices": 1,
+  "num_solves": 1,
+  "num_success": 1,
+  "omega": 0.6666666666666666,
+  "precision": "float64",
+  "selected_matrices": [
+    "suitesparse:JGD_Trefethen/Trefethen_20b"
+  ],
+  "skipped_candidates": [
+    {
+      "matrix_id": "suitesparse:HB/curtis54",
+      "reason": "not_symmetric"
+    },
+    {
+      "matrix_id": "suitesparse:HB/fs_183_1",
+      "reason": "not_symmetric"
+    },
+    {
+      "matrix_id": "suitesparse:HB/young3c",
+      "reason": "not_symmetric"
+    },
+    {
+      "matrix_id": "suitesparse:Grund/b1_ss",
+      "reason": "not_symmetric"
+    },
+    {
+      "matrix_id": "suitesparse:Zitney/extr1b",
+      "reason": "not_symmetric"
+    },
+    {
+      "matrix_id": "suitesparse:Hamrle/Hamrle1",
+      "reason": "not_symmetric"
+    },
+    {
+      "matrix_id": "suitesparse:Sandia/oscil_dcop_01",
+      "reason": "not_symmetric"
+    },
+    {
+      "matrix_id": "suitesparse:Negre/dendrimer",
+      "reason": "above_smoke_size_limit"
+    },
+    {
+      "matrix_id": "suitesparse:Goodwin/Goodwin_010",
+      "reason": "not_symmetric"
+    },
+    {
+      "matrix_id": "suitesparse:FIDAP/ex5",
+      "reason": "cpu_reference_richardson_screen_failed",
+      "screen": {
+        "breakdown": "nonfinite_residual",
+        "iterations": 444,
+        "omega": 0.6666666666666666,
+        "relative_residual": Infinity,
+        "residual_history_head": [
+          1.0,
+          0.9199349049731587,
+          0.9613348487306468,
+          0.9713028592698958,
+          1.008547214504601,
+          1.468382589452407,
+          2.3294449525258454,
+          5.287461745461836
+        ],
+        "residual_history_length": 445,
+        "residual_history_tail": [
+          1.2845102080993583e+151,
+          2.8741840049343616e+151,
+          6.431193494712601e+151,
+          1.439025813776256e+152,
+          3.2199237892887504e+152,
+          7.204811136514927e+152,
+          1.6121283269352092e+153,
+          3.6072531163725564e+153
+        ],
+        "solution_relative_error": 1.3455480487568675e+147,
+        "success": false
+      }
+    },
+    {
+      "matrix_id": "suitesparse:Bai/cdde1",
+      "reason": "not_symmetric"
+    }
+  ],
+  "source_csr_path": "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+  "status": "passed",
+  "tolerance_rel": 1e-05,
+  "total_csr_nnz": 147
+}

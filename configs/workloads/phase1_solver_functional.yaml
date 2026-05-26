@@ -1,0 +1,15 @@
+workload_id: "phase1_solver_functional"
+backend: "taichi_gpu"
+families:
+  - family_id: "poisson_2d_stencil"
+    operator_kind: "structured_stencil"
+    sizes:
+      - [8, 8]
+contexts:
+  - context_id: "solver_functional_f32"
+    tolerance_rel: 1.0e-6
+    tolerance_abs: 1.0e-8
+    max_iter: 300
+    precision: "float32"
+resource_limits: "configs/runtime/resource_limits.yaml"
+candidate_set: "configs/candidates/phase1_solver_expansion.yaml"

@@ -1,0 +1,76 @@
+# Python environments and caches
+.venv*/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local editor and OS files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Local secrets and machine-specific config
+.env
+.env.*
+*.pem
+*.key
+id_rsa
+id_rsa.pub
+
+# External or raw datasets must stay off-repo.
+/datasets/
+/external/
+/downloads/
+/data/raw/
+/data/external/
+/data/suitesparse/
+/data/**/*.mtx
+/data/**/*.mtx.gz
+/data/**/*.tar
+/data/**/*.tar.gz
+/data/**/*.tgz
+/data/**/*.zip
+/data/**/*.7z
+
+# Keep small JSON/Markdown runs artifacts reproducible, but exclude heavy payloads.
+runs/**/*.npy
+runs/**/*.npz
+runs/**/*.pkl
+runs/**/*.pickle
+runs/**/*.bin
+runs/**/*.pt
+runs/**/*.pth
+runs/**/*.onnx
+runs/**/*.mp4
+runs/**/*.mov
+runs/**/*.avi
+runs/**/*.zip
+runs/**/*.tar
+runs/**/*.tar.gz
+runs/**/*.tgz
+runs/**/logs/
+
+# Build outputs
+build/
+dist/
+*.egg-info/
+
+# Internal planning, development trace, and paper-prep notes stay local.
+ADVICE.md
+MILESTONE_LOG.md
+FOOTAGE_SPEC.md
+PUBLIC_RELEASE.md
+GITHUB_RELEASE_GATE.md
+PHASE1_ROADMAP.md
+advice.md
+scope.md
+footage/
+docs/toms_paper/
+reports/

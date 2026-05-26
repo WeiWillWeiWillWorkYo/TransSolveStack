@@ -1,0 +1,83 @@
+{
+  "artifact_kind": "csr_guarded_promotion_readiness",
+  "command": "scripts/tss_csr_guarded_promotion_readiness.py",
+  "created_at_utc": "2026-05-26T17:19:27.387848+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+      "sha256": "03fcd906df8f34ef143fbb078d5091a1c7a20493d65cb2a637304ce54a3cc9bb"
+    },
+    {
+      "path": "runs/phase1_csr_selector_readiness/csr_selector_rows.jsonl",
+      "sha256": "180351207cc9c630c6e01f7d13f2abe8bcaa7cc3c48fc172eca76efdb9550585"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_predictions.jsonl",
+      "sha256": "b6d9fbe8213d7f49a3770fdd71ce64aee2904de8d0071ae51f292fcf54b13aec"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_quality_gate/csr_transformer_quality_gate_summary.json",
+      "sha256": "d7353ef33e5809d8681e218737b9ab9d2e55f6a2c78022bb23dd90aa7a2c8c9c"
+    },
+    {
+      "path": "transsolvestack/__init__.py",
+      "sha256": "2f55e7cb6abc78de6f110c3b44567324b049652e93f2b908f771c38517164b3e"
+    },
+    {
+      "path": "transsolvestack/api.py",
+      "sha256": "bb93c01bb0b7b57d78c7309e979bf13bc46f2fcd4f03dccd85d7cd6647334ffb"
+    },
+    {
+      "path": "transsolvestack/datasets/csr.py",
+      "sha256": "8f6181ce398ad210e3bcfbc348014d1062f8838aa87fb995ca3f62c833cec03f"
+    },
+    {
+      "path": "transsolvestack/policies/csr_artifact_selector.py",
+      "sha256": "6b839c084e7b3a54c86d6d4000a403aba93abd4d547bc175e92b025b689bd860"
+    },
+    {
+      "path": "transsolvestack/policies/csr_learned_guard.py",
+      "sha256": "c9f15f9527d6a13eb442b2c7f00785092c597fdd7cf41a7f2c64db9f1362c75b"
+    },
+    {
+      "path": "transsolvestack/runtime/guarded_fallback.py",
+      "sha256": "e016c260d236c2c4b6ed9d515c6ee78e5c7e80f29ce869e44247b41b3088dd7c"
+    },
+    {
+      "path": "transsolvestack/operators/taichi_csr.py",
+      "sha256": "a00caa2a43d65338aa5dbd2bf45fa6a1e1834bbaac683f1b670c05b917b55682"
+    },
+    {
+      "path": "transsolvestack/solvers/taichi_cg.py",
+      "sha256": "e0de7c648286c8deaa4ff8b9849b752b155e9120833a22bfbe351f0d9a2669d3"
+    },
+    {
+      "path": "transsolvestack/solvers/registry.py",
+      "sha256": "c990ab0040c1253503711ff5fe3039c88e596ccb15298a5baf72c58449ccfaf8"
+    },
+    {
+      "path": "transsolvestack/backends/registry.py",
+      "sha256": "35c90892cc588d7444923deed6bf937b9a6da1a71cdb9acf3dd26d88ca077035"
+    },
+    {
+      "path": "transsolvestack/runtime/engine.py",
+      "sha256": "48e53362b4b7cb3954005a7f29b8ce546f63192a170fa98d48ad97c8cc6c3e21"
+    },
+    {
+      "path": "scripts/tss_csr_guarded_promotion_readiness.py",
+      "sha256": "016305c33d49353829a4389bb1370c21e392459c98a4568b8a4e89391824c7d8"
+    }
+  ],
+  "metadata": {
+    "current_quality_gate_blocks": 1,
+    "current_runtime_selector_changed": false,
+    "fixture_learned_promotions": 1,
+    "git_commit": "5aee244aead1235a247ae80493f8f184835b7bed",
+    "num_scenarios": 3,
+    "num_success": 3,
+    "runtime_exception_fallbacks": 1,
+    "runtime_fallback_used_count": 1,
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

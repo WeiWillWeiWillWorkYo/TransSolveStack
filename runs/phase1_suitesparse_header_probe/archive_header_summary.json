@@ -1,0 +1,12 @@
+{
+  "failure_count": 0,
+  "field_mismatch_count": 8,
+  "probed_archives": 64,
+  "selected_matrices": 64,
+  "shape_mismatch_count": 0,
+  "source_selection_path": "runs/phase1_suitesparse_selection/selected_matrices.jsonl",
+  "status": "passed",
+  "stored_nnz_mismatch_count": 31,
+  "success_count": 64,
+  "total_archive_size_bytes": 152804261
+}

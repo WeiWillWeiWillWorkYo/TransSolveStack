@@ -1,0 +1,24 @@
+{
+  "artifact_kind": "matrix_market_metadata_probe",
+  "command": "scripts/tss_inspect_matrix_market.py",
+  "created_at_utc": "2026-05-23T08:10:13.865431+00:00",
+  "file_hashes": [
+    {
+      "path": "tests/fixtures/tiny_spd.mtx",
+      "sha256": "4289626a72a8e95e7f28ba7253430920bee56aaf2415f7b533be15ea3ce7070b"
+    },
+    {
+      "path": "transsolvestack/datasets/matrix_market.py",
+      "sha256": "8fabe7dc33aa50910553eac42a359396940216f551795d5f7040f32143f2313f"
+    },
+    {
+      "path": "scripts/tss_inspect_matrix_market.py",
+      "sha256": "51ceb31f5ff11a1c5553a8ae5c2eea354d32bfc549eeed401cebd1e830ccefab"
+    }
+  ],
+  "metadata": {
+    "git_commit": "unknown",
+    "num_matrices": 1
+  },
+  "python_version": "3.10.18"
+}

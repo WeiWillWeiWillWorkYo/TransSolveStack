@@ -1,0 +1,23 @@
+{
+  "current_gate_status": {
+    "best_offline_model_id": "candidate_prior_success_median_v1",
+    "challenger_gate_failures": [
+      "below_min_profiled_success_rate",
+      "below_baseline_oracle_top1",
+      "below_baseline_profiled_success_rate",
+      "non_success_eval_selections"
+    ],
+    "challenger_runtime_eligible": false,
+    "runtime_selected_model_id": null
+  },
+  "promotion_requirements": {
+    "guard_mode": "promote_if_safe",
+    "min_required_eval_oracle_requests": 4,
+    "min_runtime_oracle_top1_accuracy": 0.5,
+    "min_runtime_profiled_success_rate": 0.8,
+    "non_success_eval_selection_count": 0
+  },
+  "quality_gate_schema_version": "phase1_csr_selector_model_eval_v1",
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_transformer_training_entrypoint_v1"
+}

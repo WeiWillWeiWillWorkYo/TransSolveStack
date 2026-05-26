@@ -1,0 +1,12 @@
+{
+  "safety_policy": {
+    "failed_numeric_gate_rows": "must remain guard-only",
+    "fixture_quality_gate": "used only to exercise guard promotion branch",
+    "gpu_execution": "only exact matrix/context target_status=success rows",
+    "production_runtime_selector_changed": false
+  },
+  "schema_version": "phase1_csr_ilu0_guarded_integration_v1",
+  "selector_schema": "phase1_csr_selector_features_v8",
+  "source_schema": "phase1_taichi_csr_ilu0_v1",
+  "task": "prove_ilu0_success_rows_are_guarded_selector_compatible"
+}

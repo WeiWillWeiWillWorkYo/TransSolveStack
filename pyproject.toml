@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "transsolvestack"
+version = "0.1.0"
+description = "GPU-native solver intelligence platform for sparse linear systems."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "Wei CUI" },
+]
+license = { text = "PolyForm Noncommercial License 1.0.0; commercial use requires separate permission from Wei CUI" }
+dependencies = [
+  "numpy>=1.24",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+taichi = ["taichi>=1.7"]
+dev = ["pytest>=7.0"]
+
+[tool.setuptools.packages.find]
+include = ["transsolvestack*"]

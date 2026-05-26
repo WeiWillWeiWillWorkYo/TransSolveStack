@@ -1,0 +1,2 @@
+"""Preconditioner contracts."""
+

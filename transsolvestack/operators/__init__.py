@@ -1,0 +1,2 @@
+"""Linear operator contracts."""
+

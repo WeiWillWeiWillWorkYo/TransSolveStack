@@ -1,0 +1,15 @@
+{
+  "integration_boundary": {
+    "cpu_only": true,
+    "executes_gpu": false,
+    "runtime_selector_changed": false
+  },
+  "schema_version": "phase1_csr_unresolved_fallback_cpu_screen_v1",
+  "screening_policy": {
+    "gpu_probe_allowed_only_for_status_success": true,
+    "input": "rhs=A@ones",
+    "success_requires_relative_residual_le_tolerance": true,
+    "success_requires_solution_error_le_5e_3": true
+  },
+  "task": "cpu_screen_unresolved_guarded_fallback_candidates_before_gpu_probe"
+}

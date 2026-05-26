@@ -1,0 +1,41 @@
+{
+  "input_features": {
+    "candidate": [
+      "candidate_id"
+    ],
+    "context": [
+      "context_id"
+    ],
+    "observed_numeric": [
+      "num_iterations",
+      "final_residual_norm",
+      "relative_error_to_true",
+      "measurement_repeats"
+    ],
+    "system": [
+      "family_id",
+      "operator_kind",
+      "n_rows",
+      "n_cols",
+      "estimated_unknowns",
+      "estimated_effective_nnz",
+      "symmetry",
+      "dtype",
+      "grid_size",
+      "dofs_per_node"
+    ]
+  },
+  "integration_boundary": {
+    "model_required": false,
+    "next_step": "train_or_connect_transformer_policy_ranker",
+    "status": "ready_for_dataset_scaleout"
+  },
+  "schema_version": "phase1_policy_features_v1",
+  "targets": [
+    "label_is_oracle",
+    "target_regret_vs_oracle",
+    "target_total_time_ms",
+    "target_status"
+  ],
+  "task": "rank_solver_preconditioner_candidates"
+}

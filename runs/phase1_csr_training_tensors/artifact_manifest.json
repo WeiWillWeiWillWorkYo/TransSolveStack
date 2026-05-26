@@ -1,0 +1,44 @@
+{
+  "artifact_kind": "csr_training_tensor_export",
+  "command": "scripts/tss_csr_training_tensors.py",
+  "created_at_utc": "2026-05-26T13:59:47.243706+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_model_contract/csr_model_requests.jsonl",
+      "sha256": "06ae7ff73fe4d4c5fe58d2643d13bf541232dc51151473108dafb87f34d8fe59"
+    },
+    {
+      "path": "runs/phase1_csr_model_contract/csr_model_targets.jsonl",
+      "sha256": "cdef6e3d62bdb31296a0e7e9ef17fdb2e15691b4b6353d16c13c3344f68eaea9"
+    },
+    {
+      "path": "transsolvestack/__init__.py",
+      "sha256": "2f55e7cb6abc78de6f110c3b44567324b049652e93f2b908f771c38517164b3e"
+    },
+    {
+      "path": "transsolvestack/api.py",
+      "sha256": "bb93c01bb0b7b57d78c7309e979bf13bc46f2fcd4f03dccd85d7cd6647334ffb"
+    },
+    {
+      "path": "transsolvestack/policies/csr_tensor_export.py",
+      "sha256": "a137ef00f23703ced8a81e0e8ce281a45ab872eb5f76e3cac9664124b3790249"
+    },
+    {
+      "path": "scripts/tss_csr_training_tensors.py",
+      "sha256": "20130bc363c755a84e034e6e5a0d2ae1c215da736b92c01ce0828c176b54a2ab"
+    }
+  ],
+  "metadata": {
+    "candidate_feature_dim": 16,
+    "git_commit": "unknown",
+    "matrix_feature_dim": 21,
+    "model_required": false,
+    "num_global_candidates": 9,
+    "num_requests": 12,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_training_tensors_v1",
+    "status": "passed",
+    "storage_format": "json_numeric_arrays_v1"
+  },
+  "python_version": "3.10.18"
+}

@@ -1,0 +1,31 @@
+{
+  "candidate_feature_dim": 16,
+  "has_missing_candidate_slots": true,
+  "label_class_counts": {
+    "not_applicable": 34,
+    "not_profiled": 44,
+    "screened_out": 31,
+    "success_non_oracle": 15,
+    "success_oracle": 8
+  },
+  "matrix_feature_dim": 21,
+  "model_required": false,
+  "num_active_candidate_slots": 132,
+  "num_eval_requests": 5,
+  "num_global_candidates": 9,
+  "num_oracle_targets": 8,
+  "num_requests": 20,
+  "num_requests_without_oracle": 12,
+  "num_train_requests": 15,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_training_tensors_v1",
+  "source_contract_schema_version": "phase1_csr_model_contract_v1",
+  "status": "passed",
+  "storage_format": "json_numeric_arrays_v1",
+  "target_status_counts": {
+    "not_applicable": 34,
+    "not_profiled": 44,
+    "screened_out": 31,
+    "success": 23
+  }
+}

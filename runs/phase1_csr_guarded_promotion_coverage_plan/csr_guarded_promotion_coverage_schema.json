@@ -1,0 +1,21 @@
+{
+  "integration_boundary": {
+    "executes_gpu": false,
+    "runtime_selector_changed": false,
+    "status": "plan_only_no_gpu_execution"
+  },
+  "safety_rules": [
+    "current learned model remains artifact-backed until quality gate is runtime eligible",
+    "fixture promotions must reference exact matrix/context profiled-success candidates",
+    "non-success learned candidates are guard-only unless exact profiled fallback coverage exists",
+    "runtime fallback scenarios must end on exact profiled-success artifact candidates"
+  ],
+  "scenario_kinds": {
+    "current_ranker_quality_gate_block": "real current quality gate must block current learned ranker",
+    "fixture_non_success_candidate_block": "fixture eligible gate reaches candidate validation and blocks non-success learned candidate",
+    "fixture_profiled_success_promotion": "fixture eligible gate proves promotion to exact profiled-success candidate",
+    "runtime_exception_fallback": "runtime guard retries exact profiled-success fallback after injected exception"
+  },
+  "schema_version": "phase1_csr_guarded_promotion_coverage_plan_v1",
+  "task": "plan_guarded_learned_policy_runtime_coverage_expansion"
+}

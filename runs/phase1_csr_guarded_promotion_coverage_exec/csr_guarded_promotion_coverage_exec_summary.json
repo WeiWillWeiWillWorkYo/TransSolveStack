@@ -1,0 +1,33 @@
+{
+  "coverage_plan_path": "runs/phase1_csr_guarded_promotion_coverage_plan/csr_guarded_promotion_coverage_scenarios.jsonl",
+  "current_quality_gate_blocks": 4,
+  "current_runtime_selector_changed": false,
+  "device_memory_gb": 0.25,
+  "executed_gpu_scenarios": 8,
+  "fixture_learned_promotions": 2,
+  "fixture_predictions_path": "runs/phase1_csr_guarded_promotion_coverage_exec/fixture_coverage_predictions.jsonl",
+  "fixture_quality_gate_path": "runs/phase1_csr_guarded_promotion_coverage_exec/fixture_runtime_eligible_quality_gate_summary.json",
+  "fixture_runtime_selector_changed_count": 2,
+  "guard_only_scenarios": 4,
+  "learned_predictions_path": "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_predictions.jsonl",
+  "max_cpu_recomputed_relative_residual": 8.729656304514155e-06,
+  "max_final_relative_residual": 8.729656304521325e-06,
+  "max_solution_relative_error": 0.0007557698707928351,
+  "non_success_blocks": 4,
+  "num_failed": 0,
+  "num_scenarios": 12,
+  "num_success": 12,
+  "quality_gate_summary_path": "runs/phase1_csr_transformer_quality_gate/csr_transformer_quality_gate_summary.json",
+  "runtime_exception_fallbacks": 2,
+  "runtime_fallback_used_count": 2,
+  "runtime_guard_success_count": 8,
+  "schema_version": "phase1_csr_guarded_promotion_coverage_exec_v1",
+  "selected_solver_set": [
+    "bicgstab",
+    "chebyshev",
+    "gmres",
+    "pcg"
+  ],
+  "selector_rows_path": "runs/phase1_csr_transformer_ready/combined_csr_selector_rows.jsonl",
+  "status": "passed"
+}

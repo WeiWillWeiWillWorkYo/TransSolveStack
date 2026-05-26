@@ -1,0 +1,33 @@
+{
+  "by_matrix_numeric_status": {
+    "suitesparse:Bai/cdde1": "success",
+    "suitesparse:MathWorks/tomography": "failed_numeric_gate"
+  },
+  "by_numeric_status": {
+    "failed_numeric_gate": 1,
+    "success": 1
+  },
+  "candidate_promoted_rows": 1,
+  "candidate_rows": 2,
+  "csr_record_paths": [
+    "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+    "runs/phase1_csr_micro_campaign/csr_matrices.jsonl"
+  ],
+  "device_memory_gb": 0.25,
+  "executes_gpu": true,
+  "failed_numeric_gate_rows": 1,
+  "gpu_executed_rows": 2,
+  "max_cpu_recomputed_relative_residual": 5.11355233599066e-06,
+  "max_final_relative_residual": 5.113552336038653e-06,
+  "max_iter": 512,
+  "max_solution_relative_error": 0.02581584705260049,
+  "next_step": "use ILU0 success rows as benchmark evidence only; integrate into guarded fallback after exact selector rows and fallback-chain gates",
+  "numeric_success_rows": 1,
+  "pivot_tolerance": 1e-12,
+  "preconditioner": "ilu0",
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_taichi_csr_ilu0_v1",
+  "solver": "bicgstab",
+  "status": "passed",
+  "tolerance_rel": 1e-05
+}

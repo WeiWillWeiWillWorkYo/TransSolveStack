@@ -1,0 +1,37 @@
+{
+  "artifact_kind": "suitesparse_csr_import_boundary",
+  "command": "scripts/tss_import_suitesparse_csr.py",
+  "created_at_utc": "2026-05-24T05:56:35.954236+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_suitesparse_selection/selected_matrices.jsonl",
+      "sha256": "a4babfb0deb0cc1f3ce9460ad31278694f62f40a4e13256fb0b1c971b64d6f56"
+    },
+    {
+      "path": "runs/phase1_suitesparse_header_probe/archive_header_probe.jsonl",
+      "sha256": "08d7baa996c2700427d298956c2462545f41a153163c96297b7fd1383061817b"
+    },
+    {
+      "path": "transsolvestack/datasets/csr.py",
+      "sha256": "8f6181ce398ad210e3bcfbc348014d1062f8838aa87fb995ca3f62c833cec03f"
+    },
+    {
+      "path": "scripts/tss_import_suitesparse_csr.py",
+      "sha256": "8c67f2ae44e1a940903aa97c0e817b529e7207e8342411b4c2460b07578849e0"
+    }
+  ],
+  "metadata": {
+    "attempted_imports": 12,
+    "eligible_rows": 48,
+    "failed_imports": 0,
+    "git_commit": "unknown",
+    "imported_matrices": 12,
+    "max_cols": 10000,
+    "max_matrices": 12,
+    "max_rows": 10000,
+    "max_stored_entries": 100000,
+    "status": "passed",
+    "total_csr_nnz": 118312
+  },
+  "python_version": "3.10.18"
+}

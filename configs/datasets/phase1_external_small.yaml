@@ -1,0 +1,46 @@
+catalog_id: "phase1_external_small"
+resource_limits: "configs/runtime/resource_limits.yaml"
+default_data_root: "data/raw"
+matrices:
+  - matrix_id: "suitesparse/HB/west0479"
+    source: "SuiteSparse Matrix Collection"
+    group: "HB"
+    name: "west0479"
+    url: "https://sparse.tamu.edu/MM/HB/west0479.tar.gz"
+    format: "matrix_market_tar_gz"
+    n_rows: 479
+    n_cols: 479
+    nnz: 1910
+    symmetry: "unsymmetric"
+    license: "unknown"
+    checksum: null
+    estimated_download_gb: 0.001
+    tags: ["small", "real_matrix", "smoke"]
+  - matrix_id: "suitesparse/HB/bcsstk01"
+    source: "SuiteSparse Matrix Collection"
+    group: "HB"
+    name: "bcsstk01"
+    url: "https://sparse.tamu.edu/MM/HB/bcsstk01.tar.gz"
+    format: "matrix_market_tar_gz"
+    n_rows: 48
+    n_cols: 48
+    nnz: 400
+    symmetry: "symmetric"
+    license: "unknown"
+    checksum: null
+    estimated_download_gb: 0.001
+    tags: ["tiny", "spd_candidate", "smoke"]
+  - matrix_id: "nist/pores_1"
+    source: "NIST Matrix Market"
+    group: "NIST"
+    name: "pores_1"
+    url: "https://math.nist.gov/pub/MatrixMarket2/Harwell-Boeing/pores/pores_1.mtx.gz"
+    format: "matrix_market_gz"
+    n_rows: 30
+    n_cols: 30
+    nnz: 107
+    symmetry: "symmetric"
+    license: "public_domain_or_unknown"
+    checksum: null
+    estimated_download_gb: 0.001
+    tags: ["tiny", "matrix_market", "smoke"]

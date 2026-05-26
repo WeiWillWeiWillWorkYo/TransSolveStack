@@ -1,0 +1,24 @@
+candidate_set_id: "phase1_solver_expansion"
+backend: "taichi_gpu"
+candidates:
+  - candidate_id: "taichi_richardson_jacobi_f32"
+    solver:
+      name: "richardson"
+      precision: "float32"
+      max_iter: 300
+      omega: 0.9
+    preconditioner:
+      name: "jacobi"
+    reuse:
+      device_buffers: true
+      warm_start: false
+  - candidate_id: "taichi_chebyshev_jacobi_f32"
+    solver:
+      name: "chebyshev"
+      precision: "float32"
+      max_iter: 300
+    preconditioner:
+      name: "jacobi"
+    reuse:
+      device_buffers: true
+      warm_start: false

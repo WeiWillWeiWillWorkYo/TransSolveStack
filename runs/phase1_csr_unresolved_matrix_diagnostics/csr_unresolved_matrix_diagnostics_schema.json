@@ -1,0 +1,14 @@
+{
+  "diagnostic_rules": [
+    "zero diagonal plus negative symmetric-spectrum Ritz values points to formulation diagnostics",
+    "nonsymmetric unresolved matrices are routed to ILU/scaling families",
+    "symmetric positive dense Cholesky probes with solution-error failures are routed to IC0/equilibration families"
+  ],
+  "integration_boundary": {
+    "diagnostic_only": true,
+    "executes_gpu": false,
+    "runtime_selector_changed": false
+  },
+  "schema_version": "phase1_csr_unresolved_matrix_diagnostics_v1",
+  "task": "diagnose_unresolved_guarded_fallback_matrices_after_cpu_screen"
+}

@@ -1,0 +1,62 @@
+{
+  "artifact_kind": "solver_functional_smoke",
+  "command": "scripts/tss_solver_functional_smoke.py",
+  "created_at_utc": "2026-05-26T13:54:30.374654+00:00",
+  "file_hashes": [
+    {
+      "path": "configs/workloads/phase1_solver_functional.yaml",
+      "sha256": "20b3f014aa86c9bc595598d4d74bb4a3abd9bbeddbc70d77afb38fcf3f4bd3c6"
+    },
+    {
+      "path": "configs/candidates/phase1_solver_expansion.yaml",
+      "sha256": "472d6b757c3229ba62bda30467eba76959fc800f44de1dcc64f83042462703d2"
+    },
+    {
+      "path": "configs/runtime/resource_limits.yaml",
+      "sha256": "f9c6003c3c3d9ca08e2a16b3dc4c8788167e7d916dab25cec6800d35093bc048"
+    },
+    {
+      "path": "transsolvestack/backends/registry.py",
+      "sha256": "35c90892cc588d7444923deed6bf937b9a6da1a71cdb9acf3dd26d88ca077035"
+    },
+    {
+      "path": "transsolvestack/operators/synthetic.py",
+      "sha256": "e524d6f67bc33ac7903de4146321ce00f7517173e66920faba63da533d63daef"
+    },
+    {
+      "path": "transsolvestack/operators/taichi_diffusion2d.py",
+      "sha256": "6bf700ef35512042a4d51ed9386c1cfca5b04b84ce1b4cd7aa70c92f4a60d21d"
+    },
+    {
+      "path": "transsolvestack/solvers/registry.py",
+      "sha256": "c990ab0040c1253503711ff5fe3039c88e596ccb15298a5baf72c58449ccfaf8"
+    },
+    {
+      "path": "transsolvestack/solvers/taichi_cg.py",
+      "sha256": "e0de7c648286c8deaa4ff8b9849b752b155e9120833a22bfbe351f0d9a2669d3"
+    },
+    {
+      "path": "transsolvestack/runtime/engine.py",
+      "sha256": "48e53362b4b7cb3954005a7f29b8ce546f63192a170fa98d48ad97c8cc6c3e21"
+    },
+    {
+      "path": "transsolvestack/runtime/plan_resolver.py",
+      "sha256": "98ab531e7a28b51bc139436a0200ce8fec0299b90b9554ae918242b728f5e7e6"
+    },
+    {
+      "path": "transsolvestack/profiling/solver_functional.py",
+      "sha256": "c1c76937ca1d7ebb70f83cc18ec7c577a74c76126d7d2e296eeaa20e30a7628d"
+    },
+    {
+      "path": "scripts/tss_solver_functional_smoke.py",
+      "sha256": "077de3c432255903eb0be3de636f8bf1162149a7bf2ba27a6792d2b1f14996ec"
+    }
+  ],
+  "metadata": {
+    "candidate_set": "phase1_solver_expansion",
+    "git_commit": "unknown",
+    "num_records": 2,
+    "num_success": 2
+  },
+  "python_version": "3.10.18"
+}

@@ -1,0 +1,26 @@
+{
+  "by_recommended_route": {
+    "formulation_diagnostic_required": 1,
+    "ilu_or_nonsymmetric_scaling_preconditioner": 1
+  },
+  "cpu_screen_results_path": "runs/phase1_csr_unresolved_fallback_cpu_screen/csr_unresolved_fallback_cpu_screen_results.jsonl",
+  "cpu_screen_summary_path": "runs/phase1_csr_unresolved_fallback_cpu_screen/csr_unresolved_fallback_cpu_screen_summary.json",
+  "csr_record_paths": [
+    "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+    "runs/phase1_csr_micro_campaign/csr_matrices.jsonl"
+  ],
+  "diagnosed_matrices": 2,
+  "diagnostic_id": "phase1_csr_unresolved_matrix_diagnostics_m63",
+  "executes_gpu": false,
+  "matrix_routes": {
+    "suitesparse:Gset/G17": "formulation_diagnostic_required",
+    "suitesparse:Zitney/extr1b": "ilu_or_nonsymmetric_scaling_preconditioner"
+  },
+  "next_step": "implement_and_test_preconditioner_or_formulation_candidates_before_gpu_probe",
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_unresolved_matrix_diagnostics_v1",
+  "source_cpu_screen_rows": 4,
+  "source_cpu_screen_status": "passed",
+  "source_gpu_probe_ready_candidates": 0,
+  "status": "passed"
+}

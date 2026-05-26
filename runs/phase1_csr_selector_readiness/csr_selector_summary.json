@@ -1,0 +1,36 @@
+{
+  "applicability_reason_counts": {
+    "above_smoke_size_limit": 2,
+    "after_selection_limit": 42,
+    "not_symmetric": 34
+  },
+  "applicability_status_counts": {
+    "not_applicable": 34,
+    "not_profiled": 44
+  },
+  "failure_reason_counts": {
+    "cpu_reference_bicgstab_screen_failed": 4,
+    "cpu_reference_cg_screen_failed": 2,
+    "cpu_reference_chebyshev_screen_failed": 1,
+    "cpu_reference_gmres_screen_failed": 7,
+    "cpu_reference_richardson_screen_failed": 1
+  },
+  "max_cpu_recomputed_relative_residual": 9.748360180473853e-06,
+  "max_failed_final_relative_residual": Infinity,
+  "max_final_relative_residual": 9.748360180473853e-06,
+  "max_solution_relative_error": 0.0008174089499661003,
+  "max_solve_time_iqr_ms": 1136.803486617282,
+  "max_success_cpu_recomputed_relative_residual": 9.748360180473853e-06,
+  "max_success_final_relative_residual": 9.748360180473853e-06,
+  "max_success_solution_relative_error": 0.0008174089499661003,
+  "min_success_rate": 0.0,
+  "num_applicability_rows": 78,
+  "num_diagnostic_rows": 12,
+  "num_failed_rows": 15,
+  "num_matrices_with_selector_rows": 12,
+  "num_oracle_rows": 4,
+  "num_selector_rows": 108,
+  "num_success_rows": 15,
+  "schema_version": "phase1_csr_selector_features_v8",
+  "status": "passed"
+}

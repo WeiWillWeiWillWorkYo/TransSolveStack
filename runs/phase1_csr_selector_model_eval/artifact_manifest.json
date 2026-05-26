@@ -1,0 +1,53 @@
+{
+  "artifact_kind": "csr_selector_model_quality_gate",
+  "command": "scripts/tss_csr_selector_model_eval.py",
+  "created_at_utc": "2026-05-26T13:59:56.552882+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_learning_readiness/csr_learning_summary.json",
+      "sha256": "2bcb7c7745fb8449bc1b9c5b6c6136687d3ab39d3d90483c9db7c6bbe66c8fca"
+    },
+    {
+      "path": "runs/phase1_csr_learning_readiness/csr_baseline_predictions.jsonl",
+      "sha256": "414bc28b36360d45e8007de2981010df2dd328b66c2406ce2eadcda7aaec9c77"
+    },
+    {
+      "path": "runs/phase1_csr_linear_ranker/csr_linear_ranker_summary.json",
+      "sha256": "8d7b0322d12d76d1491a2f94dd76d6ea61b1535fb191316cdad8c39e9283f70c"
+    },
+    {
+      "path": "runs/phase1_csr_linear_ranker/csr_linear_ranker_predictions.jsonl",
+      "sha256": "ac40fb26a2d4a7be7604890aa20dc042b946002bde913432b4ba1b8ad8bdb4dc"
+    },
+    {
+      "path": "transsolvestack/__init__.py",
+      "sha256": "2f55e7cb6abc78de6f110c3b44567324b049652e93f2b908f771c38517164b3e"
+    },
+    {
+      "path": "transsolvestack/api.py",
+      "sha256": "bb93c01bb0b7b57d78c7309e979bf13bc46f2fcd4f03dccd85d7cd6647334ffb"
+    },
+    {
+      "path": "transsolvestack/policies/csr_selector_model_eval.py",
+      "sha256": "a7d3fc38d02c3ad70d99f18d0745a46238904ee6955f0d43a045df955962d472"
+    },
+    {
+      "path": "scripts/tss_csr_selector_model_eval.py",
+      "sha256": "7b8e27b96df6b687a3b94bcc296ad1fdacb8f74a44c8e3f53339f93833c9a2b8"
+    }
+  ],
+  "metadata": {
+    "baseline_model_id": "candidate_prior_success_median_v1",
+    "best_offline_model_id": "candidate_prior_success_median_v1",
+    "challenger_model_id": "csr_pairwise_linear_ranker_v1",
+    "challenger_runtime_eligible": false,
+    "git_commit": "unknown",
+    "num_eval_oracle_requests": 2,
+    "num_eval_predictions": 3,
+    "num_models": 2,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_selector_model_eval_v1",
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

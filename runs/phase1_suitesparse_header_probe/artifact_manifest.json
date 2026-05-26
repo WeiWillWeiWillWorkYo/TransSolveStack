@@ -1,0 +1,35 @@
+{
+  "artifact_kind": "suitesparse_archive_header_probe",
+  "command": "scripts/tss_probe_suitesparse_headers.py",
+  "created_at_utc": "2026-05-23T08:06:33.379272+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_suitesparse_selection/selected_matrices.jsonl",
+      "sha256": "a4babfb0deb0cc1f3ce9460ad31278694f62f40a4e13256fb0b1c971b64d6f56"
+    },
+    {
+      "path": "transsolvestack/datasets/matrix_market.py",
+      "sha256": "8fabe7dc33aa50910553eac42a359396940216f551795d5f7040f32143f2313f"
+    },
+    {
+      "path": "transsolvestack/datasets/archive_probe.py",
+      "sha256": "e2a7529cf72d1f65904196f6638ca5202fc36459be544a2f2c2bd31210d51430"
+    },
+    {
+      "path": "scripts/tss_probe_suitesparse_headers.py",
+      "sha256": "4de081070230b1663a707a257d2cad7de431cf05e9741dca67916faf58ff2d8d"
+    }
+  ],
+  "metadata": {
+    "failure_count": 0,
+    "field_mismatch_count": 8,
+    "git_commit": "unknown",
+    "probed_archives": 64,
+    "selected_matrices": 64,
+    "shape_mismatch_count": 0,
+    "status": "passed",
+    "stored_nnz_mismatch_count": 31,
+    "success_count": 64
+  },
+  "python_version": "3.10.18"
+}

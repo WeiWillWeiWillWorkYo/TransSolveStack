@@ -1,0 +1,42 @@
+{
+  "already_profiled_matrices": 12,
+  "by_candidate_profile": {
+    "general": 4,
+    "symmetric": 4
+  },
+  "by_solver": {
+    "bicgstab": 8,
+    "cg": 4,
+    "gmres": 4,
+    "pcg": 4,
+    "richardson": 4
+  },
+  "eligible_unprofiled_matrices": 36,
+  "estimated_total_nnz_visits": 92343696,
+  "executes_gpu": false,
+  "max_archive_size_bytes": 8000000,
+  "max_cols": 10000,
+  "max_iter": 256,
+  "max_new_matrices": 8,
+  "max_nnz": 100000,
+  "max_planned_gpu_solves": 24,
+  "max_rows": 10000,
+  "measurement_repeats": 1,
+  "next_step": "import_planned_matrices_then_run_cpu_screened_taichi_csr_micro_campaign",
+  "plan_id": "phase1_csr_benchmark_expansion_m49",
+  "planned_candidate_jobs": 24,
+  "planned_gpu_solve_attempts": 24,
+  "planned_matrices": 8,
+  "resource_limits_path": "configs/runtime/resource_limits.yaml",
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_benchmark_expansion_plan_v1",
+  "selected_source_matrices": 64,
+  "skipped_budget_matrices": 28,
+  "skipped_existing_matrices": 12,
+  "skipped_resource_limit_matrices": 16,
+  "source_selection_path": "runs/phase1_suitesparse_selection/selected_matrices.jsonl",
+  "source_selector_rows_path": "runs/phase1_csr_selector_readiness/csr_selector_rows.jsonl",
+  "status": "passed",
+  "tolerance_rel": 1e-05,
+  "total_planned_nnz": 82789
+}

@@ -1,0 +1,157 @@
+{
+  "num_dataset_plan_entries": 3,
+  "num_training_rows": 21,
+  "plan": {
+    "audit": {
+      "candidate_id": "taichi_pcg_jacobi_f32",
+      "candidate_set_id": "phase1_taichi_gpu",
+      "context_id": "default_f32",
+      "final_residual_norm": 8.07905432457666e-07,
+      "is_oracle": true,
+      "num_iterations": 53,
+      "profile_source": "runs/phase1_smoke_taichi/candidate_evaluation.jsonl",
+      "profile_status": "success",
+      "regret_vs_oracle": 0.0,
+      "relative_error_to_true": 6.244724472701628e-07,
+      "selection_reason": "profiled_success",
+      "selector": "benchmark_artifact",
+      "system_id": "synthetic:poisson_2d_stencil:32x32:float32",
+      "total_time_ms": 28.839170932769775
+    },
+    "backend": "taichi_gpu",
+    "budget": {
+      "max_iter": 300
+    },
+    "coarsening": {},
+    "correction": {},
+    "fallback_chain": [
+      {
+        "candidate_id": "taichi_bicgstab_jacobi_f32",
+        "preconditioner": {
+          "name": "jacobi"
+        },
+        "reuse": {
+          "device_buffers": true,
+          "warm_start": false
+        },
+        "solver": {
+          "max_iter": 300,
+          "name": "bicgstab",
+          "precision": "float32"
+        }
+      },
+      {
+        "candidate_id": "taichi_cg_none_f32",
+        "preconditioner": {
+          "name": "none"
+        },
+        "reuse": {
+          "device_buffers": true,
+          "warm_start": false
+        },
+        "solver": {
+          "max_iter": 300,
+          "name": "cg",
+          "precision": "float32"
+        }
+      }
+    ],
+    "plan_id": "artifact_policy:phase1_taichi_gpu:synthetic:poisson_2d_stencil:32x32:float32:default_f32:taichi_pcg_jacobi_f32",
+    "preconditioner": {
+      "name": "jacobi"
+    },
+    "reuse": {
+      "device_buffers": true,
+      "warm_start": false
+    },
+    "solver": {
+      "max_iter": 300,
+      "name": "pcg",
+      "precision": "float32"
+    }
+  },
+  "status": "success",
+  "trace": {
+    "backend": "taichi_gpu",
+    "failure_class": null,
+    "fallback_events": [],
+    "final_residual_norm": 8.006189047678855e-07,
+    "gpu_kernel_time_ms": 283.5286511108279,
+    "metadata": {
+      "ax": 1.0,
+      "ay": 1.0,
+      "az": 0.0,
+      "nx": 32,
+      "ny": 32,
+      "nz": 1,
+      "preconditioner": "jacobi",
+      "relative_error_to_true": 3.600931968009315e-07,
+      "solver": "pcg"
+    },
+    "num_iterations": 53,
+    "peak_device_memory_mb": null,
+    "plan_id": "artifact_policy:phase1_taichi_gpu:synthetic:poisson_2d_stencil:32x32:float32:default_f32:taichi_pcg_jacobi_f32",
+    "residual_history": [
+      1.0,
+      0.5126958595935456,
+      0.3891986251018047,
+      0.3331923303446456,
+      0.26285821371283713,
+      0.2374437820697199,
+      0.1995038167629722,
+      0.184172814015896,
+      0.1608879581712418,
+      0.1504368139201121,
+      0.13481398785417759,
+      0.12717033205305084,
+      0.11601133453843296,
+      0.11015318674118066,
+      0.10180761783715785,
+      0.09716352587360458,
+      0.09069898633883425,
+      0.08692211509660377,
+      0.08180381597571681,
+      0.07909109840077168,
+      0.07786191231149346,
+      0.0871591233239316,
+      0.10932470014540797,
+      0.11680908814703456,
+      0.0707592918050537,
+      0.040376760599150054,
+      0.0374586524282825,
+      0.03443442870940821,
+      0.0229463778421542,
+      0.02114793040941856,
+      0.015798711053781063,
+      0.010816712734536788,
+      0.009875532466512484,
+      0.006880725169130591,
+      0.005886305251679443,
+      0.004415425404068709,
+      0.003394689241133522,
+      0.00261525749866674,
+      0.0018253936630761003,
+      0.001389597326258443,
+      0.0008836317105841839,
+      0.0006196035835959392,
+      0.0003462439847709352,
+      0.00021099406397855546,
+      0.00010525617202602115,
+      6.085480899717587e-05,
+      3.3768711836057424e-05,
+      2.1253769963158523e-05,
+      1.1663229616460225e-05,
+      6.3149296059072e-06,
+      3.6442044090965435e-06,
+      2.222693578330404e-06,
+      1.309428240239378e-06,
+      8.006189047678855e-07
+    ],
+    "run_id": "run:artifact_policy:phase1_taichi_gpu:synthetic:poisson_2d_stencil:32x32:float32:default_f32:taichi_pcg_jacobi_f32",
+    "setup_time_ms": 0.0,
+    "solve_time_ms": 283.5286511108279,
+    "status": "success",
+    "total_time_ms": 701.0299987159669,
+    "transfer_time_ms": 0.0
+  }
+}
