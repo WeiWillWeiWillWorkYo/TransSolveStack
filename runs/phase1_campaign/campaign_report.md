@@ -2,7 +2,7 @@
 
 - campaign: `phase1_readiness`
 - status: `passed`
-- stages: `52`
+- stages: `84`
 
 | stage | status | artifact_kind | rows | artifact_dir |
 |---|---|---|---:|---|
@@ -36,11 +36,43 @@
 | csr_linear_ranker | passed | csr_linear_ranker_baseline | 12 | runs/phase1_csr_linear_ranker |
 | csr_selector_model_eval | passed | csr_selector_model_quality_gate | 2 | runs/phase1_csr_selector_model_eval |
 | csr_benchmark_expansion_plan | passed | csr_benchmark_expansion_plan | 24 | runs/phase1_csr_benchmark_expansion_plan |
+| csr_full_dataset_queue | passed | csr_full_dataset_queue | 4635 | runs/phase1_csr_full_dataset_queue |
+| csr_queue_batch_00001 | passed | csr_queue_batch_execution | 24 | runs/phase1_csr_queue_batch_00001 |
+| csr_queue_batch_00002 | passed | csr_queue_batch_execution | 24 | runs/phase1_csr_queue_batch_00002 |
+| csr_queue_batch_00003 | passed | csr_queue_batch_execution | 24 | runs/phase1_csr_queue_batch_00003 |
+| csr_queue_batch_00004 | passed | csr_queue_batch_execution | 24 | runs/phase1_csr_queue_batch_00004 |
+| csr_queue_batch_00005 | passed | csr_queue_batch_execution | 24 | runs/phase1_csr_queue_batch_00005 |
+| csr_queue_batch_00006 | passed | csr_queue_batch_execution | 24 | runs/phase1_csr_queue_batch_00006 |
+| csr_queue_batch_00007 | passed | csr_queue_batch_execution | 24 | runs/phase1_csr_queue_batch_00007 |
+| csr_queue_batch_00008 | passed | csr_queue_batch_execution | 24 | runs/phase1_csr_queue_batch_00008 |
+| csr_queue_batch_00009 | passed | csr_queue_batch_execution | 24 | runs/phase1_csr_queue_batch_00009 |
+| csr_queue_batch_00010 | passed | csr_queue_batch_execution | 24 | runs/phase1_csr_queue_batch_00010 |
+| csr_queue_training_pool | passed | csr_queue_training_pool | 372 | runs/phase1_csr_queue_training_pool |
+| csr_queue_batch_training_bundle | passed | csr_queue_batch_training_bundle | 100 | runs/phase1_csr_queue_batch_training_bundle |
+| csr_queue_batch_reference_ranker | passed | csr_queue_batch_reference_ranker | 100 | runs/phase1_csr_queue_batch_reference_ranker |
+| csr_queue_batch_model_replay | passed | csr_queue_batch_model_replay | 100 | runs/phase1_csr_queue_batch_model_replay |
+| csr_queue_candidate_coverage | passed | csr_queue_candidate_coverage | 6 | runs/phase1_csr_queue_candidate_coverage |
+| csr_gmres_restart_coverage | passed | csr_gmres_restart_coverage | 14 | runs/phase1_csr_gmres_restart_coverage |
+| csr_blocked_gap_probe | passed | csr_blocked_gap_probe | 16 | runs/phase1_csr_blocked_gap_probe |
+| csr_blocked_gap_positive_search | passed | csr_blocked_gap_positive_search | 8 | runs/phase1_csr_blocked_gap_positive_search |
+| csr_blocked_gap_training_integration | passed | csr_blocked_gap_training_integration | 380 | runs/phase1_csr_blocked_gap_training_integration |
+| csr_blocked_gap_augmented_ranker | passed | csr_blocked_gap_augmented_ranker | 105 | runs/phase1_csr_blocked_gap_augmented_ranker |
+| csr_blocked_gap_guarded_replay | passed | csr_blocked_gap_guarded_replay | 5 | runs/phase1_csr_blocked_gap_guarded_replay |
+| csr_transformer_handoff_bundle | passed | csr_transformer_handoff_bundle | 29 | runs/phase1_csr_transformer_handoff_bundle |
+| csr_transformer_training_package | passed | csr_transformer_training_package | 29 | runs/phase1_csr_transformer_training_package |
+| csr_transformer_package_consumer_dry_run | passed | csr_transformer_package_consumer_dry_run | 29 | runs/phase1_csr_transformer_package_consumer_dry_run |
 | csr_micro_campaign | passed | csr_micro_campaign | 24 | runs/phase1_csr_micro_campaign |
 | csr_transformer_ready | passed | csr_transformer_ready_bundle | 20 | runs/phase1_csr_transformer_ready |
 | csr_transformer_ranker | passed | csr_transformer_ranker | 20 | runs/phase1_csr_transformer_ranker |
+| csr_external_model_adapter | passed | csr_external_model_adapter | 6 | runs/phase1_csr_external_model_adapter |
+| csr_transformer_model_replay | passed | csr_transformer_model_replay | 20 | runs/phase1_csr_transformer_model_replay |
 | csr_transformer_quality_gate | passed | csr_transformer_quality_gate | 2 | runs/phase1_csr_transformer_quality_gate |
+| csr_policy_model_artifact | passed | csr_policy_model_artifact | 5 | runs/phase1_csr_policy_model_artifact |
+| csr_policy_model_acceptance | passed | csr_policy_model_acceptance | 9 | runs/phase1_csr_policy_model_acceptance |
+| csr_policy_model_submission | passed | csr_policy_model_submission | 13 | runs/phase1_csr_policy_model_submission |
+| csr_external_model_intake | passed | csr_external_model_intake | 8 | runs/phase1_csr_external_model_intake |
 | csr_transformer_training_entrypoint | passed | csr_transformer_training_entrypoint | 6 | runs/phase1_csr_transformer_training_entrypoint |
+| csr_transformer_reference_training_export | passed | csr_transformer_reference_training_export | 6 | runs/phase1_csr_transformer_reference_training_export |
 | csr_learned_runtime_guard | passed | csr_learned_runtime_guard | 4 | runs/phase1_csr_learned_guard |
 | csr_guarded_auto_solve | passed | csr_guarded_auto_solve_smoke | 2 | runs/phase1_csr_guarded_auto_solve |
 | csr_guarded_promotion_readiness | passed | csr_guarded_promotion_readiness | 3 | runs/phase1_csr_guarded_promotion_readiness |
@@ -53,7 +85,7 @@
 | csr_unresolved_fallback_coverage_plan | passed | csr_unresolved_fallback_coverage_plan | 6 | runs/phase1_csr_unresolved_fallback_coverage_plan |
 | csr_unresolved_fallback_cpu_screen | passed | csr_unresolved_fallback_cpu_screen | 4 | runs/phase1_csr_unresolved_fallback_cpu_screen |
 | csr_unresolved_matrix_diagnostics | passed | csr_unresolved_matrix_diagnostics | 2 | runs/phase1_csr_unresolved_matrix_diagnostics |
-| public_release_hygiene | passed | public_release_hygiene | 79 | runs/phase1_public_release_hygiene |
+| public_release_hygiene | passed | public_release_hygiene | 80 | runs/phase1_public_release_hygiene |
 | transformer_readiness | passed | transformer_readiness_export | 21 | runs/phase1_transformer_readiness |
 | public_api_smoke | passed | public_api_smoke | 1 | runs/phase1_public_api_smoke |
 | csr_public_api_smoke | passed | csr_public_api_smoke | 1 | runs/phase1_csr_public_api |

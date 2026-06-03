@@ -24,7 +24,7 @@
   "ilu0_success_rows_imported": 1,
   "learned_predictions_path": "runs/phase1_csr_ilu0_guarded_integration/fixture_ilu0_predictions.jsonl",
   "max_cpu_recomputed_relative_residual": 2.8758275823290964e-06,
-  "max_final_relative_residual": 2.8758275823643406e-06,
+  "max_final_relative_residual": 2.875827582364341e-06,
   "max_solution_relative_error": 0.0001093117658720259,
   "next_step": "merge ILU0 selector rows into broader transformer training only after more exact matrix/context successes are collected",
   "production_runtime_selector_changed": false,

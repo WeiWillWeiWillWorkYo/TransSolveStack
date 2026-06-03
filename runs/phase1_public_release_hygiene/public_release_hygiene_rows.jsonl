@@ -19,6 +19,7 @@
 {"blocks_hygiene": false, "detail": "required public-release ignore rule", "path": "runs/**/*.bin", "row_kind": "gitignore_required_pattern", "schema_version": "phase1_public_release_hygiene_v1", "status": "present"}
 {"blocks_hygiene": false, "detail": "required public-release ignore rule", "path": "runs/**/*.mp4", "row_kind": "gitignore_required_pattern", "schema_version": "phase1_public_release_hygiene_v1", "status": "present"}
 {"blocks_hygiene": false, "detail": "required public-release ignore rule", "path": "runs/**/*.zip", "row_kind": "gitignore_required_pattern", "schema_version": "phase1_public_release_hygiene_v1", "status": "present"}
+{"blocks_hygiene": false, "detail": "required public-release ignore rule", "path": "runs/**/csr_matrices.jsonl", "row_kind": "gitignore_required_pattern", "schema_version": "phase1_public_release_hygiene_v1", "status": "present"}
 {"blocks_hygiene": false, "detail": "required public-release ignore rule", "path": "ADVICE.md", "row_kind": "gitignore_required_pattern", "schema_version": "phase1_public_release_hygiene_v1", "status": "present"}
 {"blocks_hygiene": false, "detail": "required public-release ignore rule", "path": "MILESTONE_LOG.md", "row_kind": "gitignore_required_pattern", "schema_version": "phase1_public_release_hygiene_v1", "status": "present"}
 {"blocks_hygiene": false, "detail": "required public-release ignore rule", "path": "FOOTAGE_SPEC.md", "row_kind": "gitignore_required_pattern", "schema_version": "phase1_public_release_hygiene_v1", "status": "present"}
@@ -76,4 +77,4 @@
 {"blocks_hygiene": false, "detail": "must not be committed", "path": "transsolvestack/profiling/__pycache__", "row_kind": "local_only_dir_present", "schema_version": "phase1_public_release_hygiene_v1", "status": "ignored_by_policy"}
 {"blocks_hygiene": false, "detail": "must not be committed", "path": "transsolvestack/runtime/__pycache__", "row_kind": "local_only_dir_present", "schema_version": "phase1_public_release_hygiene_v1", "status": "ignored_by_policy"}
 {"blocks_hygiene": false, "detail": "must not be committed", "path": "transsolvestack/solvers/__pycache__", "row_kind": "local_only_dir_present", "schema_version": "phase1_public_release_hygiene_v1", "status": "ignored_by_policy"}
-{"blocks_hygiene": false, "detail": "63", "path": ".gitignore", "row_kind": "gitignore_line_count", "schema_version": "phase1_public_release_hygiene_v1", "status": "present"}
+{"blocks_hygiene": false, "detail": "64", "path": ".gitignore", "row_kind": "gitignore_line_count", "schema_version": "phase1_public_release_hygiene_v1", "status": "present"}

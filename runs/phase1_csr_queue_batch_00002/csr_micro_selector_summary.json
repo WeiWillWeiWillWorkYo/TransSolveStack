@@ -1,0 +1,27 @@
+{
+  "applicability_reason_counts": {},
+  "applicability_status_counts": {},
+  "failure_reason_counts": {
+    "cpu_reference_cg_screen_failed": 8,
+    "cpu_reference_pcg_screen_failed": 8,
+    "cpu_reference_richardson_screen_failed": 8
+  },
+  "max_cpu_recomputed_relative_residual": 0.0,
+  "max_failed_final_relative_residual": 19144417944.270348,
+  "max_final_relative_residual": 0.0,
+  "max_solution_relative_error": 0.0,
+  "max_solve_time_iqr_ms": 0.0,
+  "max_success_cpu_recomputed_relative_residual": 0.0,
+  "max_success_final_relative_residual": 0.0,
+  "max_success_solution_relative_error": 0.0,
+  "min_success_rate": 0.0,
+  "num_applicability_rows": 0,
+  "num_diagnostic_rows": 8,
+  "num_failed_rows": 24,
+  "num_matrices_with_selector_rows": 8,
+  "num_oracle_rows": 0,
+  "num_selector_rows": 24,
+  "num_success_rows": 0,
+  "schema_version": "phase1_csr_selector_features_v8",
+  "status": "failed"
+}

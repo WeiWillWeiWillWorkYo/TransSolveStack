@@ -1,0 +1,27 @@
+# CSR Queue Batch Execution
+
+- status: `passed`
+- schema_version: `phase1_csr_queue_batch_execution_v1`
+- queue_id: `phase1_csr_full_dataset_queue_m83`
+- batch_id: `batch_00002`
+- batch_outcome: `screen_only_no_oracle`
+- micro_campaign_status: `failed`
+- runtime_selector_changed: `False`
+- executes_gpu: `True`
+- imports_matrices: `True`
+- cpu_screen_required: `True`
+- completed_without_oracle: `True`
+- training_pool_role: `negative_no_oracle_selector_rows`
+- planned/executed matrices: `8` / `8`
+- planned/executed jobs: `24` / `24`
+- imported_matrices: `8`
+- gpu_success_rows: `0`
+- cpu_screened_out_rows: `24`
+- gpu_failed_rows: `0`
+- selector_rows: `24`
+- selector_oracle_rows: `0`
+- max_final_relative_residual: `0`
+- max_cpu_recomputed_relative_residual: `0`
+- max_solution_relative_error: `0`
+- resume_status: `completed_no_oracle`
+- next_step: `append_selector_rows_to_training_pool_then_rebuild_learning_bundle`

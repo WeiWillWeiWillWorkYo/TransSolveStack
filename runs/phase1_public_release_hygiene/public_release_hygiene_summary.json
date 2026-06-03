@@ -9,7 +9,7 @@
   "git_init_required": false,
   "git_repository_initialized": true,
   "github_upload_ready": true,
-  "ignored_heavy_file_count": 0,
+  "ignored_heavy_file_count": 14,
   "large_unignored_file_count": 0,
   "license_policy_documented": true,
   "license_route_selected": true,
@@ -62,6 +62,7 @@
     "runs/**/*.bin",
     "runs/**/*.mp4",
     "runs/**/*.zip",
+    "runs/**/csr_matrices.jsonl",
     "ADVICE.md",
     "MILESTONE_LOG.md",
     "FOOTAGE_SPEC.md",
@@ -93,6 +94,6 @@
   "status": "passed",
   "validation_error_count": 0,
   "validation_errors": [],
-  "workspace_bytes_scanned": 9475509,
-  "workspace_file_count_scanned": 637
+  "workspace_bytes_scanned": 91057311,
+  "workspace_file_count_scanned": 1181
 }

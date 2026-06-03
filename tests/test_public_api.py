@@ -1,5 +1,6 @@
 import pytest
 import io
+import json
 import tarfile
 
 import transsolvestack as tss
@@ -305,6 +306,25 @@ def test_public_csr_transformer_ranker_api_trains_attention_model():
     assert export.summary.eval_non_success_selection_count == 2
 
 
+def test_public_csr_external_model_adapter_api_converts_checkpoint(tmp_path):
+    checkpoint = tss.build_reference_csr_external_ranker_checkpoint()
+    checkpoint_path = tmp_path / "external_checkpoint.json"
+    checkpoint_path.write_text(
+        json.dumps(checkpoint, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+    export = tss.adapt_csr_external_ranker_checkpoint(checkpoint_path)
+
+    assert export["summary"]["status"] == "passed"
+    assert export["summary"]["adapter_ready"] is True
+    assert export["summary"]["quality_gate_input_ready"] is True
+    assert export["summary"]["policy_model_artifact_input_ready"] is True
+    assert export["summary"]["prediction_contract_valid"] is True
+    assert export["summary"]["num_predictions"] == 20
+    assert export["summary"]["runtime_selector_changed"] is False
+
+
 def test_public_csr_transformer_training_entrypoint_api_exports_contract(tmp_path):
     export = tss.build_csr_transformer_training_entrypoint(output_dir=tmp_path)
 
@@ -319,6 +339,92 @@ def test_public_csr_transformer_training_entrypoint_api_exports_contract(tmp_pat
     assert export["summary"]["num_tensor_requests"] == 20
     assert (tmp_path / "csr_transformer_training_job_spec.json").exists()
     assert (tmp_path / "csr_transformer_training_quality_contract.json").exists()
+
+
+def test_public_csr_transformer_reference_training_export_api_builds_checkpoint(tmp_path):
+    export = tss.build_csr_transformer_reference_training_export(output_dir=tmp_path)
+
+    assert export["summary"]["status"] == "passed"
+    assert export["summary"]["reference_training_export_ready"] is True
+    assert export["summary"]["model_training_executed"] is True
+    assert export["summary"]["model_trained"] is True
+    assert export["summary"]["external_checkpoint_ready"] is True
+    assert export["summary"]["adapter_ready"] is True
+    assert export["summary"]["adapter_roundtrip_exact"] is True
+    assert export["summary"]["intake_input_ready"] is True
+    assert export["summary"]["default_runtime_mode"] == "shadow"
+    assert export["summary"]["runtime_selector_changed"] is False
+    assert (
+        export["checkpoint"]["schema_version"]
+        == "phase1_csr_external_ranker_checkpoint_v1"
+    )
+    assert (tmp_path / "reference_csr_external_ranker_checkpoint.json").exists()
+
+
+def test_public_csr_full_dataset_queue_api_plans_resume_queue():
+    queue = tss.plan_csr_full_dataset_queue(max_queue_matrices=12, batch_matrix_count=4)
+
+    assert queue.summary.status == "passed"
+    assert queue.summary.schema_version == "phase1_csr_full_dataset_queue_v1"
+    assert queue.summary.runtime_selector_changed is False
+    assert queue.summary.executes_gpu is False
+    assert queue.summary.imports_matrices is False
+    assert queue.summary.resumable is True
+    assert queue.summary.index_matrices == 2904
+    assert queue.summary.index_present_archives == 2904
+    assert queue.summary.queued_matrices == 12
+    assert queue.summary.queued_batches == 3
+    assert queue.state["resume_policy"]["first_pending_batch_id"] == "batch_00001"
+    assert queue.schema["execution_boundary"]["automatic_execution"] is False
+
+
+def test_public_csr_policy_model_artifact_api_exports_loader_contract():
+    export = tss.build_csr_policy_model_artifact()
+
+    assert export["summary"]["status"] == "passed"
+    assert export["summary"]["schema_version"] == "phase1_csr_policy_model_artifact_v1"
+    assert export["summary"]["artifact_ready"] is True
+    assert export["summary"]["adapter"] == "csr_transformer_ranker_saved_model_v1"
+    assert export["summary"]["model_loaded"] is True
+    assert export["summary"]["replay_exact"] is True
+    assert export["summary"]["guard_required"] is True
+    assert export["summary"]["runtime_selector_changed"] is False
+    assert export["artifact"]["runtime_contract"]["guard_required"] is True
+    assert export["artifact"]["runtime_contract"]["default_mode"] == "shadow"
+
+
+def test_public_csr_policy_model_acceptance_api_checks_guarded_shadow():
+    export = tss.accept_csr_policy_model_artifact()
+
+    assert export["summary"]["status"] == "passed"
+    assert export["summary"]["accepted_for_shadow"] is True
+    assert export["summary"]["accepted_for_runtime_promotion"] is False
+    assert export["summary"]["guarded_gpu_shadow_smoke_checked"] is True
+    assert export["summary"]["runtime_selector_changed"] is False
+
+
+def test_public_csr_policy_model_submission_api_exports_review_package():
+    export = tss.prepare_csr_policy_model_submission()
+
+    assert export["summary"]["status"] == "passed"
+    assert export["summary"]["submission_ready"] is True
+    assert export["summary"]["shadow_submission_ready"] is True
+    assert export["summary"]["runtime_promotion_ready"] is False
+    assert export["summary"]["runtime_selector_changed"] is False
+    assert export["summary"]["num_packaged_files"] == 8
+    assert export["submission"]["runtime_boundary"]["guard_required"] is True
+
+
+def test_public_csr_external_model_intake_api_runs_review_pipeline(tmp_path):
+    export = tss.run_csr_external_model_intake(output_dir=tmp_path)
+
+    assert export["summary"]["status"] == "passed"
+    assert export["summary"]["intake_ready"] is True
+    assert export["summary"]["shadow_submission_ready"] is True
+    assert export["summary"]["runtime_promotion_ready"] is False
+    assert export["summary"]["adapter_ready"] is True
+    assert export["summary"]["accepted_for_shadow"] is True
+    assert export["summary"]["runtime_selector_changed"] is False
 
 
 def test_public_solve_csr_runs_tiny_richardson_fixture():

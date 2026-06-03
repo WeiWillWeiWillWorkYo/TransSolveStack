@@ -1,0 +1,15 @@
+{
+  "executes_gpu": true,
+  "integration_boundary": {
+    "next_step": "merge_with_existing_selector_rows_and_export_model_contract_tensors",
+    "status": "real_selector_rows_ready_for_transformer_contract_export"
+  },
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_micro_campaign_v1",
+  "screening_policy": {
+    "cpu_screen_required": true,
+    "gpu_execution": "only_after_candidate_cpu_screen_success",
+    "screened_out_status": "screened_out"
+  },
+  "task": "execute_resource_bounded_real_csr_benchmark_queue"
+}

@@ -1,0 +1,12 @@
+{
+  "contract_note": "D19 exports requests and targets for training tensors; baseline predictions are not required for this integration shard.",
+  "model_required": false,
+  "num_predictions": 0,
+  "num_requests": 105,
+  "num_targets": 105,
+  "prediction_source": "training_only_no_baseline_predictions",
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_model_contract_v1",
+  "status": "passed",
+  "validation_error_count": 0
+}

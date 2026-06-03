@@ -23,6 +23,11 @@ def test_csr_learned_guard_artifacts_are_valid():
     assert summary["shadow_mode_checked"] is True
     assert summary["quality_gate_blocks_checked"] is True
     assert summary["confidence_threshold_checked"] is True
+    assert summary["saved_model_shadow_checked"] is True
+    assert summary["saved_model_quality_gate_checked"] is True
+    assert summary["model_artifact_shadow_checked"] is True
+    assert summary["model_artifact_quality_gate_checked"] is True
+    assert summary["saved_model_loaded_checks"] == 2
     assert summary["fallback_chain_enforced_checked"] is True
     assert summary["runtime_fallback_checked"] is True
     assert summary["timeout_guard_checked"] is True
@@ -30,7 +35,35 @@ def test_csr_learned_guard_artifacts_are_valid():
 
     rows_by_id = {row["check_id"]: row for row in rows}
     assert rows_by_id["actual_shadow_mode"]["guard_status"] == "shadow_only"
+    assert (
+        rows_by_id["actual_shadow_mode"]["learned_policy_source"]["source_kind"]
+        == "model_artifact"
+    )
+    assert rows_by_id["actual_shadow_mode"]["learned_policy_source"]["model_loaded"] is True
+    assert (
+        rows_by_id["actual_shadow_mode"]["learned_policy_source"]["adapter"]
+        == "csr_transformer_ranker_saved_model_v1"
+    )
     assert rows_by_id["actual_quality_gate_blocks_promotion"]["guard_status"] == "blocked_quality_gate"
+    assert (
+        rows_by_id["actual_quality_gate_blocks_promotion"]["learned_policy_source"][
+            "source_kind"
+        ]
+        == "model_artifact"
+    )
+    assert (
+        rows_by_id["actual_quality_gate_blocks_promotion"]["learned_policy_source"][
+            "model_loaded"
+        ]
+        is True
+    )
     assert rows_by_id["eligible_high_confidence_promotion_fixture"]["guard_status"] == "promoted"
+    assert (
+        rows_by_id["eligible_high_confidence_promotion_fixture"][
+            "learned_policy_source"
+        ]["source_kind"]
+        == "prediction_artifact"
+    )
     assert rows_by_id["runtime_timeout_fallback_fixture"]["result_status"] == "fallback_success"
     assert manifest.metadata["runtime_selector_changed"] is False
+    assert manifest.metadata["saved_model_loaded_checks"] == 2

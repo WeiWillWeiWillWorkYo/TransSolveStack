@@ -1,7 +1,7 @@
 {
   "artifact_kind": "csr_learned_runtime_guard",
   "command": "scripts/tss_csr_learned_guard_smoke.py",
-  "created_at_utc": "2026-05-26T14:01:03.653379+00:00",
+  "created_at_utc": "2026-05-27T08:08:54.954690+00:00",
   "file_hashes": [
     {
       "path": "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
@@ -12,8 +12,12 @@
       "sha256": "180351207cc9c630c6e01f7d13f2abe8bcaa7cc3c48fc172eca76efdb9550585"
     },
     {
-      "path": "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_predictions.jsonl",
-      "sha256": "b6d9fbe8213d7f49a3770fdd71ce64aee2904de8d0071ae51f292fcf54b13aec"
+      "path": "runs/phase1_csr_policy_model_artifact/csr_policy_model_artifact.json",
+      "sha256": "1ddbc0c59b01c3778be9ff81f9ea30cdaf6e6a2e6c03d2e7c2ac1e303f3c1163"
+    },
+    {
+      "path": "runs/phase1_csr_policy_model_artifact/artifact_manifest.json",
+      "sha256": "38d1b9b60993786e25fb4ce8100c2fd7b1d968ef1ceb5727c9877e0639f53be6"
     },
     {
       "path": "runs/phase1_csr_transformer_quality_gate/csr_transformer_quality_gate_summary.json",
@@ -21,11 +25,11 @@
     },
     {
       "path": "transsolvestack/__init__.py",
-      "sha256": "2f55e7cb6abc78de6f110c3b44567324b049652e93f2b908f771c38517164b3e"
+      "sha256": "009662b0dc55004500bbbc39c38e544d23b9a2945820a627dcabcc0c3c06fcee"
     },
     {
       "path": "transsolvestack/api.py",
-      "sha256": "bb93c01bb0b7b57d78c7309e979bf13bc46f2fcd4f03dccd85d7cd6647334ffb"
+      "sha256": "716e593a3ed210fb24249b7b32bd402e9dcd177194a23e91320bae7f2fb19c22"
     },
     {
       "path": "transsolvestack/policies/csr_artifact_selector.py",
@@ -33,7 +37,15 @@
     },
     {
       "path": "transsolvestack/policies/csr_learned_guard.py",
-      "sha256": "c9f15f9527d6a13eb442b2c7f00785092c597fdd7cf41a7f2c64db9f1362c75b"
+      "sha256": "fb4d69433aef265e6d923ae54efa514012fc08ce82e9da1c8659088869aa7353"
+    },
+    {
+      "path": "transsolvestack/policies/csr_policy_model_artifact.py",
+      "sha256": "c08fd833f77b1d573a2a4dd58f8a72b849b1aa48d006f1745b49c21e93d99e90"
+    },
+    {
+      "path": "transsolvestack/policies/csr_transformer_ranker.py",
+      "sha256": "0907d1386e794cd18a9e321ad7b10f910fdc1f98abf9e4609d13a533078787f7"
     },
     {
       "path": "transsolvestack/runtime/guarded_fallback.py",
@@ -41,15 +53,16 @@
     },
     {
       "path": "scripts/tss_csr_learned_guard_smoke.py",
-      "sha256": "aa7e621365fcd4310e58d7f15dc06a06d55f2e774b13b52d3a95a857382a1822"
+      "sha256": "803f73419b92f5fe4fee556ab0f2083674b092649e06143ae09fabe802239e77"
     }
   ],
   "metadata": {
-    "git_commit": "unknown",
+    "git_commit": "c71452fa04c75c01ad1813409824c42fd937cc49",
     "promotion_fixture_checked": true,
     "quality_gate_blocks_checked": true,
     "runtime_fallback_checked": true,
     "runtime_selector_changed": false,
+    "saved_model_loaded_checks": 2,
     "shadow_mode_checked": true,
     "status": "passed"
   },

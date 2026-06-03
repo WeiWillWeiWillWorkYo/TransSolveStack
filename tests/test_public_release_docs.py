@@ -36,7 +36,7 @@ def test_public_release_license_and_citation_docs_are_present():
     assert "Use Cases" in readme
     assert "Python Example" in readme
     assert "Lightweight Validation" in readme
-    assert "193 passed, 18 skipped" in readme
+    assert "235 passed, 18 skipped" in readme
     assert "docs/PROJECT_OVERVIEW.md" in readme
     assert "tss.solve_csr" in readme
     assert "BiCGSTAB" in readme

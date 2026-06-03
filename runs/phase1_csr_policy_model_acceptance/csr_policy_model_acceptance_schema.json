@@ -1,0 +1,15 @@
+{
+  "acceptance_checks": {
+    "artifact_contract": true,
+    "guard_plan_shadow": true,
+    "guarded_gpu_shadow_smoke": true,
+    "model_load": true,
+    "prediction_contract": true,
+    "quality_gate": true
+  },
+  "accepted_for_runtime_promotion": false,
+  "accepted_for_shadow": true,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_policy_model_acceptance_v1",
+  "task": "accept_runtime_loadable_csr_policy_model_artifact"
+}

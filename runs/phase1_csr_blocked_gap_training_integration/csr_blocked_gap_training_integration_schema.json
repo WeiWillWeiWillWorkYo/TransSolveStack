@@ -1,0 +1,28 @@
+{
+  "acceptance_gate": {
+    "requires_no_duplicate_selector_keys": true,
+    "requires_positive_rows_success_only": true,
+    "requires_positive_source_no_queue_merge": true,
+    "requires_positive_source_no_runtime_change": true,
+    "requires_transformer_connectable": true
+  },
+  "input_sources": {
+    "base_training_pool": "runs/phase1_csr_queue_training_pool/csr_queue_training_pool_selector_rows.jsonl",
+    "blocked_gap_positive_search": "runs/phase1_csr_blocked_gap_positive_search/csr_blocked_gap_positive_selector_rows.jsonl"
+  },
+  "output_contract": {
+    "combined_selector_rows": "combined_csr_selector_rows.jsonl",
+    "model_requests": "csr_transformer_model_requests.jsonl",
+    "request_index": "csr_transformer_request_index.jsonl",
+    "training_tensors": "csr_transformer_training_tensors.json"
+  },
+  "runtime_boundary": {
+    "executes_gpu": false,
+    "generic_queue_merge": false,
+    "imports_matrices": false,
+    "model_required": false,
+    "runtime_selector_changed": false
+  },
+  "schema_version": "phase1_csr_blocked_gap_training_integration_v1",
+  "task": "integrate_blocked_gap_positive_rows_into_training_only_bundle"
+}

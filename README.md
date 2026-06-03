@@ -18,6 +18,8 @@ robustness, not a fixed implementation detail.
 - Builds selector rows for solver, preconditioner, precision, parameter, and
   fallback decisions.
 - Exports Transformer-ready training tensors and model contracts.
+- Packages external Transformer training inputs and validates submitted models
+  through the guarded intake boundary.
 - Runs learned-policy candidates behind offline quality gates and runtime
   guards before promotion.
 - Preserves artifacts, provenance, and reproducibility checks for every
@@ -74,6 +76,12 @@ community training runs can target the same interface. A useful contributed
 model should include model weights, a model card, training-data provenance,
 quality-gate results, and guarded-solve evidence showing that the policy
 improves solver choice without bypassing the runtime guard.
+
+The repository also includes a trainer-facing package manifest and a
+consumer-side dry run for external model submissions. This lets a contributor
+train a model outside the repository, map the expected outputs back into the
+TransSolveStack model-artifact format, and run replay, quality-gate,
+submission, acceptance, and guarded-shadow checks before any runtime use.
 
 The long-term goal is a shared benchmark and model ecosystem: larger SuiteSparse
 and application-derived training campaigns should produce stronger selector
@@ -171,7 +179,7 @@ Expected current result:
 
 ```text
 artifact verification: passed
-193 passed, 18 skipped
+235 passed, 18 skipped
 ```
 
 Full benchmark expansion uses external datasets under

@@ -1,0 +1,44 @@
+{
+  "baseline_context": {
+    "guarded_replay_summary": "runs/phase1_csr_blocked_gap_guarded_replay/csr_blocked_gap_guarded_replay_summary.json",
+    "model_submission_contract": "runs/phase1_csr_policy_model_submission/csr_policy_model_submission_schema.json",
+    "shadow_ranker_predictions": "runs/phase1_csr_blocked_gap_augmented_ranker/csr_blocked_gap_augmented_ranker_predictions.jsonl",
+    "shadow_ranker_summary": "runs/phase1_csr_blocked_gap_augmented_ranker/csr_blocked_gap_augmented_ranker_summary.json"
+  },
+  "expected_outputs": {
+    "policy_model_artifact": "future_csr_policy_model_artifact.json",
+    "predictions": "future_csr_transformer_policy_predictions.jsonl",
+    "quality_gate_summary": "future_csr_transformer_quality_gate_summary.json",
+    "replay_summary": "future_csr_transformer_policy_replay_summary.json",
+    "saved_model": "future_csr_transformer_policy_model.json",
+    "submission_manifest": "future_csr_policy_model_submission_manifest.json"
+  },
+  "inputs": {
+    "label_free_model_requests": "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_model_requests.jsonl",
+    "offline_targets": "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_model_targets.jsonl",
+    "request_index": "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_request_index.jsonl",
+    "selector_rows": "runs/phase1_csr_blocked_gap_training_integration/combined_csr_selector_rows.jsonl",
+    "tensor_arrays": "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_tensors.json"
+  },
+  "job_kind": "external_csr_transformer_policy_training",
+  "model_family": "csr_transformer_policy_v2",
+  "model_trained_by_this_artifact": false,
+  "non_goals": [
+    "do_not_train_inside_handoff_artifact",
+    "do_not_change_runtime_selector",
+    "do_not_execute_gpu_benchmarks",
+    "do_not_publish_internal_paper_or_milestone_notes"
+  ],
+  "required_post_training_checks": [
+    "saved_model_schema_validation",
+    "exact_saved_model_replay",
+    "selector_model_quality_gate",
+    "policy_model_artifact_contract",
+    "policy_model_acceptance",
+    "policy_model_submission_terms",
+    "learned_guard_shadow_mode",
+    "profiled_success_fallback_chain_enforcement"
+  ],
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_transformer_handoff_bundle_v1"
+}

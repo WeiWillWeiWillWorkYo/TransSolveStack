@@ -1,0 +1,83 @@
+{
+  "expected_model_output": {
+    "ranked_candidate_ids": "per request, rank every candidate with candidate_mask=1",
+    "scores": "finite score per requested candidate",
+    "selected_candidate_id": "top ranked candidate or null"
+  },
+  "global_candidate_ids": [
+    "taichi_csr_bicgstab_jacobi_float64",
+    "taichi_csr_bicgstab_none_float64",
+    "taichi_csr_cg_none_float64",
+    "taichi_csr_chebyshev_jacobi_float64",
+    "taichi_csr_gmres_jacobi_restart16_float64",
+    "taichi_csr_gmres_jacobi_restart32_float64",
+    "taichi_csr_gmres_jacobi_restart8_float64",
+    "taichi_csr_pcg_jacobi_float64",
+    "taichi_csr_richardson_jacobi_float64"
+  ],
+  "input_contract": {
+    "prediction_validation": "phase1_csr_model_contract_v1",
+    "request_file": "csr_transformer_model_requests.jsonl",
+    "request_index_file": "csr_transformer_request_index.jsonl",
+    "target_file": "csr_transformer_model_targets.jsonl",
+    "tensor_file": "csr_transformer_training_tensors.json"
+  },
+  "integration_gate": {
+    "required_before_runtime": [
+      "validate predictions against csr_model_contract",
+      "compare against artifact-backed baseline",
+      "require no non-success runtime selections",
+      "keep runtime selector artifact-backed until quality gate passes"
+    ]
+  },
+  "model_required": false,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_transformer_ready_v1",
+  "task": "connect_transformer_ranker_to_real_csr_selector_contract",
+  "tensor_axes": {
+    "candidate": "global candidate slot",
+    "candidate_feature": [
+      "has_restart",
+      "restart",
+      "has_omega",
+      "omega",
+      "has_lambda_bounds",
+      "lambda_min_log10",
+      "lambda_max_log10",
+      "solver=bicgstab",
+      "solver=cg",
+      "solver=chebyshev",
+      "solver=gmres",
+      "solver=pcg",
+      "solver=richardson",
+      "preconditioner=jacobi",
+      "preconditioner=none",
+      "precision=float64"
+    ],
+    "matrix_feature": [
+      "actual_symmetric",
+      "cg_candidate",
+      "has_nonpositive_diagonal",
+      "is_square",
+      "n_rows",
+      "n_cols",
+      "csr_nnz",
+      "diagonal_present_count",
+      "zero_diagonal_count",
+      "min_abs_diagonal_log10p",
+      "max_abs_diagonal_log10p",
+      "symmetry_missing_pairs",
+      "symmetry_max_abs_error_log10p",
+      "symmetry_relative_error_log10p",
+      "field=integer",
+      "field=pattern",
+      "field=real",
+      "declared_symmetry=general",
+      "declared_symmetry=symmetric",
+      "recommended_precision=float32",
+      "recommended_precision=float64"
+    ],
+    "request": "matrix/context/split request row"
+  },
+  "transformer_connectable": true
+}

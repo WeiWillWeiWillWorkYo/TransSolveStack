@@ -1,7 +1,7 @@
 {
   "artifact_kind": "phase1_campaign_report",
   "command": "scripts/tss_phase1_campaign.py",
-  "created_at_utc": "2026-05-26T17:28:11.591851+00:00",
+  "created_at_utc": "2026-06-03T08:02:34.116718+00:00",
   "file_hashes": [
     {
       "path": "runs/phase1_smoke_taichi/artifact_manifest.json",
@@ -93,35 +93,75 @@
     },
     {
       "path": "runs/phase1_csr_selector_policy/artifact_manifest.json",
-      "sha256": "e57535873e06940263153982b7def170e577b7d4e309f983dc0ad57a1149e454"
+      "sha256": "b243b6087c3ac3941dfe40fcfb44815a3e9b737d6101f6bd843a56750104bd65"
     },
     {
       "path": "runs/phase1_csr_auto_solve/artifact_manifest.json",
-      "sha256": "9528069030432f8a1e996fdc94f0ef0033bb5b554cb537ff256b7cdadf07a7b2"
+      "sha256": "cc298a5a5293d9de88f8a08014249287930ea5789bfc21e85f74c8a973e67dd3"
     },
     {
       "path": "runs/phase1_csr_learning_readiness/artifact_manifest.json",
-      "sha256": "86bbb1502ce6b84388a278b895a1f3ec9dcb242781ae686df7654bc672105a54"
+      "sha256": "bcefa47a5a593632048010771d2bc3dfde66a625c14b4c857fbacccf372dac28"
     },
     {
       "path": "runs/phase1_csr_model_contract/artifact_manifest.json",
-      "sha256": "920da92421ce1f6c45785b3c3db8f044b2e2a09d86c99a0c57479cea62eea5cb"
+      "sha256": "312e2035052d70854b6072b44e28d2dda74bbf81776543197e0c59cde4b25171"
     },
     {
       "path": "runs/phase1_csr_training_tensors/artifact_manifest.json",
-      "sha256": "5ff1912a64e0066139789fa0e66fc6514268bfe49e282a9eaa7105d33fbdd610"
+      "sha256": "33d55dae256a41628bb5a1406587730d79a2b49e1022f987274b44c2826a59ba"
     },
     {
       "path": "runs/phase1_csr_linear_ranker/artifact_manifest.json",
-      "sha256": "e44968385d7edf1287268c3360bc74a50491d1a49473047fc8c761db884f05c8"
+      "sha256": "e7978ae16c9990ef7f72b316dfc31acbcd2e67d70278b7e4503d5aaffe51faf4"
     },
     {
       "path": "runs/phase1_csr_selector_model_eval/artifact_manifest.json",
-      "sha256": "1d646289be6eca5323b325d71293faf8b8fd68e9c5b8689df3edf599a79976c5"
+      "sha256": "a13355dd0514baf63c8e9aa238e581ee61ae5e88be8080b91822354b7cd3c1b5"
     },
     {
       "path": "runs/phase1_csr_benchmark_expansion_plan/artifact_manifest.json",
       "sha256": "66d2382ef1f7e9907124772ef17602e108be6a59949afdaf2bcdbefbcfe48557"
+    },
+    {
+      "path": "runs/phase1_csr_full_dataset_queue/artifact_manifest.json",
+      "sha256": "f813945ab7b95719e22838f9c195fe694a599d7afa2e5ce75a22fe796721199b"
+    },
+    {
+      "path": "runs/phase1_csr_queue_batch_00001/artifact_manifest.json",
+      "sha256": "557a35cbffe705c0c2ea8962beddd10fd3aa1658955f989b87f5431904d5e10b"
+    },
+    {
+      "path": "runs/phase1_csr_queue_batch_00002/artifact_manifest.json",
+      "sha256": "1841a71db74537e53cc875707f1de80ca83344ff3e98ef7d5528aa15112890ed"
+    },
+    {
+      "path": "runs/phase1_csr_queue_training_pool/artifact_manifest.json",
+      "sha256": "a5a940e7f1f093cb07051b8b7d49f28ef441c9caad11bb6532d7eca6981624fa"
+    },
+    {
+      "path": "runs/phase1_csr_queue_batch_training_bundle/artifact_manifest.json",
+      "sha256": "556c5aff0dbdc161d50667b9641a8d809d2ed24c89ab3ae37abdabc7bbb9d712"
+    },
+    {
+      "path": "runs/phase1_csr_queue_batch_reference_ranker/artifact_manifest.json",
+      "sha256": "92c1ff6d53d89810a7f0ae2912fd3deb23623bf0c9262e4e519a838bfd7abb19"
+    },
+    {
+      "path": "runs/phase1_csr_queue_batch_model_replay/artifact_manifest.json",
+      "sha256": "3eb8e84599f747ecc162834b00b3ed338254554880bd394077a910dc67a26d68"
+    },
+    {
+      "path": "runs/phase1_csr_queue_candidate_coverage/artifact_manifest.json",
+      "sha256": "af76e79389787eb5f7c2da778a78b073f676ed5442b442f2d9bb5002871deba0"
+    },
+    {
+      "path": "runs/phase1_csr_gmres_restart_coverage/artifact_manifest.json",
+      "sha256": "fe43bd384141ad4acfca107ccf1ea5bfd53e65e774e1fe9526f74cbddcacf270"
+    },
+    {
+      "path": "runs/phase1_csr_blocked_gap_probe/artifact_manifest.json",
+      "sha256": "c2fcf2ec35b9303da46a9b8b077ad46223f0797c395af665c31cf7e3e65e053c"
     },
     {
       "path": "runs/phase1_csr_micro_campaign/artifact_manifest.json",
@@ -133,27 +173,55 @@
     },
     {
       "path": "runs/phase1_csr_transformer_ranker/artifact_manifest.json",
-      "sha256": "27fe100201dccffc481d97e37be607767189f84ee800b771cb1d460b7edf4c23"
+      "sha256": "443e7d0b99b4f59188d4e37bc3c951c0f4eb68082071a100607fc3b2c2712106"
+    },
+    {
+      "path": "runs/phase1_csr_external_model_adapter/artifact_manifest.json",
+      "sha256": "c83908cc05606f073754abc722cd238febf02754efd0fe69bfc6484c3915820b"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_model_replay/artifact_manifest.json",
+      "sha256": "aa950866969f403971de0c03f813da810ab4b96a832c1e02babd191211ae64e5"
     },
     {
       "path": "runs/phase1_csr_transformer_quality_gate/artifact_manifest.json",
-      "sha256": "0e1250080dd815acb09ea02757e678b6c5b4bc76dba0237ea18f6420be126898"
+      "sha256": "53ffdf5e7a9cfd5b699874dc4fe4bcd509618c347e85c0113e216fee40c0b09a"
+    },
+    {
+      "path": "runs/phase1_csr_policy_model_artifact/artifact_manifest.json",
+      "sha256": "38d1b9b60993786e25fb4ce8100c2fd7b1d968ef1ceb5727c9877e0639f53be6"
+    },
+    {
+      "path": "runs/phase1_csr_policy_model_acceptance/artifact_manifest.json",
+      "sha256": "b3337baabda5b78a096a7a807125c97e03ac8a3210ba4ff6f2f6df982a1b003a"
+    },
+    {
+      "path": "runs/phase1_csr_policy_model_submission/artifact_manifest.json",
+      "sha256": "5c8de26228a4238db904743ea0469dfae23cc080882b0a6dce07e9793dfc349f"
+    },
+    {
+      "path": "runs/phase1_csr_external_model_intake/artifact_manifest.json",
+      "sha256": "bf52617f603a1225210059d0f6f31f5d58f3a0c0d737368186db04df71efefa9"
     },
     {
       "path": "runs/phase1_csr_transformer_training_entrypoint/artifact_manifest.json",
-      "sha256": "ac9e856efeae232f81cfd78c499a1e99a175e88bc7ca3a046d933d79adaa3f86"
+      "sha256": "dd86bc54d76cc3c276758f2f9ce06c9bec99cbc7ed8143e72af8181d457fb3b8"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_reference_training_export/artifact_manifest.json",
+      "sha256": "db44a6a5cea8713f769ad0f013500b12600e74b4ff50adc0b1ef8ac863c3f5ee"
     },
     {
       "path": "runs/phase1_csr_learned_guard/artifact_manifest.json",
-      "sha256": "d25c5c214fb61f6414e0df48f3ee8347a9f0a1b21e642c5d717d034237fe19d5"
+      "sha256": "384a4b41d507d457e43f58a930a11bafb0a095157a76008f3e383106fde84a80"
     },
     {
       "path": "runs/phase1_csr_guarded_auto_solve/artifact_manifest.json",
-      "sha256": "c983b63470a0943c169518d674e0a60795ba6ced7b193d31966cf8642a4d1ddc"
+      "sha256": "620abfeac097492db6e48e4afd2d5d48212fa1d2b34316518243181774cf1210"
     },
     {
       "path": "runs/phase1_csr_guarded_promotion_readiness/artifact_manifest.json",
-      "sha256": "d7820db6084c720a4a9252861d33df52966ab437cf5a89df8d29de96b62fdabb"
+      "sha256": "fa3c1dacd362b8ce6bab88b26a7fe764203f560d0e606d4d359077ab0d8f3a50"
     },
     {
       "path": "runs/phase1_csr_guarded_promotion_coverage_plan/artifact_manifest.json",
@@ -161,7 +229,7 @@
     },
     {
       "path": "runs/phase1_csr_guarded_promotion_coverage_exec/artifact_manifest.json",
-      "sha256": "59506e336da4c8aeb66ebba39617f602dd5e9f0e5fe11a33990fedd141180d2d"
+      "sha256": "f1745b41dea07dae8b3cd5dfa9f5144153e6f205a9c61cca15a3d0fc514cc116"
     },
     {
       "path": "runs/phase1_csr_non_success_fallback_probe/artifact_manifest.json",
@@ -169,11 +237,11 @@
     },
     {
       "path": "runs/phase1_csr_guarded_non_success_fallback_integration/artifact_manifest.json",
-      "sha256": "38c5ce41ab5ee1dc650d86b2d39b508ec45b12e4f75180648c10d3c2fc53ddf4"
+      "sha256": "b998f83d79d6695407dd46efe9cc232d77d8329d66252c2ed0c61fe9e3aa48f1"
     },
     {
       "path": "runs/phase1_csr_ilu0_guarded_integration/artifact_manifest.json",
-      "sha256": "795f7f56c05b676c7ce5d7b21ce5d43c895ecff2c42d2a10fccaa6afb50730f6"
+      "sha256": "7fbc736637bb6b7892facb86c690bce3ca8503918bb03888b6c7060dac096ac0"
     },
     {
       "path": "runs/phase1_csr_ilu0_coverage_expansion/artifact_manifest.json",
@@ -181,19 +249,19 @@
     },
     {
       "path": "runs/phase1_csr_unresolved_fallback_coverage_plan/artifact_manifest.json",
-      "sha256": "dfac7af2b9d7399d89ce68fead256e958a45a453cd5775445b485ab78cb92e53"
+      "sha256": "62ded3248c954976b3c3ad8b3693a54914792a8186d7c3f8bac62b2d480fd165"
     },
     {
       "path": "runs/phase1_csr_unresolved_fallback_cpu_screen/artifact_manifest.json",
-      "sha256": "54bdd1ca32070aef5257adb5a68f0f0d71aabacab2fee048dd136ab9245caf5b"
+      "sha256": "ca2a19eb584152acd9cfa2e615ae19c717e20100514dd87e34de903ecd4b878b"
     },
     {
       "path": "runs/phase1_csr_unresolved_matrix_diagnostics/artifact_manifest.json",
-      "sha256": "6b87343a042e12552bdc5f5e5fd53425239e12181c4dfeb4e64003c5f0da657b"
+      "sha256": "cefc78c03ff5e3f69f8c10e84150108e66006e529bd12e407a3f345d722183b9"
     },
     {
       "path": "runs/phase1_public_release_hygiene/artifact_manifest.json",
-      "sha256": "aba6ec43290ccb30f16bf38a3634336a7f7ad61b5dc1a3cc7c91f5dfb81e6489"
+      "sha256": "456e3d94187500610cd8410f5aa65950821159e920a34ef2604b381d780d45e0"
     },
     {
       "path": "runs/phase1_transformer_readiness/artifact_manifest.json",
@@ -201,11 +269,11 @@
     },
     {
       "path": "runs/phase1_public_api_smoke/artifact_manifest.json",
-      "sha256": "6b22697bef35ec2e9fbc32b87fc3eae87e27ba1da322e5545bfe690668a4f940"
+      "sha256": "932a211477c28d765c42a880d951fb31b65a1be07a097aececd51e34fd16d54e"
     },
     {
       "path": "runs/phase1_csr_public_api/artifact_manifest.json",
-      "sha256": "df6ef6a9b030464f6d63e825aaf5a522e9d6d714023205586085517f48b66fe8"
+      "sha256": "eec19386630b38d2c04f11061ecd948d7eca49160b2fa1d0f339f30263ad255c"
     },
     {
       "path": "runs/phase1_solver_functional/artifact_manifest.json",
@@ -213,17 +281,77 @@
     },
     {
       "path": "transsolvestack/profiling/campaign.py",
-      "sha256": "5a8bb4f6684970524f42072260b71d13d04b99ca3ca43d0c075f3ea448bf63e7"
+      "sha256": "f80fedf26879eb9b807297ca3cb0dd4a763e6a202d021a2881ed122096814e88"
     },
     {
       "path": "scripts/tss_phase1_campaign.py",
-      "sha256": "cf920cf5ec970c4701270124b8ce2b59e13560cb2865c9d0a9f56165facb374f"
+      "sha256": "c1e48d4ae83718c3ef5084a8906aa9486cae690a9ee8796ae99d695a0ebbe5c8"
+    },
+    {
+      "path": "runs/phase1_csr_queue_batch_00003/artifact_manifest.json",
+      "sha256": "8997217f54bb2aedc831000f4366b9fefb9d125687300f510375afb65cf4d60d"
+    },
+    {
+      "path": "runs/phase1_csr_queue_batch_00004/artifact_manifest.json",
+      "sha256": "0885f60171a45eafbdb104624afcd7d2db32ada3aa8af1343cbde7d345aaf249"
+    },
+    {
+      "path": "runs/phase1_csr_queue_batch_00005/artifact_manifest.json",
+      "sha256": "6f2d44fb6f14c97f3a292502eead052bc864ad9c83ac2161ec7fc61bd63b01ec"
+    },
+    {
+      "path": "runs/phase1_csr_queue_batch_00006/artifact_manifest.json",
+      "sha256": "24b04cd138ff936383770660c11f2bd1beaa5151839f3fa081c77f90e79a28ae"
+    },
+    {
+      "path": "runs/phase1_csr_queue_batch_00007/artifact_manifest.json",
+      "sha256": "2d0d15160302c415b893e282bb52bfe170707eb28ae802954bfb0fff9866b277"
+    },
+    {
+      "path": "runs/phase1_csr_queue_batch_00008/artifact_manifest.json",
+      "sha256": "2849b8ca95eafb0133287cceb4481d4ef3f7b13ae30a625c9f76d0a36d80a7e6"
+    },
+    {
+      "path": "runs/phase1_csr_queue_batch_00009/artifact_manifest.json",
+      "sha256": "d9552904258d07c9c00b80df748c0036f24890f7a7c797ec108eceed2c6580a3"
+    },
+    {
+      "path": "runs/phase1_csr_queue_batch_00010/artifact_manifest.json",
+      "sha256": "d37564454f97bf6e432e7d272c24a72267b570321f1cd39733d4830682a3eba1"
+    },
+    {
+      "path": "runs/phase1_csr_blocked_gap_positive_search/artifact_manifest.json",
+      "sha256": "3d8c0eb895720e8aa12b8222afea8dd9020b7f37e48e89ed19b80268f5bec7bc"
+    },
+    {
+      "path": "runs/phase1_csr_blocked_gap_training_integration/artifact_manifest.json",
+      "sha256": "f55b79b2f30d319fe3393f0b398455d1fa4ec8b960e2fe7a93b2d2018e4ac431"
+    },
+    {
+      "path": "runs/phase1_csr_blocked_gap_augmented_ranker/artifact_manifest.json",
+      "sha256": "b625cf4d83643018f410011b82ad01f5478db9e4448507ca2a6c4d6dd3412a53"
+    },
+    {
+      "path": "runs/phase1_csr_blocked_gap_guarded_replay/artifact_manifest.json",
+      "sha256": "321407ba39f4f7cd50a4d43618535afb905d24c5951aa6e414971e14d706b086"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_handoff_bundle/artifact_manifest.json",
+      "sha256": "506d810965c11f2c070e6b75a169733352b1577f7c8ed9c5ba22e6203ea63bb7"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_training_package/artifact_manifest.json",
+      "sha256": "0e2d081e09ff06a7ee328d78c42f8bba24c77782a1be011668ee7b010a69a297"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_package_consumer_dry_run/artifact_manifest.json",
+      "sha256": "9bba7ce62463a8550bf560817f4486c3982799d6dce5b6e55999bceeab52544b"
     }
   ],
   "metadata": {
     "campaign_id": "phase1_readiness",
-    "git_commit": "c2c807ff537c5c0425ea9625c4a90bb68df34cc6",
-    "num_stages": 52,
+    "git_commit": "c71452fa04c75c01ad1813409824c42fd937cc49",
+    "num_stages": 84,
     "status": "passed"
   },
   "python_version": "3.10.18"

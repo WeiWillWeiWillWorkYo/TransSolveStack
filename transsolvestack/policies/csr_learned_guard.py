@@ -6,11 +6,19 @@ import json
 import math
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterable
 
 from transsolvestack.policies.csr_artifact_selector import (
     CsrArtifactPolicySelector,
     CsrCandidateSelection,
+)
+from transsolvestack.policies.csr_policy_model_artifact import (
+    CSR_TRANSFORMER_RANKER_ADAPTER,
+    csr_policy_model_artifact_paths,
+    load_csr_policy_model_artifact,
+)
+from transsolvestack.policies.csr_transformer_ranker import (
+    predict_csr_transformer_ranker_from_model_file,
 )
 from transsolvestack.datasets.csr import CsrMatrix, csr_matrix_from_record
 from transsolvestack.profiling.artifacts import read_jsonl, write_jsonl
@@ -36,6 +44,18 @@ class CsrLearnedShadowPrediction:
 
 
 @dataclass(frozen=True)
+class CsrLearnedPolicySource:
+    source_kind: str
+    predictions_path: str | None
+    model_artifact_path: str | None
+    model_path: str | None
+    tensor_path: str | None
+    request_index_path: str | None
+    adapter: str | None
+    model_loaded: bool
+
+
+@dataclass(frozen=True)
 class CsrLearnedGuardDecision:
     schema_version: str
     guard_id: str
@@ -49,6 +69,7 @@ class CsrLearnedGuardDecision:
     fallback_candidate_ids: tuple[str, ...]
     fallback_chain_enforced: bool
     min_confidence: float
+    learned_policy_source: CsrLearnedPolicySource
     learned_prediction: CsrLearnedShadowPrediction | None
     quality_gate_summary: dict[str, Any]
     selection: CsrCandidateSelection
@@ -58,7 +79,11 @@ def plan_csr_with_learned_guard(
     csr: CsrMatrix | dict[str, Any],
     *,
     selector_path: str | Path = "runs/phase1_csr_selector_readiness/csr_selector_rows.jsonl",
-    learned_predictions_path: str | Path = "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_predictions.jsonl",
+    learned_predictions_path: str | Path | None = "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_predictions.jsonl",
+    learned_model_artifact_path: str | Path | None = None,
+    learned_model_path: str | Path | None = None,
+    learned_tensor_path: str | Path = "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json",
+    learned_request_index_path: str | Path = "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl",
     quality_gate_summary_path: str | Path = "runs/phase1_csr_transformer_quality_gate/csr_transformer_quality_gate_summary.json",
     context_id: str = "phase1_csr_selector",
     objective: str = "min_solve_time_success",
@@ -91,8 +116,12 @@ def plan_csr_with_learned_guard(
     quality_gate_summary = json.loads(
         Path(quality_gate_summary_path).read_text(encoding="utf-8")
     )
-    learned_prediction = _load_shadow_prediction(
+    learned_prediction, learned_policy_source = _load_learned_prediction(
         learned_predictions_path,
+        learned_model_artifact_path=learned_model_artifact_path,
+        learned_model_path=learned_model_path,
+        learned_tensor_path=learned_tensor_path,
+        learned_request_index_path=learned_request_index_path,
         matrix_id=matrix.matrix_id,
         context_id=context_id,
     )
@@ -156,6 +185,7 @@ def plan_csr_with_learned_guard(
         fallback_candidate_ids=selection.fallback_candidate_ids,
         fallback_chain_enforced=fallback_enforced,
         min_confidence=min_confidence,
+        learned_policy_source=learned_policy_source,
         learned_prediction=learned_prediction,
         quality_gate_summary=_quality_gate_projection(quality_gate_summary),
         selection=selection,
@@ -180,9 +210,118 @@ def _load_shadow_prediction(
     matrix_id: str,
     context_id: str,
 ) -> CsrLearnedShadowPrediction | None:
+    return _load_shadow_prediction_from_rows(
+        read_jsonl(predictions_path),
+        matrix_id=matrix_id,
+        context_id=context_id,
+    )
+
+
+def _load_learned_prediction(
+    predictions_path: str | Path | None,
+    *,
+    learned_model_artifact_path: str | Path | None,
+    learned_model_path: str | Path | None,
+    learned_tensor_path: str | Path,
+    learned_request_index_path: str | Path,
+    matrix_id: str,
+    context_id: str,
+) -> tuple[CsrLearnedShadowPrediction | None, CsrLearnedPolicySource]:
+    if learned_model_artifact_path is not None:
+        if learned_model_path is not None:
+            raise ValueError("use learned_model_artifact_path or learned_model_path, not both")
+        artifact = load_csr_policy_model_artifact(learned_model_artifact_path)
+        paths = csr_policy_model_artifact_paths(artifact)
+        return _load_learned_prediction_from_saved_model(
+            model_path=paths["model_path"],
+            tensor_path=paths["tensor_path"],
+            request_index_path=paths["request_index_path"],
+            matrix_id=matrix_id,
+            context_id=context_id,
+            source=CsrLearnedPolicySource(
+                source_kind="model_artifact",
+                predictions_path=None,
+                model_artifact_path=str(learned_model_artifact_path),
+                model_path=paths["model_path"],
+                tensor_path=paths["tensor_path"],
+                request_index_path=paths["request_index_path"],
+                adapter=str(artifact["adapter"]),
+                model_loaded=True,
+            ),
+        )
+    if learned_model_path is not None:
+        return _load_learned_prediction_from_saved_model(
+            model_path=learned_model_path,
+            tensor_path=learned_tensor_path,
+            request_index_path=learned_request_index_path,
+            matrix_id=matrix_id,
+            context_id=context_id,
+            source=CsrLearnedPolicySource(
+                source_kind="saved_model",
+                predictions_path=None,
+                model_artifact_path=None,
+                model_path=str(learned_model_path),
+                tensor_path=str(learned_tensor_path),
+                request_index_path=str(learned_request_index_path),
+                adapter=CSR_TRANSFORMER_RANKER_ADAPTER,
+                model_loaded=True,
+            ),
+        )
+    if predictions_path is None:
+        raise ValueError("learned guard requires learned_predictions_path or learned_model_path")
+    return (
+        _load_shadow_prediction(
+            predictions_path,
+            matrix_id=matrix_id,
+            context_id=context_id,
+        ),
+        CsrLearnedPolicySource(
+            source_kind="prediction_artifact",
+            predictions_path=str(predictions_path),
+            model_artifact_path=None,
+            model_path=None,
+            tensor_path=None,
+            request_index_path=None,
+            adapter=None,
+            model_loaded=False,
+        ),
+    )
+
+
+def _load_learned_prediction_from_saved_model(
+    *,
+    model_path: str | Path,
+    tensor_path: str | Path,
+    request_index_path: str | Path,
+    matrix_id: str,
+    context_id: str,
+    source: CsrLearnedPolicySource,
+) -> tuple[CsrLearnedShadowPrediction | None, CsrLearnedPolicySource]:
+    predictions = predict_csr_transformer_ranker_from_model_file(
+        model_path,
+        tensor_path,
+        request_index_path,
+    )
+    rows = tuple(asdict(prediction) for prediction in predictions)
+    return (
+        _load_shadow_prediction_from_rows(
+            rows,
+            matrix_id=matrix_id,
+            context_id=context_id,
+        ),
+        source,
+    )
+
+
+def _load_shadow_prediction_from_rows(
+    rows: Iterable[dict[str, Any]],
+    *,
+    matrix_id: str,
+    context_id: str,
+) -> CsrLearnedShadowPrediction | None:
     candidates = [
         row
-        for row in read_jsonl(predictions_path)
+        for row in rows
         if str(row.get("matrix_id")) == matrix_id
         and str(row.get("context_id")) == context_id
     ]

@@ -1,0 +1,18 @@
+{
+  "acceptance_gate": {
+    "requires_handoff_ready": true,
+    "requires_input_checksums": true,
+    "requires_model_submission_terms": true,
+    "requires_no_internal_development_docs": true,
+    "requires_validation_pipeline": true
+  },
+  "package_kind": "csr_transformer_external_training_package",
+  "package_ready": true,
+  "runtime_boundary": {
+    "executes_gpu": false,
+    "guard_required": true,
+    "model_trained": false,
+    "runtime_selector_changed": false
+  },
+  "schema_version": "phase1_csr_transformer_training_package_v1"
+}

@@ -1,0 +1,62 @@
+{
+  "blocked_gap_ids": [
+    "general_bicgstab_ilu0",
+    "general_bicgstab_row_column_equilibration",
+    "symmetric_chebyshev_jacobi",
+    "symmetric_pcg_symmetric_equilibration"
+  ],
+  "by_gap_status": {
+    "general_bicgstab_ilu0": {
+      "screened_out": 7
+    },
+    "general_bicgstab_row_column_equilibration": {
+      "screened_out": 7
+    },
+    "symmetric_chebyshev_jacobi": {
+      "screened_out": 1
+    },
+    "symmetric_pcg_symmetric_equilibration": {
+      "screened_out": 1
+    }
+  },
+  "by_solver_status": {
+    "bicgstab:screened_out": 14,
+    "chebyshev:screened_out": 1,
+    "pcg:screened_out": 1
+  },
+  "by_status": {
+    "screened_out": 16
+  },
+  "candidate_jobs": 16,
+  "coverage_outcome": "screen_only_no_oracle",
+  "coverage_source_latest_batch_id": "batch_00010",
+  "coverage_trigger_candidate_coverage": true,
+  "coverage_trigger_reason": "screen_only_after_low_success_batch",
+  "cpu_screen_required": true,
+  "cpu_screened_out_rows": 16,
+  "device_memory_gb": 0.2,
+  "executes_gpu": true,
+  "gpu_failed_rows": 0,
+  "gpu_success_rows": 0,
+  "imports_matrices": true,
+  "max_cpu_recomputed_relative_residual": 60.68118258360878,
+  "max_final_relative_residual": 60.68118258360878,
+  "max_iter": 300,
+  "max_solution_relative_error": 1509.3165449946434,
+  "newly_cpu_screen_integrated_gap_count": 4,
+  "next_step": "keep_blocked_gaps_out_of_generic_queue_and_search_better_formulations_or_matrices",
+  "probe_internal_status": "passed",
+  "queue_merge_ready": false,
+  "queue_merge_ready_gap_ids": [],
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_blocked_gap_probe_v1",
+  "selected_general_matrices": 7,
+  "selected_matrices": 8,
+  "selected_symmetric_matrices": 1,
+  "selector_oracle_rows": 0,
+  "selector_rows": 16,
+  "source_matrices": 8,
+  "status": "passed",
+  "success_rate": 0.0,
+  "tolerance_rel": 1e-05
+}

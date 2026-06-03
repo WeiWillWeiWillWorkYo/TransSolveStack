@@ -1,0 +1,15 @@
+{
+  "checks": {
+    "model_json_load": true,
+    "prediction_contract": true,
+    "reference_prediction_replay": true,
+    "tensor_schema_match": true
+  },
+  "runtime_integration": {
+    "guard_required_before_execution": true,
+    "status": "offline_model_loading_boundary"
+  },
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_transformer_model_replay_v1",
+  "task": "saved_csr_transformer_ranker_model_replay"
+}

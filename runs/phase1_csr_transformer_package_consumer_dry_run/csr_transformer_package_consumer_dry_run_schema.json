@@ -1,0 +1,19 @@
+{
+  "checks": {
+    "expected_output_mapping": true,
+    "package_checksums": true,
+    "reference_submission_shadow_ready": true,
+    "runtime_promotion_blocked_without_quality_gate": true,
+    "validation_script_routes": true
+  },
+  "consumer_ready": true,
+  "dry_run_kind": "csr_transformer_package_consumer_dry_run",
+  "runtime_boundary": {
+    "dry_run_only": true,
+    "executes_gpu": false,
+    "guard_required": true,
+    "model_trained": false,
+    "runtime_selector_changed": false
+  },
+  "schema_version": "phase1_csr_transformer_package_consumer_dry_run_v1"
+}

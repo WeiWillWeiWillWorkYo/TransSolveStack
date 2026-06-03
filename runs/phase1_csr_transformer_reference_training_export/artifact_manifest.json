@@ -1,0 +1,57 @@
+{
+  "artifact_kind": "csr_transformer_reference_training_export",
+  "command": "scripts/tss_csr_transformer_reference_training_export.py",
+  "created_at_utc": "2026-05-27T08:08:45.889600+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json",
+      "sha256": "27c3c99dd7706e596f40ea260bd0a33765fb4eddae13a7a470200a04417134be"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl",
+      "sha256": "7a76140b19e8d9ff33b753193aa6011e2f6ee392b96a3f3feb179731963a1b27"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_training_entrypoint/csr_transformer_training_entrypoint_summary.json",
+      "sha256": "10bcdd422155aeeadf18bd580b3d10fd8c85ce592bedf58fb029424337c21152"
+    },
+    {
+      "path": "transsolvestack/__init__.py",
+      "sha256": "009662b0dc55004500bbbc39c38e544d23b9a2945820a627dcabcc0c3c06fcee"
+    },
+    {
+      "path": "transsolvestack/api.py",
+      "sha256": "716e593a3ed210fb24249b7b32bd402e9dcd177194a23e91320bae7f2fb19c22"
+    },
+    {
+      "path": "transsolvestack/policies/csr_transformer_ranker.py",
+      "sha256": "0907d1386e794cd18a9e321ad7b10f910fdc1f98abf9e4609d13a533078787f7"
+    },
+    {
+      "path": "transsolvestack/policies/csr_external_model_adapter.py",
+      "sha256": "a24a221d43d0eccaf730c3c3cd67c3a84964426719e121eb989c8be4c9f60fba"
+    },
+    {
+      "path": "transsolvestack/policies/csr_transformer_reference_training_export.py",
+      "sha256": "25ff10a75258e65e9bb9df7766a674ee85413d237cd1a2654084577655c1b299"
+    },
+    {
+      "path": "scripts/tss_csr_transformer_reference_training_export.py",
+      "sha256": "0ce0d6d4e89899cc83205025b58dcc2ad9dfcd98393c9353b7b69286614cc2ef"
+    }
+  ],
+  "metadata": {
+    "adapter_ready": true,
+    "adapter_roundtrip_exact": true,
+    "external_checkpoint_ready": true,
+    "git_commit": "c71452fa04c75c01ad1813409824c42fd937cc49",
+    "intake_input_ready": true,
+    "model_trained": true,
+    "num_predictions": 20,
+    "reference_training_export_ready": true,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_transformer_reference_training_export_v1",
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

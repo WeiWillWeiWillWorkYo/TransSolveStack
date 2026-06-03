@@ -32,6 +32,10 @@ from transsolvestack.runtime.guarded_fallback import (
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", default="runs/phase1_csr_learned_guard")
+    parser.add_argument(
+        "--learned-model-artifact",
+        default="runs/phase1_csr_policy_model_artifact/csr_policy_model_artifact.json",
+    )
     args = parser.parse_args()
 
     output = Path(args.out)
@@ -44,10 +48,12 @@ def main() -> None:
     }
     shadow_decision = tss.plan_csr_with_learned_guard(
         csr_rows["suitesparse:HB/curtis54"],
+        learned_model_artifact_path=args.learned_model_artifact,
         mode="shadow",
     )
     blocked_decision = tss.plan_csr_with_learned_guard(
         csr_rows["suitesparse:HB/curtis54"],
+        learned_model_artifact_path=args.learned_model_artifact,
         mode="promote_if_safe",
     )
     promoted_decision = tss.plan_csr_with_learned_guard(
@@ -72,6 +78,7 @@ def main() -> None:
             "runtime_candidate_id": shadow_decision.runtime_candidate_id,
             "fallback_chain_enforced": shadow_decision.fallback_chain_enforced,
             "guard_reasons": list(shadow_decision.guard_reasons),
+            "learned_policy_source": asdict(shadow_decision.learned_policy_source),
         },
         {
             "check_id": "actual_quality_gate_blocks_promotion",
@@ -83,6 +90,7 @@ def main() -> None:
             "runtime_candidate_id": blocked_decision.runtime_candidate_id,
             "fallback_chain_enforced": blocked_decision.fallback_chain_enforced,
             "guard_reasons": list(blocked_decision.guard_reasons),
+            "learned_policy_source": asdict(blocked_decision.learned_policy_source),
         },
         {
             "check_id": "eligible_high_confidence_promotion_fixture",
@@ -94,6 +102,7 @@ def main() -> None:
             "runtime_candidate_id": promoted_decision.runtime_candidate_id,
             "fallback_candidate_ids": list(promoted_decision.fallback_candidate_ids),
             "fallback_chain_enforced": promoted_decision.fallback_chain_enforced,
+            "learned_policy_source": asdict(promoted_decision.learned_policy_source),
             "confidence": promoted_decision.learned_prediction.confidence
             if promoted_decision.learned_prediction
             else None,
@@ -139,6 +148,7 @@ def main() -> None:
                 "runtime_selector_changed": summary["runtime_selector_changed"],
                 "shadow_mode_checked": summary["shadow_mode_checked"],
                 "quality_gate_blocks_checked": summary["quality_gate_blocks_checked"],
+                "saved_model_loaded_checks": summary["saved_model_loaded_checks"],
                 "promotion_fixture_checked": summary["promotion_fixture_checked"],
                 "runtime_fallback_checked": summary["runtime_fallback_checked"],
             },
@@ -158,10 +168,22 @@ def _summary(rows: tuple[dict, ...]) -> dict:
         "passed"
         if row_by_id["actual_shadow_mode"]["guard_status"] == "shadow_only"
         and row_by_id["actual_shadow_mode"]["runtime_selector_changed"] is False
+        and row_by_id["actual_shadow_mode"]["learned_policy_source"]["source_kind"]
+        == "model_artifact"
+        and row_by_id["actual_shadow_mode"]["learned_policy_source"]["model_loaded"]
+        is True
         and row_by_id["actual_quality_gate_blocks_promotion"]["guard_status"]
         == "blocked_quality_gate"
         and row_by_id["actual_quality_gate_blocks_promotion"]["runtime_selector_changed"]
         is False
+        and row_by_id["actual_quality_gate_blocks_promotion"]["learned_policy_source"][
+            "source_kind"
+        ]
+        == "model_artifact"
+        and row_by_id["actual_quality_gate_blocks_promotion"]["learned_policy_source"][
+            "model_loaded"
+        ]
+        is True
         and row_by_id["eligible_high_confidence_promotion_fixture"]["guard_status"]
         == "promoted"
         and row_by_id["eligible_high_confidence_promotion_fixture"][
@@ -187,6 +209,15 @@ def _summary(rows: tuple[dict, ...]) -> dict:
         "shadow_mode_checked": True,
         "quality_gate_blocks_checked": True,
         "confidence_threshold_checked": True,
+        "saved_model_shadow_checked": True,
+        "saved_model_quality_gate_checked": True,
+        "model_artifact_shadow_checked": True,
+        "model_artifact_quality_gate_checked": True,
+        "saved_model_loaded_checks": sum(
+            1
+            for row in rows
+            if row.get("learned_policy_source", {}).get("model_loaded") is True
+        ),
         "fallback_chain_enforced_checked": True,
         "promotion_fixture_checked": True,
         "runtime_fallback_checked": True,
@@ -207,6 +238,10 @@ def _schema() -> dict:
             "learned_candidate_is_profiled_success_for_exact_matrix_context",
             "fallback_chain_contains_only_profiled_success_candidates",
         ],
+        "learned_policy_sources": {
+            "actual_artifact_checks": "model_artifact",
+            "promotion_fixture": "prediction_artifact",
+        },
         "runtime_guard": {
             "fallback_on_failed_status": True,
             "fallback_on_exception": True,
@@ -225,6 +260,7 @@ def _write_report(summary: dict, rows: tuple[dict, ...], path: Path) -> None:
         f"- schema_version: `{summary['schema_version']}`",
         f"- runtime_selector_changed: `{summary['runtime_selector_changed']}`",
         f"- preemptive_gpu_kill_supported: `{summary['preemptive_gpu_kill_supported']}`",
+        f"- saved_model_loaded_checks: `{summary['saved_model_loaded_checks']}`",
         "",
         "| check | status | guard_status | runtime_source |",
         "|---|---|---|---|",

@@ -1,0 +1,24 @@
+{
+  "acceptance_gate": {
+    "requires_actual_runtime_selector_changes": 0,
+    "requires_all_source_file_checksums": true,
+    "requires_augmented_ranker_passed": true,
+    "requires_guarded_replay_passed": true,
+    "requires_training_integration_passed": true
+  },
+  "handoff_ready": true,
+  "input_contract": {
+    "guard_replay_schema": "phase1_csr_blocked_gap_guarded_replay_v1",
+    "model_request_schema": "phase1_csr_model_contract_v1",
+    "model_submission_schema": "phase1_csr_policy_model_submission_v1",
+    "tensor_schema": "phase1_csr_training_tensors_v1"
+  },
+  "runtime_boundary": {
+    "executes_gpu": false,
+    "model_trained": false,
+    "runtime_selector_changed": false,
+    "shadow_only": true
+  },
+  "schema_version": "phase1_csr_transformer_handoff_bundle_v1",
+  "task": "package_augmented_csr_transformer_training_handoff"
+}

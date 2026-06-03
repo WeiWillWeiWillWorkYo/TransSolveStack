@@ -12,7 +12,7 @@
   "learned_predictions_path": "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_predictions.jsonl",
   "max_cpu_recomputed_relative_residual": 8.729656304514155e-06,
   "max_final_relative_residual": 8.729656304521325e-06,
-  "max_solution_relative_error": 0.0007557698707928351,
+  "max_solution_relative_error": 0.0007557698708131219,
   "non_success_blocks": 4,
   "num_failed": 0,
   "num_scenarios": 12,

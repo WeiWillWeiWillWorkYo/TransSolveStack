@@ -1,11 +1,11 @@
 {
   "artifact_kind": "csr_unresolved_matrix_diagnostics",
   "command": "scripts/tss_csr_unresolved_matrix_diagnostics.py",
-  "created_at_utc": "2026-05-26T14:03:48.136622+00:00",
+  "created_at_utc": "2026-05-27T05:25:57.138855+00:00",
   "file_hashes": [
     {
       "path": "runs/phase1_csr_unresolved_fallback_cpu_screen/csr_unresolved_fallback_cpu_screen_results.jsonl",
-      "sha256": "1fe4662ce16bc6d05a17bdd502763912af06d47ec59835f53ecd5a9558887202"
+      "sha256": "4e64b648694a99d30d5b94a638f6c218444865bbcbd2094a29b4084d2f814e3f"
     },
     {
       "path": "runs/phase1_csr_unresolved_fallback_cpu_screen/csr_unresolved_fallback_cpu_screen_summary.json",
@@ -35,7 +35,7 @@
   "metadata": {
     "diagnosed_matrices": 2,
     "executes_gpu": false,
-    "git_commit": "unknown",
+    "git_commit": "c71452fa04c75c01ad1813409824c42fd937cc49",
     "runtime_selector_changed": false,
     "schema_version": "phase1_csr_unresolved_matrix_diagnostics_v1",
     "status": "passed"

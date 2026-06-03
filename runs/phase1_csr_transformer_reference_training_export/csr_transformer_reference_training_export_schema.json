@@ -1,0 +1,21 @@
+{
+  "checkpoint_contract": {
+    "adapter": "csr_external_json_ranker_checkpoint_v1",
+    "intake_input_ready": true,
+    "schema_version": "phase1_csr_external_ranker_checkpoint_v1"
+  },
+  "outputs": {
+    "adapter_summary": "runs/phase1_csr_transformer_reference_training_export/reference_csr_external_adapter_summary.json",
+    "checkpoint": "runs/phase1_csr_transformer_reference_training_export/reference_csr_external_ranker_checkpoint.json",
+    "model": "runs/phase1_csr_transformer_reference_training_export/reference_csr_transformer_ranker_model.json",
+    "predictions": "runs/phase1_csr_transformer_reference_training_export/reference_csr_transformer_ranker_predictions.jsonl"
+  },
+  "runtime_boundary": {
+    "automatic_runtime_promotion": false,
+    "default_mode": "shadow",
+    "quality_gate_required": true,
+    "runtime_selector_changed": false
+  },
+  "schema_version": "phase1_csr_transformer_reference_training_export_v1",
+  "task": "export_reference_transformer_training_checkpoint"
+}

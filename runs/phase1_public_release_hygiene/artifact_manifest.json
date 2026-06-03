@@ -1,11 +1,11 @@
 {
   "artifact_kind": "public_release_hygiene",
   "command": "scripts/tss_public_release_hygiene.py",
-  "created_at_utc": "2026-05-26T17:28:07.746139+00:00",
+  "created_at_utc": "2026-06-03T08:02:20.796079+00:00",
   "file_hashes": [
     {
       "path": ".gitignore",
-      "sha256": "2dca0376e5ef5d8a6fec9a7ca3991df33cedd37f9fb29c09f27a499297fc6408"
+      "sha256": "5705b848bf93b010d2646b8c99fa6a8d6f171056b6d8792455e98a9d71f1592a"
     },
     {
       "path": "LICENSE",
@@ -13,11 +13,11 @@
     },
     {
       "path": "README.md",
-      "sha256": "f3e1f4643e2330472a7f226469cb18ac68550dd142753056320dbfe159144c1d"
+      "sha256": "c6b8b00d9347ecd69e6830d3cefb2e7d5f82396443dc4758898738561d3c16c8"
     },
     {
       "path": "docs/PROJECT_OVERVIEW.md",
-      "sha256": "08aea663eb85d5b5582afe4ef64eef8ab5079f7cfa496c4c8a7d3a20085bbb58"
+      "sha256": "3dd62e07623529760e6816e22d3fb14de6ebedcc648d430348242b63a88bd923"
     },
     {
       "path": "LICENSE_POLICY.md",
@@ -41,11 +41,11 @@
     },
     {
       "path": "CONTRIBUTING.md",
-      "sha256": "07487cf2086ba560dd16170b85720d7b9bf20d618af2ecce0007855697e2a4af"
+      "sha256": "b8d83c405bfb6ba7990f9c03a0a0744dabf39dfc902041329db4d74ab46f6000"
     },
     {
       "path": "transsolvestack/profiling/public_release_hygiene.py",
-      "sha256": "94846759a861bd09a4738be46cc5a662c7868e5a6492f077022d0917aaec0a4e"
+      "sha256": "cba66f5d68d74c5c3dacbb13d455b6d1bdb207f5a108bd2ac1cf4f9348647264"
     },
     {
       "path": "scripts/tss_public_release_hygiene.py",
@@ -53,7 +53,7 @@
     }
   ],
   "metadata": {
-    "git_commit": "c2c807ff537c5c0425ea9625c4a90bb68df34cc6",
+    "git_commit": "c71452fa04c75c01ad1813409824c42fd937cc49",
     "git_init_required": false,
     "git_repository_initialized": true,
     "large_unignored_file_count": 0,

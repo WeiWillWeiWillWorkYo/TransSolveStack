@@ -1,0 +1,88 @@
+{
+  "acceptance_note": "This artifact gates only blocked-gap training-shard behavior; runtime promotion remains behind learned guard acceptance.",
+  "blocked_gap_eval_predictions": 1,
+  "blocked_gap_eval_success_selection_rate": 1.0,
+  "blocked_gap_evaluation_status_counts": {
+    "oracle_match": 4,
+    "profiled_success_non_oracle": 1
+  },
+  "blocked_gap_non_success_predictions": 0,
+  "blocked_gap_oracle_matches": 4,
+  "blocked_gap_positive_candidate_coverage_complete": true,
+  "blocked_gap_prediction_rows": 5,
+  "blocked_gap_profiled_success_non_oracle": 1,
+  "blocked_gap_ranked_new_candidate_ids": [
+    "taichi_csr_bicgstab_ilu0_float64",
+    "taichi_csr_bicgstab_row_column_equilibration_float64",
+    "taichi_csr_pcg_symmetric_equilibration_float64"
+  ],
+  "blocked_gap_ranked_positive_candidate_ids": [
+    "taichi_csr_bicgstab_ilu0_float64",
+    "taichi_csr_bicgstab_row_column_equilibration_float64",
+    "taichi_csr_chebyshev_jacobi_float64",
+    "taichi_csr_pcg_symmetric_equilibration_float64"
+  ],
+  "blocked_gap_selected_candidate_ids": [
+    "taichi_csr_bicgstab_row_column_equilibration_float64",
+    "taichi_csr_chebyshev_jacobi_float64",
+    "taichi_csr_pcg_symmetric_equilibration_float64"
+  ],
+  "blocked_gap_selected_status_counts": {
+    "success": 5
+  },
+  "blocked_gap_split_counts": {
+    "eval": 1,
+    "train": 4
+  },
+  "blocked_gap_success_predictions": 5,
+  "blocked_gap_train_predictions": 4,
+  "model_family": "masked_self_attention_ranker_v1",
+  "model_id": "csr_blocked_gap_augmented_shadow_ranker_v1",
+  "model_trained": true,
+  "next_step": "compare augmented ranker replay against guarded fallback policy and prepare a transformer training handoff that treats this model as a shadow baseline, not a production policy",
+  "overall_eval_is_not_acceptance_gate": true,
+  "ranker_eval_non_success_selection_count": 23,
+  "ranker_eval_oracle_top1_accuracy": 0.4,
+  "ranker_eval_profiled_success_selection_rate": 0.11538461538461539,
+  "ranker_final_train_pairwise_loss": 47.85657041893172,
+  "ranker_num_epochs": 160,
+  "ranker_num_eval_oracle_requests": 5,
+  "ranker_num_eval_requests": 26,
+  "ranker_num_global_candidates": 12,
+  "ranker_num_pairwise_constraints": 157,
+  "ranker_num_pairwise_updates": 6981,
+  "ranker_num_predictions": 105,
+  "ranker_num_requests": 105,
+  "ranker_num_train_oracle_requests": 32,
+  "ranker_num_train_requests": 79,
+  "ranker_scorer_feature_dim": 65,
+  "ranker_token_feature_dim": 40,
+  "ranker_train_oracle_top1_accuracy": 0.59375,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_blocked_gap_augmented_ranker_v1",
+  "shadow_only": true,
+  "source_existing_global_candidate_ids": [
+    "taichi_csr_chebyshev_jacobi_float64"
+  ],
+  "source_integration_status": "passed",
+  "source_integration_summary_path": "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_integration_summary.json",
+  "source_new_global_candidate_ids": [
+    "taichi_csr_bicgstab_ilu0_float64",
+    "taichi_csr_bicgstab_row_column_equilibration_float64",
+    "taichi_csr_pcg_symmetric_equilibration_float64"
+  ],
+  "source_positive_candidate_ids": [
+    "taichi_csr_bicgstab_ilu0_float64",
+    "taichi_csr_bicgstab_row_column_equilibration_float64",
+    "taichi_csr_chebyshev_jacobi_float64",
+    "taichi_csr_pcg_symmetric_equilibration_float64"
+  ],
+  "source_positive_matrix_contexts": 5,
+  "source_positive_membership_path": "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_positive_membership.jsonl",
+  "source_positive_oracle_rows": 5,
+  "source_positive_selector_rows": 8,
+  "source_positive_success_rows": 8,
+  "source_request_index_path": "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_request_index.jsonl",
+  "source_tensors_path": "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_tensors.json",
+  "status": "passed"
+}

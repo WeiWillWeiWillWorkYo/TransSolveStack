@@ -1,0 +1,21 @@
+{
+  "evaluation_id": "csr_selector_model_quality_gate_v1",
+  "integration_boundary": {
+    "next_step": "expand_real_csr_benchmark_rows_before_transformer_or_runtime_learned_selector",
+    "status": "offline_quality_gate_only"
+  },
+  "models": {
+    "baseline": "candidate_prior_success_median_v1",
+    "challenger": "pairwise_linear_ranker_v1"
+  },
+  "quality_gate": {
+    "min_eval_oracle_requests_default": 10,
+    "min_runtime_oracle_top1_accuracy_default": 0.5,
+    "min_runtime_profiled_success_rate_default": 0.6666666666666666,
+    "requires_no_non_success_eval_selections": true,
+    "requires_not_below_baseline": true
+  },
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_selector_model_eval_v1",
+  "task": "compare_offline_csr_selector_models_before_runtime_integration"
+}

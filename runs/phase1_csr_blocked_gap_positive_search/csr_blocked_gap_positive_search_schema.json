@@ -1,0 +1,15 @@
+{
+  "execution_boundary": {
+    "cpu_screen_before_gpu": true,
+    "executes_gpu": true,
+    "generic_queue_merge": false,
+    "runtime_selector_changed": false
+  },
+  "positive_gate": [
+    "CPU admission screen must pass",
+    "Taichi GPU solve must pass numeric gates",
+    "all four blocked gap families must have at least one success"
+  ],
+  "schema_version": "phase1_csr_blocked_gap_positive_search_v1",
+  "task": "find_positive_gpu_evidence_for_blocked_csr_candidate_gaps"
+}

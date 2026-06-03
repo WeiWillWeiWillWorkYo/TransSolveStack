@@ -1,0 +1,18 @@
+{
+  "runtime_boundary": {
+    "default_mode": "shadow",
+    "guard_required": true,
+    "runtime_selector_changed": false
+  },
+  "schema_version": "phase1_csr_external_model_intake_v1",
+  "stages": [
+    "adapter",
+    "replay",
+    "quality_gate",
+    "policy_model_artifact",
+    "learned_guard",
+    "acceptance",
+    "submission"
+  ],
+  "task": "external_checkpoint_to_guarded_shadow_submission"
+}

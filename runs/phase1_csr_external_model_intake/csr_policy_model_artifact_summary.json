@@ -1,0 +1,27 @@
+{
+  "adapter": "csr_transformer_ranker_saved_model_v1",
+  "artifact_kind": "csr_policy_model_artifact",
+  "artifact_ready": true,
+  "current_quality_gate_failures": [
+    "below_min_profiled_success_rate",
+    "below_baseline_oracle_top1",
+    "below_baseline_profiled_success_rate",
+    "non_success_eval_selections"
+  ],
+  "current_quality_gate_runtime_eligible": false,
+  "guard_required": true,
+  "model_family": "masked_self_attention_ranker_v1",
+  "model_id": "csr_masked_self_attention_ranker_v1",
+  "model_loaded": true,
+  "num_predictions": 20,
+  "num_request_index_rows": 20,
+  "prediction_contract_checked": true,
+  "quality_gate_status": "passed",
+  "replay_exact": true,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_policy_model_artifact_v1",
+  "source_model_schema_version": "phase1_csr_transformer_ranker_v1",
+  "status": "passed",
+  "validation_error_count": 0,
+  "validation_errors": []
+}

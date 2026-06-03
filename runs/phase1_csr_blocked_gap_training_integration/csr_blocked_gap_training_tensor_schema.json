@@ -1,0 +1,99 @@
+{
+  "arrays": {
+    "candidate_features": "[num_requests, num_global_candidates, candidate_feature_dim] float",
+    "candidate_mask": "[num_requests, num_global_candidates] int 0/1",
+    "label_class_ids": "[num_requests, num_global_candidates] int",
+    "matrix_features": "[num_requests, matrix_feature_dim] float",
+    "oracle_index": "[num_requests] int, -1 when no oracle exists",
+    "profiled_success_mask": "[num_requests, num_global_candidates] int 0/1",
+    "split_ids": "[num_requests] int",
+    "target_median_solve_time_ms": "[num_requests, num_global_candidates] float, -1 for missing",
+    "target_regret_vs_oracle_ms": "[num_requests, num_global_candidates] float, -1 for missing",
+    "target_status_ids": "[num_requests, num_global_candidates] int"
+  },
+  "axes": {
+    "candidate": "global candidate slot",
+    "candidate_feature": [
+      "has_restart",
+      "restart",
+      "has_omega",
+      "omega",
+      "has_lambda_bounds",
+      "lambda_min_log10",
+      "lambda_max_log10",
+      "solver=bicgstab",
+      "solver=cg",
+      "solver=chebyshev",
+      "solver=gmres",
+      "solver=pcg",
+      "solver=richardson",
+      "preconditioner=ilu0",
+      "preconditioner=jacobi",
+      "preconditioner=none",
+      "preconditioner=row_column_equilibration",
+      "preconditioner=symmetric_equilibration",
+      "precision=float64"
+    ],
+    "matrix_feature": [
+      "actual_symmetric",
+      "cg_candidate",
+      "has_nonpositive_diagonal",
+      "is_square",
+      "n_rows",
+      "n_cols",
+      "csr_nnz",
+      "diagonal_present_count",
+      "zero_diagonal_count",
+      "min_abs_diagonal_log10p",
+      "max_abs_diagonal_log10p",
+      "symmetry_missing_pairs",
+      "symmetry_max_abs_error_log10p",
+      "symmetry_relative_error_log10p",
+      "field=integer",
+      "field=pattern",
+      "field=real",
+      "declared_symmetry=general",
+      "declared_symmetry=symmetric",
+      "recommended_precision=float32",
+      "recommended_precision=float64"
+    ],
+    "request": "matrix/context/split request row"
+  },
+  "global_candidate_ids": [
+    "taichi_csr_bicgstab_ilu0_float64",
+    "taichi_csr_bicgstab_jacobi_float64",
+    "taichi_csr_bicgstab_none_float64",
+    "taichi_csr_bicgstab_row_column_equilibration_float64",
+    "taichi_csr_cg_none_float64",
+    "taichi_csr_chebyshev_jacobi_float64",
+    "taichi_csr_gmres_jacobi_restart16_float64",
+    "taichi_csr_gmres_jacobi_restart32_float64",
+    "taichi_csr_gmres_jacobi_restart8_float64",
+    "taichi_csr_pcg_jacobi_float64",
+    "taichi_csr_pcg_symmetric_equilibration_float64",
+    "taichi_csr_richardson_jacobi_float64"
+  ],
+  "label_class_to_id": {
+    "not_applicable": 0,
+    "not_profiled": 1,
+    "screened_out": 2,
+    "success_non_oracle": 3,
+    "success_oracle": 4
+  },
+  "model_required": false,
+  "next_step": "train_small_ranker_or_transformer_against_stable_arrays",
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_training_tensors_v1",
+  "source_contract_schema_version": "phase1_csr_model_contract_v1",
+  "split_to_id": {
+    "eval": 1,
+    "train": 0
+  },
+  "storage_format": "json_numeric_arrays_v1",
+  "target_status_to_id": {
+    "not_applicable": 0,
+    "not_profiled": 1,
+    "screened_out": 2,
+    "success": 3
+  }
+}

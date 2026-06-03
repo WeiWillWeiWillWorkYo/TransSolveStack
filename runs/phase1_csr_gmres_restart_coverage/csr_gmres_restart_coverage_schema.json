@@ -1,0 +1,12 @@
+{
+  "coverage_boundary": {
+    "does_not_modify_full_dataset_queue": true,
+    "does_not_promote_runtime_selector": true,
+    "requires_cpu_screen_before_gpu_solve": true
+  },
+  "executes_gpu": true,
+  "imports_matrices": true,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_gmres_restart_coverage_v1",
+  "task": "bounded_gmres_restart_coverage_probe"
+}

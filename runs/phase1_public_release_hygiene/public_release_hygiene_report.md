@@ -12,10 +12,10 @@
 - permissive_license_family_rejected: `True`
 - git_repository_initialized: `True`
 - git_init_required: `False`
-- workspace_file_count_scanned: `637`
-- workspace_bytes_scanned: `9475509`
+- workspace_file_count_scanned: `1181`
+- workspace_bytes_scanned: `91057311`
 - local_only_dir_count: `16`
-- ignored_heavy_file_count: `0`
+- ignored_heavy_file_count: `14`
 - large_unignored_file_count: `0`
 - secret_like_file_count: `0`
 - validation_error_count: `0`
@@ -43,6 +43,7 @@
 | gitignore_required_pattern | present | runs/**/*.bin | required public-release ignore rule |
 | gitignore_required_pattern | present | runs/**/*.mp4 | required public-release ignore rule |
 | gitignore_required_pattern | present | runs/**/*.zip | required public-release ignore rule |
+| gitignore_required_pattern | present | runs/**/csr_matrices.jsonl | required public-release ignore rule |
 | gitignore_required_pattern | present | ADVICE.md | required public-release ignore rule |
 | gitignore_required_pattern | present | MILESTONE_LOG.md | required public-release ignore rule |
 | gitignore_required_pattern | present | FOOTAGE_SPEC.md | required public-release ignore rule |
@@ -100,4 +101,4 @@
 | local_only_dir_present | ignored_by_policy | transsolvestack/profiling/__pycache__ | must not be committed |
 | local_only_dir_present | ignored_by_policy | transsolvestack/runtime/__pycache__ | must not be committed |
 | local_only_dir_present | ignored_by_policy | transsolvestack/solvers/__pycache__ | must not be committed |
-| gitignore_line_count | present | .gitignore | 63 |
+| gitignore_line_count | present | .gitignore | 64 |

@@ -1,0 +1,59 @@
+{
+  "artifact_kind": "csr_policy_model_artifact",
+  "command": "scripts/tss_csr_policy_model_artifact.py",
+  "created_at_utc": "2026-05-27T08:08:45.494805+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_model.json",
+      "sha256": "6adba9457a65c06fe94a54d43e0c732ef0bcbaa7efc161febb6635eeaf5272bd"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json",
+      "sha256": "27c3c99dd7706e596f40ea260bd0a33765fb4eddae13a7a470200a04417134be"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl",
+      "sha256": "7a76140b19e8d9ff33b753193aa6011e2f6ee392b96a3f3feb179731963a1b27"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_quality_gate/csr_transformer_quality_gate_summary.json",
+      "sha256": "d7353ef33e5809d8681e218737b9ab9d2e55f6a2c78022bb23dd90aa7a2c8c9c"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_model_replay/csr_transformer_model_replay_summary.json",
+      "sha256": "d8147f7a66ba620a81a49f8d9433d0f80b9885046ccc528d8def2d2464449575"
+    },
+    {
+      "path": "transsolvestack/__init__.py",
+      "sha256": "009662b0dc55004500bbbc39c38e544d23b9a2945820a627dcabcc0c3c06fcee"
+    },
+    {
+      "path": "transsolvestack/api.py",
+      "sha256": "716e593a3ed210fb24249b7b32bd402e9dcd177194a23e91320bae7f2fb19c22"
+    },
+    {
+      "path": "transsolvestack/policies/csr_policy_model_artifact.py",
+      "sha256": "c08fd833f77b1d573a2a4dd58f8a72b849b1aa48d006f1745b49c21e93d99e90"
+    },
+    {
+      "path": "transsolvestack/policies/csr_transformer_ranker.py",
+      "sha256": "0907d1386e794cd18a9e321ad7b10f910fdc1f98abf9e4609d13a533078787f7"
+    },
+    {
+      "path": "scripts/tss_csr_policy_model_artifact.py",
+      "sha256": "5513bf9d1aea5d7cb7eba694e09ad3b769feb23a648a8797dd58149f86dcf432"
+    }
+  ],
+  "metadata": {
+    "adapter": "csr_transformer_ranker_saved_model_v1",
+    "artifact_ready": true,
+    "git_commit": "c71452fa04c75c01ad1813409824c42fd937cc49",
+    "guard_required": true,
+    "model_id": "csr_masked_self_attention_ranker_v1",
+    "model_loaded": true,
+    "replay_exact": true,
+    "runtime_selector_changed": false,
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

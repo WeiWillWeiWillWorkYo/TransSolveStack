@@ -1,0 +1,16 @@
+{
+  "baseline_model_id": "counterfactual_fixture",
+  "best_offline_model_id": "csr_blocked_gap_augmented_shadow_ranker_v1",
+  "challenger_beats_baseline": true,
+  "challenger_gate_failures": [],
+  "challenger_model_id": "csr_blocked_gap_augmented_shadow_ranker_v1",
+  "challenger_runtime_eligible": true,
+  "counterfactual_only": true,
+  "evaluation_id": "csr_blocked_gap_guarded_replay_counterfactual_gate_v1",
+  "num_eval_oracle_requests": 5,
+  "num_eval_predictions": 26,
+  "runtime_selected_model_id": "csr_blocked_gap_augmented_shadow_ranker_v1",
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_selector_model_eval_v1",
+  "status": "passed"
+}

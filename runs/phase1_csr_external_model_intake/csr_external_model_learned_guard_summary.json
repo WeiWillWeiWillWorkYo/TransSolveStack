@@ -1,0 +1,8 @@
+{
+  "model_artifact_quality_gate_checked": true,
+  "model_artifact_shadow_checked": true,
+  "num_checks": 2,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_external_model_intake_guard_v1",
+  "status": "passed"
+}

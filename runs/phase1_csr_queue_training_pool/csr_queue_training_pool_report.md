@@ -1,0 +1,21 @@
+# CSR Queue Training Pool
+
+- status: `passed`
+- schema_version: `phase1_csr_queue_training_pool_v1`
+- training_pool_ready: `True`
+- runtime_selector_changed: `False`
+- executes_gpu: `False`
+- imports_matrices: `False`
+- sources: `12`
+- completed_queue_batches: `10`
+- completed_batch_ids: `('batch_00001', 'batch_00002', 'batch_00003', 'batch_00004', 'batch_00005', 'batch_00006', 'batch_00007', 'batch_00008', 'batch_00009', 'batch_00010')`
+- queue_batch_oracle_batches: `8`
+- queue_batch_screen_only_batches: `2`
+- next_pending_batch_id: `batch_00011`
+- selector_rows: `372`
+- queue_batch_selector_rows: `240`
+- matrices: `99`
+- success_rows: `71`
+- screened_out_rows: `223`
+- oracle_rows: `32`
+- next_step: `use_pool_selector_rows_for_transformer_ready_bundle`

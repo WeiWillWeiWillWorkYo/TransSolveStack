@@ -1,7 +1,7 @@
 {
   "artifact_kind": "csr_transformer_training_entrypoint",
   "command": "scripts/tss_csr_transformer_training_entrypoint.py",
-  "created_at_utc": "2026-05-26T14:00:58.084171+00:00",
+  "created_at_utc": "2026-05-27T08:07:44.553038+00:00",
   "file_hashes": [
     {
       "path": "runs/phase1_csr_transformer_ready/csr_transformer_ready_summary.json",
@@ -41,11 +41,11 @@
     },
     {
       "path": "transsolvestack/__init__.py",
-      "sha256": "2f55e7cb6abc78de6f110c3b44567324b049652e93f2b908f771c38517164b3e"
+      "sha256": "009662b0dc55004500bbbc39c38e544d23b9a2945820a627dcabcc0c3c06fcee"
     },
     {
       "path": "transsolvestack/api.py",
-      "sha256": "bb93c01bb0b7b57d78c7309e979bf13bc46f2fcd4f03dccd85d7cd6647334ffb"
+      "sha256": "716e593a3ed210fb24249b7b32bd402e9dcd177194a23e91320bae7f2fb19c22"
     },
     {
       "path": "transsolvestack/policies/csr_transformer_training_entrypoint.py",
@@ -58,7 +58,7 @@
   ],
   "metadata": {
     "current_quality_gate_runtime_eligible": false,
-    "git_commit": "unknown",
+    "git_commit": "c71452fa04c75c01ad1813409824c42fd937cc49",
     "model_trained": false,
     "model_training_required": true,
     "num_model_requests": 20,

@@ -455,6 +455,251 @@ CORE_CSR_BENCHMARK_EXPANSION_PROVENANCE_FILES = (
 )
 
 
+CORE_CSR_FULL_DATASET_QUEUE_PROVENANCE_FILES = (
+    "configs/runtime/resource_limits.yaml",
+    "configs/runtime/storage_paths.yaml",
+    "runs/phase1_csr_selector_readiness/csr_selector_rows.jsonl",
+    "transsolvestack/__init__.py",
+    "transsolvestack/api.py",
+    "transsolvestack/datasets/suitesparse_index.py",
+    "transsolvestack/profiling/csr_full_dataset_queue.py",
+    "scripts/tss_csr_full_dataset_queue.py",
+)
+
+
+CORE_CSR_QUEUE_BATCH_EXECUTION_PROVENANCE_FILES = (
+    "runs/phase1_csr_full_dataset_queue/csr_full_dataset_queue_matrices.jsonl",
+    "runs/phase1_csr_full_dataset_queue/csr_full_dataset_queue_jobs.jsonl",
+    "runs/phase1_csr_full_dataset_queue/csr_full_dataset_queue_batches.jsonl",
+    "transsolvestack/datasets/csr.py",
+    "transsolvestack/operators/taichi_csr.py",
+    "transsolvestack/solvers/taichi_cg.py",
+    "transsolvestack/solvers/registry.py",
+    "transsolvestack/backends/registry.py",
+    "transsolvestack/runtime/engine.py",
+    "transsolvestack/profiling/csr_micro_campaign.py",
+    "transsolvestack/profiling/csr_queue_batch_execution.py",
+    "scripts/tss_csr_queue_batch_execute.py",
+)
+
+
+CORE_CSR_QUEUE_TRAINING_POOL_PROVENANCE_FILES = (
+    "runs/phase1_csr_full_dataset_queue/csr_full_dataset_queue_batches.jsonl",
+    "runs/phase1_csr_selector_readiness/csr_selector_rows.jsonl",
+    "runs/phase1_csr_micro_campaign/csr_micro_selector_rows.jsonl",
+    "runs/phase1_csr_queue_batch_00001/csr_micro_selector_rows.jsonl",
+    "runs/phase1_csr_queue_batch_00001/artifact_manifest.json",
+    "runs/phase1_csr_queue_batch_00002/csr_micro_selector_rows.jsonl",
+    "runs/phase1_csr_queue_batch_00002/artifact_manifest.json",
+    "transsolvestack/profiling/csr_queue_training_pool.py",
+    "scripts/tss_csr_queue_training_pool.py",
+)
+
+
+CORE_CSR_QUEUE_BATCH_TRAINING_BUNDLE_PROVENANCE_FILES = (
+    "runs/phase1_csr_queue_training_pool/csr_queue_training_pool_selector_rows.jsonl",
+    "runs/phase1_csr_queue_training_pool/csr_queue_training_pool_summary.json",
+    "runs/phase1_csr_queue_training_pool/artifact_manifest.json",
+    "transsolvestack/policies/csr_learning.py",
+    "transsolvestack/policies/csr_model_contract.py",
+    "transsolvestack/policies/csr_tensor_export.py",
+    "transsolvestack/policies/csr_transformer_ready.py",
+    "scripts/tss_csr_queue_batch_training_bundle.py",
+)
+
+
+CORE_CSR_QUEUE_BATCH_REFERENCE_RANKER_PROVENANCE_FILES = (
+    "runs/phase1_csr_queue_batch_training_bundle/csr_transformer_training_tensors.json",
+    "runs/phase1_csr_queue_batch_training_bundle/csr_transformer_request_index.jsonl",
+    "runs/phase1_csr_queue_batch_training_bundle/csr_transformer_ready_summary.json",
+    "runs/phase1_csr_queue_batch_training_bundle/artifact_manifest.json",
+    "transsolvestack/policies/csr_transformer_ranker.py",
+    "scripts/tss_csr_queue_batch_reference_ranker.py",
+)
+
+
+CORE_CSR_QUEUE_BATCH_MODEL_REPLAY_PROVENANCE_FILES = (
+    "runs/phase1_csr_queue_batch_reference_ranker/csr_queue_batch_reference_ranker_model.json",
+    "runs/phase1_csr_queue_batch_reference_ranker/csr_queue_batch_reference_ranker_predictions.jsonl",
+    "runs/phase1_csr_queue_batch_reference_ranker/artifact_manifest.json",
+    "runs/phase1_csr_queue_batch_training_bundle/csr_transformer_training_tensors.json",
+    "runs/phase1_csr_queue_batch_training_bundle/csr_transformer_request_index.jsonl",
+    "transsolvestack/policies/csr_transformer_ranker.py",
+    "transsolvestack/policies/csr_transformer_model_replay.py",
+    "scripts/tss_csr_queue_batch_model_replay.py",
+)
+
+
+CORE_CSR_QUEUE_CANDIDATE_COVERAGE_PROVENANCE_FILES = (
+    "runs/phase1_csr_full_dataset_queue/csr_full_dataset_queue_jobs.jsonl",
+    "runs/phase1_csr_queue_training_pool/csr_queue_training_pool_summary.json",
+    "transsolvestack/backends/registry.py",
+    "transsolvestack/solvers/registry.py",
+    "transsolvestack/preconditioners/registry.py",
+    "transsolvestack/profiling/csr_queue_candidate_coverage.py",
+    "scripts/tss_csr_queue_candidate_coverage.py",
+)
+
+
+CORE_CSR_BLOCKED_GAP_PROBE_PROVENANCE_FILES = (
+    "runs/phase1_csr_queue_batch_00010/csr_queue_batch_matrix_queue.jsonl",
+    "runs/phase1_csr_queue_candidate_coverage/csr_queue_candidate_coverage_summary.json",
+    "transsolvestack/profiling/csr_blocked_gap_probe.py",
+    "transsolvestack/profiling/csr_blocked_gap_runtime.py",
+    "transsolvestack/profiling/csr_blocked_gap_screens.py",
+    "transsolvestack/datasets/csr.py",
+    "transsolvestack/operators/taichi_csr.py",
+    "transsolvestack/operators/taichi_diffusion2d.py",
+    "transsolvestack/solvers/taichi_cg.py",
+    "transsolvestack/solvers/registry.py",
+    "transsolvestack/backends/registry.py",
+    "transsolvestack/runtime/engine.py",
+    "transsolvestack/policies/csr_selector_data.py",
+    "scripts/tss_csr_blocked_gap_probe.py",
+)
+
+
+CORE_CSR_BLOCKED_GAP_POSITIVE_SEARCH_PROVENANCE_FILES = (
+    "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+    "runs/phase1_csr_micro_campaign/csr_matrices.jsonl",
+    "runs/phase1_csr_queue_batch_00001/csr_matrices.jsonl",
+    "runs/phase1_csr_queue_batch_00003/csr_matrices.jsonl",
+    "runs/phase1_csr_queue_batch_00004/csr_matrices.jsonl",
+    "runs/phase1_csr_queue_batch_00005/csr_matrices.jsonl",
+    "runs/phase1_csr_queue_batch_00006/csr_matrices.jsonl",
+    "runs/phase1_csr_queue_batch_00007/csr_matrices.jsonl",
+    "runs/phase1_csr_queue_batch_00008/csr_matrices.jsonl",
+    "runs/phase1_csr_queue_batch_00009/csr_matrices.jsonl",
+    "runs/phase1_csr_queue_batch_00010/csr_matrices.jsonl",
+    "transsolvestack/profiling/csr_blocked_gap_positive_search.py",
+    "transsolvestack/profiling/csr_blocked_gap_runtime.py",
+    "transsolvestack/profiling/csr_blocked_gap_screens.py",
+    "transsolvestack/datasets/csr.py",
+    "transsolvestack/operators/taichi_csr.py",
+    "transsolvestack/operators/taichi_diffusion2d.py",
+    "transsolvestack/solvers/taichi_cg.py",
+    "transsolvestack/solvers/registry.py",
+    "transsolvestack/backends/registry.py",
+    "transsolvestack/runtime/engine.py",
+    "transsolvestack/policies/csr_selector_data.py",
+    "scripts/tss_csr_blocked_gap_positive_search.py",
+)
+
+
+CORE_CSR_BLOCKED_GAP_TRAINING_INTEGRATION_PROVENANCE_FILES = (
+    "runs/phase1_csr_queue_training_pool/csr_queue_training_pool_selector_rows.jsonl",
+    "runs/phase1_csr_queue_training_pool/csr_queue_training_pool_summary.json",
+    "runs/phase1_csr_queue_training_pool/artifact_manifest.json",
+    "runs/phase1_csr_blocked_gap_positive_search/csr_blocked_gap_positive_selector_rows.jsonl",
+    "runs/phase1_csr_blocked_gap_positive_search/csr_blocked_gap_positive_search_summary.json",
+    "runs/phase1_csr_blocked_gap_positive_search/artifact_manifest.json",
+    "transsolvestack/policies/csr_transformer_ready.py",
+    "transsolvestack/policies/csr_learning.py",
+    "transsolvestack/policies/csr_model_contract.py",
+    "transsolvestack/policies/csr_tensor_export.py",
+    "transsolvestack/profiling/artifacts.py",
+    "transsolvestack/profiling/csr_blocked_gap_training_integration.py",
+    "transsolvestack/profiling/csr_blocked_gap_training_tensor_bundle.py",
+    "scripts/tss_csr_blocked_gap_training_integration.py",
+)
+
+
+CORE_CSR_BLOCKED_GAP_AUGMENTED_RANKER_PROVENANCE_FILES = (
+    "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_tensors.json",
+    "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_request_index.jsonl",
+    "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_integration_summary.json",
+    "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_positive_membership.jsonl",
+    "runs/phase1_csr_blocked_gap_training_integration/artifact_manifest.json",
+    "transsolvestack/policies/csr_transformer_ranker.py",
+    "transsolvestack/profiling/csr_blocked_gap_augmented_ranker.py",
+    "scripts/tss_csr_blocked_gap_augmented_ranker.py",
+)
+
+CORE_CSR_BLOCKED_GAP_GUARDED_REPLAY_PROVENANCE_FILES = (
+    "runs/phase1_csr_blocked_gap_training_integration/combined_csr_selector_rows.jsonl",
+    "runs/phase1_csr_blocked_gap_training_integration/artifact_manifest.json",
+    "runs/phase1_csr_blocked_gap_augmented_ranker/csr_blocked_gap_augmented_ranker_predictions.jsonl",
+    "runs/phase1_csr_blocked_gap_augmented_ranker/csr_blocked_gap_augmented_ranker_positive_predictions.jsonl",
+    "runs/phase1_csr_blocked_gap_augmented_ranker/csr_blocked_gap_augmented_ranker_summary.json",
+    "runs/phase1_csr_blocked_gap_augmented_ranker/artifact_manifest.json",
+    "transsolvestack/policies/csr_artifact_selector.py",
+    "transsolvestack/policies/csr_learned_guard.py",
+    "transsolvestack/profiling/csr_blocked_gap_guarded_replay.py",
+    "scripts/tss_csr_blocked_gap_guarded_replay.py",
+)
+
+
+CORE_CSR_TRANSFORMER_HANDOFF_BUNDLE_PROVENANCE_FILES = (
+    "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_integration_summary.json",
+    "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_tensor_summary.json",
+    "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_tensors.json",
+    "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_request_index.jsonl",
+    "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_model_requests.jsonl",
+    "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_model_targets.jsonl",
+    "runs/phase1_csr_blocked_gap_training_integration/combined_csr_selector_rows.jsonl",
+    "runs/phase1_csr_blocked_gap_training_integration/artifact_manifest.json",
+    "runs/phase1_csr_blocked_gap_augmented_ranker/csr_blocked_gap_augmented_ranker_summary.json",
+    "runs/phase1_csr_blocked_gap_augmented_ranker/csr_blocked_gap_augmented_ranker_model.json",
+    "runs/phase1_csr_blocked_gap_augmented_ranker/csr_blocked_gap_augmented_ranker_predictions.jsonl",
+    "runs/phase1_csr_blocked_gap_augmented_ranker/csr_blocked_gap_augmented_ranker_positive_predictions.jsonl",
+    "runs/phase1_csr_blocked_gap_augmented_ranker/artifact_manifest.json",
+    "runs/phase1_csr_blocked_gap_guarded_replay/csr_blocked_gap_guarded_replay_summary.json",
+    "runs/phase1_csr_blocked_gap_guarded_replay/csr_blocked_gap_guarded_replay_rows.jsonl",
+    "runs/phase1_csr_blocked_gap_guarded_replay/csr_blocked_gap_guarded_replay_blocked_quality_gate.json",
+    "runs/phase1_csr_blocked_gap_guarded_replay/artifact_manifest.json",
+    "runs/phase1_csr_policy_model_submission/csr_policy_model_submission_summary.json",
+    "runs/phase1_csr_policy_model_submission/csr_policy_model_submission_schema.json",
+    "runs/phase1_csr_policy_model_submission/csr_policy_model_submission_manifest.json",
+    "MODEL_CONTRIBUTION_TERMS.md",
+    "CONTRIBUTOR_LICENSE_AGREEMENT.md",
+    "transsolvestack/profiling/csr_transformer_handoff_bundle.py",
+    "scripts/tss_csr_transformer_handoff_bundle.py",
+)
+
+
+CORE_CSR_TRANSFORMER_TRAINING_PACKAGE_PROVENANCE_FILES = (
+    "runs/phase1_csr_transformer_handoff_bundle/csr_transformer_handoff_bundle_summary.json",
+    "runs/phase1_csr_transformer_handoff_bundle/csr_transformer_handoff_bundle_rows.jsonl",
+    "runs/phase1_csr_transformer_handoff_bundle/csr_transformer_handoff_training_spec.json",
+    "runs/phase1_csr_transformer_handoff_bundle/csr_transformer_handoff_guard_contract.json",
+    "runs/phase1_csr_transformer_handoff_bundle/csr_transformer_handoff_bundle_schema.json",
+    "runs/phase1_csr_transformer_handoff_bundle/artifact_manifest.json",
+    "transsolvestack/profiling/csr_transformer_training_package.py",
+    "scripts/tss_csr_transformer_training_package.py",
+)
+
+
+CORE_CSR_TRANSFORMER_PACKAGE_CONSUMER_DRY_RUN_PROVENANCE_FILES = (
+    "runs/phase1_csr_transformer_training_package/csr_transformer_training_package_manifest.json",
+    "runs/phase1_csr_transformer_training_package/csr_transformer_training_package_summary.json",
+    "runs/phase1_csr_transformer_training_package/csr_transformer_training_package_rows.jsonl",
+    "runs/phase1_csr_transformer_training_package/artifact_manifest.json",
+    "runs/phase1_csr_external_model_intake/csr_external_model_intake_summary.json",
+    "runs/phase1_csr_external_model_intake/csr_policy_model_submission_summary.json",
+    "runs/phase1_csr_external_model_intake/csr_policy_model_acceptance_summary.json",
+    "runs/phase1_csr_external_model_intake/artifact_manifest.json",
+    "transsolvestack/profiling/csr_transformer_package_consumer_dry_run.py",
+    "scripts/tss_csr_transformer_package_consumer_dry_run.py",
+)
+
+
+CORE_CSR_GMRES_RESTART_COVERAGE_PROVENANCE_FILES = (
+    "runs/phase1_csr_queue_batch_00010/csr_queue_batch_matrix_queue.jsonl",
+    "runs/phase1_csr_queue_candidate_coverage/csr_queue_candidate_coverage_summary.json",
+    "transsolvestack/profiling/csr_gmres_restart_coverage.py",
+    "transsolvestack/profiling/csr_micro_campaign.py",
+    "transsolvestack/datasets/csr.py",
+    "transsolvestack/operators/taichi_csr.py",
+    "transsolvestack/solvers/taichi_cg.py",
+    "transsolvestack/solvers/registry.py",
+    "transsolvestack/backends/registry.py",
+    "transsolvestack/runtime/engine.py",
+    "transsolvestack/policies/csr_selector_data.py",
+    "transsolvestack/profiling/repeats.py",
+    "scripts/tss_csr_gmres_restart_coverage.py",
+)
+
+
 CORE_CSR_MICRO_CAMPAIGN_PROVENANCE_FILES = (
     "runs/phase1_csr_benchmark_expansion_plan/csr_benchmark_matrix_queue.jsonl",
     "runs/phase1_csr_benchmark_expansion_plan/csr_benchmark_candidate_queue.jsonl",
@@ -493,6 +738,98 @@ CORE_CSR_TRANSFORMER_RANKER_PROVENANCE_FILES = (
 )
 
 
+CORE_CSR_EXTERNAL_MODEL_ADAPTER_PROVENANCE_FILES = (
+    "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_model.json",
+    "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json",
+    "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl",
+    "transsolvestack/__init__.py",
+    "transsolvestack/api.py",
+    "transsolvestack/policies/csr_transformer_ranker.py",
+    "transsolvestack/policies/csr_external_model_adapter.py",
+    "scripts/tss_csr_external_model_adapter.py",
+)
+
+
+CORE_CSR_EXTERNAL_MODEL_INTAKE_PROVENANCE_FILES = (
+    "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_model.json",
+    "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json",
+    "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl",
+    "runs/phase1_csr_transformer_ready/combined_csr_learning_summary.json",
+    "runs/phase1_csr_transformer_ready/combined_csr_baseline_predictions.jsonl",
+    "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+    "runs/phase1_csr_selector_readiness/csr_selector_rows.jsonl",
+    "runs/phase1_csr_guarded_auto_solve/csr_guarded_auto_solve_summary.json",
+    "runs/phase1_csr_guarded_auto_solve/csr_guarded_auto_solve_results.jsonl",
+    "transsolvestack/__init__.py",
+    "transsolvestack/api.py",
+    "transsolvestack/policies/csr_external_model_adapter.py",
+    "transsolvestack/policies/csr_external_model_intake.py",
+    "transsolvestack/policies/csr_policy_model_artifact.py",
+    "transsolvestack/policies/csr_policy_model_acceptance.py",
+    "transsolvestack/policies/csr_policy_model_submission.py",
+    "scripts/tss_csr_external_model_intake.py",
+)
+
+
+CORE_CSR_TRANSFORMER_MODEL_REPLAY_PROVENANCE_FILES = (
+    "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json",
+    "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl",
+    "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_model.json",
+    "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_predictions.jsonl",
+    "transsolvestack/policies/csr_transformer_ranker.py",
+    "transsolvestack/policies/csr_transformer_model_replay.py",
+    "scripts/tss_csr_transformer_model_replay.py",
+)
+
+
+CORE_CSR_POLICY_MODEL_ARTIFACT_PROVENANCE_FILES = (
+    "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_model.json",
+    "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json",
+    "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl",
+    "runs/phase1_csr_transformer_quality_gate/csr_transformer_quality_gate_summary.json",
+    "runs/phase1_csr_transformer_model_replay/csr_transformer_model_replay_summary.json",
+    "transsolvestack/__init__.py",
+    "transsolvestack/api.py",
+    "transsolvestack/policies/csr_policy_model_artifact.py",
+    "transsolvestack/policies/csr_transformer_ranker.py",
+    "scripts/tss_csr_policy_model_artifact.py",
+)
+
+
+CORE_CSR_POLICY_MODEL_ACCEPTANCE_PROVENANCE_FILES = (
+    "runs/phase1_csr_policy_model_artifact/csr_policy_model_artifact.json",
+    "runs/phase1_csr_policy_model_artifact/artifact_manifest.json",
+    "runs/phase1_csr_learned_guard/csr_learned_guard_summary.json",
+    "runs/phase1_csr_guarded_auto_solve/csr_guarded_auto_solve_summary.json",
+    "runs/phase1_csr_guarded_auto_solve/csr_guarded_auto_solve_results.jsonl",
+    "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+    "runs/phase1_csr_selector_readiness/csr_selector_rows.jsonl",
+    "transsolvestack/__init__.py",
+    "transsolvestack/api.py",
+    "transsolvestack/policies/csr_learned_guard.py",
+    "transsolvestack/policies/csr_policy_model_artifact.py",
+    "transsolvestack/policies/csr_policy_model_acceptance.py",
+    "transsolvestack/policies/csr_transformer_ranker.py",
+    "scripts/tss_csr_policy_model_acceptance.py",
+)
+
+
+CORE_CSR_POLICY_MODEL_SUBMISSION_PROVENANCE_FILES = (
+    "runs/phase1_csr_policy_model_artifact/csr_policy_model_artifact.json",
+    "runs/phase1_csr_policy_model_artifact/artifact_manifest.json",
+    "runs/phase1_csr_policy_model_acceptance/csr_policy_model_acceptance_summary.json",
+    "runs/phase1_csr_policy_model_acceptance/csr_policy_model_acceptance_rows.jsonl",
+    "runs/phase1_csr_policy_model_acceptance/artifact_manifest.json",
+    "MODEL_CONTRIBUTION_TERMS.md",
+    "CONTRIBUTOR_LICENSE_AGREEMENT.md",
+    "transsolvestack/__init__.py",
+    "transsolvestack/api.py",
+    "transsolvestack/policies/csr_policy_model_artifact.py",
+    "transsolvestack/policies/csr_policy_model_submission.py",
+    "scripts/tss_csr_policy_model_submission.py",
+)
+
+
 CORE_CSR_TRANSFORMER_QUALITY_GATE_PROVENANCE_FILES = (
     "runs/phase1_csr_transformer_ready/combined_csr_learning_summary.json",
     "runs/phase1_csr_transformer_ready/combined_csr_baseline_predictions.jsonl",
@@ -520,15 +857,31 @@ CORE_CSR_TRANSFORMER_TRAINING_ENTRYPOINT_PROVENANCE_FILES = (
 )
 
 
+CORE_CSR_TRANSFORMER_REFERENCE_TRAINING_EXPORT_PROVENANCE_FILES = (
+    "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json",
+    "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl",
+    "runs/phase1_csr_transformer_training_entrypoint/csr_transformer_training_entrypoint_summary.json",
+    "transsolvestack/__init__.py",
+    "transsolvestack/api.py",
+    "transsolvestack/policies/csr_transformer_ranker.py",
+    "transsolvestack/policies/csr_external_model_adapter.py",
+    "transsolvestack/policies/csr_transformer_reference_training_export.py",
+    "scripts/tss_csr_transformer_reference_training_export.py",
+)
+
+
 CORE_CSR_LEARNED_GUARD_PROVENANCE_FILES = (
     "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
     "runs/phase1_csr_selector_readiness/csr_selector_rows.jsonl",
-    "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_predictions.jsonl",
+    "runs/phase1_csr_policy_model_artifact/csr_policy_model_artifact.json",
+    "runs/phase1_csr_policy_model_artifact/artifact_manifest.json",
     "runs/phase1_csr_transformer_quality_gate/csr_transformer_quality_gate_summary.json",
     "transsolvestack/__init__.py",
     "transsolvestack/api.py",
     "transsolvestack/policies/csr_artifact_selector.py",
     "transsolvestack/policies/csr_learned_guard.py",
+    "transsolvestack/policies/csr_policy_model_artifact.py",
+    "transsolvestack/policies/csr_transformer_ranker.py",
     "transsolvestack/runtime/guarded_fallback.py",
     "scripts/tss_csr_learned_guard_smoke.py",
 )
@@ -537,13 +890,16 @@ CORE_CSR_LEARNED_GUARD_PROVENANCE_FILES = (
 CORE_CSR_GUARDED_AUTO_SOLVE_PROVENANCE_FILES = (
     "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
     "runs/phase1_csr_selector_readiness/csr_selector_rows.jsonl",
-    "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_predictions.jsonl",
+    "runs/phase1_csr_policy_model_artifact/csr_policy_model_artifact.json",
+    "runs/phase1_csr_policy_model_artifact/artifact_manifest.json",
     "runs/phase1_csr_transformer_quality_gate/csr_transformer_quality_gate_summary.json",
     "transsolvestack/__init__.py",
     "transsolvestack/api.py",
     "transsolvestack/datasets/csr.py",
     "transsolvestack/policies/csr_artifact_selector.py",
     "transsolvestack/policies/csr_learned_guard.py",
+    "transsolvestack/policies/csr_policy_model_artifact.py",
+    "transsolvestack/policies/csr_transformer_ranker.py",
     "transsolvestack/runtime/guarded_fallback.py",
     "transsolvestack/operators/taichi_csr.py",
     "transsolvestack/solvers/taichi_cg.py",
@@ -752,11 +1108,28 @@ CORE_CAMPAIGN_PROVENANCE_FILES = (
     "runs/phase1_csr_linear_ranker/artifact_manifest.json",
     "runs/phase1_csr_selector_model_eval/artifact_manifest.json",
     "runs/phase1_csr_benchmark_expansion_plan/artifact_manifest.json",
+    "runs/phase1_csr_full_dataset_queue/artifact_manifest.json",
+    "runs/phase1_csr_queue_batch_00001/artifact_manifest.json",
+    "runs/phase1_csr_queue_batch_00002/artifact_manifest.json",
+    "runs/phase1_csr_queue_training_pool/artifact_manifest.json",
+    "runs/phase1_csr_queue_batch_training_bundle/artifact_manifest.json",
+    "runs/phase1_csr_queue_batch_reference_ranker/artifact_manifest.json",
+    "runs/phase1_csr_queue_batch_model_replay/artifact_manifest.json",
+    "runs/phase1_csr_queue_candidate_coverage/artifact_manifest.json",
+    "runs/phase1_csr_gmres_restart_coverage/artifact_manifest.json",
+    "runs/phase1_csr_blocked_gap_probe/artifact_manifest.json",
     "runs/phase1_csr_micro_campaign/artifact_manifest.json",
     "runs/phase1_csr_transformer_ready/artifact_manifest.json",
     "runs/phase1_csr_transformer_ranker/artifact_manifest.json",
+    "runs/phase1_csr_external_model_adapter/artifact_manifest.json",
+    "runs/phase1_csr_transformer_model_replay/artifact_manifest.json",
     "runs/phase1_csr_transformer_quality_gate/artifact_manifest.json",
+    "runs/phase1_csr_policy_model_artifact/artifact_manifest.json",
+    "runs/phase1_csr_policy_model_acceptance/artifact_manifest.json",
+    "runs/phase1_csr_policy_model_submission/artifact_manifest.json",
+    "runs/phase1_csr_external_model_intake/artifact_manifest.json",
     "runs/phase1_csr_transformer_training_entrypoint/artifact_manifest.json",
+    "runs/phase1_csr_transformer_reference_training_export/artifact_manifest.json",
     "runs/phase1_csr_learned_guard/artifact_manifest.json",
     "runs/phase1_csr_guarded_auto_solve/artifact_manifest.json",
     "runs/phase1_csr_guarded_promotion_readiness/artifact_manifest.json",

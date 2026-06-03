@@ -46,6 +46,22 @@ def main() -> None:
         default="runs/phase1_csr_transformer_ranker/csr_transformer_ranker_predictions.jsonl",
     )
     parser.add_argument(
+        "--learned-model-artifact",
+        default="runs/phase1_csr_policy_model_artifact/csr_policy_model_artifact.json",
+    )
+    parser.add_argument(
+        "--learned-model",
+        default="runs/phase1_csr_transformer_ranker/csr_transformer_ranker_model.json",
+    )
+    parser.add_argument(
+        "--learned-tensors",
+        default="runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json",
+    )
+    parser.add_argument(
+        "--learned-request-index",
+        default="runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl",
+    )
+    parser.add_argument(
         "--quality-gate-summary",
         default="runs/phase1_csr_transformer_quality_gate/csr_transformer_quality_gate_summary.json",
     )
@@ -75,6 +91,7 @@ def main() -> None:
             rhs,
             selector_path=args.selector_rows,
             learned_predictions_path=args.learned_predictions,
+            learned_model_artifact_path=args.learned_model_artifact,
             quality_gate_summary_path=args.quality_gate_summary,
             context=context,
             learned_policy_mode="promote_if_safe",
@@ -93,6 +110,10 @@ def main() -> None:
         result_records,
         selector_rows_path=args.selector_rows,
         learned_predictions_path=args.learned_predictions,
+        learned_model_artifact_path=args.learned_model_artifact,
+        learned_model_path=args.learned_model,
+        learned_tensor_path=args.learned_tensors,
+        learned_request_index_path=args.learned_request_index,
         quality_gate_summary_path=args.quality_gate_summary,
         source_csr_path=args.csr,
         device_memory_gb=args.device_memory_gb,
@@ -127,6 +148,8 @@ def main() -> None:
                 "num_solves": summary["num_solves"],
                 "num_success": summary["num_success"],
                 "num_failed": summary["num_failed"],
+                "learned_prediction_source": summary["learned_prediction_source"],
+                "saved_model_loaded_count": summary["saved_model_loaded_count"],
                 "learned_runtime_promotions": summary["learned_runtime_promotions"],
                 "quality_gate_blocks": summary["quality_gate_blocks"],
                 "runtime_selector_changed": summary["runtime_selector_changed"],
@@ -150,6 +173,7 @@ def _result_record(
 ) -> dict:
     trace = trace_to_record(result.trace)
     learned_guard = dict(result.metadata["learned_policy_guard"])
+    learned_policy_source = dict(learned_guard["learned_policy_source"])
     runtime_guard = dict(result.metadata["runtime_guard"])
     solution = tuple(float(value) for value in result.solution)
     cpu_residual = _relative_residual(csr, solution, rhs)
@@ -176,6 +200,9 @@ def _result_record(
         "candidate_id": learned_guard["runtime_candidate_id"],
         "artifact_candidate_id": learned_guard["artifact_candidate_id"],
         "runtime_selection_source": learned_guard["runtime_selection_source"],
+        "learned_policy_source_kind": learned_policy_source["source_kind"],
+        "learned_model_loaded": learned_policy_source["model_loaded"],
+        "learned_policy_source": learned_policy_source,
         "learned_guard_status": learned_guard["guard_status"],
         "learned_guard_reasons": tuple(learned_guard["guard_reasons"]),
         "learned_selected_candidate_id": (
@@ -203,6 +230,10 @@ def _build_summary(
     *,
     selector_rows_path: str,
     learned_predictions_path: str,
+    learned_model_artifact_path: str,
+    learned_model_path: str,
+    learned_tensor_path: str,
+    learned_request_index_path: str,
     quality_gate_summary_path: str,
     source_csr_path: str,
     device_memory_gb: float,
@@ -228,10 +259,17 @@ def _build_summary(
     learned_runtime_promotions = sum(
         1 for row in records if row["runtime_selection_source"] == "learned"
     )
+    saved_model_loaded_count = sum(
+        1
+        for row in records
+        if row["learned_policy_source_kind"] == "model_artifact"
+        and row["learned_model_loaded"] is True
+    )
     status = (
         "passed"
         if len(records) == 2
         and num_failed == 0
+        and saved_model_loaded_count == 2
         and quality_gate_blocks == 2
         and learned_runtime_promotions == 0
         and all(row["runtime_selection_source"] == "artifact" for row in records)
@@ -249,6 +287,12 @@ def _build_summary(
         "schema_version": "phase1_csr_guarded_auto_solve_v1",
         "selector_rows_path": selector_rows_path,
         "learned_predictions_path": learned_predictions_path,
+        "learned_model_artifact_path": learned_model_artifact_path,
+        "learned_model_path": learned_model_path,
+        "learned_tensor_path": learned_tensor_path,
+        "learned_request_index_path": learned_request_index_path,
+        "learned_prediction_source": "model_artifact",
+        "saved_model_loaded_count": saved_model_loaded_count,
         "quality_gate_summary_path": quality_gate_summary_path,
         "source_csr_path": source_csr_path,
         "device_memory_gb": device_memory_gb,
@@ -281,6 +325,7 @@ def _schema() -> dict:
         "runtime": {
             "backend": "taichi_gpu",
             "learned_policy_mode": "promote_if_safe",
+            "learned_prediction_source": "model_artifact",
             "expected_current_guard_status": "blocked_quality_gate",
             "expected_runtime_selection_source": "artifact",
         },
@@ -302,6 +347,8 @@ def _write_report(records: list[dict], summary: dict, path: Path) -> Path:
         f"- solves: `{summary['num_solves']}`",
         f"- successes: `{summary['num_success']}`",
         f"- quality_gate_blocks: `{summary['quality_gate_blocks']}`",
+        f"- learned_prediction_source: `{summary['learned_prediction_source']}`",
+        f"- saved_model_loaded_count: `{summary['saved_model_loaded_count']}`",
         f"- learned_runtime_promotions: `{summary['learned_runtime_promotions']}`",
         f"- runtime_selector_changed: `{summary['runtime_selector_changed']}`",
         f"- selected_solver_set: `{', '.join(summary['selected_solver_set'])}`",

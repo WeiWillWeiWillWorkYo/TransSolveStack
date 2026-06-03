@@ -1,0 +1,69 @@
+{
+  "artifact_kind": "csr_policy_model_submission",
+  "command": "scripts/tss_csr_policy_model_submission.py",
+  "created_at_utc": "2026-05-27T08:11:27.039406+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_policy_model_artifact/csr_policy_model_artifact.json",
+      "sha256": "1ddbc0c59b01c3778be9ff81f9ea30cdaf6e6a2e6c03d2e7c2ac1e303f3c1163"
+    },
+    {
+      "path": "runs/phase1_csr_policy_model_artifact/artifact_manifest.json",
+      "sha256": "38d1b9b60993786e25fb4ce8100c2fd7b1d968ef1ceb5727c9877e0639f53be6"
+    },
+    {
+      "path": "runs/phase1_csr_policy_model_acceptance/csr_policy_model_acceptance_summary.json",
+      "sha256": "9339712d346d7c86478ec9c00f45fc3c79b01b4b7d5195cc63c5e524d5ee51aa"
+    },
+    {
+      "path": "runs/phase1_csr_policy_model_acceptance/csr_policy_model_acceptance_rows.jsonl",
+      "sha256": "e029c599311bc912cdc3f646b5343eb520a20fa5029cf890b9e83d4025cfc03d"
+    },
+    {
+      "path": "runs/phase1_csr_policy_model_acceptance/artifact_manifest.json",
+      "sha256": "b3337baabda5b78a096a7a807125c97e03ac8a3210ba4ff6f2f6df982a1b003a"
+    },
+    {
+      "path": "MODEL_CONTRIBUTION_TERMS.md",
+      "sha256": "09c5c659cdbc2946a60f6c34528b7c8a31571e98ab669b2b2ffccf95f6c640dc"
+    },
+    {
+      "path": "CONTRIBUTOR_LICENSE_AGREEMENT.md",
+      "sha256": "ad60405c225affb9bc3e0a8d737da9aec7d0282851c77d3ed24ce6b990171392"
+    },
+    {
+      "path": "transsolvestack/__init__.py",
+      "sha256": "009662b0dc55004500bbbc39c38e544d23b9a2945820a627dcabcc0c3c06fcee"
+    },
+    {
+      "path": "transsolvestack/api.py",
+      "sha256": "716e593a3ed210fb24249b7b32bd402e9dcd177194a23e91320bae7f2fb19c22"
+    },
+    {
+      "path": "transsolvestack/policies/csr_policy_model_artifact.py",
+      "sha256": "c08fd833f77b1d573a2a4dd58f8a72b849b1aa48d006f1745b49c21e93d99e90"
+    },
+    {
+      "path": "transsolvestack/policies/csr_policy_model_submission.py",
+      "sha256": "3c4b38c24f4786d5b8368fcbddadfb76fba3ac1938f70ab97ae0db2caee04ee1"
+    },
+    {
+      "path": "scripts/tss_csr_policy_model_submission.py",
+      "sha256": "28ca3158d0a9853b190bf2b51b8a6ab15e3dc886c21b5d09717bc711e0513428"
+    }
+  ],
+  "metadata": {
+    "accepted_for_runtime_promotion": false,
+    "accepted_for_shadow": true,
+    "git_commit": "c71452fa04c75c01ad1813409824c42fd937cc49",
+    "model_id": "csr_masked_self_attention_ranker_v1",
+    "num_packaged_files": 8,
+    "runtime_promotion_ready": false,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_policy_model_submission_v1",
+    "shadow_submission_ready": true,
+    "status": "passed",
+    "submission_ready": true
+  },
+  "python_version": "3.10.18"
+}

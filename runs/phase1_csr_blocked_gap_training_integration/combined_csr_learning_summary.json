@@ -1,0 +1,39 @@
+{
+  "baseline_candidate_order": [
+    "taichi_csr_pcg_jacobi_float64",
+    "taichi_csr_richardson_jacobi_float64",
+    "taichi_csr_cg_none_float64",
+    "taichi_csr_gmres_jacobi_restart16_float64",
+    "taichi_csr_bicgstab_none_float64",
+    "taichi_csr_bicgstab_jacobi_float64",
+    "taichi_csr_chebyshev_jacobi_float64",
+    "taichi_csr_bicgstab_row_column_equilibration_float64",
+    "taichi_csr_gmres_jacobi_restart32_float64",
+    "taichi_csr_pcg_symmetric_equilibration_float64",
+    "taichi_csr_gmres_jacobi_restart8_float64",
+    "taichi_csr_bicgstab_ilu0_float64"
+  ],
+  "baseline_id": "candidate_prior_success_median_v1",
+  "eval_max_regret_ms": 260.8854412101209,
+  "eval_mean_regret_ms": 86.08383405953646,
+  "eval_oracle_top1_accuracy": 0.0,
+  "eval_profiled_success_rate": 0.16,
+  "label_class_counts": {
+    "not_applicable": 34,
+    "not_profiled": 44,
+    "screened_out": 223,
+    "success_non_oracle": 42,
+    "success_oracle": 37
+  },
+  "num_eval_matrices": 25,
+  "num_eval_matrices_with_success": 4,
+  "num_eval_predictions": 25,
+  "num_eval_profiled_success_predictions": 4,
+  "num_eval_rows": 119,
+  "num_matrices": 99,
+  "num_rows": 380,
+  "num_train_matrices": 74,
+  "num_train_rows": 261,
+  "schema_version": "phase1_csr_learning_features_v1",
+  "status": "passed"
+}

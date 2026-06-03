@@ -1,0 +1,8 @@
+{
+  "executes_gpu": true,
+  "gpu_solve_only_after_screen_success": true,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_blocked_gap_probe_v1",
+  "screen_only_artifacts_may_have_no_oracle_rows": true,
+  "task": "execute_blocked_gap_cpu_screens_before_any_gpu_admission"
+}

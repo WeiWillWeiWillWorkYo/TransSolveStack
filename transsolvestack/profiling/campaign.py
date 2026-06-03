@@ -35,6 +35,7 @@ class CampaignReport:
 
 def build_phase1_campaign_report(root: str | Path = "runs") -> CampaignReport:
     runs = Path(root)
+    queue_batch_stages = _queue_batch_stages(runs)
     stages = (
         _stage(
             stage_id="benchmark",
@@ -187,6 +188,82 @@ def build_phase1_campaign_report(root: str | Path = "runs") -> CampaignReport:
             row_file="csr_benchmark_candidate_queue.jsonl",
         ),
         _stage(
+            stage_id="csr_full_dataset_queue",
+            artifact_dir=runs / "phase1_csr_full_dataset_queue",
+            row_file="csr_full_dataset_queue_jobs.jsonl",
+        ),
+        *queue_batch_stages,
+        _stage(
+            stage_id="csr_queue_training_pool",
+            artifact_dir=runs / "phase1_csr_queue_training_pool",
+            row_file="csr_queue_training_pool_selector_rows.jsonl",
+        ),
+        _stage(
+            stage_id="csr_queue_batch_training_bundle",
+            artifact_dir=runs / "phase1_csr_queue_batch_training_bundle",
+            row_file="csr_transformer_request_index.jsonl",
+        ),
+        _stage(
+            stage_id="csr_queue_batch_reference_ranker",
+            artifact_dir=runs / "phase1_csr_queue_batch_reference_ranker",
+            row_file="csr_queue_batch_reference_ranker_predictions.jsonl",
+        ),
+        _stage(
+            stage_id="csr_queue_batch_model_replay",
+            artifact_dir=runs / "phase1_csr_queue_batch_model_replay",
+            row_file="csr_queue_batch_model_replay_comparison.jsonl",
+        ),
+        _stage(
+            stage_id="csr_queue_candidate_coverage",
+            artifact_dir=runs / "phase1_csr_queue_candidate_coverage",
+            row_file="csr_queue_candidate_coverage_gap_rows.jsonl",
+        ),
+        _stage(
+            stage_id="csr_gmres_restart_coverage",
+            artifact_dir=runs / "phase1_csr_gmres_restart_coverage",
+            row_file="csr_micro_campaign_results.jsonl",
+        ),
+        _stage(
+            stage_id="csr_blocked_gap_probe",
+            artifact_dir=runs / "phase1_csr_blocked_gap_probe",
+            row_file="csr_micro_campaign_results.jsonl",
+        ),
+        _stage(
+            stage_id="csr_blocked_gap_positive_search",
+            artifact_dir=runs / "phase1_csr_blocked_gap_positive_search",
+            row_file="csr_blocked_gap_positive_results.jsonl",
+        ),
+        _stage(
+            stage_id="csr_blocked_gap_training_integration",
+            artifact_dir=runs / "phase1_csr_blocked_gap_training_integration",
+            row_file="combined_csr_selector_rows.jsonl",
+        ),
+        _stage(
+            stage_id="csr_blocked_gap_augmented_ranker",
+            artifact_dir=runs / "phase1_csr_blocked_gap_augmented_ranker",
+            row_file="csr_blocked_gap_augmented_ranker_predictions.jsonl",
+        ),
+        _stage(
+            stage_id="csr_blocked_gap_guarded_replay",
+            artifact_dir=runs / "phase1_csr_blocked_gap_guarded_replay",
+            row_file="csr_blocked_gap_guarded_replay_rows.jsonl",
+        ),
+        _stage(
+            stage_id="csr_transformer_handoff_bundle",
+            artifact_dir=runs / "phase1_csr_transformer_handoff_bundle",
+            row_file="csr_transformer_handoff_bundle_rows.jsonl",
+        ),
+        _stage(
+            stage_id="csr_transformer_training_package",
+            artifact_dir=runs / "phase1_csr_transformer_training_package",
+            row_file="csr_transformer_training_package_rows.jsonl",
+        ),
+        _stage(
+            stage_id="csr_transformer_package_consumer_dry_run",
+            artifact_dir=runs / "phase1_csr_transformer_package_consumer_dry_run",
+            row_file="csr_transformer_package_consumer_dry_run_rows.jsonl",
+        ),
+        _stage(
             stage_id="csr_micro_campaign",
             artifact_dir=runs / "phase1_csr_micro_campaign",
             row_file="csr_micro_selector_rows.jsonl",
@@ -202,14 +279,49 @@ def build_phase1_campaign_report(root: str | Path = "runs") -> CampaignReport:
             row_file="csr_transformer_ranker_predictions.jsonl",
         ),
         _stage(
+            stage_id="csr_external_model_adapter",
+            artifact_dir=runs / "phase1_csr_external_model_adapter",
+            row_file="csr_external_model_adapter_rows.jsonl",
+        ),
+        _stage(
+            stage_id="csr_transformer_model_replay",
+            artifact_dir=runs / "phase1_csr_transformer_model_replay",
+            row_file="csr_transformer_model_replay_predictions.jsonl",
+        ),
+        _stage(
             stage_id="csr_transformer_quality_gate",
             artifact_dir=runs / "phase1_csr_transformer_quality_gate",
             row_file="csr_transformer_quality_gate_rows.jsonl",
         ),
         _stage(
+            stage_id="csr_policy_model_artifact",
+            artifact_dir=runs / "phase1_csr_policy_model_artifact",
+            row_file="csr_policy_model_artifact_rows.jsonl",
+        ),
+        _stage(
+            stage_id="csr_policy_model_acceptance",
+            artifact_dir=runs / "phase1_csr_policy_model_acceptance",
+            row_file="csr_policy_model_acceptance_rows.jsonl",
+        ),
+        _stage(
+            stage_id="csr_policy_model_submission",
+            artifact_dir=runs / "phase1_csr_policy_model_submission",
+            row_file="csr_policy_model_submission_rows.jsonl",
+        ),
+        _stage(
+            stage_id="csr_external_model_intake",
+            artifact_dir=runs / "phase1_csr_external_model_intake",
+            row_file="csr_external_model_intake_rows.jsonl",
+        ),
+        _stage(
             stage_id="csr_transformer_training_entrypoint",
             artifact_dir=runs / "phase1_csr_transformer_training_entrypoint",
             row_file="csr_transformer_training_entrypoint_rows.jsonl",
+        ),
+        _stage(
+            stage_id="csr_transformer_reference_training_export",
+            artifact_dir=runs / "phase1_csr_transformer_reference_training_export",
+            row_file="csr_transformer_reference_training_export_rows.jsonl",
         ),
         _stage(
             stage_id="csr_learned_runtime_guard",
@@ -347,6 +459,32 @@ def _stage(
         stale_paths=stale,
         metadata=dict(manifest.metadata),
     )
+
+
+def _queue_batch_stages(runs: Path) -> tuple[CampaignStageReport, ...]:
+    stages: list[CampaignStageReport] = []
+    for path in sorted(runs.glob("phase1_csr_queue_batch_*"), key=lambda item: item.name):
+        if not path.is_dir():
+            continue
+        summary_path = path / "csr_queue_batch_execution_summary.json"
+        manifest_path = path / "artifact_manifest.json"
+        if not summary_path.exists() or not manifest_path.exists():
+            continue
+        try:
+            summary = json.loads(summary_path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if summary.get("status") != "passed":
+            continue
+        batch_id = str(summary.get("batch_id") or path.name.rsplit("_", 1)[-1])
+        stages.append(
+            _stage(
+                stage_id=f"csr_queue_batch_{batch_id.removeprefix('batch_')}",
+                artifact_dir=path,
+                row_file="csr_micro_campaign_results.jsonl",
+            )
+        )
+    return tuple(stages)
 
 
 def _row_count(path: Path) -> int:

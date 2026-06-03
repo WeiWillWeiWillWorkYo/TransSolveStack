@@ -1,0 +1,15 @@
+{
+  "adapter": "csr_transformer_ranker_saved_model_v1",
+  "artifact_kind": "csr_policy_model_artifact",
+  "artifact_ready": true,
+  "runtime_contract": {
+    "guard_required": true,
+    "promotion_requires_confidence": true,
+    "promotion_requires_profiled_success_candidate": true,
+    "promotion_requires_quality_gate": true,
+    "runtime_selector_changed": false,
+    "shadow_mode_default": true
+  },
+  "schema_version": "phase1_csr_policy_model_artifact_v1",
+  "supported_source_model_schema": "phase1_csr_transformer_ranker_v1"
+}

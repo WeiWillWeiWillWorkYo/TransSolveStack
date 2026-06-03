@@ -33,11 +33,19 @@ def main() -> None:
     output.mkdir(parents=True, exist_ok=True)
     paths = write_campaign_artifacts(report, output)
     paths["manifest"] = output / "artifact_manifest.json"
+    stage_manifest_files = tuple(
+        str(Path(stage.artifact_dir) / "artifact_manifest.json")
+        for stage in report.stages
+        if (Path(stage.artifact_dir) / "artifact_manifest.json").exists()
+    )
+    tracked_files = tuple(
+        dict.fromkeys((*CORE_CAMPAIGN_PROVENANCE_FILES, *stage_manifest_files))
+    )
     write_manifest(
         build_artifact_manifest(
             artifact_kind="phase1_campaign_report",
             command="scripts/tss_phase1_campaign.py",
-            tracked_files=CORE_CAMPAIGN_PROVENANCE_FILES,
+            tracked_files=tracked_files,
             metadata={
                 "git_commit": git_commit_or_unknown(),
                 "campaign_id": report.campaign_id,

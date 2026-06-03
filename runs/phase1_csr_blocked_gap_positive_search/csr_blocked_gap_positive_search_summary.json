@@ -1,0 +1,78 @@
+{
+  "by_gap_status": {
+    "general_bicgstab_ilu0": {
+      "success": 2
+    },
+    "general_bicgstab_row_column_equilibration": {
+      "success": 2
+    },
+    "symmetric_chebyshev_jacobi": {
+      "success": 2
+    },
+    "symmetric_pcg_symmetric_equilibration": {
+      "success": 2
+    }
+  },
+  "by_search_status": {
+    "screened_out": 19,
+    "selected_positive": 8,
+    "skipped": 23
+  },
+  "by_status": {
+    "success": 8
+  },
+  "candidate_jobs": 8,
+  "csr_record_paths": [
+    "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+    "runs/phase1_csr_micro_campaign/csr_matrices.jsonl",
+    "runs/phase1_csr_queue_batch_00001/csr_matrices.jsonl",
+    "runs/phase1_csr_queue_batch_00003/csr_matrices.jsonl",
+    "runs/phase1_csr_queue_batch_00004/csr_matrices.jsonl",
+    "runs/phase1_csr_queue_batch_00005/csr_matrices.jsonl",
+    "runs/phase1_csr_queue_batch_00006/csr_matrices.jsonl",
+    "runs/phase1_csr_queue_batch_00007/csr_matrices.jsonl",
+    "runs/phase1_csr_queue_batch_00008/csr_matrices.jsonl",
+    "runs/phase1_csr_queue_batch_00009/csr_matrices.jsonl",
+    "runs/phase1_csr_queue_batch_00010/csr_matrices.jsonl"
+  ],
+  "device_memory_gb": 0.2,
+  "executes_gpu": true,
+  "gpu_failed_rows": 0,
+  "gpu_success_rows": 8,
+  "max_cols": 2048,
+  "max_iter": 300,
+  "max_nnz": 20000,
+  "max_positive_per_gap": 2,
+  "max_rows": 2048,
+  "next_step": "integrate positive blocked-gap rows into guarded selector evidence without generic queue merge",
+  "positive_evidence_found": true,
+  "positive_gpu_gap_ids": [
+    "general_bicgstab_ilu0",
+    "general_bicgstab_row_column_equilibration",
+    "symmetric_chebyshev_jacobi",
+    "symmetric_pcg_symmetric_equilibration"
+  ],
+  "queue_merge_ready": false,
+  "required_gap_ids": [
+    "general_bicgstab_ilu0",
+    "general_bicgstab_row_column_equilibration",
+    "symmetric_chebyshev_jacobi",
+    "symmetric_pcg_symmetric_equilibration"
+  ],
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_blocked_gap_positive_search_v1",
+  "search_rows": 50,
+  "selected_candidates": 8,
+  "selected_matrix_ids": [
+    "suitesparse:FIDAP/ex5",
+    "suitesparse:Grund/b1_ss",
+    "suitesparse:HB/bcsstk01",
+    "suitesparse:HB/curtis54",
+    "suitesparse:JGD_Trefethen/Trefethen_20b"
+  ],
+  "selector_oracle_rows": 5,
+  "selector_rows": 8,
+  "source_records": 91,
+  "status": "passed",
+  "tolerance_rel": 1e-05
+}

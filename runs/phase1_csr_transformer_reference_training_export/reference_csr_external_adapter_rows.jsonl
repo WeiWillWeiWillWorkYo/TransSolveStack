@@ -1,0 +1,6 @@
+{"adapter": "csr_external_json_ranker_checkpoint_v1", "checkpoint_schema_version": "phase1_csr_external_ranker_checkpoint_v1", "framework": "tss_json_reference_export", "row_kind": "checkpoint_contract", "schema_version": "phase1_csr_external_model_adapter_v1"}
+{"num_requests": 20, "row_kind": "tensor_contract", "schema_version": "phase1_csr_external_model_adapter_v1", "scorer_feature_dim": 62, "token_feature_dim": 37}
+{"model_family": "masked_self_attention_ranker_v1", "model_id": "csr_masked_self_attention_ranker_v1", "quality_gate_input_ready": true, "row_kind": "adapted_model", "schema_version": "phase1_csr_external_model_adapter_v1"}
+{"num_predictions": 20, "prediction_contract_valid": true, "row_kind": "prediction_contract", "schema_version": "phase1_csr_external_model_adapter_v1"}
+{"default_mode": "shadow", "guard_required": true, "row_kind": "runtime_boundary", "runtime_selector_changed": false, "schema_version": "phase1_csr_external_model_adapter_v1"}
+{"adapter_ready": true, "row_kind": "adapter_decision", "schema_version": "phase1_csr_external_model_adapter_v1", "status": "passed", "validation_errors": []}

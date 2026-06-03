@@ -1,0 +1,90 @@
+{
+  "applicability_label_policy": {
+    "not_applicable_reasons": [
+      "not_symmetric"
+    ],
+    "not_profiled_reasons": [
+      "after_selection_limit",
+      "above_smoke_size_limit"
+    ],
+    "status_values": [
+      "not_applicable",
+      "not_profiled"
+    ]
+  },
+  "candidate_id_policy": {
+    "parameterized_candidates": [
+      "gmres.restart"
+    ],
+    "selection_filter": "runtime selectors must require target_status=success and target_success_rate=1.0"
+  },
+  "input_features": {
+    "candidate": [
+      "solver",
+      "preconditioner",
+      "precision",
+      "solver_parameters",
+      "measurement_repeats",
+      "success_rate",
+      "median_solve_time_ms",
+      "solve_time_iqr_ms",
+      "screened_out_source",
+      "failure_reason",
+      "applicability_status",
+      "applicability_reason"
+    ],
+    "matrix": [
+      "n_rows",
+      "n_cols",
+      "csr_nnz",
+      "field",
+      "declared_symmetry",
+      "actual_symmetric",
+      "symmetry_missing_pairs",
+      "symmetry_relative_error",
+      "diagonal_present_count",
+      "zero_diagonal_count",
+      "min_abs_diagonal",
+      "max_abs_diagonal",
+      "has_nonpositive_diagonal",
+      "recommended_precision"
+    ]
+  },
+  "integration_boundary": {
+    "model_required": false,
+    "next_step": "scale_real_csr_solver_rows_and_train_selector",
+    "status": "ready_for_real_csr_scaleout"
+  },
+  "negative_row_policy": {
+    "accepted_reasons": [
+      "cpu_reference_cg_screen_failed",
+      "cpu_reference_bicgstab_screen_failed",
+      "cpu_reference_gmres_screen_failed",
+      "cpu_reference_richardson_screen_failed",
+      "cpu_reference_chebyshev_screen_failed"
+    ],
+    "source": "CPU reference screens recorded before GPU execution",
+    "status_values": [
+      "screened_out"
+    ]
+  },
+  "schema_version": "phase1_csr_selector_features_v8",
+  "targets": [
+    "label_is_oracle",
+    "target_status",
+    "target_success_rate",
+    "target_measurement_repeats",
+    "target_solve_time_ms",
+    "target_median_solve_time_ms",
+    "target_solve_time_iqr_ms",
+    "target_regret_vs_oracle_ms",
+    "target_num_iterations",
+    "target_final_relative_residual",
+    "target_cpu_recomputed_relative_residual",
+    "target_solution_relative_error",
+    "target_failure_reason",
+    "target_applicability_status",
+    "target_applicability_reason"
+  ],
+  "task": "rank_real_csr_solver_preconditioner_precision_candidates"
+}

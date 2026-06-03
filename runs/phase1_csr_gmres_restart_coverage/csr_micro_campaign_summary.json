@@ -1,0 +1,30 @@
+{
+  "by_solver_status": {
+    "gmres:screened_out": 14
+  },
+  "by_status": {
+    "screened_out": 14
+  },
+  "candidate_jobs": 14,
+  "candidate_queue_path": "runs/phase1_csr_gmres_restart_coverage/csr_gmres_restart_candidate_queue.jsonl",
+  "cpu_screened_out_rows": 14,
+  "device_memory_gb": 0.2,
+  "executes_gpu": true,
+  "gpu_failed_rows": 0,
+  "gpu_success_rows": 0,
+  "imported_matrices": 7,
+  "matrices_with_selector_rows": 7,
+  "matrix_queue_path": "runs/phase1_csr_gmres_restart_coverage/csr_gmres_restart_matrix_queue.jsonl",
+  "max_archive_size_bytes": 256000000,
+  "max_cols": 65536,
+  "max_cpu_recomputed_relative_residual": 0.0,
+  "max_final_relative_residual": 0.0,
+  "max_rows": 65536,
+  "max_solution_relative_error": 0.0,
+  "max_stored_entries": 1000000,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_micro_campaign_v1",
+  "selector_oracle_rows": 0,
+  "selector_rows": 14,
+  "status": "failed"
+}

@@ -1,6 +1,10 @@
 {
   "default_mode": "shadow",
   "guard_id": "csr_learned_policy_runtime_guard_v1",
+  "learned_policy_sources": {
+    "actual_artifact_checks": "model_artifact",
+    "promotion_fixture": "prediction_artifact"
+  },
   "promotion_requires": [
     "offline_quality_gate_runtime_eligible",
     "confidence_at_or_above_threshold",

@@ -1,0 +1,84 @@
+{
+  "artifact_kind": "csr_blocked_gap_training_integration",
+  "command": "scripts/tss_csr_blocked_gap_training_integration.py",
+  "created_at_utc": "2026-06-02T01:11:00.287981+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_queue_training_pool/csr_queue_training_pool_selector_rows.jsonl",
+      "sha256": "cf771c1c5640e40b58b639c6055bb34c957124aee078c5a63c178655240dc5f3"
+    },
+    {
+      "path": "runs/phase1_csr_queue_training_pool/csr_queue_training_pool_summary.json",
+      "sha256": "bce136f0eb656fd16efa5548e74a02a067eba6877f7cdb0b8e596b9d2121566b"
+    },
+    {
+      "path": "runs/phase1_csr_queue_training_pool/artifact_manifest.json",
+      "sha256": "a5a940e7f1f093cb07051b8b7d49f28ef441c9caad11bb6532d7eca6981624fa"
+    },
+    {
+      "path": "runs/phase1_csr_blocked_gap_positive_search/csr_blocked_gap_positive_selector_rows.jsonl",
+      "sha256": "d19ca411be96c4c13235bb5f3e0d908e6e1a1254824ecef363ac43a8a3262bd0"
+    },
+    {
+      "path": "runs/phase1_csr_blocked_gap_positive_search/csr_blocked_gap_positive_search_summary.json",
+      "sha256": "fd2e795bc98a6f6227b863c1a308d2bcadc1e7e23a8b328aeacbc43e1c325bb9"
+    },
+    {
+      "path": "runs/phase1_csr_blocked_gap_positive_search/artifact_manifest.json",
+      "sha256": "3d8c0eb895720e8aa12b8222afea8dd9020b7f37e48e89ed19b80268f5bec7bc"
+    },
+    {
+      "path": "transsolvestack/policies/csr_transformer_ready.py",
+      "sha256": "5d7a7581d3de6f9ea13cf46944eeb6a1030b987624e9a119922de5f8e385efff"
+    },
+    {
+      "path": "transsolvestack/policies/csr_learning.py",
+      "sha256": "0b4581cd594b271a7b80f6f7c7adc08e9a404ef4904d1d18f48cc791cc0d3533"
+    },
+    {
+      "path": "transsolvestack/policies/csr_model_contract.py",
+      "sha256": "16f3aa9ee6ffd44cb0efbb14a528eea7e53644dc28edb20d093994770be7c4e7"
+    },
+    {
+      "path": "transsolvestack/policies/csr_tensor_export.py",
+      "sha256": "a137ef00f23703ced8a81e0e8ce281a45ab872eb5f76e3cac9664124b3790249"
+    },
+    {
+      "path": "transsolvestack/profiling/artifacts.py",
+      "sha256": "1ccbfa01c1d1cd0c671cd057ae1e58a9bad396d9d061852890feccf09e541da2"
+    },
+    {
+      "path": "transsolvestack/profiling/csr_blocked_gap_training_integration.py",
+      "sha256": "3cd0e725527d9b93104e6312b8d8fdfea03e5abbe330e2a72f3bb936f0514601"
+    },
+    {
+      "path": "transsolvestack/profiling/csr_blocked_gap_training_tensor_bundle.py",
+      "sha256": "53347b83eeb42b344bce8fcec3e8a99072b5cadc6aa5b343a68a67a82cc5f27f"
+    },
+    {
+      "path": "scripts/tss_csr_blocked_gap_training_integration.py",
+      "sha256": "04dfeaa72b5027c0fdb8084180bf9775385993f7e4eb30f36ef86f11a2dd894f"
+    }
+  ],
+  "metadata": {
+    "base_selector_rows": 372,
+    "generic_queue_merge": false,
+    "git_commit": "c71452fa04c75c01ad1813409824c42fd937cc49",
+    "integrated_global_candidates": 12,
+    "integrated_model_requests": 105,
+    "integrated_selector_rows": 380,
+    "new_global_candidate_ids": [
+      "taichi_csr_bicgstab_ilu0_float64",
+      "taichi_csr_bicgstab_row_column_equilibration_float64",
+      "taichi_csr_pcg_symmetric_equilibration_float64"
+    ],
+    "positive_oracle_rows": 5,
+    "positive_selector_rows": 8,
+    "positive_success_rows": 8,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_blocked_gap_training_integration_v1",
+    "status": "passed",
+    "validation_error_count": 0
+  },
+  "python_version": "3.10.18"
+}

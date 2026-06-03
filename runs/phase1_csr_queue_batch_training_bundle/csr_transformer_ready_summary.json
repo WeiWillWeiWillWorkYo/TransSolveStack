@@ -1,0 +1,44 @@
+{
+  "candidate_feature_dim": 16,
+  "eval_oracle_top1_accuracy": 0.08,
+  "eval_profiled_selection_rate": 0.16,
+  "label_class_counts": {
+    "not_applicable": 34,
+    "not_profiled": 44,
+    "screened_out": 223,
+    "success_non_oracle": 39,
+    "success_oracle": 32
+  },
+  "matrix_feature_dim": 21,
+  "model_required": false,
+  "num_active_candidate_slots": 372,
+  "num_global_candidates": 9,
+  "num_learning_eval_rows": 117,
+  "num_learning_rows": 372,
+  "num_learning_train_rows": 255,
+  "num_matrices": 99,
+  "num_model_predictions": 25,
+  "num_model_requests": 100,
+  "num_model_targets": 100,
+  "num_oracle_rows": 32,
+  "num_oracle_targets": 32,
+  "num_requests_without_oracle": 68,
+  "num_screened_out_rows": 223,
+  "num_selector_rows": 372,
+  "num_success_rows": 71,
+  "num_tensor_requests": 100,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_transformer_ready_v1",
+  "source_selector_paths": [
+    "runs/phase1_csr_queue_training_pool/csr_queue_training_pool_selector_rows.jsonl"
+  ],
+  "status": "passed",
+  "target_status_counts": {
+    "not_applicable": 34,
+    "not_profiled": 44,
+    "screened_out": 223,
+    "success": 71
+  },
+  "transformer_connectable": true,
+  "validation_error_count": 0
+}

@@ -1,0 +1,71 @@
+{
+  "base_matrix_contexts": 100,
+  "base_oracle_rows": 32,
+  "base_pool_summary_path": "runs/phase1_csr_queue_training_pool/csr_queue_training_pool_summary.json",
+  "base_selector_rows": 372,
+  "base_success_rows": 71,
+  "duplicate_key_count": 0,
+  "duplicate_keys": [],
+  "executes_gpu": false,
+  "existing_global_candidate_ids": [
+    "taichi_csr_chebyshev_jacobi_float64"
+  ],
+  "generic_queue_merge": false,
+  "imports_matrices": false,
+  "integrated_active_candidate_slots": 380,
+  "integrated_global_candidates": 12,
+  "integrated_model_requests": 105,
+  "integrated_oracle_rows": 37,
+  "integrated_selector_rows": 380,
+  "integrated_success_rows": 79,
+  "integrated_tensor_requests": 105,
+  "integrated_transformer_connectable": true,
+  "model_request_delta": 5,
+  "model_required": false,
+  "new_global_candidate_ids": [
+    "taichi_csr_bicgstab_ilu0_float64",
+    "taichi_csr_bicgstab_row_column_equilibration_float64",
+    "taichi_csr_pcg_symmetric_equilibration_float64"
+  ],
+  "next_step": "train or replay selector models on the augmented tensor bundle while keeping runtime promotion behind the learned guard",
+  "positive_candidate_ids": [
+    "taichi_csr_bicgstab_ilu0_float64",
+    "taichi_csr_bicgstab_row_column_equilibration_float64",
+    "taichi_csr_chebyshev_jacobi_float64",
+    "taichi_csr_pcg_symmetric_equilibration_float64"
+  ],
+  "positive_contexts": [
+    "phase1_csr_blocked_gap_positive_search"
+  ],
+  "positive_gap_ids": [
+    "general_bicgstab_ilu0",
+    "general_bicgstab_row_column_equilibration",
+    "symmetric_chebyshev_jacobi",
+    "symmetric_pcg_symmetric_equilibration"
+  ],
+  "positive_gap_row_counts": {
+    "general_bicgstab_ilu0": 2,
+    "general_bicgstab_row_column_equilibration": 2,
+    "symmetric_chebyshev_jacobi": 2,
+    "symmetric_pcg_symmetric_equilibration": 2
+  },
+  "positive_matrix_contexts": 5,
+  "positive_oracle_rows": 5,
+  "positive_selector_rows": 8,
+  "positive_source_queue_merge_ready": false,
+  "positive_source_runtime_selector_changed": false,
+  "positive_success_rows": 8,
+  "positive_summary_path": "runs/phase1_csr_blocked_gap_positive_search/csr_blocked_gap_positive_search_summary.json",
+  "positive_target_status_counts": {
+    "success": 8
+  },
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_blocked_gap_training_integration_v1",
+  "source_selector_paths": [
+    "runs/phase1_csr_queue_training_pool/csr_queue_training_pool_selector_rows.jsonl",
+    "runs/phase1_csr_blocked_gap_positive_search/csr_blocked_gap_positive_selector_rows.jsonl"
+  ],
+  "status": "passed",
+  "training_only_integration": true,
+  "validation_error_count": 0
+}

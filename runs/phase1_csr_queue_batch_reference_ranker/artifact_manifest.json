@@ -1,0 +1,48 @@
+{
+  "artifact_kind": "csr_queue_batch_reference_ranker",
+  "command": "scripts/tss_csr_queue_batch_reference_ranker.py",
+  "created_at_utc": "2026-05-28T13:39:51.859586+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_queue_batch_training_bundle/csr_transformer_training_tensors.json",
+      "sha256": "8e01bcbccaa0e3cfa68c2c3fd0c09b9647fbc8e90ecca89affe1ac4942239b24"
+    },
+    {
+      "path": "runs/phase1_csr_queue_batch_training_bundle/csr_transformer_request_index.jsonl",
+      "sha256": "d3687fac0280ef0e96f00fce18be36f6615a20b6fca00da50c46d00b69fa3b46"
+    },
+    {
+      "path": "runs/phase1_csr_queue_batch_training_bundle/csr_transformer_ready_summary.json",
+      "sha256": "231e2c41f098539ece28be6aaf55462fa45956440f78a87d598ced7db84754aa"
+    },
+    {
+      "path": "runs/phase1_csr_queue_batch_training_bundle/artifact_manifest.json",
+      "sha256": "556c5aff0dbdc161d50667b9641a8d809d2ed24c89ab3ae37abdabc7bbb9d712"
+    },
+    {
+      "path": "transsolvestack/policies/csr_transformer_ranker.py",
+      "sha256": "0907d1386e794cd18a9e321ad7b10f910fdc1f98abf9e4609d13a533078787f7"
+    },
+    {
+      "path": "scripts/tss_csr_queue_batch_reference_ranker.py",
+      "sha256": "1e699372190518465fcc3e92f4b57154b5e76f57e598a2812a4d9fe6f53adf0e"
+    }
+  ],
+  "metadata": {
+    "eval_non_success_selection_count": 22,
+    "eval_oracle_top1_accuracy": 0.5,
+    "eval_profiled_success_selection_rate": 0.12,
+    "git_commit": "c71452fa04c75c01ad1813409824c42fd937cc49",
+    "model_family": "masked_self_attention_ranker_v1",
+    "model_id": "csr_queue_batch_shadow_ranker_v1",
+    "model_trained": true,
+    "num_eval_oracle_requests": 4,
+    "num_eval_requests": 25,
+    "num_requests": 100,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_transformer_ranker_v1",
+    "shadow_only": true,
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

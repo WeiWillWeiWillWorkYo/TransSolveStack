@@ -1,0 +1,28 @@
+{
+  "executes_gpu": false,
+  "execution_boundary": {
+    "append_only_training_rows": true,
+    "automatic_execution": false,
+    "requires_cpu_screen": true,
+    "requires_explicit_gpu_benchmark_start": true
+  },
+  "imports_matrices": false,
+  "queue_files": {
+    "batches": "csr_full_dataset_queue_batches.jsonl",
+    "jobs": "csr_full_dataset_queue_jobs.jsonl",
+    "matrices": "csr_full_dataset_queue_matrices.jsonl",
+    "state": "csr_full_dataset_queue_state.json"
+  },
+  "resource_limits": {
+    "batch_matrix_count": 8,
+    "max_archive_size_bytes": 256000000,
+    "max_cols": 65536,
+    "max_iter": 300,
+    "max_nnz": 1000000,
+    "max_rows": 65536,
+    "measurement_repeats": 1
+  },
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_full_dataset_queue_v1",
+  "task": "plan_recoverable_full_suitesparse_csr_training_queue"
+}

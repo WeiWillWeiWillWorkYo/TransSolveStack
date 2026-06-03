@@ -1,0 +1,39 @@
+{
+  "acceptance_status": "passed",
+  "accepted_for_runtime_promotion": false,
+  "accepted_for_shadow": true,
+  "adapter": "csr_transformer_ranker_saved_model_v1",
+  "all_file_checksums_present": true,
+  "contribution_name": "csr_masked_self_attention_ranker_v1_reference_submission",
+  "contribution_version": "phase1-reference",
+  "contributor_id": "wei_cui_reference",
+  "contributor_name": "Wei CUI",
+  "default_runtime_mode": "shadow",
+  "guarded_gpu_shadow_smoke_checked": true,
+  "guarded_gpu_smoke_successes": 2,
+  "model_artifact_ready": true,
+  "model_family": "masked_self_attention_ranker_v1",
+  "model_id": "csr_masked_self_attention_ranker_v1",
+  "num_packaged_files": 8,
+  "promotion_blockers": [
+    "below_min_profiled_success_rate",
+    "below_baseline_oracle_top1",
+    "below_baseline_profiled_success_rate",
+    "non_success_eval_selections",
+    "quality_gate_not_runtime_eligible"
+  ],
+  "required_terms_documents": [
+    "MODEL_CONTRIBUTION_TERMS.md",
+    "CONTRIBUTOR_LICENSE_AGREEMENT.md"
+  ],
+  "runtime_promotion_ready": false,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_policy_model_submission_v1",
+  "shadow_submission_ready": true,
+  "status": "passed",
+  "submission_kind": "csr_policy_model_submission",
+  "submission_ready": true,
+  "terms_acknowledged": true,
+  "validation_error_count": 0,
+  "validation_errors": []
+}

@@ -1,0 +1,27 @@
+{
+  "acceptance_gate": {
+    "requires_no_runtime_selector_change": true,
+    "requires_positive_candidate_coverage_complete": true,
+    "requires_positive_context_prediction_count": 5,
+    "requires_positive_selected_success_only": true,
+    "requires_ranker_status_passed": true
+  },
+  "input_contract": {
+    "positive_membership": "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_positive_membership.jsonl",
+    "request_index": "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_request_index.jsonl",
+    "tensors": "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_tensors.json"
+  },
+  "output_contract": {
+    "model": "csr_blocked_gap_augmented_ranker_model.json",
+    "positive_predictions": "csr_blocked_gap_augmented_ranker_positive_predictions.jsonl",
+    "predictions": "csr_blocked_gap_augmented_ranker_predictions.jsonl",
+    "summary": "csr_blocked_gap_augmented_ranker_summary.json"
+  },
+  "runtime_boundary": {
+    "model_required_for_runtime": false,
+    "runtime_selector_changed": false,
+    "shadow_only": true
+  },
+  "schema_version": "phase1_csr_blocked_gap_augmented_ranker_v1",
+  "task": "train_shadow_ranker_on_blocked_gap_augmented_tensor_bundle"
+}

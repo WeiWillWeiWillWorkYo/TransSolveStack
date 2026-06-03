@@ -1,0 +1,62 @@
+{
+  "artifact_kind": "csr_transformer_package_consumer_dry_run",
+  "command": "scripts/tss_csr_transformer_package_consumer_dry_run.py",
+  "created_at_utc": "2026-06-03T07:51:45.822688+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_transformer_training_package/csr_transformer_training_package_manifest.json",
+      "sha256": "cb98876c3ddde6c3f8232815a0ef2dc2e9130560e1f308fa82a33411ce09f6b7"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_training_package/csr_transformer_training_package_summary.json",
+      "sha256": "b4568bcde521b9c85fe4a2c3d42a3820c7366e84d00dce298be9699bcbd80788"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_training_package/csr_transformer_training_package_rows.jsonl",
+      "sha256": "ff7b900b6964ce425448db2436419eeffe1ef0c4ad312e4f5ab4569e35e6e97e"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_training_package/artifact_manifest.json",
+      "sha256": "0e2d081e09ff06a7ee328d78c42f8bba24c77782a1be011668ee7b010a69a297"
+    },
+    {
+      "path": "runs/phase1_csr_external_model_intake/csr_external_model_intake_summary.json",
+      "sha256": "7d07db6877f8b158616329e9b921afc8a3c5e435faa6e81b1d38845f61049087"
+    },
+    {
+      "path": "runs/phase1_csr_external_model_intake/csr_policy_model_submission_summary.json",
+      "sha256": "2befe1c9dcc0926e8ed673a99b7e0e01f34af9de58373d3cc01eb1c5661241dd"
+    },
+    {
+      "path": "runs/phase1_csr_external_model_intake/csr_policy_model_acceptance_summary.json",
+      "sha256": "9339712d346d7c86478ec9c00f45fc3c79b01b4b7d5195cc63c5e524d5ee51aa"
+    },
+    {
+      "path": "runs/phase1_csr_external_model_intake/artifact_manifest.json",
+      "sha256": "bf52617f603a1225210059d0f6f31f5d58f3a0c0d737368186db04df71efefa9"
+    },
+    {
+      "path": "transsolvestack/profiling/csr_transformer_package_consumer_dry_run.py",
+      "sha256": "35757989298e4724145313a159c04a707d42b8475f53eabc2cacaf5421063b92"
+    },
+    {
+      "path": "scripts/tss_csr_transformer_package_consumer_dry_run.py",
+      "sha256": "55056a6716dff1873ba613e320f4639fbfc88db0f9be90fe590757accb5625f9"
+    }
+  ],
+  "metadata": {
+    "consumer_ready": true,
+    "dry_run_only": true,
+    "git_commit": "c71452fa04c75c01ad1813409824c42fd937cc49",
+    "num_expected_outputs_resolved": 6,
+    "num_inputs_verified": 16,
+    "num_validation_steps_resolved": 6,
+    "reference_runtime_promotion_ready": false,
+    "reference_shadow_submission_ready": true,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_transformer_package_consumer_dry_run_v1",
+    "source_package_ready": true,
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

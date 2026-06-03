@@ -1,0 +1,27 @@
+{
+  "acceptance_gate": {
+    "requires_actual_quality_gate_blocks": 5,
+    "requires_actual_runtime_selector_changes": 0,
+    "requires_counterfactual_rows_marked_non_runtime": true,
+    "requires_fallback_chain_enforced": 5,
+    "requires_shadow_mode_decisions": 5
+  },
+  "input_contract": {
+    "positive_predictions": "runs/phase1_csr_blocked_gap_augmented_ranker/csr_blocked_gap_augmented_ranker_positive_predictions.jsonl",
+    "ranker_predictions": "runs/phase1_csr_blocked_gap_augmented_ranker/csr_blocked_gap_augmented_ranker_predictions.jsonl",
+    "selector_rows": "runs/phase1_csr_blocked_gap_training_integration/combined_csr_selector_rows.jsonl"
+  },
+  "output_contract": {
+    "blocked_quality_gate": "csr_blocked_gap_guarded_replay_blocked_quality_gate.json",
+    "counterfactual_quality_gate": "csr_blocked_gap_guarded_replay_counterfactual_quality_gate.json",
+    "rows": "csr_blocked_gap_guarded_replay_rows.jsonl",
+    "summary": "csr_blocked_gap_guarded_replay_summary.json"
+  },
+  "runtime_boundary": {
+    "executes_gpu": false,
+    "runtime_selector_changed": false,
+    "shadow_only": true
+  },
+  "schema_version": "phase1_csr_blocked_gap_guarded_replay_v1",
+  "task": "replay_blocked_gap_augmented_ranker_through_learned_guard"
+}

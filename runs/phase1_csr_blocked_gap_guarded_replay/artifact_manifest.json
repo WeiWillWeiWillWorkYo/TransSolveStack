@@ -1,0 +1,62 @@
+{
+  "artifact_kind": "csr_blocked_gap_guarded_replay",
+  "command": "scripts/tss_csr_blocked_gap_guarded_replay.py",
+  "created_at_utc": "2026-06-03T01:36:17.816944+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_blocked_gap_training_integration/combined_csr_selector_rows.jsonl",
+      "sha256": "1f7faca5a1d576b81550d7d06ae9192601485f7dc6d25afdff18216757382fd2"
+    },
+    {
+      "path": "runs/phase1_csr_blocked_gap_training_integration/artifact_manifest.json",
+      "sha256": "f55b79b2f30d319fe3393f0b398455d1fa4ec8b960e2fe7a93b2d2018e4ac431"
+    },
+    {
+      "path": "runs/phase1_csr_blocked_gap_augmented_ranker/csr_blocked_gap_augmented_ranker_predictions.jsonl",
+      "sha256": "9eb9df130a5dd794b5ebbd49a1e2fee6da019bb569581b0b73fcd1c102ddb5f9"
+    },
+    {
+      "path": "runs/phase1_csr_blocked_gap_augmented_ranker/csr_blocked_gap_augmented_ranker_positive_predictions.jsonl",
+      "sha256": "7ccccd05565b5816e3d69c18715a8dbca099ba20d4a9338ccf57d3ffb2be9f85"
+    },
+    {
+      "path": "runs/phase1_csr_blocked_gap_augmented_ranker/csr_blocked_gap_augmented_ranker_summary.json",
+      "sha256": "f052799641d4a85fd32c6e27f07884789e0e5d3f050a27d00921aec84b8d0c10"
+    },
+    {
+      "path": "runs/phase1_csr_blocked_gap_augmented_ranker/artifact_manifest.json",
+      "sha256": "b625cf4d83643018f410011b82ad01f5478db9e4448507ca2a6c4d6dd3412a53"
+    },
+    {
+      "path": "transsolvestack/policies/csr_artifact_selector.py",
+      "sha256": "6b839c084e7b3a54c86d6d4000a403aba93abd4d547bc175e92b025b689bd860"
+    },
+    {
+      "path": "transsolvestack/policies/csr_learned_guard.py",
+      "sha256": "fb4d69433aef265e6d923ae54efa514012fc08ce82e9da1c8659088869aa7353"
+    },
+    {
+      "path": "transsolvestack/profiling/csr_blocked_gap_guarded_replay.py",
+      "sha256": "6b861d82c19f5ca664760a3a0e0aac8febc928f89f465216c55adcf8f0917162"
+    },
+    {
+      "path": "scripts/tss_csr_blocked_gap_guarded_replay.py",
+      "sha256": "db6cc7fd8e1add220e2d63c6af65efcd8baab47c1ae6b6e6198b4c6691324f43"
+    }
+  ],
+  "metadata": {
+    "actual_quality_gate_blocks": 5,
+    "actual_runtime_selector_changes": 0,
+    "counterfactual_eligible_gate_promotions": 5,
+    "counterfactual_only": true,
+    "executes_gpu": false,
+    "fallback_chain_enforced_rows": 5,
+    "git_commit": "c71452fa04c75c01ad1813409824c42fd937cc49",
+    "num_replay_rows": 5,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_blocked_gap_guarded_replay_v1",
+    "shadow_only": true,
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

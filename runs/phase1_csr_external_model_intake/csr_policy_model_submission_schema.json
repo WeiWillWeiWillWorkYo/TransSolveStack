@@ -1,0 +1,25 @@
+{
+  "required_file_labels": [
+    "policy_model_artifact",
+    "saved_model",
+    "transformer_tensors",
+    "request_index",
+    "quality_gate_summary",
+    "replay_summary",
+    "acceptance_summary",
+    "acceptance_rows"
+  ],
+  "required_terms_documents": [
+    "MODEL_CONTRIBUTION_TERMS.md",
+    "CONTRIBUTOR_LICENSE_AGREEMENT.md"
+  ],
+  "runtime_boundary": {
+    "default_mode": "shadow",
+    "guard_required": true,
+    "runtime_promotion_ready": false,
+    "runtime_selector_changed": false,
+    "shadow_submission_ready": true
+  },
+  "schema_version": "phase1_csr_policy_model_submission_v1",
+  "submission_kind": "csr_policy_model_submission"
+}

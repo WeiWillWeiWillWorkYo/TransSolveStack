@@ -26,6 +26,8 @@ def test_csr_guarded_auto_solve_artifacts_are_valid():
     assert summary["num_solves"] == 2
     assert summary["num_success"] == 2
     assert summary["num_failed"] == 0
+    assert summary["learned_prediction_source"] == "model_artifact"
+    assert summary["saved_model_loaded_count"] == 2
     assert summary["quality_gate_blocks"] == 2
     assert summary["learned_runtime_promotions"] == 0
     assert summary["runtime_selector_changed"] is False
@@ -43,6 +45,10 @@ def test_csr_guarded_auto_solve_artifacts_are_valid():
     for row in rows:
         assert row["status"] == "success"
         assert row["runtime_selection_source"] == "artifact"
+        assert row["learned_policy_source_kind"] == "model_artifact"
+        assert row["learned_model_loaded"] is True
+        assert row["learned_policy_source"]["model_loaded"] is True
+        assert row["learned_policy_source"]["adapter"] == "csr_transformer_ranker_saved_model_v1"
         assert row["learned_guard_status"] == "blocked_quality_gate"
         assert "quality_gate:non_success_eval_selections" in row["learned_guard_reasons"]
         assert row["fallback_chain_enforced"] is True
@@ -56,5 +62,7 @@ def test_csr_guarded_auto_solve_artifacts_are_valid():
         assert row["trace"]["metadata"]["runtime_guard"]["guard_status"] == "success"
 
     assert manifest.metadata["quality_gate_blocks"] == 2
+    assert manifest.metadata["learned_prediction_source"] == "model_artifact"
+    assert manifest.metadata["saved_model_loaded_count"] == 2
     assert manifest.metadata["learned_runtime_promotions"] == 0
     assert manifest.metadata["runtime_selector_changed"] is False

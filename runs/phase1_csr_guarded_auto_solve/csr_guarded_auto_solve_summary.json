@@ -1,8 +1,13 @@
 {
   "device_memory_gb": 0.25,
   "fallback_chain_enforced_count": 2,
+  "learned_model_artifact_path": "runs/phase1_csr_policy_model_artifact/csr_policy_model_artifact.json",
+  "learned_model_path": "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_model.json",
+  "learned_prediction_source": "model_artifact",
   "learned_predictions_path": "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_predictions.jsonl",
+  "learned_request_index_path": "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl",
   "learned_runtime_promotions": 0,
+  "learned_tensor_path": "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json",
   "max_cpu_recomputed_relative_residual": 8.729656304514155e-06,
   "max_final_relative_residual": 8.729656304521325e-06,
   "max_solution_relative_error": 0.00042280635566429453,
@@ -14,6 +19,7 @@
   "runtime_fallback_used_count": 0,
   "runtime_guard_success_count": 2,
   "runtime_selector_changed": false,
+  "saved_model_loaded_count": 2,
   "schema_version": "phase1_csr_guarded_auto_solve_v1",
   "selected_solver_set": [
     "bicgstab",

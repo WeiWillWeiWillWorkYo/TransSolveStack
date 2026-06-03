@@ -1,0 +1,27 @@
+{
+  "actual_guard_replay": {
+    "fallback_chain_enforced_rows": 5,
+    "quality_gate_blocks": 5,
+    "runtime_selector_changes": 0
+  },
+  "counterfactual_rows_are_runtime_evidence": false,
+  "current_shadow_baseline": {
+    "blocked_gap_success_predictions": 5,
+    "eval_non_success_selection_count": 23,
+    "model_id": "csr_blocked_gap_augmented_shadow_ranker_v1",
+    "runtime_eligible": false
+  },
+  "default_mode": "shadow",
+  "guard_required": true,
+  "min_confidence": 0.75,
+  "promotion_requires": [
+    "quality_gate_runtime_eligible",
+    "confidence_at_or_above_threshold",
+    "exact_matrix_context_profiled_success_candidate",
+    "fallback_chain_contains_only_profiled_success_candidates",
+    "runtime_timeout_guard",
+    "accepted_model_submission"
+  ],
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_transformer_handoff_bundle_v1"
+}

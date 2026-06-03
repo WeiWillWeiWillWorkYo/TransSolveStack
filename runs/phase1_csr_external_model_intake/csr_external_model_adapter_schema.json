@@ -1,0 +1,15 @@
+{
+  "adapter": "csr_external_json_ranker_checkpoint_v1",
+  "checkpoint_schema_version": "phase1_csr_external_ranker_checkpoint_v1",
+  "outputs": {
+    "adapted_model_schema_version": "phase1_csr_transformer_ranker_v1",
+    "policy_model_artifact_input_ready": true,
+    "quality_gate_input_ready": true
+  },
+  "runtime_boundary": {
+    "default_mode": "shadow",
+    "guard_required": true,
+    "runtime_selector_changed": false
+  },
+  "schema_version": "phase1_csr_external_model_adapter_v1"
+}

@@ -1,0 +1,14 @@
+{
+  "batch_id": "batch_00003",
+  "batch_outcome": "profiled_with_gpu_success",
+  "completed_outputs": {
+    "csr_imports": "csr_matrices.jsonl",
+    "gpu_results": "csr_micro_campaign_results.jsonl",
+    "selector_rows": "csr_micro_selector_rows.jsonl"
+  },
+  "queue_id": "phase1_csr_full_dataset_queue_m83",
+  "resume_status": "completed",
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_queue_batch_execution_v1",
+  "state_kind": "csr_queue_batch_execution_state"
+}

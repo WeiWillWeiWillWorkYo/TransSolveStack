@@ -110,6 +110,111 @@ def train_csr_transformer_ranker_from_tensor_file(
     )
 
 
+def load_csr_transformer_ranker_model(path: str | Path) -> dict[str, Any]:
+    """Load and validate a saved CSR Transformer ranker model artifact."""
+
+    model = json.loads(Path(path).read_text(encoding="utf-8"))
+    _validate_saved_model(model)
+    return model
+
+
+def predict_csr_transformer_ranker_from_model_file(
+    model_path: str | Path,
+    tensor_path: str | Path,
+    request_index_path: str | Path,
+) -> tuple[CsrTransformerRankerPrediction, ...]:
+    """Run inference from a saved model without retraining."""
+
+    model = load_csr_transformer_ranker_model(model_path)
+    arrays = json.loads(Path(tensor_path).read_text(encoding="utf-8"))
+    request_index = tuple(read_jsonl(request_index_path))
+    return predict_csr_transformer_ranker_from_model(model, arrays, request_index)
+
+
+def predict_csr_transformer_ranker_from_model(
+    model: dict[str, Any],
+    arrays: dict[str, Any],
+    request_index_rows: Iterable[dict[str, Any]],
+) -> tuple[CsrTransformerRankerPrediction, ...]:
+    """Apply a saved CSR Transformer ranker model to tensor arrays."""
+
+    _validate_saved_model(model)
+    encoder = _numpy_encoder(model["encoder"])
+    d_model = int(encoder["d_model"])
+    expected_feature_names = _scorer_feature_names(arrays, d_model=d_model)
+    model_feature_names = tuple(str(name) for name in model["scorer_feature_names"])
+    if model_feature_names != expected_feature_names:
+        raise ValueError("saved model scorer features do not match tensor schema")
+    token_feature_names = list(_token_feature_names(arrays))
+    if list(model["token_feature_names"]) != token_feature_names:
+        raise ValueError("saved model token features do not match tensor schema")
+
+    raw_tokens = _raw_token_grid(arrays)
+    means = np.asarray(model["normalization"]["mean"], dtype=np.float64)
+    scales = np.asarray(model["normalization"]["scale"], dtype=np.float64)
+    token_dim = len(raw_tokens[0][0]) if raw_tokens and raw_tokens[0] else 0
+    if means.shape != (token_dim,) or scales.shape != (token_dim,):
+        raise ValueError("saved model normalization shape does not match token shape")
+    if int(encoder["token_dim"]) != token_dim:
+        raise ValueError("saved model encoder token_dim does not match tensor shape")
+
+    normalized_tokens = _normalized_token_grid(raw_tokens, means, scales)
+    transformer_features = _transformer_feature_grid(
+        normalized_tokens,
+        arrays["candidate_mask"],
+        encoder,
+    )
+    weights = [float(model["scorer_head"][name]) for name in model_feature_names]
+    request_index = tuple(sorted(request_index_rows, key=lambda row: int(row["row_index"])))
+    return _predict(
+        arrays,
+        request_index,
+        transformer_features,
+        weights,
+        model_id=str(model["model_id"]),
+    )
+
+
+def _validate_saved_model(model: dict[str, Any]) -> None:
+    required = {
+        "schema_version",
+        "model_family",
+        "model_id",
+        "token_feature_names",
+        "scorer_feature_names",
+        "normalization",
+        "encoder",
+        "scorer_head",
+    }
+    missing = sorted(required - set(model))
+    if missing:
+        raise ValueError(f"saved model missing required keys: {missing}")
+    if model["schema_version"] != CSR_TRANSFORMER_RANKER_SCHEMA_VERSION:
+        raise ValueError("saved model schema_version mismatch")
+    if model["model_family"] != MODEL_FAMILY:
+        raise ValueError("saved model model_family mismatch")
+    normalization = model["normalization"]
+    if set(normalization) != {"mean", "scale"}:
+        raise ValueError("saved model normalization must contain mean and scale")
+    if len(normalization["mean"]) != len(normalization["scale"]):
+        raise ValueError("saved model normalization mean/scale length mismatch")
+    scorer_names = tuple(str(name) for name in model["scorer_feature_names"])
+    scorer_head = model["scorer_head"]
+    if set(scorer_names) != set(str(name) for name in scorer_head):
+        raise ValueError("saved model scorer_head keys do not match scorer_feature_names")
+
+
+def _numpy_encoder(encoder: dict[str, Any]) -> dict[str, Any]:
+    int_keys = {"token_dim", "d_model", "num_attention_heads", "head_dim", "feedforward_dim"}
+    result: dict[str, Any] = {}
+    for key, value in encoder.items():
+        if key in int_keys:
+            result[key] = int(value)
+        else:
+            result[key] = np.asarray(value, dtype=np.float64)
+    return result
+
+
 def train_csr_transformer_ranker(
     arrays: dict[str, Any],
     request_index_rows: Iterable[dict[str, Any]],

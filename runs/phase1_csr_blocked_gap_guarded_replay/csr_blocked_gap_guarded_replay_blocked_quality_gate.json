@@ -1,0 +1,19 @@
+{
+  "baseline_model_id": "artifact_profiled_success_oracle",
+  "best_offline_model_id": "artifact_profiled_success_oracle",
+  "challenger_beats_baseline": false,
+  "challenger_gate_failures": [
+    "no_dedicated_runtime_quality_gate",
+    "overall_eval_non_success_selections",
+    "below_runtime_profiled_success_rate"
+  ],
+  "challenger_model_id": "csr_blocked_gap_augmented_shadow_ranker_v1",
+  "challenger_runtime_eligible": false,
+  "evaluation_id": "csr_blocked_gap_guarded_replay_quality_gate_v1",
+  "num_eval_oracle_requests": 5,
+  "num_eval_predictions": 26,
+  "runtime_selected_model_id": null,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_selector_model_eval_v1",
+  "status": "passed"
+}

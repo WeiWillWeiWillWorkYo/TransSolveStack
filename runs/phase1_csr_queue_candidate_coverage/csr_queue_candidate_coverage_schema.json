@@ -1,0 +1,16 @@
+{
+  "executes_gpu": false,
+  "gap_policy": {
+    "cpu_screen_blocked": "requires CPU-screen integration or dedicated probe before queue merge",
+    "queue_ready": "can be probed with existing generic CPU screen path"
+  },
+  "imports_matrices": false,
+  "integration_boundary": {
+    "does_not_modify_full_dataset_queue": true,
+    "does_not_promote_learned_runtime_selector": true,
+    "status": "diagnostic_plan_only"
+  },
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_queue_candidate_coverage_v1",
+  "task": "diagnose_solver_candidate_coverage_for_completed_csr_queue_batches"
+}

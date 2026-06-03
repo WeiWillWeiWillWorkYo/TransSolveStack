@@ -1,0 +1,6 @@
+{"model_id": "csr_masked_self_attention_ranker_v1", "model_trained": true, "num_predictions": 20, "row_kind": "training_result", "schema_version": "phase1_csr_transformer_reference_training_export_v1"}
+{"adapter": "csr_external_json_ranker_checkpoint_v1", "checkpoint_ready": true, "checkpoint_schema_version": "phase1_csr_external_ranker_checkpoint_v1", "row_kind": "external_checkpoint", "schema_version": "phase1_csr_transformer_reference_training_export_v1"}
+{"adapter_ready": true, "adapter_roundtrip_exact": true, "row_kind": "adapter_roundtrip", "schema_version": "phase1_csr_transformer_reference_training_export_v1"}
+{"default_runtime_mode": "shadow", "intake_input_ready": true, "quality_gate_required": true, "row_kind": "intake_boundary", "schema_version": "phase1_csr_transformer_reference_training_export_v1"}
+{"current_quality_gate_runtime_eligible": false, "row_kind": "runtime_boundary", "runtime_selector_changed": false, "schema_version": "phase1_csr_transformer_reference_training_export_v1"}
+{"reference_training_export_ready": true, "row_kind": "export_decision", "schema_version": "phase1_csr_transformer_reference_training_export_v1", "status": "passed", "validation_errors": []}

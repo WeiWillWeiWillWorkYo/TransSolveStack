@@ -1,0 +1,14 @@
+{
+  "attempted_imports": 7,
+  "eligible_rows": 7,
+  "failed_imports": 0,
+  "imported_matrices": 7,
+  "max_archive_size_bytes": 256000000,
+  "max_cols": 65536,
+  "max_rows": 65536,
+  "max_stored_entries": 1000000,
+  "source_header_probe_path": null,
+  "source_selection_path": "runs/phase1_csr_gmres_restart_coverage/csr_gmres_restart_matrix_queue.jsonl",
+  "status": "passed",
+  "total_csr_nnz": 30893
+}

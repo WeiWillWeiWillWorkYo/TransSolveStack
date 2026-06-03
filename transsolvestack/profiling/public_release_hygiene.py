@@ -34,6 +34,7 @@ REQUIRED_GITIGNORE_PATTERNS = (
     "runs/**/*.bin",
     "runs/**/*.mp4",
     "runs/**/*.zip",
+    "runs/**/csr_matrices.jsonl",
     "ADVICE.md",
     "MILESTONE_LOG.md",
     "FOOTAGE_SPEC.md",
@@ -111,6 +112,7 @@ HEAVY_FILE_PATTERNS = (
     "*.tar.gz",
     "*.tgz",
     "*.7z",
+    "runs/**/csr_matrices.jsonl",
 )
 
 

@@ -1,0 +1,145 @@
+{
+  "consumer_ready": true,
+  "dry_run_kind": "csr_transformer_package_consumer_dry_run",
+  "reference_consumer_fixture": {
+    "acceptance_summary": "runs/phase1_csr_external_model_intake/csr_policy_model_acceptance_summary.json",
+    "intake_summary": "runs/phase1_csr_external_model_intake/csr_external_model_intake_summary.json",
+    "runtime_promotion_ready": false,
+    "shadow_submission_ready": true,
+    "submission_summary": "runs/phase1_csr_external_model_intake/csr_policy_model_submission_summary.json"
+  },
+  "resolved_expected_outputs": [
+    {
+      "exists_in_reference_fixture": true,
+      "label": "policy_model_artifact",
+      "path_template": "future_csr_policy_model_artifact.json",
+      "reference_path": "runs/phase1_csr_external_model_intake/csr_policy_model_artifact.json",
+      "required": true,
+      "schema_version": "phase1_csr_transformer_package_consumer_dry_run_v1",
+      "sha256": "de2e8d064a522ac2c59abac7b08fe3330d8e248475f888af0c8939ef8a9aab63"
+    },
+    {
+      "exists_in_reference_fixture": true,
+      "label": "predictions",
+      "path_template": "future_csr_transformer_policy_predictions.jsonl",
+      "reference_path": "runs/phase1_csr_external_model_intake/adapted_csr_transformer_ranker_predictions.jsonl",
+      "required": true,
+      "schema_version": "phase1_csr_transformer_package_consumer_dry_run_v1",
+      "sha256": "b6d9fbe8213d7f49a3770fdd71ce64aee2904de8d0071ae51f292fcf54b13aec"
+    },
+    {
+      "exists_in_reference_fixture": true,
+      "label": "quality_gate_summary",
+      "path_template": "future_csr_transformer_quality_gate_summary.json",
+      "reference_path": "runs/phase1_csr_external_model_intake/csr_external_model_quality_gate_summary.json",
+      "required": true,
+      "schema_version": "phase1_csr_transformer_package_consumer_dry_run_v1",
+      "sha256": "d7353ef33e5809d8681e218737b9ab9d2e55f6a2c78022bb23dd90aa7a2c8c9c"
+    },
+    {
+      "exists_in_reference_fixture": true,
+      "label": "replay_summary",
+      "path_template": "future_csr_transformer_policy_replay_summary.json",
+      "reference_path": "runs/phase1_csr_external_model_intake/csr_external_model_replay_summary.json",
+      "required": true,
+      "schema_version": "phase1_csr_transformer_package_consumer_dry_run_v1",
+      "sha256": "d8147f7a66ba620a81a49f8d9433d0f80b9885046ccc528d8def2d2464449575"
+    },
+    {
+      "exists_in_reference_fixture": true,
+      "label": "saved_model",
+      "path_template": "future_csr_transformer_policy_model.json",
+      "reference_path": "runs/phase1_csr_external_model_intake/adapted_csr_transformer_ranker_model.json",
+      "required": true,
+      "schema_version": "phase1_csr_transformer_package_consumer_dry_run_v1",
+      "sha256": "6adba9457a65c06fe94a54d43e0c732ef0bcbaa7efc161febb6635eeaf5272bd"
+    },
+    {
+      "exists_in_reference_fixture": true,
+      "label": "submission_manifest",
+      "path_template": "future_csr_policy_model_submission_manifest.json",
+      "reference_path": "runs/phase1_csr_external_model_intake/csr_policy_model_submission_manifest.json",
+      "required": true,
+      "schema_version": "phase1_csr_transformer_package_consumer_dry_run_v1",
+      "sha256": "1c73ce94d322e7b739b0f114d440e8038499215dd747ad650ac044f512ed0824"
+    }
+  ],
+  "runtime_boundary": {
+    "default_mode_after_submission": "shadow",
+    "dry_run_only": true,
+    "executes_gpu": false,
+    "guard_required": true,
+    "model_trained": false,
+    "runtime_selector_changed": false
+  },
+  "schema_version": "phase1_csr_transformer_package_consumer_dry_run_v1",
+  "source_package": {
+    "manifest": "runs/phase1_csr_transformer_training_package/csr_transformer_training_package_manifest.json",
+    "rows": "runs/phase1_csr_transformer_training_package/csr_transformer_training_package_rows.jsonl",
+    "summary": "runs/phase1_csr_transformer_training_package/csr_transformer_training_package_summary.json"
+  },
+  "status": "passed",
+  "validation_errors": [],
+  "validation_step_routes": [
+    {
+      "command_template": ".venv-tss/bin/python scripts/tss_csr_transformer_model_replay.py --model future_csr_transformer_policy_model.json --tensors runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_tensors.json --request-index runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_request_index.jsonl --reference-predictions future_csr_transformer_policy_predictions.jsonl --out runs/future_csr_transformer_model_replay",
+      "guarded_or_submission_step": false,
+      "required": true,
+      "schema_version": "phase1_csr_transformer_package_consumer_dry_run_v1",
+      "script": "scripts/tss_csr_transformer_model_replay.py",
+      "script_exists": true,
+      "step_id": "saved_model_replay",
+      "step_index": 1
+    },
+    {
+      "command_template": ".venv-tss/bin/python scripts/tss_csr_selector_model_eval.py --baseline-summary runs/phase1_csr_learning_readiness/csr_learning_summary.json --baseline-predictions runs/phase1_csr_learning_readiness/csr_baseline_predictions.jsonl --ranker-summary future_csr_transformer_quality_gate_summary.json --ranker-predictions future_csr_transformer_policy_predictions.jsonl --out runs/future_csr_selector_model_eval",
+      "guarded_or_submission_step": false,
+      "required": true,
+      "schema_version": "phase1_csr_transformer_package_consumer_dry_run_v1",
+      "script": "scripts/tss_csr_selector_model_eval.py",
+      "script_exists": true,
+      "step_id": "quality_gate",
+      "step_index": 2
+    },
+    {
+      "command_template": ".venv-tss/bin/python scripts/tss_csr_policy_model_artifact.py --model future_csr_transformer_policy_model.json --tensors runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_tensors.json --request-index runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_request_index.jsonl --quality-gate-summary future_csr_transformer_quality_gate_summary.json --replay-summary future_csr_transformer_policy_replay_summary.json --out runs/future_csr_policy_model_artifact",
+      "guarded_or_submission_step": false,
+      "required": true,
+      "schema_version": "phase1_csr_transformer_package_consumer_dry_run_v1",
+      "script": "scripts/tss_csr_policy_model_artifact.py",
+      "script_exists": true,
+      "step_id": "policy_model_artifact",
+      "step_index": 3
+    },
+    {
+      "command_template": ".venv-tss/bin/python scripts/tss_csr_policy_model_acceptance.py --model-artifact future_csr_policy_model_artifact.json --out runs/future_csr_policy_model_acceptance",
+      "guarded_or_submission_step": true,
+      "required": true,
+      "schema_version": "phase1_csr_transformer_package_consumer_dry_run_v1",
+      "script": "scripts/tss_csr_policy_model_acceptance.py",
+      "script_exists": true,
+      "step_id": "policy_model_acceptance",
+      "step_index": 4
+    },
+    {
+      "command_template": ".venv-tss/bin/python scripts/tss_csr_policy_model_submission.py --model-artifact future_csr_policy_model_artifact.json --acceptance-summary runs/future_csr_policy_model_acceptance/csr_policy_model_acceptance_summary.json --acceptance-rows runs/future_csr_policy_model_acceptance/csr_policy_model_acceptance_rows.jsonl --contributor-name '<name>' --contribution-name '<model-name>' --out runs/future_csr_policy_model_submission",
+      "guarded_or_submission_step": true,
+      "required": true,
+      "schema_version": "phase1_csr_transformer_package_consumer_dry_run_v1",
+      "script": "scripts/tss_csr_policy_model_submission.py",
+      "script_exists": true,
+      "step_id": "policy_model_submission",
+      "step_index": 5
+    },
+    {
+      "command_template": ".venv-tss/bin/python scripts/tss_csr_learned_guard_smoke.py --learned-model-artifact future_csr_policy_model_artifact.json --out runs/future_csr_learned_guard",
+      "guarded_or_submission_step": true,
+      "required": true,
+      "schema_version": "phase1_csr_transformer_package_consumer_dry_run_v1",
+      "script": "scripts/tss_csr_learned_guard_smoke.py",
+      "script_exists": true,
+      "step_id": "guarded_shadow_smoke",
+      "step_index": 6
+    }
+  ]
+}

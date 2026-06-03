@@ -15,6 +15,9 @@ def test_csr_learned_guard_shadows_current_blocked_ranker():
 
     decision = tss.plan_csr_with_learned_guard(
         rows["suitesparse:HB/curtis54"],
+        learned_model_artifact_path=(
+            "runs/phase1_csr_policy_model_artifact/csr_policy_model_artifact.json"
+        ),
         mode="promote_if_safe",
     )
 
@@ -23,6 +26,9 @@ def test_csr_learned_guard_shadows_current_blocked_ranker():
     assert decision.runtime_selector_changed is False
     assert decision.runtime_candidate_id == decision.artifact_candidate_id
     assert decision.fallback_chain_enforced is True
+    assert decision.learned_policy_source.source_kind == "model_artifact"
+    assert decision.learned_policy_source.model_loaded is True
+    assert decision.learned_policy_source.adapter == "csr_transformer_ranker_saved_model_v1"
     assert "quality_gate:non_success_eval_selections" in decision.guard_reasons
     assert decision.learned_prediction is not None
 
@@ -52,6 +58,8 @@ def test_csr_learned_guard_promotes_only_profiled_success_candidate(tmp_path):
     assert decision.artifact_candidate_id == "artifact_fast"
     assert decision.fallback_candidate_ids == ("artifact_fast",)
     assert decision.fallback_chain_enforced is True
+    assert decision.learned_policy_source.source_kind == "prediction_artifact"
+    assert decision.learned_policy_source.model_loaded is False
 
 
 def test_csr_learned_guard_rejects_screened_out_candidate(tmp_path):

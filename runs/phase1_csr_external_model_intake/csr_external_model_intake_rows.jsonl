@@ -1,0 +1,8 @@
+{"row_kind": "stage_status", "schema_version": "phase1_csr_external_model_intake_v1", "stage": "adapter", "status": "passed"}
+{"row_kind": "stage_status", "schema_version": "phase1_csr_external_model_intake_v1", "stage": "replay", "status": "passed"}
+{"row_kind": "stage_status", "schema_version": "phase1_csr_external_model_intake_v1", "stage": "quality_gate", "status": "passed"}
+{"row_kind": "stage_status", "schema_version": "phase1_csr_external_model_intake_v1", "stage": "policy_model_artifact", "status": "passed"}
+{"row_kind": "stage_status", "schema_version": "phase1_csr_external_model_intake_v1", "stage": "learned_guard", "status": "passed"}
+{"row_kind": "stage_status", "schema_version": "phase1_csr_external_model_intake_v1", "stage": "acceptance", "status": "passed"}
+{"row_kind": "stage_status", "schema_version": "phase1_csr_external_model_intake_v1", "stage": "submission", "status": "passed"}
+{"row_kind": "intake_decision", "runtime_promotion_ready": false, "runtime_selector_changed": false, "schema_version": "phase1_csr_external_model_intake_v1", "shadow_submission_ready": true, "status": "passed"}

@@ -1,7 +1,7 @@
 {
   "artifact_kind": "csr_public_api_smoke",
   "command": "scripts/tss_csr_public_api_smoke.py",
-  "created_at_utc": "2026-05-26T17:18:51.396091+00:00",
+  "created_at_utc": "2026-05-27T08:10:59.558337+00:00",
   "file_hashes": [
     {
       "path": "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
@@ -9,11 +9,11 @@
     },
     {
       "path": "transsolvestack/__init__.py",
-      "sha256": "2f55e7cb6abc78de6f110c3b44567324b049652e93f2b908f771c38517164b3e"
+      "sha256": "009662b0dc55004500bbbc39c38e544d23b9a2945820a627dcabcc0c3c06fcee"
     },
     {
       "path": "transsolvestack/api.py",
-      "sha256": "bb93c01bb0b7b57d78c7309e979bf13bc46f2fcd4f03dccd85d7cd6647334ffb"
+      "sha256": "716e593a3ed210fb24249b7b32bd402e9dcd177194a23e91320bae7f2fb19c22"
     },
     {
       "path": "transsolvestack/datasets/csr.py",
@@ -49,7 +49,7 @@
     }
   ],
   "metadata": {
-    "git_commit": "5aee244aead1235a247ae80493f8f184835b7bed",
+    "git_commit": "c71452fa04c75c01ad1813409824c42fd937cc49",
     "num_failed": 0,
     "num_solves": 5,
     "num_success": 5,

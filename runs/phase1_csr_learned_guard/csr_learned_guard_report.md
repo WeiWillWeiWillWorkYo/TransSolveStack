@@ -4,6 +4,7 @@
 - schema_version: `phase1_csr_learned_runtime_guard_v1`
 - runtime_selector_changed: `False`
 - preemptive_gpu_kill_supported: `False`
+- saved_model_loaded_checks: `2`
 
 | check | status | guard_status | runtime_source |
 |---|---|---|---|

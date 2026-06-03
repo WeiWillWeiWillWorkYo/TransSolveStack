@@ -10,7 +10,8 @@
     "backend": "taichi_gpu",
     "expected_current_guard_status": "blocked_quality_gate",
     "expected_runtime_selection_source": "artifact",
-    "learned_policy_mode": "promote_if_safe"
+    "learned_policy_mode": "promote_if_safe",
+    "learned_prediction_source": "model_artifact"
   },
   "schema_version": "phase1_csr_guarded_auto_solve_v1",
   "task": "real_gpu_csr_auto_solve_through_learned_policy_runtime_guard"

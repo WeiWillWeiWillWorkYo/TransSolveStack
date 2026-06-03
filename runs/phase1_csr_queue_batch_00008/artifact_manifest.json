@@ -1,0 +1,82 @@
+{
+  "artifact_kind": "csr_queue_batch_execution",
+  "command": "scripts/tss_csr_queue_batch_execute.py",
+  "created_at_utc": "2026-05-28T13:26:10.768700+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_full_dataset_queue/csr_full_dataset_queue_matrices.jsonl",
+      "sha256": "96d804d621b6730b5f86617f23499b2ef71646d61ca4d8fedb9204e86dd6644f"
+    },
+    {
+      "path": "runs/phase1_csr_full_dataset_queue/csr_full_dataset_queue_jobs.jsonl",
+      "sha256": "fbaf0aa3b41859fca74d8b7cd7fd08d28399e46176b4b4bee7d7bd97571ad25f"
+    },
+    {
+      "path": "runs/phase1_csr_full_dataset_queue/csr_full_dataset_queue_batches.jsonl",
+      "sha256": "7866163639ec228d719d5617f50384157ca059e788dd7ddb35c9e65a63318b6a"
+    },
+    {
+      "path": "transsolvestack/datasets/csr.py",
+      "sha256": "8f6181ce398ad210e3bcfbc348014d1062f8838aa87fb995ca3f62c833cec03f"
+    },
+    {
+      "path": "transsolvestack/operators/taichi_csr.py",
+      "sha256": "a00caa2a43d65338aa5dbd2bf45fa6a1e1834bbaac683f1b670c05b917b55682"
+    },
+    {
+      "path": "transsolvestack/solvers/taichi_cg.py",
+      "sha256": "e0de7c648286c8deaa4ff8b9849b752b155e9120833a22bfbe351f0d9a2669d3"
+    },
+    {
+      "path": "transsolvestack/solvers/registry.py",
+      "sha256": "c990ab0040c1253503711ff5fe3039c88e596ccb15298a5baf72c58449ccfaf8"
+    },
+    {
+      "path": "transsolvestack/backends/registry.py",
+      "sha256": "35c90892cc588d7444923deed6bf937b9a6da1a71cdb9acf3dd26d88ca077035"
+    },
+    {
+      "path": "transsolvestack/runtime/engine.py",
+      "sha256": "48e53362b4b7cb3954005a7f29b8ce546f63192a170fa98d48ad97c8cc6c3e21"
+    },
+    {
+      "path": "transsolvestack/profiling/csr_micro_campaign.py",
+      "sha256": "9fed1f0aee1c605f36ea5c5c439cb096c049ebde8aa87f0ab4e0d8cf96d079f3"
+    },
+    {
+      "path": "transsolvestack/profiling/csr_queue_batch_execution.py",
+      "sha256": "7b2fce237d05f0170497770a0e11a28618477c033ea5c8b3da8767e1e19fe080"
+    },
+    {
+      "path": "scripts/tss_csr_queue_batch_execute.py",
+      "sha256": "21549e242142a46233bda1593e538f699c60ced43f721d3a860c9e74772d3656"
+    }
+  ],
+  "metadata": {
+    "batch_id": "batch_00008",
+    "batch_outcome": "profiled_with_gpu_success",
+    "candidate_jobs": 24,
+    "completed_without_oracle": false,
+    "cpu_screen_required": true,
+    "cpu_screened_out_rows": 12,
+    "executed_jobs": 24,
+    "executed_matrices": 8,
+    "executes_gpu": true,
+    "git_commit": "c71452fa04c75c01ad1813409824c42fd937cc49",
+    "gpu_failed_rows": 0,
+    "gpu_success_rows": 12,
+    "imported_matrices": 8,
+    "imports_matrices": true,
+    "micro_campaign_status": "passed",
+    "planned_jobs": 24,
+    "planned_matrices": 8,
+    "queue_id": "phase1_csr_full_dataset_queue_m83",
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_queue_batch_execution_v1",
+    "selector_oracle_rows": 5,
+    "selector_rows": 24,
+    "status": "passed",
+    "training_pool_role": "oracle_and_negative_selector_rows"
+  },
+  "python_version": "3.10.18"
+}

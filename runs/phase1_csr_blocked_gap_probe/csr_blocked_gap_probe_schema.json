@@ -1,0 +1,13 @@
+{
+  "coverage_boundary": {
+    "does_not_modify_full_dataset_queue": true,
+    "does_not_promote_runtime_selector": true,
+    "gpu_solve_only_after_screen_success": true,
+    "requires_cpu_screen_before_gpu_solve": true
+  },
+  "executes_gpu": true,
+  "imports_matrices": true,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_blocked_gap_probe_v1",
+  "task": "integrate_and_probe_cpu_screens_for_blocked_csr_candidate_gaps"
+}

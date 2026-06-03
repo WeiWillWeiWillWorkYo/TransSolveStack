@@ -1,0 +1,53 @@
+{
+  "artifact_kind": "csr_external_model_adapter",
+  "command": "scripts/tss_csr_external_model_adapter.py",
+  "created_at_utc": "2026-05-27T08:08:45.518184+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_model.json",
+      "sha256": "6adba9457a65c06fe94a54d43e0c732ef0bcbaa7efc161febb6635eeaf5272bd"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json",
+      "sha256": "27c3c99dd7706e596f40ea260bd0a33765fb4eddae13a7a470200a04417134be"
+    },
+    {
+      "path": "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl",
+      "sha256": "7a76140b19e8d9ff33b753193aa6011e2f6ee392b96a3f3feb179731963a1b27"
+    },
+    {
+      "path": "transsolvestack/__init__.py",
+      "sha256": "009662b0dc55004500bbbc39c38e544d23b9a2945820a627dcabcc0c3c06fcee"
+    },
+    {
+      "path": "transsolvestack/api.py",
+      "sha256": "716e593a3ed210fb24249b7b32bd402e9dcd177194a23e91320bae7f2fb19c22"
+    },
+    {
+      "path": "transsolvestack/policies/csr_transformer_ranker.py",
+      "sha256": "0907d1386e794cd18a9e321ad7b10f910fdc1f98abf9e4609d13a533078787f7"
+    },
+    {
+      "path": "transsolvestack/policies/csr_external_model_adapter.py",
+      "sha256": "a24a221d43d0eccaf730c3c3cd67c3a84964426719e121eb989c8be4c9f60fba"
+    },
+    {
+      "path": "scripts/tss_csr_external_model_adapter.py",
+      "sha256": "ca5b37e1925c7be109859b4f66eebbfa26b9aa5cc0b54250f1ed22671ac098a8"
+    }
+  ],
+  "metadata": {
+    "adapted_model_id": "csr_masked_self_attention_ranker_v1",
+    "adapter": "csr_external_json_ranker_checkpoint_v1",
+    "adapter_ready": true,
+    "git_commit": "c71452fa04c75c01ad1813409824c42fd937cc49",
+    "num_predictions": 20,
+    "policy_model_artifact_input_ready": true,
+    "prediction_contract_valid": true,
+    "quality_gate_input_ready": true,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_external_model_adapter_v1",
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

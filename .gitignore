@@ -56,6 +56,7 @@ runs/**/*.tar
 runs/**/*.tar.gz
 runs/**/*.tgz
 runs/**/logs/
+runs/**/csr_matrices.jsonl
 
 # Build outputs
 build/

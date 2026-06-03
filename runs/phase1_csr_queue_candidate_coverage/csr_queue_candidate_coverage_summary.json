@@ -1,0 +1,73 @@
+{
+  "candidate_coverage_rows": 6,
+  "completed_queue_batches": 10,
+  "cpu_screen_blocked_gap_count": 4,
+  "current_queue_candidate_keys": [
+    "bicgstab:jacobi:{}",
+    "bicgstab:none:{}",
+    "cg:none:{}",
+    "gmres:jacobi:{\"restart\": 16}",
+    "pcg:jacobi:{}",
+    "richardson:jacobi:{\"omega_source\": \"cpu_screen_required\"}"
+  ],
+  "current_queue_preconditioners": [
+    "jacobi",
+    "none"
+  ],
+  "current_queue_solvers": [
+    "bicgstab",
+    "cg",
+    "gmres",
+    "pcg",
+    "richardson"
+  ],
+  "executes_gpu": false,
+  "implemented_backend_preconditioners": [
+    "block_jacobi",
+    "ilu0",
+    "jacobi",
+    "none",
+    "row_column_equilibration",
+    "symmetric_equilibration"
+  ],
+  "implemented_backend_solvers": [
+    "bicgstab",
+    "cg",
+    "chebyshev",
+    "gmres",
+    "pcg",
+    "richardson"
+  ],
+  "imports_matrices": false,
+  "latest_batch_id": "batch_00010",
+  "latest_batch_outcome": "screen_only_no_oracle",
+  "next_pending_batch_id": "batch_00011",
+  "next_step": "run_queue_ready_gmres_restart_probe_then_integrate_cpu_screens_for_ilu0_equilibration_chebyshev",
+  "planned_gap_count": 6,
+  "queue_missing_supported_preconditioners": [
+    "block_jacobi",
+    "ilu0",
+    "row_column_equilibration",
+    "symmetric_equilibration"
+  ],
+  "queue_missing_supported_solvers": [
+    "chebyshev"
+  ],
+  "queue_ready_gap_count": 2,
+  "recent_candidate_jobs": 48,
+  "recent_cpu_screened_out_rows": 40,
+  "recent_gpu_success_rows": 8,
+  "recent_screen_only_batches": 1,
+  "recent_selector_oracle_rows": 4,
+  "recent_success_rate": 0.16666666666666666,
+  "recent_window_batches": [
+    "batch_00009",
+    "batch_00010"
+  ],
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_queue_candidate_coverage_v1",
+  "source_batch_count": 10,
+  "status": "passed",
+  "trigger_candidate_coverage": true,
+  "trigger_reason": "screen_only_after_low_success_batch"
+}

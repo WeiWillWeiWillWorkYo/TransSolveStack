@@ -1,0 +1,30 @@
+{
+  "by_solver_status": {
+    "bicgstab:screened_out": 14,
+    "chebyshev:screened_out": 1,
+    "pcg:screened_out": 1
+  },
+  "by_status": {
+    "screened_out": 16
+  },
+  "candidate_jobs": 16,
+  "candidate_queue_path": "runs/phase1_csr_blocked_gap_probe/csr_blocked_gap_candidate_queue.jsonl",
+  "cpu_screened_out_rows": 16,
+  "device_memory_gb": 0.2,
+  "gpu_failed_rows": 0,
+  "gpu_success_rows": 0,
+  "imported_matrices": 8,
+  "matrix_queue_path": "runs/phase1_csr_blocked_gap_probe/csr_blocked_gap_matrix_queue.jsonl",
+  "max_archive_size_bytes": 256000000,
+  "max_cols": 65536,
+  "max_cpu_recomputed_relative_residual": 60.68118258360878,
+  "max_final_relative_residual": 60.68118258360878,
+  "max_rows": 65536,
+  "max_solution_relative_error": 1509.3165449946434,
+  "max_stored_entries": 1000000,
+  "schema_version": "phase1_csr_blocked_gap_probe_v1",
+  "selector_oracle_rows": 0,
+  "selector_rows": 16,
+  "selector_summary_status": "failed",
+  "status": "passed"
+}

@@ -1,0 +1,5 @@
+{"path": "runs/phase1_csr_external_model_intake/adapted_csr_transformer_ranker_model.json", "required": true, "row_kind": "model", "schema_version": "phase1_csr_policy_model_artifact_v1"}
+{"path": "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json", "required": true, "row_kind": "tensor_contract", "schema_version": "phase1_csr_policy_model_artifact_v1"}
+{"path": "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl", "required": true, "row_kind": "request_index", "schema_version": "phase1_csr_policy_model_artifact_v1"}
+{"path": "runs/phase1_csr_external_model_intake/csr_external_model_quality_gate_summary.json", "required": true, "row_kind": "quality_gate", "schema_version": "phase1_csr_policy_model_artifact_v1"}
+{"path": "transsolvestack.api.plan_csr_with_learned_guard", "required": true, "row_kind": "runtime_contract", "schema_version": "phase1_csr_policy_model_artifact_v1"}

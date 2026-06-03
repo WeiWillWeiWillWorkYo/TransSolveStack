@@ -1,0 +1,59 @@
+{
+  "artifact_kind": "csr_queue_batch_training_bundle",
+  "command": "scripts/tss_csr_queue_batch_training_bundle.py",
+  "created_at_utc": "2026-05-28T13:39:47.534780+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_queue_training_pool/csr_queue_training_pool_selector_rows.jsonl",
+      "sha256": "cf771c1c5640e40b58b639c6055bb34c957124aee078c5a63c178655240dc5f3"
+    },
+    {
+      "path": "runs/phase1_csr_queue_training_pool/csr_queue_training_pool_summary.json",
+      "sha256": "bce136f0eb656fd16efa5548e74a02a067eba6877f7cdb0b8e596b9d2121566b"
+    },
+    {
+      "path": "runs/phase1_csr_queue_training_pool/artifact_manifest.json",
+      "sha256": "a5a940e7f1f093cb07051b8b7d49f28ef441c9caad11bb6532d7eca6981624fa"
+    },
+    {
+      "path": "transsolvestack/policies/csr_learning.py",
+      "sha256": "0b4581cd594b271a7b80f6f7c7adc08e9a404ef4904d1d18f48cc791cc0d3533"
+    },
+    {
+      "path": "transsolvestack/policies/csr_model_contract.py",
+      "sha256": "16f3aa9ee6ffd44cb0efbb14a528eea7e53644dc28edb20d093994770be7c4e7"
+    },
+    {
+      "path": "transsolvestack/policies/csr_tensor_export.py",
+      "sha256": "a137ef00f23703ced8a81e0e8ce281a45ab872eb5f76e3cac9664124b3790249"
+    },
+    {
+      "path": "transsolvestack/policies/csr_transformer_ready.py",
+      "sha256": "5d7a7581d3de6f9ea13cf46944eeb6a1030b987624e9a119922de5f8e385efff"
+    },
+    {
+      "path": "scripts/tss_csr_queue_batch_training_bundle.py",
+      "sha256": "1105449c822ccd1fcf11f7c58d7a011068679eb5ebb2d0f1991a33d5e27619ec"
+    }
+  ],
+  "metadata": {
+    "candidate_feature_dim": 16,
+    "git_commit": "c71452fa04c75c01ad1813409824c42fd937cc49",
+    "matrix_feature_dim": 21,
+    "num_global_candidates": 9,
+    "num_model_requests": 100,
+    "num_selector_rows": 372,
+    "queue_batch_selector_rows": 240,
+    "queue_pool_ready": true,
+    "queue_pool_summary": "runs/phase1_csr_queue_training_pool/csr_queue_training_pool_summary.json",
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_transformer_ready_v1",
+    "source_selector_paths": [
+      "runs/phase1_csr_queue_training_pool/csr_queue_training_pool_selector_rows.jsonl"
+    ],
+    "status": "passed",
+    "transformer_connectable": true,
+    "validation_error_count": 0
+  },
+  "python_version": "3.10.18"
+}

@@ -1,0 +1,44 @@
+{
+  "acceptance_status": "passed",
+  "accepted_for_runtime_promotion": false,
+  "accepted_for_shadow": true,
+  "adapter_ready": true,
+  "artifact_paths": {
+    "acceptance_summary": "runs/phase1_csr_external_model_intake/csr_policy_model_acceptance_summary.json",
+    "adapted_model": "runs/phase1_csr_external_model_intake/adapted_csr_transformer_ranker_model.json",
+    "checkpoint": "runs/phase1_csr_external_model_intake/external_csr_ranker_checkpoint.json",
+    "policy_model_artifact": "runs/phase1_csr_external_model_intake/csr_policy_model_artifact.json",
+    "quality_gate_summary": "runs/phase1_csr_external_model_intake/csr_external_model_quality_gate_summary.json",
+    "submission_manifest": "runs/phase1_csr_external_model_intake/csr_policy_model_submission_manifest.json"
+  },
+  "default_runtime_mode": "shadow",
+  "guarded_gpu_shadow_smoke_checked": true,
+  "guarded_gpu_smoke_successes": 2,
+  "intake_ready": true,
+  "num_predictions": 20,
+  "policy_model_artifact_ready": true,
+  "promotion_blockers": [
+    "below_min_profiled_success_rate",
+    "below_baseline_oracle_top1",
+    "below_baseline_profiled_success_rate",
+    "non_success_eval_selections",
+    "quality_gate_not_runtime_eligible"
+  ],
+  "quality_gate_runtime_eligible": false,
+  "replay_exact": true,
+  "runtime_promotion_ready": false,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_external_model_intake_v1",
+  "shadow_submission_ready": true,
+  "stage_statuses": {
+    "acceptance": "passed",
+    "adapter": "passed",
+    "learned_guard": "passed",
+    "policy_model_artifact": "passed",
+    "quality_gate": "passed",
+    "replay": "passed",
+    "submission": "passed"
+  },
+  "status": "passed",
+  "submission_ready": true
+}

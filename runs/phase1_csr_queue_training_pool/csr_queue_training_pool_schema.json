@@ -1,0 +1,37 @@
+{
+  "append_policy": {
+    "completed_batch_filter": "csr_queue_batch_execution_summary.status == passed; batch_outcome may be profiled_with_gpu_success or screen_only_no_oracle",
+    "dedupe_key": [
+      "matrix_id",
+      "context_id",
+      "candidate_id"
+    ],
+    "duplicate_policy": "fail_closed"
+  },
+  "executes_gpu": false,
+  "imports_matrices": false,
+  "outputs": {
+    "membership": "csr_queue_training_pool_membership.jsonl",
+    "selector_rows": "csr_queue_training_pool_selector_rows.jsonl",
+    "sources": "csr_queue_training_pool_sources.jsonl",
+    "state": "csr_queue_training_pool_state.json"
+  },
+  "resume": {
+    "completed_batch_ids": [
+      "batch_00001",
+      "batch_00002",
+      "batch_00003",
+      "batch_00004",
+      "batch_00005",
+      "batch_00006",
+      "batch_00007",
+      "batch_00008",
+      "batch_00009",
+      "batch_00010"
+    ],
+    "next_pending_batch_id": "batch_00011"
+  },
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_queue_training_pool_v1",
+  "task": "accumulate_completed_csr_queue_batch_selector_rows"
+}

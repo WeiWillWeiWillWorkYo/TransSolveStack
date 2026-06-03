@@ -75,12 +75,35 @@ from transsolvestack.policies.csr_transformer_ranker import (
     CsrTransformerRankerExport,
     train_csr_transformer_ranker_from_tensor_file,
 )
+from transsolvestack.policies.csr_external_model_adapter import (
+    adapt_csr_external_ranker_checkpoint_from_files,
+    build_reference_csr_external_ranker_checkpoint_from_files,
+)
+from transsolvestack.policies.csr_external_model_intake import (
+    run_csr_external_model_intake_from_files,
+)
+from transsolvestack.policies.csr_policy_model_artifact import (
+    build_csr_policy_model_artifact_from_files,
+)
+from transsolvestack.policies.csr_policy_model_acceptance import (
+    build_csr_policy_model_acceptance_from_files,
+)
+from transsolvestack.policies.csr_policy_model_submission import (
+    build_csr_policy_model_submission_from_files,
+)
 from transsolvestack.policies.csr_transformer_training_entrypoint import (
     build_csr_transformer_training_entrypoint_from_files,
+)
+from transsolvestack.policies.csr_transformer_reference_training_export import (
+    build_csr_transformer_reference_training_export_from_files,
 )
 from transsolvestack.profiling.csr_benchmark_expansion import (
     CsrBenchmarkExpansionPlan,
     build_csr_benchmark_expansion_plan_from_files,
+)
+from transsolvestack.profiling.csr_full_dataset_queue import (
+    CsrFullDatasetQueue,
+    build_csr_full_dataset_queue_from_files,
 )
 from transsolvestack.policies.csr_artifact_selector import (
     CsrCandidateSelection,
@@ -301,7 +324,17 @@ def plan_csr_with_learned_guard(
     csr: CsrMatrix | dict[str, Any],
     *,
     selector_path: str | Path = "runs/phase1_csr_selector_readiness/csr_selector_rows.jsonl",
-    learned_predictions_path: str | Path = "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_predictions.jsonl",
+    learned_predictions_path: str | Path | None = (
+        "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_predictions.jsonl"
+    ),
+    learned_model_artifact_path: str | Path | None = None,
+    learned_model_path: str | Path | None = None,
+    learned_tensor_path: str | Path = (
+        "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json"
+    ),
+    learned_request_index_path: str | Path = (
+        "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl"
+    ),
     quality_gate_summary_path: str | Path = "runs/phase1_csr_transformer_quality_gate/csr_transformer_quality_gate_summary.json",
     context: SolveContext | None = None,
     objective: str = "min_solve_time_success",
@@ -317,6 +350,10 @@ def plan_csr_with_learned_guard(
         matrix,
         selector_path=selector_path,
         learned_predictions_path=learned_predictions_path,
+        learned_model_artifact_path=learned_model_artifact_path,
+        learned_model_path=learned_model_path,
+        learned_tensor_path=learned_tensor_path,
+        learned_request_index_path=learned_request_index_path,
         quality_gate_summary_path=quality_gate_summary_path,
         context_id=active_context.context_id,
         objective=objective,
@@ -331,7 +368,17 @@ def auto_solve_csr_guarded(
     rhs: Any,
     *,
     selector_path: str | Path = "runs/phase1_csr_selector_readiness/csr_selector_rows.jsonl",
-    learned_predictions_path: str | Path = "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_predictions.jsonl",
+    learned_predictions_path: str | Path | None = (
+        "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_predictions.jsonl"
+    ),
+    learned_model_artifact_path: str | Path | None = None,
+    learned_model_path: str | Path | None = None,
+    learned_tensor_path: str | Path = (
+        "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json"
+    ),
+    learned_request_index_path: str | Path = (
+        "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl"
+    ),
     quality_gate_summary_path: str | Path = "runs/phase1_csr_transformer_quality_gate/csr_transformer_quality_gate_summary.json",
     context: SolveContext | None = None,
     objective: str = "min_solve_time_success",
@@ -350,6 +397,10 @@ def auto_solve_csr_guarded(
         matrix,
         selector_path=selector_path,
         learned_predictions_path=learned_predictions_path,
+        learned_model_artifact_path=learned_model_artifact_path,
+        learned_model_path=learned_model_path,
+        learned_tensor_path=learned_tensor_path,
+        learned_request_index_path=learned_request_index_path,
         quality_gate_summary_path=quality_gate_summary_path,
         context=active_context,
         objective=objective,
@@ -397,6 +448,7 @@ def auto_solve_csr_guarded(
         "fallback_candidate_ids": list(decision.fallback_candidate_ids),
         "fallback_chain_enforced": decision.fallback_chain_enforced,
         "min_confidence": decision.min_confidence,
+        "learned_policy_source": asdict(decision.learned_policy_source),
         "learned_prediction": (
             None
             if decision.learned_prediction is None
@@ -618,6 +670,104 @@ def train_csr_transformer_ranker(
     )
 
 
+def build_reference_csr_external_ranker_checkpoint(
+    model_path: str | Path = "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_model.json",
+    tensor_path: str | Path = (
+        "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json"
+    ),
+    request_index_path: str | Path = (
+        "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl"
+    ),
+    *,
+    contributor_id: str = "wei_cui_reference",
+    contributor_name: str = "Wei CUI",
+    training_statement: str = (
+        "Reference checkpoint exported from the Phase 1 CSR Transformer ranker."
+    ),
+) -> dict[str, Any]:
+    """Build a reference external-checkpoint fixture from a TSS saved ranker."""
+
+    return build_reference_csr_external_ranker_checkpoint_from_files(
+        model_path,
+        tensor_path,
+        request_index_path,
+        contributor_id=contributor_id,
+        contributor_name=contributor_name,
+        training_statement=training_statement,
+    )
+
+
+def adapt_csr_external_ranker_checkpoint(
+    checkpoint_path: str | Path,
+    tensor_path: str | Path = (
+        "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json"
+    ),
+    request_index_path: str | Path = (
+        "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl"
+    ),
+) -> dict[str, Any]:
+    """Adapt an external CSR ranker checkpoint into TSS model artifacts."""
+
+    return adapt_csr_external_ranker_checkpoint_from_files(
+        checkpoint_path,
+        tensor_path,
+        request_index_path,
+    )
+
+
+def run_csr_external_model_intake(
+    checkpoint_path: str | Path | None = None,
+    output_dir: str | Path = "runs/phase1_csr_external_model_intake",
+    *,
+    source_model_path: str | Path = (
+        "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_model.json"
+    ),
+    tensor_path: str | Path = (
+        "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json"
+    ),
+    request_index_path: str | Path = (
+        "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl"
+    ),
+    baseline_summary_path: str | Path = (
+        "runs/phase1_csr_transformer_ready/combined_csr_learning_summary.json"
+    ),
+    baseline_predictions_path: str | Path = (
+        "runs/phase1_csr_transformer_ready/combined_csr_baseline_predictions.jsonl"
+    ),
+    csr_path: str | Path = "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+    selector_path: str | Path = "runs/phase1_csr_selector_readiness/csr_selector_rows.jsonl",
+    guarded_auto_solve_summary_path: str | Path = (
+        "runs/phase1_csr_guarded_auto_solve/csr_guarded_auto_solve_summary.json"
+    ),
+    guarded_auto_solve_results_path: str | Path = (
+        "runs/phase1_csr_guarded_auto_solve/csr_guarded_auto_solve_results.jsonl"
+    ),
+    contributor_id: str = "wei_cui_reference",
+    contributor_name: str = "Wei CUI",
+    contribution_name: str = "csr_external_ranker_reference_intake",
+    contribution_version: str = "phase1-reference",
+) -> dict[str, Any]:
+    """Run adapter, replay, quality gate, acceptance, and submission in one pass."""
+
+    return run_csr_external_model_intake_from_files(
+        checkpoint_path=checkpoint_path,
+        output_dir=output_dir,
+        source_model_path=source_model_path,
+        tensor_path=tensor_path,
+        request_index_path=request_index_path,
+        baseline_summary_path=baseline_summary_path,
+        baseline_predictions_path=baseline_predictions_path,
+        csr_path=csr_path,
+        selector_path=selector_path,
+        guarded_auto_solve_summary_path=guarded_auto_solve_summary_path,
+        guarded_auto_solve_results_path=guarded_auto_solve_results_path,
+        contributor_id=contributor_id,
+        contributor_name=contributor_name,
+        contribution_name=contribution_name,
+        contribution_version=contribution_version,
+    )
+
+
 def evaluate_csr_selector_models(
     baseline_summary_path: str | Path,
     baseline_predictions_path: str | Path,
@@ -674,6 +824,48 @@ def plan_csr_benchmark_expansion(
     )
 
 
+def plan_csr_full_dataset_queue(
+    index_path: str | Path = (
+        "/mnt/tss_external/TransSolveStack/datasets/"
+        "suitesparse_full/index/matrix_manifest.jsonl"
+    ),
+    selector_rows_path: str | Path = (
+        "runs/phase1_csr_selector_readiness/csr_selector_rows.jsonl"
+    ),
+    resource_limits_path: str | Path = "configs/runtime/resource_limits.yaml",
+    storage_paths_path: str | Path = "configs/runtime/storage_paths.yaml",
+    *,
+    queue_id: str = "phase1_csr_full_dataset_queue_m83",
+    batch_matrix_count: int = 8,
+    measurement_repeats: int = 1,
+    max_rows: int | None = None,
+    max_cols: int | None = None,
+    max_nnz: int | None = None,
+    max_archive_size_bytes: int = 256_000_000,
+    max_iter: int | None = None,
+    tolerance_rel: float = 1.0e-5,
+    max_queue_matrices: int | None = None,
+) -> CsrFullDatasetQueue:
+    """Plan a resumable full SuiteSparse CSR benchmark/training queue."""
+
+    return build_csr_full_dataset_queue_from_files(
+        index_path,
+        selector_rows_path,
+        resource_limits_path,
+        storage_paths_path,
+        queue_id=queue_id,
+        batch_matrix_count=batch_matrix_count,
+        measurement_repeats=measurement_repeats,
+        max_rows=max_rows,
+        max_cols=max_cols,
+        max_nnz=max_nnz,
+        max_archive_size_bytes=max_archive_size_bytes,
+        max_iter=max_iter,
+        tolerance_rel=tolerance_rel,
+        max_queue_matrices=max_queue_matrices,
+    )
+
+
 def build_csr_transformer_ready_bundle(
     selector_paths: Iterable[str | Path] = (
         "runs/phase1_csr_selector_readiness/csr_selector_rows.jsonl",
@@ -711,6 +903,142 @@ def build_csr_transformer_training_entrypoint(
         quality_gate_summary_path,
         output_dir,
         model_family=model_family,
+    )
+
+
+def build_csr_transformer_reference_training_export(
+    tensor_path: str | Path = (
+        "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json"
+    ),
+    request_index_path: str | Path = (
+        "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl"
+    ),
+    training_entrypoint_summary_path: str | Path = (
+        "runs/phase1_csr_transformer_training_entrypoint/"
+        "csr_transformer_training_entrypoint_summary.json"
+    ),
+    output_dir: str | Path = "runs/phase1_csr_transformer_reference_training_export",
+    *,
+    contributor_id: str = "wei_cui_reference",
+    contributor_name: str = "Wei CUI",
+    epochs: int = 160,
+    learning_rate: float = 0.03,
+    l2_regularization: float = 1.0e-4,
+    d_model: int = 24,
+    num_attention_heads: int = 4,
+    feedforward_dim: int = 48,
+    seed: int = 18,
+) -> dict[str, Any]:
+    """Train the reference CSR Transformer ranker and export an intake checkpoint."""
+
+    return build_csr_transformer_reference_training_export_from_files(
+        tensor_path,
+        request_index_path,
+        training_entrypoint_summary_path,
+        output_dir,
+        contributor_id=contributor_id,
+        contributor_name=contributor_name,
+        epochs=epochs,
+        learning_rate=learning_rate,
+        l2_regularization=l2_regularization,
+        d_model=d_model,
+        num_attention_heads=num_attention_heads,
+        feedforward_dim=feedforward_dim,
+        seed=seed,
+    )
+
+
+def build_csr_policy_model_artifact(
+    model_path: str | Path = "runs/phase1_csr_transformer_ranker/csr_transformer_ranker_model.json",
+    tensor_path: str | Path = (
+        "runs/phase1_csr_transformer_ready/csr_transformer_training_tensors.json"
+    ),
+    request_index_path: str | Path = (
+        "runs/phase1_csr_transformer_ready/csr_transformer_request_index.jsonl"
+    ),
+    quality_gate_summary_path: str | Path = (
+        "runs/phase1_csr_transformer_quality_gate/"
+        "csr_transformer_quality_gate_summary.json"
+    ),
+    replay_summary_path: str | Path = (
+        "runs/phase1_csr_transformer_model_replay/"
+        "csr_transformer_model_replay_summary.json"
+    ),
+) -> dict[str, Any]:
+    """Build the runtime-loadable CSR policy model artifact contract."""
+
+    return build_csr_policy_model_artifact_from_files(
+        model_path,
+        tensor_path,
+        request_index_path,
+        quality_gate_summary_path,
+        replay_summary_path,
+    )
+
+
+def accept_csr_policy_model_artifact(
+    model_artifact_path: str | Path = (
+        "runs/phase1_csr_policy_model_artifact/csr_policy_model_artifact.json"
+    ),
+    csr_path: str | Path = "runs/phase1_suitesparse_csr_import/csr_matrices.jsonl",
+    selector_path: str | Path = "runs/phase1_csr_selector_readiness/csr_selector_rows.jsonl",
+    learned_guard_summary_path: str | Path = (
+        "runs/phase1_csr_learned_guard/csr_learned_guard_summary.json"
+    ),
+    guarded_auto_solve_summary_path: str | Path = (
+        "runs/phase1_csr_guarded_auto_solve/csr_guarded_auto_solve_summary.json"
+    ),
+    guarded_auto_solve_results_path: str | Path = (
+        "runs/phase1_csr_guarded_auto_solve/csr_guarded_auto_solve_results.jsonl"
+    ),
+) -> dict[str, Any]:
+    """Run the guarded acceptance gate for a CSR policy model artifact."""
+
+    return build_csr_policy_model_acceptance_from_files(
+        model_artifact_path,
+        csr_path,
+        selector_path,
+        learned_guard_summary_path,
+        guarded_auto_solve_summary_path,
+        guarded_auto_solve_results_path,
+    )
+
+
+def prepare_csr_policy_model_submission(
+    model_artifact_path: str | Path = (
+        "runs/phase1_csr_policy_model_artifact/csr_policy_model_artifact.json"
+    ),
+    acceptance_summary_path: str | Path = (
+        "runs/phase1_csr_policy_model_acceptance/"
+        "csr_policy_model_acceptance_summary.json"
+    ),
+    acceptance_rows_path: str | Path = (
+        "runs/phase1_csr_policy_model_acceptance/"
+        "csr_policy_model_acceptance_rows.jsonl"
+    ),
+    *,
+    contributor_id: str = "wei_cui_reference",
+    contributor_name: str = "Wei CUI",
+    contribution_name: str = "csr_masked_self_attention_ranker_v1_reference_submission",
+    contribution_version: str = "phase1-reference",
+    training_statement: str = (
+        "Reference CSR Transformer ranker trained on the current Phase 1 "
+        "Transformer-ready SuiteSparse subset."
+    ),
+    contributor_terms_acknowledged: bool = True,
+) -> dict[str, Any]:
+    """Prepare a reviewable submission package for an external policy model."""
+
+    return build_csr_policy_model_submission_from_files(
+        model_artifact_path,
+        acceptance_summary_path,
+        acceptance_rows_path,
+        contributor_id=contributor_id,
+        contributor_name=contributor_name,
+        contribution_name=contribution_name,
+        contribution_version=contribution_version,
+        training_statement=training_statement,
+        contributor_terms_acknowledged=contributor_terms_acknowledged,
     )
 
 

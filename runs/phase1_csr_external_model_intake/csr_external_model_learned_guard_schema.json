@@ -1,0 +1,8 @@
+{
+  "checks": [
+    "shadow",
+    "promote_if_safe_quality_gate_block"
+  ],
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_external_model_intake_guard_v1"
+}

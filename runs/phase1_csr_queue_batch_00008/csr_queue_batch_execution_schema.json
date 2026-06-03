@@ -1,0 +1,22 @@
+{
+  "executes_gpu": true,
+  "imports_matrices": true,
+  "outputs": {
+    "batch_state": "csr_queue_batch_execution_state.json",
+    "csr_imports": "csr_matrices.jsonl",
+    "gpu_results": "csr_micro_campaign_results.jsonl",
+    "selector_rows": "csr_micro_selector_rows.jsonl"
+  },
+  "resume_policy": {
+    "batch_id": "batch_00008",
+    "batch_outcome": "profiled_with_gpu_success",
+    "status": "completed"
+  },
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_queue_batch_execution_v1",
+  "screening_policy": {
+    "cpu_screen_required": true,
+    "gpu_execution": "only_after_candidate_cpu_screen_success"
+  },
+  "task": "execute_one_full_dataset_queue_batch"
+}

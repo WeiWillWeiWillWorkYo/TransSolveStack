@@ -4,6 +4,8 @@
 - solves: `2`
 - successes: `2`
 - quality_gate_blocks: `2`
+- learned_prediction_source: `model_artifact`
+- saved_model_loaded_count: `2`
 - learned_runtime_promotions: `0`
 - runtime_selector_changed: `False`
 - selected_solver_set: `bicgstab, pcg`

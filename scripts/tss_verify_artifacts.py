@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import sys
@@ -14,6 +15,24 @@ if str(ROOT) not in sys.path:
 
 from transsolvestack.profiling.artifacts import read_candidate_performance
 from transsolvestack.profiling.artifacts import read_jsonl
+from transsolvestack.profiling.csr_blocked_gap_augmented_ranker_verifier import (
+    verify_csr_blocked_gap_augmented_ranker as _verify_csr_blocked_gap_augmented_ranker,
+)
+from transsolvestack.profiling.csr_blocked_gap_guarded_replay_verifier import (
+    verify_csr_blocked_gap_guarded_replay as _verify_csr_blocked_gap_guarded_replay,
+)
+from transsolvestack.profiling.csr_blocked_gap_training_integration_verifier import (
+    verify_csr_blocked_gap_training_integration as _verify_csr_blocked_gap_training_integration,
+)
+from transsolvestack.profiling.csr_transformer_handoff_bundle_verifier import (
+    verify_csr_transformer_handoff_bundle as _verify_csr_transformer_handoff_bundle,
+)
+from transsolvestack.profiling.csr_transformer_training_package_verifier import (
+    verify_csr_transformer_training_package as _verify_csr_transformer_training_package,
+)
+from transsolvestack.profiling.csr_transformer_package_consumer_dry_run_verifier import (
+    verify_csr_transformer_package_consumer_dry_run as _verify_csr_transformer_package_consumer_dry_run,
+)
 from transsolvestack.profiling.provenance import read_manifest, verify_manifest_hashes
 
 
@@ -139,6 +158,78 @@ def main() -> None:
         default="runs/phase1_csr_benchmark_expansion_plan",
     )
     parser.add_argument(
+        "--csr-full-dataset-queue-dir",
+        default="runs/phase1_csr_full_dataset_queue",
+    )
+    parser.add_argument(
+        "--csr-queue-batch-00001-dir",
+        default="runs/phase1_csr_queue_batch_00001",
+    )
+    parser.add_argument(
+        "--csr-queue-batch-00002-dir",
+        default="runs/phase1_csr_queue_batch_00002",
+    )
+    parser.add_argument(
+        "--csr-queue-batches-root",
+        default="runs",
+    )
+    parser.add_argument(
+        "--csr-queue-training-pool-dir",
+        default="runs/phase1_csr_queue_training_pool",
+    )
+    parser.add_argument(
+        "--csr-queue-batch-training-bundle-dir",
+        default="runs/phase1_csr_queue_batch_training_bundle",
+    )
+    parser.add_argument(
+        "--csr-queue-batch-reference-ranker-dir",
+        default="runs/phase1_csr_queue_batch_reference_ranker",
+    )
+    parser.add_argument(
+        "--csr-queue-batch-model-replay-dir",
+        default="runs/phase1_csr_queue_batch_model_replay",
+    )
+    parser.add_argument(
+        "--csr-queue-candidate-coverage-dir",
+        default="runs/phase1_csr_queue_candidate_coverage",
+    )
+    parser.add_argument(
+        "--csr-gmres-restart-coverage-dir",
+        default="runs/phase1_csr_gmres_restart_coverage",
+    )
+    parser.add_argument(
+        "--csr-blocked-gap-probe-dir",
+        default="runs/phase1_csr_blocked_gap_probe",
+    )
+    parser.add_argument(
+        "--csr-blocked-gap-positive-search-dir",
+        default="runs/phase1_csr_blocked_gap_positive_search",
+    )
+    parser.add_argument(
+        "--csr-blocked-gap-training-integration-dir",
+        default="runs/phase1_csr_blocked_gap_training_integration",
+    )
+    parser.add_argument(
+        "--csr-blocked-gap-augmented-ranker-dir",
+        default="runs/phase1_csr_blocked_gap_augmented_ranker",
+    )
+    parser.add_argument(
+        "--csr-blocked-gap-guarded-replay-dir",
+        default="runs/phase1_csr_blocked_gap_guarded_replay",
+    )
+    parser.add_argument(
+        "--csr-transformer-handoff-bundle-dir",
+        default="runs/phase1_csr_transformer_handoff_bundle",
+    )
+    parser.add_argument(
+        "--csr-transformer-training-package-dir",
+        default="runs/phase1_csr_transformer_training_package",
+    )
+    parser.add_argument(
+        "--csr-transformer-package-consumer-dry-run-dir",
+        default="runs/phase1_csr_transformer_package_consumer_dry_run",
+    )
+    parser.add_argument(
         "--csr-micro-campaign-dir",
         default="runs/phase1_csr_micro_campaign",
     )
@@ -151,12 +242,40 @@ def main() -> None:
         default="runs/phase1_csr_transformer_ranker",
     )
     parser.add_argument(
+        "--csr-external-model-adapter-dir",
+        default="runs/phase1_csr_external_model_adapter",
+    )
+    parser.add_argument(
+        "--csr-transformer-model-replay-dir",
+        default="runs/phase1_csr_transformer_model_replay",
+    )
+    parser.add_argument(
         "--csr-transformer-quality-gate-dir",
         default="runs/phase1_csr_transformer_quality_gate",
     )
     parser.add_argument(
+        "--csr-policy-model-artifact-dir",
+        default="runs/phase1_csr_policy_model_artifact",
+    )
+    parser.add_argument(
+        "--csr-policy-model-acceptance-dir",
+        default="runs/phase1_csr_policy_model_acceptance",
+    )
+    parser.add_argument(
+        "--csr-policy-model-submission-dir",
+        default="runs/phase1_csr_policy_model_submission",
+    )
+    parser.add_argument(
+        "--csr-external-model-intake-dir",
+        default="runs/phase1_csr_external_model_intake",
+    )
+    parser.add_argument(
         "--csr-transformer-training-entrypoint-dir",
         default="runs/phase1_csr_transformer_training_entrypoint",
+    )
+    parser.add_argument(
+        "--csr-transformer-reference-training-export-dir",
+        default="runs/phase1_csr_transformer_reference_training_export",
     )
     parser.add_argument(
         "--csr-learned-guard-dir",
@@ -254,12 +373,57 @@ def main() -> None:
     _verify_csr_linear_ranker(Path(args.csr_linear_ranker_dir))
     _verify_csr_selector_model_eval(Path(args.csr_selector_model_eval_dir))
     _verify_csr_benchmark_expansion_plan(Path(args.csr_benchmark_expansion_dir))
+    _verify_csr_full_dataset_queue(Path(args.csr_full_dataset_queue_dir))
+    _verify_completed_csr_queue_batches(Path(args.csr_queue_batches_root))
+    _verify_csr_queue_training_pool(Path(args.csr_queue_training_pool_dir))
+    _verify_csr_queue_batch_training_bundle(
+        Path(args.csr_queue_batch_training_bundle_dir)
+    )
+    _verify_csr_queue_batch_reference_ranker(
+        Path(args.csr_queue_batch_reference_ranker_dir)
+    )
+    _verify_csr_queue_batch_model_replay(Path(args.csr_queue_batch_model_replay_dir))
+    _verify_csr_queue_candidate_coverage(
+        Path(args.csr_queue_candidate_coverage_dir)
+    )
+    _verify_csr_gmres_restart_coverage(Path(args.csr_gmres_restart_coverage_dir))
+    _verify_csr_blocked_gap_probe(Path(args.csr_blocked_gap_probe_dir))
+    _verify_csr_blocked_gap_positive_search(
+        Path(args.csr_blocked_gap_positive_search_dir)
+    )
+    _verify_csr_blocked_gap_training_integration(
+        Path(args.csr_blocked_gap_training_integration_dir)
+    )
+    _verify_csr_blocked_gap_augmented_ranker(
+        Path(args.csr_blocked_gap_augmented_ranker_dir)
+    )
+    _verify_csr_blocked_gap_guarded_replay(
+        Path(args.csr_blocked_gap_guarded_replay_dir)
+    )
+    _verify_csr_transformer_handoff_bundle(
+        Path(args.csr_transformer_handoff_bundle_dir)
+    )
+    _verify_csr_transformer_training_package(
+        Path(args.csr_transformer_training_package_dir)
+    )
+    _verify_csr_transformer_package_consumer_dry_run(
+        Path(args.csr_transformer_package_consumer_dry_run_dir)
+    )
     _verify_csr_micro_campaign(Path(args.csr_micro_campaign_dir))
     _verify_csr_transformer_ready(Path(args.csr_transformer_ready_dir))
     _verify_csr_transformer_ranker(Path(args.csr_transformer_ranker_dir))
+    _verify_csr_external_model_adapter(Path(args.csr_external_model_adapter_dir))
+    _verify_csr_transformer_model_replay(Path(args.csr_transformer_model_replay_dir))
     _verify_csr_transformer_quality_gate(Path(args.csr_transformer_quality_gate_dir))
+    _verify_csr_policy_model_artifact(Path(args.csr_policy_model_artifact_dir))
+    _verify_csr_policy_model_acceptance(Path(args.csr_policy_model_acceptance_dir))
+    _verify_csr_policy_model_submission(Path(args.csr_policy_model_submission_dir))
+    _verify_csr_external_model_intake(Path(args.csr_external_model_intake_dir))
     _verify_csr_transformer_training_entrypoint(
         Path(args.csr_transformer_training_entrypoint_dir)
+    )
+    _verify_csr_transformer_reference_training_export(
+        Path(args.csr_transformer_reference_training_export_dir)
     )
     _verify_csr_learned_runtime_guard(Path(args.csr_learned_guard_dir))
     _verify_csr_guarded_auto_solve(Path(args.csr_guarded_auto_solve_dir))
@@ -2155,6 +2319,1185 @@ def _verify_csr_benchmark_expansion_plan(path: Path) -> None:
         raise SystemExit("CSR benchmark expansion estimated work mismatch")
 
 
+def _verify_csr_full_dataset_queue(path: Path) -> None:
+    manifest = read_manifest(path / "artifact_manifest.json")
+    stale = verify_manifest_hashes(manifest)
+    if stale:
+        raise SystemExit(f"stale CSR full dataset queue artifact manifest: {stale}")
+    matrix_rows = read_jsonl(path / "csr_full_dataset_queue_matrices.jsonl")
+    job_rows = read_jsonl(path / "csr_full_dataset_queue_jobs.jsonl")
+    batch_rows = read_jsonl(path / "csr_full_dataset_queue_batches.jsonl")
+    state = json.loads((path / "csr_full_dataset_queue_state.json").read_text(encoding="utf-8"))
+    summary = json.loads((path / "csr_full_dataset_queue_summary.json").read_text(encoding="utf-8"))
+    schema = json.loads((path / "csr_full_dataset_queue_schema.json").read_text(encoding="utf-8"))
+    report = (path / "csr_full_dataset_queue_report.md").read_text(encoding="utf-8")
+    if manifest.artifact_kind != "csr_full_dataset_queue":
+        raise SystemExit("unexpected CSR full dataset queue artifact kind")
+    if summary["status"] != "passed":
+        raise SystemExit("CSR full dataset queue did not pass")
+    if summary["schema_version"] != "phase1_csr_full_dataset_queue_v1":
+        raise SystemExit("CSR full dataset queue schema mismatch")
+    if schema["schema_version"] != summary["schema_version"]:
+        raise SystemExit("CSR full dataset queue schema/summary mismatch")
+    if schema["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR full dataset queue changed runtime selector")
+    if schema["executes_gpu"] is not False or schema["imports_matrices"] is not False:
+        raise SystemExit("CSR full dataset queue should be plan-only")
+    if schema["execution_boundary"]["automatic_execution"] is not False:
+        raise SystemExit("CSR full dataset queue automatic execution mismatch")
+    if summary["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR full dataset queue summary runtime mismatch")
+    if summary["executes_gpu"] is not False or summary["imports_matrices"] is not False:
+        raise SystemExit("CSR full dataset queue summary execution mismatch")
+    if summary["resumable"] is not True:
+        raise SystemExit("CSR full dataset queue should be resumable")
+    if summary["external_drive_required"] is not True:
+        raise SystemExit("CSR full dataset queue should require external drive")
+    if summary["index_matrices"] != 2904:
+        raise SystemExit("CSR full dataset queue index count mismatch")
+    if summary["index_present_archives"] != 2904:
+        raise SystemExit("CSR full dataset queue present archive count mismatch")
+    if summary["already_profiled_matrices"] < 12:
+        raise SystemExit("CSR full dataset queue profiled count unexpectedly small")
+    if summary["eligible_matrices"] <= summary["already_profiled_matrices"]:
+        raise SystemExit("CSR full dataset queue lacks unprofiled eligible matrices")
+    if summary["queued_matrices"] <= 0 or summary["queued_jobs"] <= 0:
+        raise SystemExit("CSR full dataset queue is empty")
+    if summary["queued_batches"] <= 0:
+        raise SystemExit("CSR full dataset queue has no batches")
+    if len(job_rows) != summary["queued_jobs"]:
+        raise SystemExit("CSR full dataset queue job row count mismatch")
+    if len(batch_rows) != summary["queued_batches"]:
+        raise SystemExit("CSR full dataset queue batch row count mismatch")
+    queued_matrix_rows = [row for row in matrix_rows if row["queue_status"] == "queued"]
+    if len(queued_matrix_rows) != summary["queued_matrices"]:
+        raise SystemExit("CSR full dataset queue matrix row count mismatch")
+    if any(row["queue_status"] != "pending_import" for row in job_rows):
+        raise SystemExit("CSR full dataset queue job status mismatch")
+    if any(row["requires_import"] is not True for row in job_rows):
+        raise SystemExit("CSR full dataset queue import flag mismatch")
+    if any(row["requires_cpu_screen"] is not True for row in job_rows):
+        raise SystemExit("CSR full dataset queue CPU-screen flag mismatch")
+    if any(row["precision"] != "float64" for row in job_rows):
+        raise SystemExit("CSR full dataset queue precision mismatch")
+    if any(row["measurement_repeats"] != summary["measurement_repeats"] for row in job_rows):
+        raise SystemExit("CSR full dataset queue repeat mismatch")
+    if any(row["max_iter"] != summary["max_iter"] for row in job_rows):
+        raise SystemExit("CSR full dataset queue max_iter mismatch")
+    if any(row["queue_status"] != "pending" for row in batch_rows):
+        raise SystemExit("CSR full dataset queue batch status mismatch")
+    if sum(row["job_count"] for row in batch_rows) != summary["queued_jobs"]:
+        raise SystemExit("CSR full dataset queue batch job total mismatch")
+    if sum(row["matrix_count"] for row in batch_rows) != summary["queued_matrices"]:
+        raise SystemExit("CSR full dataset queue batch matrix total mismatch")
+    if sum(row["planned_gpu_solve_attempts"] for row in batch_rows) != summary[
+        "planned_gpu_solve_attempts"
+    ]:
+        raise SystemExit("CSR full dataset queue batch attempt total mismatch")
+    if sum(row["estimated_nnz_visits"] for row in job_rows) != summary[
+        "estimated_total_nnz_visits"
+    ]:
+        raise SystemExit("CSR full dataset queue estimated work mismatch")
+    if summary["first_pending_batch_id"] != batch_rows[0]["batch_id"]:
+        raise SystemExit("CSR full dataset queue first batch mismatch")
+    if state["resume_policy"]["first_pending_batch_id"] != summary["first_pending_batch_id"]:
+        raise SystemExit("CSR full dataset queue state resume mismatch")
+    if len(state["resume_policy"]["pending_batch_ids"]) != summary["queued_batches"]:
+        raise SystemExit("CSR full dataset queue pending batch state mismatch")
+    if "explicit_user_start_for_gpu_benchmark" not in set(state["execution_requires"]):
+        raise SystemExit("CSR full dataset queue missing explicit execution guard")
+    if "do_not_change_runtime_selector" not in set(state["failure_policy"]):
+        raise SystemExit("CSR full dataset queue missing runtime failure guard")
+    if "Execution Boundary" not in report:
+        raise SystemExit("CSR full dataset queue report missing boundary")
+    if manifest.metadata["queued_matrices"] != summary["queued_matrices"]:
+        raise SystemExit("CSR full dataset queue manifest matrix mismatch")
+    if manifest.metadata["queued_jobs"] != summary["queued_jobs"]:
+        raise SystemExit("CSR full dataset queue manifest job mismatch")
+    if manifest.metadata["queued_batches"] != summary["queued_batches"]:
+        raise SystemExit("CSR full dataset queue manifest batch mismatch")
+    if manifest.metadata["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR full dataset queue manifest runtime mismatch")
+    if manifest.metadata["executes_gpu"] is not False:
+        raise SystemExit("CSR full dataset queue manifest execution mismatch")
+    if manifest.metadata["imports_matrices"] is not False:
+        raise SystemExit("CSR full dataset queue manifest import mismatch")
+    if manifest.metadata["resumable"] is not True:
+        raise SystemExit("CSR full dataset queue manifest resumable mismatch")
+
+
+def _verify_completed_csr_queue_batches(runs_root: Path) -> None:
+    completed_paths: list[Path] = []
+    for path in sorted(runs_root.glob("phase1_csr_queue_batch_*"), key=lambda item: item.name):
+        summary_path = path / "csr_queue_batch_execution_summary.json"
+        if not summary_path.exists():
+            continue
+        summary = json.loads(summary_path.read_text(encoding="utf-8"))
+        if summary.get("status") == "passed":
+            completed_paths.append(path)
+    if not completed_paths:
+        raise SystemExit("no completed CSR queue batches found")
+    exact_expectations = {
+        "batch_00001": {
+            "expected_batch_outcome": "profiled_with_gpu_success",
+            "expected_planned_total_nnz": 15342,
+            "expected_planned_max_matrix_nnz": 4054,
+            "expected_gpu_success_rows": 2,
+            "expected_cpu_screened_out_rows": 22,
+            "expected_selector_oracle_rows": 2,
+            "expected_resume_status": "completed",
+        },
+        "batch_00002": {
+            "expected_batch_outcome": "screen_only_no_oracle",
+            "expected_planned_total_nnz": 27563,
+            "expected_planned_max_matrix_nnz": 6511,
+            "expected_gpu_success_rows": 0,
+            "expected_cpu_screened_out_rows": 24,
+            "expected_selector_oracle_rows": 0,
+            "expected_resume_status": "completed_no_oracle",
+        },
+        "batch_00003": {
+            "expected_batch_outcome": "profiled_with_gpu_success",
+            "expected_planned_total_nnz": 49029,
+            "expected_planned_max_matrix_nnz": 21842,
+            "expected_gpu_success_rows": 5,
+            "expected_cpu_screened_out_rows": 19,
+            "expected_selector_oracle_rows": 3,
+            "expected_resume_status": "completed",
+        },
+    }
+    for path in completed_paths:
+        summary = json.loads(
+            (path / "csr_queue_batch_execution_summary.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        batch_id = str(summary["batch_id"])
+        expected = exact_expectations.get(
+            batch_id,
+            {
+                "expected_batch_outcome": str(summary["batch_outcome"]),
+                "expected_planned_total_nnz": int(summary["planned_total_nnz"]),
+                "expected_planned_max_matrix_nnz": int(summary["planned_max_matrix_nnz"]),
+                "expected_gpu_success_rows": int(summary["gpu_success_rows"]),
+                "expected_cpu_screened_out_rows": int(summary["cpu_screened_out_rows"]),
+                "expected_selector_oracle_rows": int(summary["selector_oracle_rows"]),
+                "expected_resume_status": str(summary["resume_status"]),
+            },
+        )
+        _verify_csr_queue_batch_execution(
+            path,
+            expected_batch_id=batch_id,
+            **expected,
+        )
+
+
+def _verify_csr_queue_batch_execution(
+    path: Path,
+    *,
+    expected_batch_id: str,
+    expected_batch_outcome: str,
+    expected_planned_total_nnz: int,
+    expected_planned_max_matrix_nnz: int,
+    expected_gpu_success_rows: int,
+    expected_cpu_screened_out_rows: int,
+    expected_selector_oracle_rows: int,
+    expected_resume_status: str,
+) -> None:
+    manifest = read_manifest(path / "artifact_manifest.json")
+    stale = verify_manifest_hashes(manifest)
+    if stale:
+        raise SystemExit(f"stale CSR queue batch execution manifest: {stale}")
+    batch_matrices = read_jsonl(path / "csr_queue_batch_matrix_queue.jsonl")
+    batch_jobs = read_jsonl(path / "csr_queue_batch_candidate_queue.jsonl")
+    csr_rows = read_jsonl(path / "csr_matrices.jsonl")
+    results = read_jsonl(path / "csr_micro_campaign_results.jsonl")
+    selector_rows = read_jsonl(path / "csr_micro_selector_rows.jsonl")
+    summary = json.loads(
+        (path / "csr_queue_batch_execution_summary.json").read_text(encoding="utf-8")
+    )
+    schema = json.loads(
+        (path / "csr_queue_batch_execution_schema.json").read_text(encoding="utf-8")
+    )
+    state = json.loads(
+        (path / "csr_queue_batch_execution_state.json").read_text(encoding="utf-8")
+    )
+    micro_summary = json.loads(
+        (path / "csr_micro_campaign_summary.json").read_text(encoding="utf-8")
+    )
+    selector_summary = json.loads(
+        (path / "csr_micro_selector_summary.json").read_text(encoding="utf-8")
+    )
+    if manifest.artifact_kind != "csr_queue_batch_execution":
+        raise SystemExit("unexpected CSR queue batch execution artifact kind")
+    if summary["status"] != "passed":
+        raise SystemExit("CSR queue batch execution did not pass")
+    if summary["schema_version"] != "phase1_csr_queue_batch_execution_v1":
+        raise SystemExit("CSR queue batch execution schema mismatch")
+    if schema["schema_version"] != summary["schema_version"]:
+        raise SystemExit("CSR queue batch execution schema/summary mismatch")
+    if summary.get("batch_outcome") != expected_batch_outcome:
+        raise SystemExit("CSR queue batch execution outcome mismatch")
+    if expected_batch_outcome == "profiled_with_gpu_success":
+        if micro_summary["status"] != "passed" or selector_summary["status"] != "passed":
+            raise SystemExit("CSR queue batch execution micro artifacts did not pass")
+    elif expected_batch_outcome == "screen_only_no_oracle":
+        if micro_summary["status"] != "failed" or selector_summary["status"] != "failed":
+            raise SystemExit("CSR queue batch screen-only micro status mismatch")
+    else:
+        raise SystemExit("CSR queue batch execution unknown expected outcome")
+    if summary["batch_id"] != expected_batch_id:
+        raise SystemExit("CSR queue batch execution batch id mismatch")
+    if summary["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR queue batch execution changed runtime selector")
+    if summary["executes_gpu"] is not True or schema["executes_gpu"] is not True:
+        raise SystemExit("CSR queue batch execution did not execute GPU")
+    if summary["imports_matrices"] is not True or schema["imports_matrices"] is not True:
+        raise SystemExit("CSR queue batch execution did not import matrices")
+    if summary["cpu_screen_required"] is not True:
+        raise SystemExit("CSR queue batch execution missing CPU screen")
+    if summary["append_only_selector_rows"] is not True:
+        raise SystemExit("CSR queue batch execution should be append-only")
+    if summary["planned_matrices"] != 8 or summary["executed_matrices"] != 8:
+        raise SystemExit("CSR queue batch execution matrix count mismatch")
+    if summary["planned_jobs"] != 24 or summary["executed_jobs"] != 24:
+        raise SystemExit("CSR queue batch execution job count mismatch")
+    if len(batch_matrices) != 8 or len(csr_rows) != 8:
+        raise SystemExit("CSR queue batch execution CSR row count mismatch")
+    if len(batch_jobs) != 24 or len(results) != 24:
+        raise SystemExit("CSR queue batch execution result row count mismatch")
+    if summary["imported_matrices"] != 8:
+        raise SystemExit("CSR queue batch execution import count mismatch")
+    if summary["candidate_jobs"] != 24:
+        raise SystemExit("CSR queue batch execution candidate count mismatch")
+    if summary["gpu_failed_rows"] != 0:
+        raise SystemExit("CSR queue batch execution contains GPU failures")
+    if summary["gpu_success_rows"] != expected_gpu_success_rows:
+        raise SystemExit("CSR queue batch execution success count mismatch")
+    if summary["cpu_screened_out_rows"] != expected_cpu_screened_out_rows:
+        raise SystemExit("CSR queue batch execution screen count mismatch")
+    if summary["gpu_success_rows"] + summary["cpu_screened_out_rows"] != 24:
+        raise SystemExit("CSR queue batch execution status total mismatch")
+    if summary["selector_rows"] != 24 or len(selector_rows) != 24:
+        raise SystemExit("CSR queue batch execution selector row count mismatch")
+    if summary["selector_oracle_rows"] != expected_selector_oracle_rows:
+        raise SystemExit("CSR queue batch execution oracle selector count mismatch")
+    if summary["completed_without_oracle"] is not (
+        expected_batch_outcome == "screen_only_no_oracle"
+    ):
+        raise SystemExit("CSR queue batch execution no-oracle flag mismatch")
+    if summary["has_oracle_rows"] is not (expected_selector_oracle_rows > 0):
+        raise SystemExit("CSR queue batch execution oracle flag mismatch")
+    if summary["matrices_with_selector_rows"] != 8:
+        raise SystemExit("CSR queue batch execution selector matrix count mismatch")
+    if summary["planned_total_nnz"] != expected_planned_total_nnz:
+        raise SystemExit("CSR queue batch execution planned nnz mismatch")
+    if summary["planned_max_matrix_nnz"] != expected_planned_max_matrix_nnz:
+        raise SystemExit("CSR queue batch execution max nnz mismatch")
+    if expected_gpu_success_rows > 0:
+        if float(summary["max_final_relative_residual"]) > 1.0e-5:
+            raise SystemExit("CSR queue batch execution trace residual check failed")
+        if float(summary["max_cpu_recomputed_relative_residual"]) > 1.0e-4:
+            raise SystemExit("CSR queue batch execution CPU residual check failed")
+        if float(summary["max_solution_relative_error"]) > 5.0e-3:
+            raise SystemExit("CSR queue batch execution solution error check failed")
+    elif (
+        float(summary["max_final_relative_residual"]) != 0.0
+        or float(summary["max_cpu_recomputed_relative_residual"]) != 0.0
+        or float(summary["max_solution_relative_error"]) != 0.0
+    ):
+        raise SystemExit("CSR queue batch screen-only residual summary mismatch")
+    gpu_rows = [row for row in results if row["backend"] == "taichi_gpu"]
+    screen_rows = [row for row in results if row["backend"] == "cpu_reference_screen"]
+    if len(gpu_rows) != summary["gpu_success_rows"]:
+        raise SystemExit("CSR queue batch execution GPU row count mismatch")
+    if len(screen_rows) != summary["cpu_screened_out_rows"]:
+        raise SystemExit("CSR queue batch execution screen row count mismatch")
+    for row in gpu_rows:
+        if row["status"] != "success":
+            raise SystemExit("CSR queue batch execution GPU row is not success")
+        if row["success_rate"] != 1.0 or row["measurement_repeats"] != 1:
+            raise SystemExit("CSR queue batch execution repeat aggregation mismatch")
+        if float(row["final_relative_residual"]) > 1.0e-5:
+            raise SystemExit("CSR queue batch execution GPU trace residual mismatch")
+        if float(row["cpu_recomputed_relative_residual"]) > 1.0e-4:
+            raise SystemExit("CSR queue batch execution GPU CPU residual mismatch")
+        if float(row["solution_relative_error"]) > 5.0e-3:
+            raise SystemExit("CSR queue batch execution GPU solution error mismatch")
+    for row in screen_rows:
+        if row["status"] != "screened_out":
+            raise SystemExit("CSR queue batch execution screen row status mismatch")
+        if not str(row.get("failure_reason", "")).startswith("cpu_reference_"):
+            raise SystemExit("CSR queue batch execution screen row reason mismatch")
+    if state["resume_status"] != expected_resume_status:
+        raise SystemExit("CSR queue batch execution state not completed")
+    if state["batch_outcome"] != expected_batch_outcome:
+        raise SystemExit("CSR queue batch execution state outcome mismatch")
+    if state["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR queue batch execution state runtime mismatch")
+    if manifest.metadata["batch_id"] != summary["batch_id"]:
+        raise SystemExit("CSR queue batch execution manifest batch mismatch")
+    if manifest.metadata["batch_outcome"] != expected_batch_outcome:
+        raise SystemExit("CSR queue batch execution manifest outcome mismatch")
+    if manifest.metadata["gpu_success_rows"] != summary["gpu_success_rows"]:
+        raise SystemExit("CSR queue batch execution manifest success mismatch")
+    if manifest.metadata["cpu_screened_out_rows"] != summary["cpu_screened_out_rows"]:
+        raise SystemExit("CSR queue batch execution manifest screen mismatch")
+    if manifest.metadata["executes_gpu"] is not True:
+        raise SystemExit("CSR queue batch execution manifest GPU mismatch")
+    if manifest.metadata["imports_matrices"] is not True:
+        raise SystemExit("CSR queue batch execution manifest import mismatch")
+    if manifest.metadata["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR queue batch execution manifest runtime mismatch")
+
+
+def _count_selector_target_status(rows: list[dict], status: str) -> int:
+    return sum(1 for row in rows if row["target_status"] == status)
+
+
+def _verify_csr_queue_training_pool(path: Path) -> None:
+    manifest = read_manifest(path / "artifact_manifest.json")
+    stale = verify_manifest_hashes(manifest)
+    if stale:
+        raise SystemExit(f"stale CSR queue training pool manifest: {stale}")
+    selector_rows = read_jsonl(path / "csr_queue_training_pool_selector_rows.jsonl")
+    source_rows = read_jsonl(path / "csr_queue_training_pool_sources.jsonl")
+    membership = read_jsonl(path / "csr_queue_training_pool_membership.jsonl")
+    summary = json.loads(
+        (path / "csr_queue_training_pool_summary.json").read_text(encoding="utf-8")
+    )
+    schema = json.loads(
+        (path / "csr_queue_training_pool_schema.json").read_text(encoding="utf-8")
+    )
+    state = json.loads(
+        (path / "csr_queue_training_pool_state.json").read_text(encoding="utf-8")
+    )
+    if manifest.artifact_kind != "csr_queue_training_pool":
+        raise SystemExit("unexpected CSR queue training pool artifact kind")
+    if summary["status"] != "passed":
+        raise SystemExit("CSR queue training pool did not pass")
+    if summary["schema_version"] != "phase1_csr_queue_training_pool_v1":
+        raise SystemExit("CSR queue training pool schema mismatch")
+    if schema["schema_version"] != summary["schema_version"]:
+        raise SystemExit("CSR queue training pool schema/summary mismatch")
+    if summary["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR queue training pool changed runtime selector")
+    if summary["executes_gpu"] is not False or summary["imports_matrices"] is not False:
+        raise SystemExit("CSR queue training pool should be non-executing")
+    if summary["append_only"] is not True or summary["training_pool_ready"] is not True:
+        raise SystemExit("CSR queue training pool append/ready flags mismatch")
+    full_queue_batches = read_jsonl(summary["source_queue_batch_path"])
+    queue_sources = [
+        row for row in source_rows if row["source_kind"] == "queue_batch_execution"
+    ]
+    base_sources = [row for row in source_rows if row["source_kind"] == "base_selector"]
+    completed_batch_ids = [row["batch_id"] for row in queue_sources]
+    pending_batch_ids = [
+        row["batch_id"]
+        for row in full_queue_batches
+        if row["batch_id"] not in set(completed_batch_ids)
+    ]
+    if summary["source_count"] != len(source_rows):
+        raise SystemExit("CSR queue training pool source count mismatch")
+    if summary["base_source_count"] != len(base_sources) or len(base_sources) != 2:
+        raise SystemExit("CSR queue training pool source split mismatch")
+    if summary["queue_batch_source_count"] != len(queue_sources):
+        raise SystemExit("CSR queue training pool source split mismatch")
+    if summary["completed_queue_batches"] != len(queue_sources):
+        raise SystemExit("CSR queue training pool completed batch count mismatch")
+    if summary["completed_batch_ids"] != completed_batch_ids:
+        raise SystemExit("CSR queue training pool completed batch id mismatch")
+    if summary["queue_batch_oracle_batches"] != sum(
+        1 for row in queue_sources if row["batch_outcome"] == "profiled_with_gpu_success"
+    ):
+        raise SystemExit("CSR queue training pool oracle batch count mismatch")
+    if summary["queue_batch_screen_only_batches"] != sum(
+        1 for row in queue_sources if row["batch_outcome"] == "screen_only_no_oracle"
+    ):
+        raise SystemExit("CSR queue training pool screen-only batch count mismatch")
+    if summary["full_queue_batches"] != len(full_queue_batches):
+        raise SystemExit("CSR queue training pool full queue progress mismatch")
+    if summary["remaining_queue_batches"] != len(pending_batch_ids):
+        raise SystemExit("CSR queue training pool full queue progress mismatch")
+    if summary["next_pending_batch_id"] != pending_batch_ids[0]:
+        raise SystemExit("CSR queue training pool next batch mismatch")
+    if summary["selector_rows"] != len(selector_rows):
+        raise SystemExit("CSR queue training pool selector count mismatch")
+    if summary["membership_rows"] != len(membership) or len(membership) != len(selector_rows):
+        raise SystemExit("CSR queue training pool membership count mismatch")
+    if summary["matrices"] != len({row["matrix_id"] for row in selector_rows}):
+        raise SystemExit("CSR queue training pool matrix count mismatch")
+    if summary["success_rows"] != _count_selector_target_status(selector_rows, "success"):
+        raise SystemExit("CSR queue training pool success count mismatch")
+    if summary["screened_out_rows"] != _count_selector_target_status(selector_rows, "screened_out"):
+        raise SystemExit("CSR queue training pool screen count mismatch")
+    if summary["not_profiled_rows"] != _count_selector_target_status(selector_rows, "not_profiled"):
+        raise SystemExit("CSR queue training pool not-profiled count mismatch")
+    if summary["not_applicable_rows"] != _count_selector_target_status(selector_rows, "not_applicable"):
+        raise SystemExit("CSR queue training pool not-applicable count mismatch")
+    if summary["oracle_rows"] != sum(1 for row in selector_rows if row["label_is_oracle"]):
+        raise SystemExit("CSR queue training pool oracle count mismatch")
+    if summary["queue_batch_selector_rows"] != sum(row["selector_rows"] for row in queue_sources):
+        raise SystemExit("CSR queue training pool queue selector count mismatch")
+    if summary["non_queue_selector_rows"] != sum(row["selector_rows"] for row in base_sources):
+        raise SystemExit("CSR queue training pool non-queue selector count mismatch")
+    sources_by_id = {row["source_id"]: row for row in source_rows}
+    if not {
+        "base_01",
+        "base_02",
+        "queue_batch_00001",
+        "queue_batch_00002",
+        "queue_batch_00003",
+    } <= set(sources_by_id):
+        raise SystemExit("CSR queue training pool source ids mismatch")
+    if sources_by_id["base_01"]["selector_rows"] != 108:
+        raise SystemExit("CSR queue training pool base_01 rows mismatch")
+    if sources_by_id["base_02"]["selector_rows"] != 24:
+        raise SystemExit("CSR queue training pool base_02 rows mismatch")
+    if sources_by_id["queue_batch_00001"]["selector_rows"] != 24:
+        raise SystemExit("CSR queue training pool queue batch rows mismatch")
+    if sources_by_id["queue_batch_00002"]["selector_rows"] != 24:
+        raise SystemExit("CSR queue training pool queue batch 00002 rows mismatch")
+    if sources_by_id["queue_batch_00003"]["selector_rows"] != 24:
+        raise SystemExit("CSR queue training pool queue batch 00003 rows mismatch")
+    if sources_by_id["queue_batch_00001"]["executes_gpu"] is not True:
+        raise SystemExit("CSR queue training pool queue source GPU flag mismatch")
+    if sources_by_id["queue_batch_00002"]["executes_gpu"] is not True:
+        raise SystemExit("CSR queue training pool queue source GPU flag mismatch")
+    if sources_by_id["queue_batch_00003"]["executes_gpu"] is not True:
+        raise SystemExit("CSR queue training pool queue source GPU flag mismatch")
+    if sources_by_id["queue_batch_00001"]["batch_outcome"] != "profiled_with_gpu_success":
+        raise SystemExit("CSR queue training pool queue 00001 outcome mismatch")
+    if sources_by_id["queue_batch_00002"]["batch_outcome"] != "screen_only_no_oracle":
+        raise SystemExit("CSR queue training pool queue 00002 outcome mismatch")
+    if sources_by_id["queue_batch_00003"]["batch_outcome"] != "profiled_with_gpu_success":
+        raise SystemExit("CSR queue training pool queue 00003 outcome mismatch")
+    if sources_by_id["queue_batch_00002"]["completed_without_oracle"] is not True:
+        raise SystemExit("CSR queue training pool queue 00002 no-oracle flag mismatch")
+    if sources_by_id["queue_batch_00002"]["oracle_rows"] != 0:
+        raise SystemExit("CSR queue training pool queue 00002 oracle mismatch")
+    if sources_by_id["queue_batch_00003"]["oracle_rows"] != 3:
+        raise SystemExit("CSR queue training pool queue 00003 oracle mismatch")
+    for source in queue_sources:
+        if source["selector_rows"] <= 0:
+            raise SystemExit("CSR queue training pool queue source has no rows")
+        if source["executes_gpu"] is not True:
+            raise SystemExit("CSR queue training pool queue source GPU flag mismatch")
+        if source["runtime_selector_changed"] is not False:
+            raise SystemExit("CSR queue training pool queue source runtime mismatch")
+    if sources_by_id["queue_batch_00001"]["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR queue training pool queue source runtime mismatch")
+    if state["training_pool_ready"] is not True:
+        raise SystemExit("CSR queue training pool state ready mismatch")
+    if state["next_pending_batch_id"] != summary["next_pending_batch_id"]:
+        raise SystemExit("CSR queue training pool state next batch mismatch")
+    if manifest.metadata["training_pool_ready"] is not True:
+        raise SystemExit("CSR queue training pool manifest ready mismatch")
+    if manifest.metadata["selector_rows"] != summary["selector_rows"]:
+        raise SystemExit("CSR queue training pool manifest selector mismatch")
+    if manifest.metadata["completed_batch_ids"] != summary["completed_batch_ids"]:
+        raise SystemExit("CSR queue training pool manifest completed batch mismatch")
+    if (
+        manifest.metadata["queue_batch_screen_only_batches"]
+        != summary["queue_batch_screen_only_batches"]
+    ):
+        raise SystemExit("CSR queue training pool manifest screen-only mismatch")
+    if manifest.metadata["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR queue training pool manifest runtime mismatch")
+
+
+def _verify_csr_queue_batch_training_bundle(path: Path) -> None:
+    manifest = read_manifest(path / "artifact_manifest.json")
+    stale = verify_manifest_hashes(manifest)
+    if stale:
+        raise SystemExit(f"stale CSR queue batch training bundle manifest: {stale}")
+    selector_rows = read_jsonl(path / "combined_csr_selector_rows.jsonl")
+    requests = read_jsonl(path / "csr_transformer_model_requests.jsonl")
+    targets = read_jsonl(path / "csr_transformer_model_targets.jsonl")
+    request_index = read_jsonl(path / "csr_transformer_request_index.jsonl")
+    summary = json.loads(
+        (path / "csr_transformer_ready_summary.json").read_text(encoding="utf-8")
+    )
+    tensor_summary = json.loads(
+        (path / "csr_transformer_tensor_summary.json").read_text(encoding="utf-8")
+    )
+    schema = json.loads(
+        (path / "csr_transformer_ready_schema.json").read_text(encoding="utf-8")
+    )
+    arrays = json.loads(
+        (path / "csr_transformer_training_tensors.json").read_text(encoding="utf-8")
+    )
+    pool_summary = json.loads(
+        Path("runs/phase1_csr_queue_training_pool/csr_queue_training_pool_summary.json")
+        .read_text(encoding="utf-8")
+    )
+    if manifest.artifact_kind != "csr_queue_batch_training_bundle":
+        raise SystemExit("unexpected CSR queue batch training bundle artifact kind")
+    if summary["status"] != "passed" or summary["transformer_connectable"] is not True:
+        raise SystemExit("CSR queue batch training bundle did not pass")
+    if summary["schema_version"] != "phase1_csr_transformer_ready_v1":
+        raise SystemExit("CSR queue batch training bundle schema mismatch")
+    if schema["schema_version"] != summary["schema_version"]:
+        raise SystemExit("CSR queue batch training bundle schema/summary mismatch")
+    if summary["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR queue batch training bundle changed runtime selector")
+    if summary["model_required"] is not False:
+        raise SystemExit("CSR queue batch training bundle should not require a model")
+    if len(summary["source_selector_paths"]) != 1:
+        raise SystemExit("CSR queue batch training bundle source path count mismatch")
+    if "runs/phase1_csr_queue_training_pool/csr_queue_training_pool_selector_rows.jsonl" not in set(
+        summary["source_selector_paths"]
+    ):
+        raise SystemExit("CSR queue batch training bundle missing queue training pool source")
+    if len(selector_rows) != summary["num_selector_rows"]:
+        raise SystemExit("CSR queue batch training bundle selector count mismatch")
+    if len(requests) != summary["num_model_requests"]:
+        raise SystemExit("CSR queue batch training bundle request count mismatch")
+    if len(targets) != summary["num_model_targets"]:
+        raise SystemExit("CSR queue batch training bundle target count mismatch")
+    if len(request_index) != summary["num_tensor_requests"]:
+        raise SystemExit("CSR queue batch training bundle request-index count mismatch")
+    if summary["num_selector_rows"] != pool_summary["selector_rows"]:
+        raise SystemExit("CSR queue batch training bundle selector count mismatch")
+    if summary["num_matrices"] != pool_summary["matrices"]:
+        raise SystemExit("CSR queue batch training bundle matrix count mismatch")
+    if summary["num_success_rows"] != pool_summary["success_rows"]:
+        raise SystemExit("CSR queue batch training bundle success count mismatch")
+    if summary["num_screened_out_rows"] != pool_summary["screened_out_rows"]:
+        raise SystemExit("CSR queue batch training bundle screen count mismatch")
+    if summary["num_oracle_rows"] != pool_summary["oracle_rows"]:
+        raise SystemExit("CSR queue batch training bundle oracle count mismatch")
+    if summary["num_learning_rows"] != len(selector_rows):
+        raise SystemExit("CSR queue batch training bundle learning count mismatch")
+    if (
+        summary["num_learning_train_rows"] + summary["num_learning_eval_rows"]
+        != len(selector_rows)
+    ):
+        raise SystemExit("CSR queue batch training bundle split count mismatch")
+    if summary["num_global_candidates"] != 9:
+        raise SystemExit("CSR queue batch training bundle candidate count mismatch")
+    if summary["matrix_feature_dim"] != 21 or summary["candidate_feature_dim"] != 16:
+        raise SystemExit("CSR queue batch training bundle feature dim mismatch")
+    if summary["num_active_candidate_slots"] != len(selector_rows):
+        raise SystemExit("CSR queue batch training bundle active slot mismatch")
+    if summary["label_class_counts"]["success_oracle"] != pool_summary["oracle_rows"]:
+        raise SystemExit("CSR queue batch training bundle label counts mismatch")
+    if summary["label_class_counts"]["screened_out"] != pool_summary["screened_out_rows"]:
+        raise SystemExit("CSR queue batch training bundle label counts mismatch")
+    if summary["target_status_counts"] != {
+        status: _count_selector_target_status(selector_rows, status)
+        for status in ("not_applicable", "not_profiled", "screened_out", "success")
+    }:
+        raise SystemExit("CSR queue batch training bundle target counts mismatch")
+    if not 0.0 <= float(summary["eval_oracle_top1_accuracy"]) <= 1.0:
+        raise SystemExit("CSR queue batch training bundle oracle accuracy mismatch")
+    if not 0.0 <= float(summary["eval_profiled_selection_rate"]) <= 1.0:
+        raise SystemExit("CSR queue batch training bundle profiled rate mismatch")
+    if summary["validation_error_count"] != 0:
+        raise SystemExit("CSR queue batch training bundle validation errors found")
+    if tensor_summary["status"] != "passed":
+        raise SystemExit("CSR queue batch training tensor summary did not pass")
+    if tensor_summary["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR queue batch training tensor changed runtime selector")
+    if tensor_summary["model_required"] is not False:
+        raise SystemExit("CSR queue batch training tensor should not require model")
+    if tensor_summary["num_requests"] != summary["num_tensor_requests"]:
+        raise SystemExit("CSR queue batch training tensor request mismatch")
+    if tensor_summary["num_active_candidate_slots"] != summary["num_active_candidate_slots"]:
+        raise SystemExit("CSR queue batch training active slot mismatch")
+    if len(arrays["request_ids"]) != summary["num_tensor_requests"]:
+        raise SystemExit("CSR queue batch training array request axis mismatch")
+    if len(arrays["global_candidate_ids"]) != summary["num_global_candidates"]:
+        raise SystemExit("CSR queue batch training candidate axis mismatch")
+    if sum(sum(row) for row in arrays["candidate_mask"]) != summary[
+        "num_active_candidate_slots"
+    ]:
+        raise SystemExit("CSR queue batch training candidate mask mismatch")
+    if manifest.metadata["queue_batch_selector_rows"] != pool_summary[
+        "queue_batch_selector_rows"
+    ]:
+        raise SystemExit("CSR queue batch training manifest queue row mismatch")
+    if manifest.metadata["queue_pool_ready"] is not True:
+        raise SystemExit("CSR queue batch training manifest pool ready mismatch")
+    if manifest.metadata["queue_pool_summary"] != (
+        "runs/phase1_csr_queue_training_pool/csr_queue_training_pool_summary.json"
+    ):
+        raise SystemExit("CSR queue batch training manifest pool path mismatch")
+    if manifest.metadata["num_selector_rows"] != summary["num_selector_rows"]:
+        raise SystemExit("CSR queue batch training manifest selector mismatch")
+    if manifest.metadata["transformer_connectable"] is not True:
+        raise SystemExit("CSR queue batch training manifest connectable mismatch")
+    if manifest.metadata["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR queue batch training manifest runtime mismatch")
+
+
+def _verify_csr_queue_batch_reference_ranker(path: Path) -> None:
+    manifest = read_manifest(path / "artifact_manifest.json")
+    stale = verify_manifest_hashes(manifest)
+    if stale:
+        raise SystemExit(f"stale CSR queue batch reference ranker manifest: {stale}")
+    model = json.loads(
+        (path / "csr_queue_batch_reference_ranker_model.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    predictions = read_jsonl(path / "csr_queue_batch_reference_ranker_predictions.jsonl")
+    summary = json.loads(
+        (path / "csr_queue_batch_reference_ranker_summary.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    schema = json.loads(
+        (path / "csr_queue_batch_reference_ranker_schema.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    if manifest.artifact_kind != "csr_queue_batch_reference_ranker":
+        raise SystemExit("unexpected CSR queue batch reference ranker artifact kind")
+    if summary["status"] != "passed":
+        raise SystemExit("CSR queue batch reference ranker did not pass")
+    if summary["schema_version"] != "phase1_csr_transformer_ranker_v1":
+        raise SystemExit("CSR queue batch reference ranker schema mismatch")
+    if schema["schema_version"] != summary["schema_version"]:
+        raise SystemExit("CSR queue batch reference ranker schema/summary mismatch")
+    if summary["model_family"] != "masked_self_attention_ranker_v1":
+        raise SystemExit("CSR queue batch reference ranker model family mismatch")
+    if summary["model_id"] != "csr_queue_batch_shadow_ranker_v1":
+        raise SystemExit("CSR queue batch reference ranker model id mismatch")
+    if summary["model_trained"] is not True:
+        raise SystemExit("CSR queue batch reference ranker did not train")
+    if summary["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR queue batch reference ranker changed runtime selector")
+    train_rows = [row for row in predictions if row["split"] == "train"]
+    eval_rows = [row for row in predictions if row["split"] == "eval"]
+    train_oracle_rows = [row for row in train_rows if row["oracle_candidate_id"]]
+    eval_oracle_rows = [row for row in eval_rows if row["oracle_candidate_id"]]
+    eval_profiled_success_rows = [
+        row
+        for row in eval_rows
+        if row["evaluation_status"]
+        in {"oracle_match", "profiled_success_non_oracle"}
+    ]
+    eval_non_success_rows = [
+        row for row in eval_rows if row["selected_target_status"] != "success"
+    ]
+    if summary["num_requests"] != len(predictions) or summary["num_predictions"] != len(predictions):
+        raise SystemExit("CSR queue batch reference ranker request count mismatch")
+    if summary["num_train_requests"] != len(train_rows) or summary["num_eval_requests"] != len(eval_rows):
+        raise SystemExit("CSR queue batch reference ranker split count mismatch")
+    if (
+        summary["num_train_oracle_requests"] != len(train_oracle_rows)
+        or summary["num_eval_oracle_requests"] != len(eval_oracle_rows)
+    ):
+        raise SystemExit("CSR queue batch reference ranker oracle count mismatch")
+    if summary["num_global_candidates"] != 9:
+        raise SystemExit("CSR queue batch reference ranker candidate count mismatch")
+    if summary["token_feature_dim"] != 37:
+        raise SystemExit("CSR queue batch reference ranker token dim mismatch")
+    if summary["d_model"] != 24 or summary["num_attention_heads"] != 4:
+        raise SystemExit("CSR queue batch reference ranker attention shape mismatch")
+    if summary["feedforward_dim"] != 48 or summary["scorer_feature_dim"] != 62:
+        raise SystemExit("CSR queue batch reference ranker scorer dim mismatch")
+    if summary["num_epochs"] != 160:
+        raise SystemExit("CSR queue batch reference ranker epoch count mismatch")
+    if abs(float(summary["learning_rate"]) - 0.03) > 1.0e-12:
+        raise SystemExit("CSR queue batch reference ranker learning rate mismatch")
+    if summary["num_pairwise_constraints"] <= 0:
+        raise SystemExit("CSR queue batch reference ranker constraint count mismatch")
+    if summary["num_pairwise_updates"] <= 0:
+        raise SystemExit("CSR queue batch reference ranker update count mismatch")
+    if not math.isfinite(float(summary["final_train_pairwise_loss"])):
+        raise SystemExit("CSR queue batch reference ranker train loss mismatch")
+    if not 0.0 <= float(summary["train_oracle_top1_accuracy"]) <= 1.0:
+        raise SystemExit("CSR queue batch reference ranker train accuracy mismatch")
+    if not 0.0 <= float(summary["eval_oracle_top1_accuracy"]) <= 1.0:
+        raise SystemExit("CSR queue batch reference ranker eval oracle mismatch")
+    if not 0.0 <= float(summary["eval_oracle_top1_accuracy_all_requests"]) <= 1.0:
+        raise SystemExit("CSR queue batch reference ranker all-request accuracy mismatch")
+    if abs(float(summary["eval_profiled_success_selection_rate"]) - (
+        len(eval_profiled_success_rows) / len(eval_rows)
+    )) > 1.0e-12:
+        raise SystemExit("CSR queue batch reference ranker profiled rate mismatch")
+    if summary["eval_non_success_selection_count"] != len(eval_non_success_rows):
+        raise SystemExit("CSR queue batch reference ranker non-success count mismatch")
+    if not math.isfinite(float(summary["eval_mean_regret_ms"])):
+        raise SystemExit("CSR queue batch reference ranker mean regret mismatch")
+    if not math.isfinite(float(summary["eval_max_regret_ms"])):
+        raise SystemExit("CSR queue batch reference ranker max regret mismatch")
+    if model["runtime_integration"]["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR queue batch reference ranker model runtime mismatch")
+    if len(model["scorer_head"]) != summary["scorer_feature_dim"]:
+        raise SystemExit("CSR queue batch reference ranker scorer head mismatch")
+    if len(model["token_feature_names"]) != summary["token_feature_dim"]:
+        raise SystemExit("CSR queue batch reference ranker token features mismatch")
+    if {row["evaluation_status"] for row in predictions} != {
+        "oracle_match",
+        "non_success_selected",
+        "profiled_success_non_oracle",
+        "no_oracle_target",
+    }:
+        raise SystemExit("CSR queue batch reference ranker status set mismatch")
+    if sum(1 for row in eval_rows if row["evaluation_status"] == "oracle_match") > len(eval_oracle_rows):
+        raise SystemExit("CSR queue batch reference ranker eval oracle-match mismatch")
+    for row in predictions:
+        ranked = row["ranked_candidate_ids"]
+        if not ranked or row["selected_candidate_id"] != ranked[0]:
+            raise SystemExit("CSR queue batch reference ranker selected/rank mismatch")
+        if len(ranked) != len(set(ranked)) or set(ranked) != set(row["scores"]):
+            raise SystemExit("CSR queue batch reference ranker score/rank mismatch")
+        if not all(math.isfinite(float(value)) for value in row["scores"].values()):
+            raise SystemExit("CSR queue batch reference ranker nonfinite score")
+    if manifest.metadata["shadow_only"] is not True:
+        raise SystemExit("CSR queue batch reference ranker manifest shadow mismatch")
+    if manifest.metadata["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR queue batch reference ranker manifest runtime mismatch")
+    if manifest.metadata["eval_non_success_selection_count"] != summary[
+        "eval_non_success_selection_count"
+    ]:
+        raise SystemExit("CSR queue batch reference ranker manifest non-success mismatch")
+
+
+def _verify_csr_queue_batch_model_replay(path: Path) -> None:
+    manifest = read_manifest(path / "artifact_manifest.json")
+    stale = verify_manifest_hashes(manifest)
+    if stale:
+        raise SystemExit(f"stale CSR queue batch model replay manifest: {stale}")
+    predictions = read_jsonl(path / "csr_queue_batch_model_replay_predictions.jsonl")
+    comparison = read_jsonl(path / "csr_queue_batch_model_replay_comparison.jsonl")
+    summary = json.loads(
+        (path / "csr_queue_batch_model_replay_summary.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    schema = json.loads(
+        (path / "csr_queue_batch_model_replay_schema.json").read_text(encoding="utf-8")
+    )
+    if manifest.artifact_kind != "csr_queue_batch_model_replay":
+        raise SystemExit("unexpected CSR queue batch model replay artifact kind")
+    if summary["status"] != "passed":
+        raise SystemExit("CSR queue batch model replay did not pass")
+    if summary["schema_version"] != "phase1_csr_transformer_model_replay_v1":
+        raise SystemExit("CSR queue batch model replay schema mismatch")
+    if schema["schema_version"] != summary["schema_version"]:
+        raise SystemExit("CSR queue batch model replay schema/summary mismatch")
+    if summary["source_model_schema_version"] != "phase1_csr_transformer_ranker_v1":
+        raise SystemExit("CSR queue batch model replay source schema mismatch")
+    if summary["model_family"] != "masked_self_attention_ranker_v1":
+        raise SystemExit("CSR queue batch model replay model family mismatch")
+    if summary["model_id"] != "csr_queue_batch_shadow_ranker_v1":
+        raise SystemExit("CSR queue batch model replay model id mismatch")
+    if summary["model_loaded"] is not True or summary["model_trained"] is not True:
+        raise SystemExit("CSR queue batch model replay load/train flags mismatch")
+    if summary["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR queue batch model replay changed runtime selector")
+    if summary["num_predictions"] != len(predictions):
+        raise SystemExit("CSR queue batch model replay count mismatch")
+    if summary["num_reference_predictions"] != len(comparison):
+        raise SystemExit("CSR queue batch model replay count mismatch")
+    if len(predictions) != len(comparison):
+        raise SystemExit("CSR queue batch model replay row count mismatch")
+    if summary["exact_replay"] is not True:
+        raise SystemExit("CSR queue batch model replay was not exact")
+    if summary["selected_candidate_mismatch_count"] != 0:
+        raise SystemExit("CSR queue batch model replay selected mismatch")
+    if summary["ranked_order_mismatch_count"] != 0:
+        raise SystemExit("CSR queue batch model replay rank mismatch")
+    if summary["evaluation_status_mismatch_count"] != 0:
+        raise SystemExit("CSR queue batch model replay status mismatch")
+    if summary["missing_reference_count"] != 0:
+        raise SystemExit("CSR queue batch model replay missing reference")
+    if float(summary["max_abs_score_delta"]) != 0.0:
+        raise SystemExit("CSR queue batch model replay score delta mismatch")
+    if summary["prediction_contract_valid"] is not True:
+        raise SystemExit("CSR queue batch model replay prediction contract invalid")
+    if any(row["selected_candidate_match"] is not True for row in comparison):
+        raise SystemExit("CSR queue batch model replay selected comparison mismatch")
+    if any(row["ranked_order_match"] is not True for row in comparison):
+        raise SystemExit("CSR queue batch model replay rank comparison mismatch")
+    if any(row["evaluation_status_match"] is not True for row in comparison):
+        raise SystemExit("CSR queue batch model replay status comparison mismatch")
+    if any(float(row["max_abs_score_delta"]) != 0.0 for row in comparison):
+        raise SystemExit("CSR queue batch model replay comparison score mismatch")
+    if manifest.metadata["shadow_only"] is not True:
+        raise SystemExit("CSR queue batch model replay manifest shadow mismatch")
+    if manifest.metadata["exact_replay"] is not True:
+        raise SystemExit("CSR queue batch model replay manifest exact mismatch")
+    if manifest.metadata["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR queue batch model replay manifest runtime mismatch")
+
+
+def _verify_csr_queue_candidate_coverage(path: Path) -> None:
+    manifest = read_manifest(path / "artifact_manifest.json")
+    stale = verify_manifest_hashes(manifest)
+    if stale:
+        raise SystemExit(f"stale CSR queue candidate coverage manifest: {stale}")
+    batch_rows = read_jsonl(path / "csr_queue_candidate_coverage_batch_rows.jsonl")
+    candidate_rows = read_jsonl(
+        path / "csr_queue_candidate_coverage_candidate_rows.jsonl"
+    )
+    gap_rows = read_jsonl(path / "csr_queue_candidate_coverage_gap_rows.jsonl")
+    summary = json.loads(
+        (path / "csr_queue_candidate_coverage_summary.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    schema = json.loads(
+        (path / "csr_queue_candidate_coverage_schema.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    pool_summary = json.loads(
+        Path("runs/phase1_csr_queue_training_pool/csr_queue_training_pool_summary.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    if manifest.artifact_kind != "csr_queue_candidate_coverage":
+        raise SystemExit("unexpected CSR queue candidate coverage artifact kind")
+    if summary["status"] != "passed":
+        raise SystemExit("CSR queue candidate coverage did not pass")
+    if summary["schema_version"] != "phase1_csr_queue_candidate_coverage_v1":
+        raise SystemExit("CSR queue candidate coverage schema mismatch")
+    if schema["schema_version"] != summary["schema_version"]:
+        raise SystemExit("CSR queue candidate coverage schema/summary mismatch")
+    if summary["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR queue candidate coverage changed runtime selector")
+    if summary["executes_gpu"] is not False or summary["imports_matrices"] is not False:
+        raise SystemExit("CSR queue candidate coverage should be diagnostic-only")
+    if schema["integration_boundary"]["does_not_modify_full_dataset_queue"] is not True:
+        raise SystemExit("CSR queue candidate coverage boundary mismatch")
+    if summary["completed_queue_batches"] != pool_summary["completed_queue_batches"]:
+        raise SystemExit("CSR queue candidate coverage completed batch mismatch")
+    if summary["next_pending_batch_id"] != pool_summary["next_pending_batch_id"]:
+        raise SystemExit("CSR queue candidate coverage next batch mismatch")
+    if len(batch_rows) != summary["completed_queue_batches"]:
+        raise SystemExit("CSR queue candidate coverage batch row count mismatch")
+    if summary["source_batch_count"] != len(batch_rows):
+        raise SystemExit("CSR queue candidate coverage source count mismatch")
+    if batch_rows[-1]["batch_id"] != summary["latest_batch_id"]:
+        raise SystemExit("CSR queue candidate coverage latest batch mismatch")
+    if len(candidate_rows) != summary["candidate_coverage_rows"]:
+        raise SystemExit("CSR queue candidate coverage candidate row count mismatch")
+    if len(gap_rows) != summary["planned_gap_count"]:
+        raise SystemExit("CSR queue candidate coverage gap row count mismatch")
+    if sum(1 for row in gap_rows if row["queue_ready"]) != summary["queue_ready_gap_count"]:
+        raise SystemExit("CSR queue candidate coverage queue-ready count mismatch")
+    if sum(1 for row in gap_rows if not row["queue_ready"]) != summary[
+        "cpu_screen_blocked_gap_count"
+    ]:
+        raise SystemExit("CSR queue candidate coverage blocked count mismatch")
+    if "chebyshev" not in set(summary["queue_missing_supported_solvers"]):
+        raise SystemExit("CSR queue candidate coverage missed Chebyshev gap")
+    if "ilu0" not in set(summary["queue_missing_supported_preconditioners"]):
+        raise SystemExit("CSR queue candidate coverage missed ILU0 gap")
+    if "row_column_equilibration" not in set(
+        summary["queue_missing_supported_preconditioners"]
+    ):
+        raise SystemExit("CSR queue candidate coverage missed row/column gap")
+    if "symmetric_equilibration" not in set(
+        summary["queue_missing_supported_preconditioners"]
+    ):
+        raise SystemExit("CSR queue candidate coverage missed symmetric scaling gap")
+    gap_ids = {row["gap_id"] for row in gap_rows}
+    required_gaps = {
+        "general_gmres_jacobi_restart32",
+        "general_gmres_jacobi_restart64",
+        "general_bicgstab_ilu0",
+        "symmetric_chebyshev_jacobi",
+        "symmetric_pcg_symmetric_equilibration",
+    }
+    if not required_gaps.issubset(gap_ids):
+        raise SystemExit("CSR queue candidate coverage required gaps missing")
+    queue_ready_ids = {row["gap_id"] for row in gap_rows if row["queue_ready"]}
+    if {
+        "general_gmres_jacobi_restart32",
+        "general_gmres_jacobi_restart64",
+    } - queue_ready_ids:
+        raise SystemExit("CSR queue candidate coverage GMRES gaps not queue-ready")
+    if any(row["queue_ready"] and row["blocker"] for row in gap_rows):
+        raise SystemExit("CSR queue candidate coverage queue-ready blocker mismatch")
+    if not any(row["blocker"] for row in gap_rows if not row["queue_ready"]):
+        raise SystemExit("CSR queue candidate coverage blocked gaps missing blocker")
+    if summary["latest_batch_outcome"] == "screen_only_no_oracle" and summary[
+        "recent_screen_only_batches"
+    ] < 1:
+        raise SystemExit("CSR queue candidate coverage recent screen-only mismatch")
+    if manifest.metadata["completed_queue_batches"] != summary["completed_queue_batches"]:
+        raise SystemExit("CSR queue candidate coverage manifest batch mismatch")
+    if manifest.metadata["planned_gap_count"] != summary["planned_gap_count"]:
+        raise SystemExit("CSR queue candidate coverage manifest gap mismatch")
+    if manifest.metadata["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR queue candidate coverage manifest runtime mismatch")
+
+
+def _verify_csr_gmres_restart_coverage(path: Path) -> None:
+    manifest = read_manifest(path / "artifact_manifest.json")
+    stale = verify_manifest_hashes(manifest)
+    if stale:
+        raise SystemExit(f"stale CSR GMRES restart coverage manifest: {stale}")
+    matrix_queue = read_jsonl(path / "csr_gmres_restart_matrix_queue.jsonl")
+    candidate_queue = read_jsonl(path / "csr_gmres_restart_candidate_queue.jsonl")
+    results = read_jsonl(path / "csr_micro_campaign_results.jsonl")
+    selector_rows = read_jsonl(path / "csr_micro_selector_rows.jsonl")
+    summary = json.loads(
+        (path / "csr_gmres_restart_coverage_summary.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    schema = json.loads(
+        (path / "csr_gmres_restart_coverage_schema.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    if manifest.artifact_kind != "csr_gmres_restart_coverage":
+        raise SystemExit("unexpected CSR GMRES restart coverage artifact kind")
+    if summary["status"] != "passed":
+        raise SystemExit("CSR GMRES restart coverage did not pass")
+    if summary["schema_version"] != "phase1_csr_gmres_restart_coverage_v1":
+        raise SystemExit("CSR GMRES restart coverage schema mismatch")
+    if schema["schema_version"] != summary["schema_version"]:
+        raise SystemExit("CSR GMRES restart coverage schema/summary mismatch")
+    if schema["coverage_boundary"]["does_not_promote_runtime_selector"] is not True:
+        raise SystemExit("CSR GMRES restart coverage promoted runtime selector")
+    if schema["coverage_boundary"]["requires_cpu_screen_before_gpu_solve"] is not True:
+        raise SystemExit("CSR GMRES restart coverage missing CPU screen boundary")
+    if summary["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR GMRES restart coverage changed runtime selector")
+    if summary["executes_gpu"] is not True or summary["imports_matrices"] is not True:
+        raise SystemExit("CSR GMRES restart coverage execution flags mismatch")
+    if summary["cpu_screen_required"] is not True:
+        raise SystemExit("CSR GMRES restart coverage CPU screen flag mismatch")
+    if summary["coverage_source_latest_batch_id"] != "batch_00010":
+        raise SystemExit("CSR GMRES restart coverage source batch mismatch")
+    if summary["coverage_trigger_candidate_coverage"] is not True:
+        raise SystemExit("CSR GMRES restart coverage trigger mismatch")
+    if summary["selected_matrices"] != len(matrix_queue) or summary["selected_matrices"] != 7:
+        raise SystemExit("CSR GMRES restart coverage selected matrix count mismatch")
+    if summary["candidate_jobs"] != 14:
+        raise SystemExit("CSR GMRES restart coverage candidate job count mismatch")
+    if len(candidate_queue) != summary["candidate_jobs"] or len(results) != summary["candidate_jobs"]:
+        raise SystemExit("CSR GMRES restart coverage result count mismatch")
+    if summary["selector_rows"] != len(selector_rows) or len(selector_rows) != summary["candidate_jobs"]:
+        raise SystemExit("CSR GMRES restart coverage selector row count mismatch")
+    if set(summary["restarts"]) != {32, 64}:
+        raise SystemExit("CSR GMRES restart coverage restart set mismatch")
+    if {row["solver"] for row in candidate_queue} != {"gmres"}:
+        raise SystemExit("CSR GMRES restart coverage solver mismatch")
+    if {row["preconditioner"] for row in candidate_queue} != {"jacobi"}:
+        raise SystemExit("CSR GMRES restart coverage preconditioner mismatch")
+    if {int(row["solver_parameters"]["restart"]) for row in candidate_queue} != {32, 64}:
+        raise SystemExit("CSR GMRES restart coverage candidate restart mismatch")
+    accounted = (
+        summary["gpu_success_rows"]
+        + summary["cpu_screened_out_rows"]
+        + summary["gpu_failed_rows"]
+    )
+    if accounted != summary["candidate_jobs"]:
+        raise SystemExit("CSR GMRES restart coverage accounting mismatch")
+    if summary["gpu_failed_rows"] != 0:
+        raise SystemExit("CSR GMRES restart coverage contains GPU failures")
+    expected_merge_ready = summary["gpu_success_rows"] > 0 and summary["selector_oracle_rows"] > 0
+    if summary["queue_merge_ready"] != expected_merge_ready:
+        raise SystemExit("CSR GMRES restart coverage merge readiness mismatch")
+    if set(summary["by_restart"]) != {"32", "64"}:
+        raise SystemExit("CSR GMRES restart coverage by-restart keys mismatch")
+    for restart in ("32", "64"):
+        if sum(summary["by_restart"][restart].values()) != summary["selected_matrices"]:
+            raise SystemExit("CSR GMRES restart coverage by-restart count mismatch")
+    if summary["gpu_success_rows"] > 0:
+        if summary["coverage_outcome"] != "profiled_with_gpu_success":
+            raise SystemExit("CSR GMRES restart coverage success outcome mismatch")
+        if summary["max_final_relative_residual"] > 1.0e-5:
+            raise SystemExit("CSR GMRES restart coverage final residual check failed")
+        if summary["max_cpu_recomputed_relative_residual"] > 1.0e-4:
+            raise SystemExit("CSR GMRES restart coverage CPU residual check failed")
+        if summary["max_solution_relative_error"] > 5.0e-3:
+            raise SystemExit("CSR GMRES restart coverage solution error check failed")
+    elif summary["coverage_outcome"] != "screen_only_no_oracle":
+        raise SystemExit("CSR GMRES restart coverage screen-only outcome mismatch")
+    if manifest.metadata["candidate_jobs"] != summary["candidate_jobs"]:
+        raise SystemExit("CSR GMRES restart coverage manifest job mismatch")
+    if manifest.metadata["queue_merge_ready"] != summary["queue_merge_ready"]:
+        raise SystemExit("CSR GMRES restart coverage manifest merge mismatch")
+
+
+def _verify_csr_blocked_gap_probe(path: Path) -> None:
+    manifest = read_manifest(path / "artifact_manifest.json")
+    stale = verify_manifest_hashes(manifest)
+    if stale:
+        raise SystemExit(f"stale CSR blocked gap probe manifest: {stale}")
+    matrix_queue = read_jsonl(path / "csr_blocked_gap_matrix_queue.jsonl")
+    candidate_queue = read_jsonl(path / "csr_blocked_gap_candidate_queue.jsonl")
+    results = read_jsonl(path / "csr_micro_campaign_results.jsonl")
+    selector_rows = read_jsonl(path / "csr_micro_selector_rows.jsonl")
+    summary = json.loads(
+        (path / "csr_blocked_gap_probe_summary.json").read_text(encoding="utf-8")
+    )
+    schema = json.loads(
+        (path / "csr_blocked_gap_probe_schema.json").read_text(encoding="utf-8")
+    )
+    if manifest.artifact_kind != "csr_blocked_gap_probe":
+        raise SystemExit("unexpected CSR blocked gap probe artifact kind")
+    if summary["status"] != "passed":
+        raise SystemExit("CSR blocked gap probe did not pass")
+    if summary["schema_version"] != "phase1_csr_blocked_gap_probe_v1":
+        raise SystemExit("CSR blocked gap probe schema mismatch")
+    if schema["schema_version"] != summary["schema_version"]:
+        raise SystemExit("CSR blocked gap probe schema/summary mismatch")
+    boundary = schema["coverage_boundary"]
+    if boundary["does_not_promote_runtime_selector"] is not True:
+        raise SystemExit("CSR blocked gap probe promoted runtime selector")
+    if boundary["requires_cpu_screen_before_gpu_solve"] is not True:
+        raise SystemExit("CSR blocked gap probe missing CPU screen boundary")
+    if boundary["gpu_solve_only_after_screen_success"] is not True:
+        raise SystemExit("CSR blocked gap probe GPU boundary mismatch")
+    if summary["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR blocked gap probe changed runtime selector")
+    if summary["executes_gpu"] is not True or summary["imports_matrices"] is not True:
+        raise SystemExit("CSR blocked gap probe execution flags mismatch")
+    if summary["cpu_screen_required"] is not True:
+        raise SystemExit("CSR blocked gap probe CPU screen flag mismatch")
+    if summary["coverage_source_latest_batch_id"] != "batch_00010":
+        raise SystemExit("CSR blocked gap probe source batch mismatch")
+    if summary["coverage_trigger_candidate_coverage"] is not True:
+        raise SystemExit("CSR blocked gap probe trigger mismatch")
+    if summary["selected_general_matrices"] != 7:
+        raise SystemExit("CSR blocked gap probe general matrix count mismatch")
+    if summary["selected_symmetric_matrices"] != 1:
+        raise SystemExit("CSR blocked gap probe symmetric matrix count mismatch")
+    if summary["selected_matrices"] != len(matrix_queue) or len(matrix_queue) != 8:
+        raise SystemExit("CSR blocked gap probe selected matrix count mismatch")
+    if summary["candidate_jobs"] != 16:
+        raise SystemExit("CSR blocked gap probe candidate job count mismatch")
+    if len(candidate_queue) != summary["candidate_jobs"] or len(results) != summary["candidate_jobs"]:
+        raise SystemExit("CSR blocked gap probe result count mismatch")
+    if summary["selector_rows"] != len(selector_rows) or len(selector_rows) != summary["candidate_jobs"]:
+        raise SystemExit("CSR blocked gap probe selector row count mismatch")
+    required_gaps = {
+        "general_bicgstab_ilu0",
+        "general_bicgstab_row_column_equilibration",
+        "symmetric_chebyshev_jacobi",
+        "symmetric_pcg_symmetric_equilibration",
+    }
+    if set(summary["blocked_gap_ids"]) != required_gaps:
+        raise SystemExit("CSR blocked gap probe gap set mismatch")
+    if summary["newly_cpu_screen_integrated_gap_count"] != 4:
+        raise SystemExit("CSR blocked gap probe integrated gap count mismatch")
+    accounted = (
+        summary["gpu_success_rows"]
+        + summary["cpu_screened_out_rows"]
+        + summary["gpu_failed_rows"]
+    )
+    if accounted != summary["candidate_jobs"]:
+        raise SystemExit("CSR blocked gap probe accounting mismatch")
+    if summary["gpu_failed_rows"] != 0:
+        raise SystemExit("CSR blocked gap probe contains GPU failures")
+    if summary["coverage_outcome"] != "screen_only_no_oracle":
+        raise SystemExit("CSR blocked gap probe outcome mismatch")
+    if summary["gpu_success_rows"] != 0 or summary["cpu_screened_out_rows"] != 16:
+        raise SystemExit("CSR blocked gap probe screen-only count mismatch")
+    if summary["queue_merge_ready"] is not False or summary["queue_merge_ready_gap_ids"]:
+        raise SystemExit("CSR blocked gap probe merge readiness mismatch")
+    by_gap = summary["by_gap_status"]
+    if by_gap.get("general_bicgstab_ilu0") != {"screened_out": 7}:
+        raise SystemExit("CSR blocked gap probe ILU0 gap count mismatch")
+    if by_gap.get("general_bicgstab_row_column_equilibration") != {"screened_out": 7}:
+        raise SystemExit("CSR blocked gap probe row/column gap count mismatch")
+    if by_gap.get("symmetric_chebyshev_jacobi") != {"screened_out": 1}:
+        raise SystemExit("CSR blocked gap probe Chebyshev gap count mismatch")
+    if by_gap.get("symmetric_pcg_symmetric_equilibration") != {"screened_out": 1}:
+        raise SystemExit("CSR blocked gap probe symmetric gap count mismatch")
+    if {row["backend"] for row in results} != {"cpu_reference_screen"}:
+        raise SystemExit("CSR blocked gap probe unexpectedly executed GPU rows")
+    if {row["status"] for row in results} != {"screened_out"}:
+        raise SystemExit("CSR blocked gap probe result status mismatch")
+    if manifest.metadata["candidate_jobs"] != summary["candidate_jobs"]:
+        raise SystemExit("CSR blocked gap probe manifest job mismatch")
+    if manifest.metadata["queue_merge_ready"] is not False:
+        raise SystemExit("CSR blocked gap probe manifest merge mismatch")
+
+
+def _verify_csr_blocked_gap_positive_search(path: Path) -> None:
+    manifest = read_manifest(path / "artifact_manifest.json")
+    stale = verify_manifest_hashes(manifest)
+    if stale:
+        raise SystemExit(f"stale CSR blocked gap positive search manifest: {stale}")
+    candidates = read_jsonl(path / "csr_blocked_gap_positive_candidates.jsonl")
+    search_rows = read_jsonl(path / "csr_blocked_gap_positive_search_rows.jsonl")
+    results = read_jsonl(path / "csr_blocked_gap_positive_results.jsonl")
+    diagnostics = read_jsonl(path / "csr_blocked_gap_positive_diagnostic_rows.jsonl")
+    selector_rows = read_jsonl(path / "csr_blocked_gap_positive_selector_rows.jsonl")
+    summary = json.loads((path / "csr_blocked_gap_positive_search_summary.json").read_text(encoding="utf-8"))
+    schema = json.loads((path / "csr_blocked_gap_positive_search_schema.json").read_text(encoding="utf-8"))
+    selector_summary = json.loads((path / "csr_blocked_gap_positive_selector_summary.json").read_text(encoding="utf-8"))
+    if manifest.artifact_kind != "csr_blocked_gap_positive_search":
+        raise SystemExit("unexpected CSR blocked gap positive search artifact kind")
+    if summary["status"] != "passed":
+        raise SystemExit("CSR blocked gap positive search did not pass")
+    if summary["schema_version"] != "phase1_csr_blocked_gap_positive_search_v1":
+        raise SystemExit("CSR blocked gap positive search schema mismatch")
+    if schema["schema_version"] != summary["schema_version"]:
+        raise SystemExit("CSR blocked gap positive search schema/summary mismatch")
+    boundary = schema["execution_boundary"]
+    if boundary["executes_gpu"] is not True or boundary["cpu_screen_before_gpu"] is not True:
+        raise SystemExit("CSR blocked gap positive search execution boundary mismatch")
+    if boundary["runtime_selector_changed"] is not False or boundary["generic_queue_merge"] is not False:
+        raise SystemExit("CSR blocked gap positive search changed runtime/queue boundary")
+    if summary["runtime_selector_changed"] is not False or summary["executes_gpu"] is not True:
+        raise SystemExit("CSR blocked gap positive search runtime flags mismatch")
+    if summary["queue_merge_ready"] is not False or summary["positive_evidence_found"] is not True:
+        raise SystemExit("CSR blocked gap positive evidence/merge mismatch")
+    required_gaps = {"general_bicgstab_ilu0", "general_bicgstab_row_column_equilibration", "symmetric_chebyshev_jacobi", "symmetric_pcg_symmetric_equilibration"}
+    if set(summary["required_gap_ids"]) != required_gaps or set(summary["positive_gpu_gap_ids"]) != required_gaps:
+        raise SystemExit("CSR blocked gap positive gap set mismatch")
+    if summary["source_records"] != 91:
+        raise SystemExit("CSR blocked gap positive source record count mismatch")
+    if summary["search_rows"] != len(search_rows) or len(search_rows) != 50:
+        raise SystemExit("CSR blocked gap positive search row count mismatch")
+    if summary["selected_candidates"] != len(candidates) or len(candidates) != 8:
+        raise SystemExit("CSR blocked gap positive selected count mismatch")
+    if summary["candidate_jobs"] != len(results) or len(results) != 8:
+        raise SystemExit("CSR blocked gap positive result count mismatch")
+    if summary["selector_rows"] != len(selector_rows) or len(selector_rows) != 8 or len(diagnostics) != 8:
+        raise SystemExit("CSR blocked gap positive selector/diagnostic count mismatch")
+    if summary["selector_oracle_rows"] != 5:
+        raise SystemExit("CSR blocked gap positive selector oracle count mismatch")
+    if selector_summary["status"] != "passed" or selector_summary["num_selector_rows"] != len(selector_rows):
+        raise SystemExit("CSR blocked gap positive selector summary mismatch")
+    if selector_summary["num_oracle_rows"] != summary["selector_oracle_rows"]:
+        raise SystemExit("CSR blocked gap positive selector oracle mismatch")
+    if selector_summary["num_success_rows"] != summary["gpu_success_rows"]:
+        raise SystemExit("CSR blocked gap positive selector success mismatch")
+    if summary["gpu_success_rows"] != 8 or summary["gpu_failed_rows"] != 0:
+        raise SystemExit("CSR blocked gap positive GPU count mismatch")
+    if summary["by_status"] != {"success": 8}:
+        raise SystemExit("CSR blocked gap positive status count mismatch")
+    if summary["by_search_status"] != {"screened_out": 19, "selected_positive": 8, "skipped": 23}:
+        raise SystemExit("CSR blocked gap positive search status count mismatch")
+    if summary["by_gap_status"] != {"general_bicgstab_ilu0": {"success": 2}, "general_bicgstab_row_column_equilibration": {"success": 2}, "symmetric_chebyshev_jacobi": {"success": 2}, "symmetric_pcg_symmetric_equilibration": {"success": 2}}:
+        raise SystemExit("CSR blocked gap positive by-gap count mismatch")
+    if {row["backend"] for row in results} != {"taichi_gpu"}:
+        raise SystemExit("CSR blocked gap positive contains non-GPU rows")
+    if {row["status"] for row in results} != {"success"}:
+        raise SystemExit("CSR blocked gap positive contains non-success rows")
+    if {row["coverage_gap_id"] for row in results} != required_gaps or {row["coverage_gap_id"] for row in candidates} != required_gaps:
+        raise SystemExit("CSR blocked gap positive row gap mismatch")
+    if any(float(row["success_rate"]) != 1.0 for row in results):
+        raise SystemExit("CSR blocked gap positive success-rate mismatch")
+    if any(float(row["final_relative_residual"]) > 1.0e-5 for row in results):
+        raise SystemExit("CSR blocked gap positive residual check failed")
+    if any(float(row["cpu_recomputed_relative_residual"]) > 1.0e-5 for row in results):
+        raise SystemExit("CSR blocked gap positive CPU residual check failed")
+    if any(float(row["solution_relative_error"]) > 5.0e-3 for row in results):
+        raise SystemExit("CSR blocked gap positive solution error check failed")
+    if {(row["solver"], row["preconditioner"]) for row in results} != {("bicgstab", "ilu0"), ("bicgstab", "row_column_equilibration"), ("chebyshev", "jacobi"), ("pcg", "symmetric_equilibration")}: 
+        raise SystemExit("CSR blocked gap positive solver/preconditioner mismatch")
+    if set(summary["selected_matrix_ids"]) != {"suitesparse:FIDAP/ex5", "suitesparse:Grund/b1_ss", "suitesparse:HB/bcsstk01", "suitesparse:HB/curtis54", "suitesparse:JGD_Trefethen/Trefethen_20b"}:
+        raise SystemExit("CSR blocked gap positive selected matrix mismatch")
+    if manifest.metadata["candidate_jobs"] != summary["candidate_jobs"]:
+        raise SystemExit("CSR blocked gap positive manifest job mismatch")
+    if manifest.metadata["positive_evidence_found"] is not True or manifest.metadata["queue_merge_ready"] is not False:
+        raise SystemExit("CSR blocked gap positive manifest evidence/merge mismatch")
+
 def _verify_csr_micro_campaign(path: Path) -> None:
     manifest = read_manifest(path / "artifact_manifest.json")
     stale = verify_manifest_hashes(manifest)
@@ -2413,6 +3756,171 @@ def _verify_csr_transformer_ranker(path: Path) -> None:
         raise SystemExit("CSR Transformer ranker manifest non-success count mismatch")
 
 
+def _verify_csr_external_model_adapter(path: Path) -> None:
+    manifest = read_manifest(path / "artifact_manifest.json")
+    stale = verify_manifest_hashes(manifest)
+    if stale:
+        raise SystemExit(f"stale CSR external model adapter manifest: {stale}")
+    checkpoint = json.loads(
+        (path / "external_csr_ranker_checkpoint.json").read_text(encoding="utf-8")
+    )
+    adapted_model = json.loads(
+        (path / "adapted_csr_transformer_ranker_model.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    predictions = read_jsonl(path / "adapted_csr_transformer_ranker_predictions.jsonl")
+    ranker_summary = json.loads(
+        (path / "adapted_csr_transformer_ranker_summary.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    rows = read_jsonl(path / "csr_external_model_adapter_rows.jsonl")
+    summary = json.loads(
+        (path / "csr_external_model_adapter_summary.json").read_text(encoding="utf-8")
+    )
+    schema = json.loads(
+        (path / "csr_external_model_adapter_schema.json").read_text(encoding="utf-8")
+    )
+    if manifest.artifact_kind != "csr_external_model_adapter":
+        raise SystemExit("unexpected CSR external model adapter artifact kind")
+    if summary["status"] != "passed":
+        raise SystemExit("CSR external model adapter did not pass")
+    if summary["schema_version"] != "phase1_csr_external_model_adapter_v1":
+        raise SystemExit("CSR external model adapter schema mismatch")
+    if schema["schema_version"] != summary["schema_version"]:
+        raise SystemExit("CSR external model adapter schema/summary mismatch")
+    if checkpoint["schema_version"] != "phase1_csr_external_ranker_checkpoint_v1":
+        raise SystemExit("CSR external checkpoint schema mismatch")
+    if checkpoint["checkpoint_kind"] != "csr_external_ranker_checkpoint":
+        raise SystemExit("CSR external checkpoint kind mismatch")
+    if checkpoint["adapter"] != "csr_external_json_ranker_checkpoint_v1":
+        raise SystemExit("CSR external checkpoint adapter mismatch")
+    if checkpoint["runtime_contract"]["guard_required"] is not True:
+        raise SystemExit("CSR external checkpoint guard mismatch")
+    if checkpoint["runtime_contract"]["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR external checkpoint changed runtime selector")
+    if adapted_model["schema_version"] != "phase1_csr_transformer_ranker_v1":
+        raise SystemExit("CSR adapted ranker schema mismatch")
+    if adapted_model["model_family"] != "masked_self_attention_ranker_v1":
+        raise SystemExit("CSR adapted ranker family mismatch")
+    if ranker_summary["schema_version"] != adapted_model["schema_version"]:
+        raise SystemExit("CSR adapted ranker summary schema mismatch")
+    if ranker_summary["status"] != "passed":
+        raise SystemExit("CSR adapted ranker summary did not pass")
+    if summary["adapter_ready"] is not True:
+        raise SystemExit("CSR external model adapter not ready")
+    if summary["quality_gate_input_ready"] is not True:
+        raise SystemExit("CSR external model adapter not quality-gate ready")
+    if summary["policy_model_artifact_input_ready"] is not True:
+        raise SystemExit("CSR external model adapter not model-artifact ready")
+    if summary["prediction_contract_valid"] is not True:
+        raise SystemExit("CSR external model adapter prediction contract mismatch")
+    if summary["num_predictions"] != 20 or len(predictions) != 20:
+        raise SystemExit("CSR external model adapter prediction count mismatch")
+    if summary["num_eval_predictions"] != 5:
+        raise SystemExit("CSR external model adapter eval count mismatch")
+    if abs(float(summary["eval_oracle_top1_accuracy"]) - 0.5) > 1.0e-12:
+        raise SystemExit("CSR external model adapter oracle accuracy mismatch")
+    if abs(float(summary["eval_profiled_success_selection_rate"]) - 0.6) > 1.0e-12:
+        raise SystemExit("CSR external model adapter success rate mismatch")
+    if int(summary["eval_non_success_selection_count"]) != 2:
+        raise SystemExit("CSR external model adapter non-success mismatch")
+    if summary["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR external model adapter changed runtime selector")
+    if summary["validation_error_count"] != 0:
+        raise SystemExit("CSR external model adapter validation errors found")
+    row_kinds = {row["row_kind"] for row in rows}
+    if row_kinds != {
+        "checkpoint_contract",
+        "tensor_contract",
+        "adapted_model",
+        "prediction_contract",
+        "runtime_boundary",
+        "adapter_decision",
+    }:
+        raise SystemExit("CSR external model adapter row kind mismatch")
+    for row in predictions:
+        ranked = row["ranked_candidate_ids"]
+        if not ranked or row["selected_candidate_id"] != ranked[0]:
+            raise SystemExit("CSR external model adapter invalid prediction")
+        if len(ranked) != len(set(ranked)) or set(ranked) != set(row["scores"]):
+            raise SystemExit("CSR external model adapter score/rank mismatch")
+    if manifest.metadata["adapter_ready"] is not True:
+        raise SystemExit("CSR external model adapter manifest ready mismatch")
+    if manifest.metadata["quality_gate_input_ready"] is not True:
+        raise SystemExit("CSR external model adapter manifest quality mismatch")
+    if manifest.metadata["policy_model_artifact_input_ready"] is not True:
+        raise SystemExit("CSR external model adapter manifest model artifact mismatch")
+    if manifest.metadata["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR external model adapter manifest runtime mismatch")
+
+
+def _verify_csr_transformer_model_replay(path: Path) -> None:
+    manifest = read_manifest(path / "artifact_manifest.json")
+    stale = verify_manifest_hashes(manifest)
+    if stale:
+        raise SystemExit(f"stale CSR Transformer model replay artifact manifest: {stale}")
+    predictions = read_jsonl(path / "csr_transformer_model_replay_predictions.jsonl")
+    comparison = read_jsonl(path / "csr_transformer_model_replay_comparison.jsonl")
+    summary = json.loads(
+        (path / "csr_transformer_model_replay_summary.json").read_text(encoding="utf-8")
+    )
+    schema = json.loads(
+        (path / "csr_transformer_model_replay_schema.json").read_text(encoding="utf-8")
+    )
+    if manifest.artifact_kind != "csr_transformer_model_replay":
+        raise SystemExit("unexpected CSR Transformer model replay artifact kind")
+    if summary["status"] != "passed":
+        raise SystemExit("CSR Transformer model replay did not pass")
+    if summary["schema_version"] != "phase1_csr_transformer_model_replay_v1":
+        raise SystemExit("CSR Transformer model replay schema mismatch")
+    if schema["schema_version"] != summary["schema_version"]:
+        raise SystemExit("CSR Transformer model replay schema/summary mismatch")
+    if summary["source_model_schema_version"] != "phase1_csr_transformer_ranker_v1":
+        raise SystemExit("CSR Transformer model replay source schema mismatch")
+    if summary["model_family"] != "masked_self_attention_ranker_v1":
+        raise SystemExit("CSR Transformer model replay family mismatch")
+    if summary["model_id"] != "csr_masked_self_attention_ranker_v1":
+        raise SystemExit("CSR Transformer model replay model id mismatch")
+    if summary["model_loaded"] is not True or summary["model_trained"] is not True:
+        raise SystemExit("CSR Transformer model replay load/trained flag mismatch")
+    if summary["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR Transformer model replay should not change runtime selector")
+    if summary["num_predictions"] != 20 or len(predictions) != 20:
+        raise SystemExit("CSR Transformer model replay prediction count mismatch")
+    if summary["num_reference_predictions"] != 20:
+        raise SystemExit("CSR Transformer model replay reference count mismatch")
+    if len(comparison) != 20:
+        raise SystemExit("CSR Transformer model replay comparison count mismatch")
+    if summary["exact_replay"] is not True:
+        raise SystemExit("CSR Transformer model replay expected exact replay")
+    if summary["selected_candidate_mismatch_count"] != 0:
+        raise SystemExit("CSR Transformer model replay selected mismatch")
+    if summary["ranked_order_mismatch_count"] != 0:
+        raise SystemExit("CSR Transformer model replay ranking mismatch")
+    if summary["evaluation_status_mismatch_count"] != 0:
+        raise SystemExit("CSR Transformer model replay status mismatch")
+    if summary["missing_reference_count"] != 0:
+        raise SystemExit("CSR Transformer model replay missing references")
+    if float(summary["max_abs_score_delta"]) > 1.0e-9:
+        raise SystemExit("CSR Transformer model replay score delta too large")
+    if summary["prediction_contract_valid"] is not True:
+        raise SystemExit("CSR Transformer model replay prediction contract invalid")
+    if any(not row["selected_candidate_match"] for row in comparison):
+        raise SystemExit("CSR Transformer model replay comparison selected mismatch")
+    if any(not row["ranked_order_match"] for row in comparison):
+        raise SystemExit("CSR Transformer model replay comparison rank mismatch")
+    for row in predictions:
+        ranked = row["ranked_candidate_ids"]
+        if not ranked or row["selected_candidate_id"] != ranked[0]:
+            raise SystemExit("CSR Transformer model replay invalid prediction ranking")
+    if manifest.metadata["model_loaded"] is not True:
+        raise SystemExit("CSR Transformer model replay manifest loaded mismatch")
+    if manifest.metadata["exact_replay"] is not True:
+        raise SystemExit("CSR Transformer model replay manifest exact replay mismatch")
+
+
 def _verify_csr_transformer_quality_gate(path: Path) -> None:
     manifest = read_manifest(path / "artifact_manifest.json")
     stale = verify_manifest_hashes(manifest)
@@ -2494,6 +4002,367 @@ def _verify_csr_transformer_quality_gate(path: Path) -> None:
         raise SystemExit("CSR Transformer quality gate manifest eligibility mismatch")
     if manifest.metadata["best_offline_model_id"] != summary["best_offline_model_id"]:
         raise SystemExit("CSR Transformer quality gate manifest best model mismatch")
+
+
+def _verify_csr_policy_model_artifact(path: Path) -> None:
+    manifest = read_manifest(path / "artifact_manifest.json")
+    stale = verify_manifest_hashes(manifest)
+    if stale:
+        raise SystemExit(f"stale CSR policy model artifact manifest: {stale}")
+    artifact = json.loads(
+        (path / "csr_policy_model_artifact.json").read_text(encoding="utf-8")
+    )
+    rows = read_jsonl(path / "csr_policy_model_artifact_rows.jsonl")
+    summary = json.loads(
+        (path / "csr_policy_model_artifact_summary.json").read_text(encoding="utf-8")
+    )
+    schema = json.loads(
+        (path / "csr_policy_model_artifact_schema.json").read_text(encoding="utf-8")
+    )
+    if manifest.artifact_kind != "csr_policy_model_artifact":
+        raise SystemExit("unexpected CSR policy model artifact kind")
+    if summary["status"] != "passed":
+        raise SystemExit("CSR policy model artifact did not pass")
+    if summary["schema_version"] != "phase1_csr_policy_model_artifact_v1":
+        raise SystemExit("CSR policy model artifact schema mismatch")
+    if schema["schema_version"] != summary["schema_version"]:
+        raise SystemExit("CSR policy model artifact schema/summary mismatch")
+    if artifact["schema_version"] != summary["schema_version"]:
+        raise SystemExit("CSR policy model artifact payload schema mismatch")
+    if summary["artifact_ready"] is not True:
+        raise SystemExit("CSR policy model artifact not ready")
+    if summary["adapter"] != "csr_transformer_ranker_saved_model_v1":
+        raise SystemExit("CSR policy model artifact adapter mismatch")
+    if summary["model_id"] != "csr_masked_self_attention_ranker_v1":
+        raise SystemExit("CSR policy model artifact model id mismatch")
+    if summary["model_loaded"] is not True:
+        raise SystemExit("CSR policy model artifact did not load model")
+    if summary["prediction_contract_checked"] is not True:
+        raise SystemExit("CSR policy model artifact prediction contract mismatch")
+    if summary["num_predictions"] != 20 or summary["num_request_index_rows"] != 20:
+        raise SystemExit("CSR policy model artifact prediction count mismatch")
+    if summary["replay_exact"] is not True:
+        raise SystemExit("CSR policy model artifact replay mismatch")
+    if summary["guard_required"] is not True:
+        raise SystemExit("CSR policy model artifact guard requirement mismatch")
+    if summary["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR policy model artifact changed runtime selector")
+    if summary["validation_error_count"] != 0:
+        raise SystemExit("CSR policy model artifact validation errors present")
+    if artifact["runtime_contract"]["guard_required"] is not True:
+        raise SystemExit("CSR policy model artifact runtime guard mismatch")
+    if artifact["runtime_contract"]["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR policy model artifact runtime selector mismatch")
+    if {row["row_kind"] for row in rows} != {
+        "model",
+        "tensor_contract",
+        "request_index",
+        "quality_gate",
+        "runtime_contract",
+    }:
+        raise SystemExit("CSR policy model artifact row kinds mismatch")
+    if manifest.metadata["artifact_ready"] is not True:
+        raise SystemExit("CSR policy model artifact manifest ready mismatch")
+    if manifest.metadata["model_loaded"] is not True:
+        raise SystemExit("CSR policy model artifact manifest load mismatch")
+    if manifest.metadata["replay_exact"] is not True:
+        raise SystemExit("CSR policy model artifact manifest replay mismatch")
+    if manifest.metadata["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR policy model artifact manifest runtime mismatch")
+
+
+def _verify_csr_policy_model_acceptance(path: Path) -> None:
+    manifest = read_manifest(path / "artifact_manifest.json")
+    stale = verify_manifest_hashes(manifest)
+    if stale:
+        raise SystemExit(f"stale CSR policy model acceptance manifest: {stale}")
+    rows = read_jsonl(path / "csr_policy_model_acceptance_rows.jsonl")
+    summary = json.loads(
+        (path / "csr_policy_model_acceptance_summary.json").read_text(encoding="utf-8")
+    )
+    schema = json.loads(
+        (path / "csr_policy_model_acceptance_schema.json").read_text(encoding="utf-8")
+    )
+    if manifest.artifact_kind != "csr_policy_model_acceptance":
+        raise SystemExit("unexpected CSR policy model acceptance artifact kind")
+    if summary["status"] != "passed":
+        raise SystemExit("CSR policy model acceptance did not pass")
+    if summary["schema_version"] != "phase1_csr_policy_model_acceptance_v1":
+        raise SystemExit("CSR policy model acceptance schema mismatch")
+    if schema["schema_version"] != summary["schema_version"]:
+        raise SystemExit("CSR policy model acceptance schema/summary mismatch")
+    if summary["accepted_for_shadow"] is not True:
+        raise SystemExit("CSR policy model acceptance shadow flag mismatch")
+    if summary["accepted_for_runtime_promotion"] is not False:
+        raise SystemExit("CSR policy model acceptance promoted blocked model")
+    if "quality_gate_not_runtime_eligible" not in set(summary["promotion_blockers"]):
+        raise SystemExit("CSR policy model acceptance missing promotion blocker")
+    if summary["model_loaded"] is not True:
+        raise SystemExit("CSR policy model acceptance model load mismatch")
+    if summary["prediction_contract_checked"] is not True:
+        raise SystemExit("CSR policy model acceptance prediction contract mismatch")
+    if summary["num_predictions"] != 20 or summary["num_request_index_rows"] != 20:
+        raise SystemExit("CSR policy model acceptance prediction count mismatch")
+    if summary["replay_exact"] is not True:
+        raise SystemExit("CSR policy model acceptance replay mismatch")
+    if summary["quality_gate_runtime_eligible"] is not False:
+        raise SystemExit("CSR policy model acceptance quality gate mismatch")
+    if summary["guard_plan_shadow_checked"] is not True:
+        raise SystemExit("CSR policy model acceptance guard plan mismatch")
+    if summary["guarded_gpu_shadow_smoke_checked"] is not True:
+        raise SystemExit("CSR policy model acceptance GPU smoke mismatch")
+    if summary["guarded_gpu_smoke_status"] != "passed":
+        raise SystemExit("CSR policy model acceptance GPU smoke status mismatch")
+    if summary["guarded_gpu_smoke_successes"] != 2:
+        raise SystemExit("CSR policy model acceptance GPU smoke success mismatch")
+    if summary["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR policy model acceptance changed runtime selector")
+    if summary["validation_error_count"] != 0:
+        raise SystemExit("CSR policy model acceptance validation errors found")
+    row_kinds = {row["row_kind"] for row in rows}
+    expected = {
+        "model_artifact_contract",
+        "prediction_contract",
+        "quality_gate",
+        "guarded_gpu_shadow_smoke",
+        "acceptance_decision",
+        "guard_plan_shadow",
+        "guarded_gpu_shadow_result",
+    }
+    if row_kinds != expected:
+        raise SystemExit("CSR policy model acceptance row kind mismatch")
+    guard_rows = [row for row in rows if row["row_kind"] == "guard_plan_shadow"]
+    if len(guard_rows) != 2:
+        raise SystemExit("CSR policy model acceptance guard row count mismatch")
+    for row in guard_rows:
+        if row["learned_policy_source"]["source_kind"] != "model_artifact":
+            raise SystemExit("CSR policy model acceptance guard source mismatch")
+        if row["learned_policy_source"]["model_loaded"] is not True:
+            raise SystemExit("CSR policy model acceptance guard model load mismatch")
+        if row["fallback_chain_enforced"] is not True:
+            raise SystemExit("CSR policy model acceptance guard fallback mismatch")
+        if row["runtime_selector_changed"] is not False:
+            raise SystemExit("CSR policy model acceptance guard runtime mismatch")
+    gpu_rows = [row for row in rows if row["row_kind"] == "guarded_gpu_shadow_result"]
+    if len(gpu_rows) != 2:
+        raise SystemExit("CSR policy model acceptance GPU row count mismatch")
+    for row in gpu_rows:
+        if row["backend"] != "taichi_gpu":
+            raise SystemExit("CSR policy model acceptance GPU backend mismatch")
+        if row["learned_prediction_source"] != "model_artifact":
+            raise SystemExit("CSR policy model acceptance GPU source mismatch")
+    if manifest.metadata["accepted_for_shadow"] is not True:
+        raise SystemExit("CSR policy model acceptance manifest shadow mismatch")
+    if manifest.metadata["accepted_for_runtime_promotion"] is not False:
+        raise SystemExit("CSR policy model acceptance manifest promotion mismatch")
+    if manifest.metadata["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR policy model acceptance manifest runtime mismatch")
+
+
+def _verify_csr_policy_model_submission(path: Path) -> None:
+    manifest = read_manifest(path / "artifact_manifest.json")
+    stale = verify_manifest_hashes(manifest)
+    if stale:
+        raise SystemExit(f"stale CSR policy model submission manifest: {stale}")
+    submission = json.loads(
+        (path / "csr_policy_model_submission_manifest.json").read_text(encoding="utf-8")
+    )
+    rows = read_jsonl(path / "csr_policy_model_submission_rows.jsonl")
+    summary = json.loads(
+        (path / "csr_policy_model_submission_summary.json").read_text(encoding="utf-8")
+    )
+    schema = json.loads(
+        (path / "csr_policy_model_submission_schema.json").read_text(encoding="utf-8")
+    )
+    model_card = (path / "MODEL_CARD.md").read_text(encoding="utf-8")
+    if manifest.artifact_kind != "csr_policy_model_submission":
+        raise SystemExit("unexpected CSR policy model submission artifact kind")
+    if summary["status"] != "passed":
+        raise SystemExit("CSR policy model submission did not pass")
+    if summary["schema_version"] != "phase1_csr_policy_model_submission_v1":
+        raise SystemExit("CSR policy model submission schema mismatch")
+    if schema["schema_version"] != summary["schema_version"]:
+        raise SystemExit("CSR policy model submission schema/summary mismatch")
+    if submission["schema_version"] != summary["schema_version"]:
+        raise SystemExit("CSR policy model submission manifest schema mismatch")
+    if summary["submission_ready"] is not True:
+        raise SystemExit("CSR policy model submission not ready")
+    if summary["shadow_submission_ready"] is not True:
+        raise SystemExit("CSR policy model submission shadow flag mismatch")
+    if summary["runtime_promotion_ready"] is not False:
+        raise SystemExit("CSR policy model submission promoted blocked model")
+    if summary["default_runtime_mode"] != "shadow":
+        raise SystemExit("CSR policy model submission default mode mismatch")
+    if summary["terms_acknowledged"] is not True:
+        raise SystemExit("CSR policy model submission terms mismatch")
+    if "MODEL_CONTRIBUTION_TERMS.md" not in summary["required_terms_documents"]:
+        raise SystemExit("CSR policy model submission missing model terms document")
+    if "CONTRIBUTOR_LICENSE_AGREEMENT.md" not in summary["required_terms_documents"]:
+        raise SystemExit("CSR policy model submission missing contributor terms document")
+    if summary["accepted_for_shadow"] is not True:
+        raise SystemExit("CSR policy model submission shadow acceptance mismatch")
+    if summary["accepted_for_runtime_promotion"] is not False:
+        raise SystemExit("CSR policy model submission runtime acceptance mismatch")
+    if "quality_gate_not_runtime_eligible" not in set(summary["promotion_blockers"]):
+        raise SystemExit("CSR policy model submission missing quality blocker")
+    if summary["guarded_gpu_shadow_smoke_checked"] is not True:
+        raise SystemExit("CSR policy model submission GPU shadow check mismatch")
+    if summary["guarded_gpu_smoke_successes"] != 2:
+        raise SystemExit("CSR policy model submission GPU success count mismatch")
+    if summary["num_packaged_files"] != 8:
+        raise SystemExit("CSR policy model submission file count mismatch")
+    if summary["all_file_checksums_present"] is not True:
+        raise SystemExit("CSR policy model submission checksum mismatch")
+    if summary["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR policy model submission changed runtime selector")
+    if summary["validation_error_count"] != 0:
+        raise SystemExit("CSR policy model submission validation errors found")
+    if submission["runtime_boundary"]["guard_required"] is not True:
+        raise SystemExit("CSR policy model submission guard boundary mismatch")
+    if submission["runtime_boundary"]["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR policy model submission runtime boundary mismatch")
+    if len(submission["files"]) != summary["num_packaged_files"]:
+        raise SystemExit("CSR policy model submission file manifest mismatch")
+    required_labels = {
+        "policy_model_artifact",
+        "saved_model",
+        "transformer_tensors",
+        "request_index",
+        "quality_gate_summary",
+        "replay_summary",
+        "acceptance_summary",
+        "acceptance_rows",
+    }
+    file_labels = {item["label"] for item in submission["files"]}
+    if file_labels != required_labels:
+        raise SystemExit("CSR policy model submission file label mismatch")
+    for item in submission["files"]:
+        if item["exists"] is not True or not item["sha256"]:
+            raise SystemExit("CSR policy model submission missing file checksum")
+        actual = Path(item["path"]).read_bytes()
+        digest = hashlib.sha256(actual).hexdigest()
+        if digest != item["sha256"]:
+            raise SystemExit("CSR policy model submission checksum does not match file")
+    row_kinds = {row["row_kind"] for row in rows}
+    if row_kinds != {
+        "submission_identity",
+        "terms",
+        "model_artifact",
+        "acceptance_gate",
+        "submission_decision",
+        "file_checksum",
+    }:
+        raise SystemExit("CSR policy model submission row kind mismatch")
+    checksum_rows = [row for row in rows if row["row_kind"] == "file_checksum"]
+    if len(checksum_rows) != summary["num_packaged_files"]:
+        raise SystemExit("CSR policy model submission checksum row count mismatch")
+    if "Runtime Boundary" not in model_card:
+        raise SystemExit("CSR policy model submission model card missing boundary")
+    if "guarded_gpu_shadow_smoke_checked" not in model_card:
+        raise SystemExit("CSR policy model submission model card missing GPU evidence")
+    if manifest.metadata["submission_ready"] is not True:
+        raise SystemExit("CSR policy model submission manifest ready mismatch")
+    if manifest.metadata["shadow_submission_ready"] is not True:
+        raise SystemExit("CSR policy model submission manifest shadow mismatch")
+    if manifest.metadata["runtime_promotion_ready"] is not False:
+        raise SystemExit("CSR policy model submission manifest promotion mismatch")
+    if manifest.metadata["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR policy model submission manifest runtime mismatch")
+
+
+def _verify_csr_external_model_intake(path: Path) -> None:
+    manifest = read_manifest(path / "artifact_manifest.json")
+    stale = verify_manifest_hashes(manifest)
+    if stale:
+        raise SystemExit(f"stale CSR external model intake manifest: {stale}")
+    rows = read_jsonl(path / "csr_external_model_intake_rows.jsonl")
+    summary = json.loads(
+        (path / "csr_external_model_intake_summary.json").read_text(encoding="utf-8")
+    )
+    schema = json.loads(
+        (path / "csr_external_model_intake_schema.json").read_text(encoding="utf-8")
+    )
+    report = (path / "csr_external_model_intake_report.md").read_text(encoding="utf-8")
+    required_files = (
+        "external_csr_ranker_checkpoint.json",
+        "adapted_csr_transformer_ranker_model.json",
+        "adapted_csr_transformer_ranker_predictions.jsonl",
+        "csr_external_model_quality_gate_summary.json",
+        "csr_policy_model_artifact.json",
+        "csr_policy_model_acceptance_summary.json",
+        "csr_policy_model_submission_manifest.json",
+    )
+    if manifest.artifact_kind != "csr_external_model_intake":
+        raise SystemExit("unexpected CSR external model intake artifact kind")
+    if summary["status"] != "passed":
+        raise SystemExit("CSR external model intake did not pass")
+    if summary["schema_version"] != "phase1_csr_external_model_intake_v1":
+        raise SystemExit("CSR external model intake schema mismatch")
+    if schema["schema_version"] != summary["schema_version"]:
+        raise SystemExit("CSR external model intake schema/summary mismatch")
+    if summary["intake_ready"] is not True:
+        raise SystemExit("CSR external model intake not ready")
+    if summary["shadow_submission_ready"] is not True:
+        raise SystemExit("CSR external model intake shadow mismatch")
+    if summary["runtime_promotion_ready"] is not False:
+        raise SystemExit("CSR external model intake promoted blocked model")
+    if summary["default_runtime_mode"] != "shadow":
+        raise SystemExit("CSR external model intake default mode mismatch")
+    if summary["adapter_ready"] is not True:
+        raise SystemExit("CSR external model intake adapter mismatch")
+    if summary["replay_exact"] is not True:
+        raise SystemExit("CSR external model intake replay mismatch")
+    if summary["quality_gate_runtime_eligible"] is not False:
+        raise SystemExit("CSR external model intake quality gate mismatch")
+    if summary["policy_model_artifact_ready"] is not True:
+        raise SystemExit("CSR external model intake policy artifact mismatch")
+    if summary["accepted_for_shadow"] is not True:
+        raise SystemExit("CSR external model intake acceptance shadow mismatch")
+    if summary["accepted_for_runtime_promotion"] is not False:
+        raise SystemExit("CSR external model intake acceptance promotion mismatch")
+    if "quality_gate_not_runtime_eligible" not in set(summary["promotion_blockers"]):
+        raise SystemExit("CSR external model intake missing promotion blocker")
+    if summary["guarded_gpu_shadow_smoke_checked"] is not True:
+        raise SystemExit("CSR external model intake GPU smoke check mismatch")
+    if summary["guarded_gpu_smoke_successes"] != 2:
+        raise SystemExit("CSR external model intake GPU smoke count mismatch")
+    if summary["num_predictions"] != 20:
+        raise SystemExit("CSR external model intake prediction count mismatch")
+    if summary["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR external model intake changed runtime selector")
+    expected_stages = {
+        "adapter",
+        "replay",
+        "quality_gate",
+        "policy_model_artifact",
+        "learned_guard",
+        "acceptance",
+        "submission",
+    }
+    if set(summary["stage_statuses"]) != expected_stages:
+        raise SystemExit("CSR external model intake stage set mismatch")
+    if any(status != "passed" for status in summary["stage_statuses"].values()):
+        raise SystemExit("CSR external model intake stage failure")
+    row_kinds = {row["row_kind"] for row in rows}
+    if row_kinds != {"stage_status", "intake_decision"}:
+        raise SystemExit("CSR external model intake row kind mismatch")
+    if len([row for row in rows if row["row_kind"] == "stage_status"]) != len(
+        expected_stages
+    ):
+        raise SystemExit("CSR external model intake stage row count mismatch")
+    for name in required_files:
+        if not (path / name).exists():
+            raise SystemExit(f"CSR external model intake missing file: {name}")
+    if "Promotion Blockers" not in report:
+        raise SystemExit("CSR external model intake report missing blockers")
+    if manifest.metadata["intake_ready"] is not True:
+        raise SystemExit("CSR external model intake manifest ready mismatch")
+    if manifest.metadata["shadow_submission_ready"] is not True:
+        raise SystemExit("CSR external model intake manifest shadow mismatch")
+    if manifest.metadata["runtime_promotion_ready"] is not False:
+        raise SystemExit("CSR external model intake manifest promotion mismatch")
+    if manifest.metadata["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR external model intake manifest runtime mismatch")
 
 
 def _verify_csr_transformer_training_entrypoint(path: Path) -> None:
@@ -2596,6 +4465,119 @@ def _verify_csr_transformer_training_entrypoint(path: Path) -> None:
         raise SystemExit("CSR Transformer training entrypoint manifest runtime mismatch")
 
 
+def _verify_csr_transformer_reference_training_export(path: Path) -> None:
+    manifest = read_manifest(path / "artifact_manifest.json")
+    stale = verify_manifest_hashes(manifest)
+    if stale:
+        raise SystemExit(
+            f"stale CSR Transformer reference training export manifest: {stale}"
+        )
+    rows = read_jsonl(path / "csr_transformer_reference_training_export_rows.jsonl")
+    summary = json.loads(
+        (path / "csr_transformer_reference_training_export_summary.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    schema = json.loads(
+        (path / "csr_transformer_reference_training_export_schema.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    checkpoint = json.loads(
+        (path / "reference_csr_external_ranker_checkpoint.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    adapter_summary = json.loads(
+        (path / "reference_csr_external_adapter_summary.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    if manifest.artifact_kind != "csr_transformer_reference_training_export":
+        raise SystemExit(
+            "unexpected CSR Transformer reference training export artifact kind"
+        )
+    if summary["status"] != "passed":
+        raise SystemExit("CSR Transformer reference training export did not pass")
+    if (
+        summary["schema_version"]
+        != "phase1_csr_transformer_reference_training_export_v1"
+    ):
+        raise SystemExit("CSR Transformer reference training export schema mismatch")
+    if schema["schema_version"] != summary["schema_version"]:
+        raise SystemExit("CSR Transformer reference training export schema mismatch")
+    if len(rows) != 6:
+        raise SystemExit("CSR Transformer reference training export row count mismatch")
+    if {row["row_kind"] for row in rows} != {
+        "training_result",
+        "external_checkpoint",
+        "adapter_roundtrip",
+        "intake_boundary",
+        "runtime_boundary",
+        "export_decision",
+    }:
+        raise SystemExit("CSR Transformer reference training export row kind mismatch")
+    if summary["reference_training_export_ready"] is not True:
+        raise SystemExit("CSR Transformer reference training export not ready")
+    if summary["model_training_executed"] is not True:
+        raise SystemExit("CSR Transformer reference training export did not train")
+    if summary["model_trained"] is not True:
+        raise SystemExit("CSR Transformer reference training export model mismatch")
+    if summary["training_entrypoint_ready"] is not True:
+        raise SystemExit("CSR Transformer reference training entrypoint mismatch")
+    if summary["external_checkpoint_ready"] is not True:
+        raise SystemExit("CSR Transformer reference checkpoint not ready")
+    if summary["adapter_ready"] is not True:
+        raise SystemExit("CSR Transformer reference adapter not ready")
+    if summary["adapter_roundtrip_exact"] is not True:
+        raise SystemExit("CSR Transformer reference adapter roundtrip mismatch")
+    if summary["intake_input_ready"] is not True:
+        raise SystemExit("CSR Transformer reference intake input not ready")
+    if summary["default_runtime_mode"] != "shadow":
+        raise SystemExit("CSR Transformer reference default mode mismatch")
+    if summary["quality_gate_required"] is not True:
+        raise SystemExit("CSR Transformer reference quality gate mismatch")
+    if summary["current_quality_gate_runtime_eligible"] is not False:
+        raise SystemExit("CSR Transformer reference should preserve current gate block")
+    if summary["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR Transformer reference changed runtime selector")
+    if summary["num_predictions"] != 20 or summary["num_eval_predictions"] != 5:
+        raise SystemExit("CSR Transformer reference prediction count mismatch")
+    if summary["num_eval_oracle_requests"] != 4:
+        raise SystemExit("CSR Transformer reference oracle count mismatch")
+    if summary["d_model"] != 24 or summary["num_attention_heads"] != 4:
+        raise SystemExit("CSR Transformer reference attention shape mismatch")
+    if summary["feedforward_dim"] != 48 or summary["num_epochs"] != 160:
+        raise SystemExit("CSR Transformer reference training shape mismatch")
+    if abs(float(summary["eval_oracle_top1_accuracy"]) - 0.5) > 1.0e-12:
+        raise SystemExit("CSR Transformer reference eval accuracy mismatch")
+    if (
+        abs(float(summary["eval_profiled_success_selection_rate"]) - 0.6)
+        > 1.0e-12
+    ):
+        raise SystemExit("CSR Transformer reference success-rate mismatch")
+    if summary["eval_non_success_selection_count"] != 2:
+        raise SystemExit("CSR Transformer reference non-success count mismatch")
+    if summary["validation_error_count"] != 0 or summary["validation_errors"]:
+        raise SystemExit("CSR Transformer reference validation errors found")
+    if checkpoint["schema_version"] != "phase1_csr_external_ranker_checkpoint_v1":
+        raise SystemExit("CSR Transformer reference checkpoint schema mismatch")
+    if checkpoint["runtime_contract"]["default_mode"] != "shadow":
+        raise SystemExit("CSR Transformer reference checkpoint default mode mismatch")
+    if checkpoint["runtime_contract"]["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR Transformer reference checkpoint runtime mismatch")
+    if adapter_summary["adapter_ready"] is not True:
+        raise SystemExit("CSR Transformer reference adapter summary mismatch")
+    if manifest.metadata["reference_training_export_ready"] is not True:
+        raise SystemExit("CSR Transformer reference manifest ready mismatch")
+    if manifest.metadata["model_trained"] is not True:
+        raise SystemExit("CSR Transformer reference manifest model mismatch")
+    if manifest.metadata["intake_input_ready"] is not True:
+        raise SystemExit("CSR Transformer reference manifest intake mismatch")
+    if manifest.metadata["runtime_selector_changed"] is not False:
+        raise SystemExit("CSR Transformer reference manifest runtime mismatch")
+
+
 def _verify_csr_learned_runtime_guard(path: Path) -> None:
     manifest = read_manifest(path / "artifact_manifest.json")
     stale = verify_manifest_hashes(manifest)
@@ -2622,6 +4604,10 @@ def _verify_csr_learned_runtime_guard(path: Path) -> None:
         "shadow_mode_checked",
         "quality_gate_blocks_checked",
         "confidence_threshold_checked",
+        "saved_model_shadow_checked",
+        "saved_model_quality_gate_checked",
+        "model_artifact_shadow_checked",
+        "model_artifact_quality_gate_checked",
         "fallback_chain_enforced_checked",
         "promotion_fixture_checked",
         "runtime_fallback_checked",
@@ -2631,14 +4617,39 @@ def _verify_csr_learned_runtime_guard(path: Path) -> None:
             raise SystemExit(f"CSR learned guard missing {key}")
     if summary["runtime_selector_changed"] is not False:
         raise SystemExit("CSR learned guard artifact must not change runtime selector")
+    if int(summary["saved_model_loaded_checks"]) != 2:
+        raise SystemExit("CSR learned guard saved-model load count mismatch")
     rows_by_id = {row["check_id"]: row for row in rows}
     if rows_by_id["actual_shadow_mode"]["guard_status"] != "shadow_only":
         raise SystemExit("CSR learned guard shadow mode check mismatch")
+    if rows_by_id["actual_shadow_mode"]["learned_policy_source"]["source_kind"] != "model_artifact":
+        raise SystemExit("CSR learned guard shadow mode did not use model artifact")
+    if rows_by_id["actual_shadow_mode"]["learned_policy_source"]["model_loaded"] is not True:
+        raise SystemExit("CSR learned guard shadow mode did not load model")
+    if (
+        rows_by_id["actual_shadow_mode"]["learned_policy_source"]["adapter"]
+        != "csr_transformer_ranker_saved_model_v1"
+    ):
+        raise SystemExit("CSR learned guard shadow mode adapter mismatch")
     if (
         rows_by_id["actual_quality_gate_blocks_promotion"]["guard_status"]
         != "blocked_quality_gate"
     ):
         raise SystemExit("CSR learned guard quality gate block mismatch")
+    if (
+        rows_by_id["actual_quality_gate_blocks_promotion"]["learned_policy_source"][
+            "source_kind"
+        ]
+        != "model_artifact"
+    ):
+        raise SystemExit("CSR learned guard quality gate did not use model artifact")
+    if (
+        rows_by_id["actual_quality_gate_blocks_promotion"]["learned_policy_source"][
+            "model_loaded"
+        ]
+        is not True
+    ):
+        raise SystemExit("CSR learned guard quality gate did not load model")
     if (
         rows_by_id["eligible_high_confidence_promotion_fixture"]["guard_status"]
         != "promoted"
@@ -2660,6 +4671,8 @@ def _verify_csr_learned_runtime_guard(path: Path) -> None:
         raise SystemExit("CSR learned guard timeout check mismatch")
     if manifest.metadata["runtime_selector_changed"] is not False:
         raise SystemExit("CSR learned guard manifest runtime flag mismatch")
+    if int(manifest.metadata["saved_model_loaded_checks"]) != 2:
+        raise SystemExit("CSR learned guard manifest saved-model count mismatch")
 
 
 def _verify_csr_guarded_auto_solve(path: Path) -> None:
@@ -2692,6 +4705,10 @@ def _verify_csr_guarded_auto_solve(path: Path) -> None:
         raise SystemExit("CSR guarded auto-solve success count mismatch")
     if summary["quality_gate_blocks"] != 2:
         raise SystemExit("CSR guarded auto-solve quality-gate block count mismatch")
+    if summary["learned_prediction_source"] != "model_artifact":
+        raise SystemExit("CSR guarded auto-solve did not use model artifact")
+    if int(summary["saved_model_loaded_count"]) != 2:
+        raise SystemExit("CSR guarded auto-solve saved-model load count mismatch")
     if summary["learned_runtime_promotions"] != 0:
         raise SystemExit("CSR guarded auto-solve should not promote learned runtime")
     if summary["runtime_selector_changed"] is not False:
@@ -2716,6 +4733,12 @@ def _verify_csr_guarded_auto_solve(path: Path) -> None:
             raise SystemExit("CSR guarded auto-solve has failed row")
         if row["runtime_selection_source"] != "artifact":
             raise SystemExit("CSR guarded auto-solve selected learned runtime unexpectedly")
+        if row["learned_policy_source_kind"] != "model_artifact":
+            raise SystemExit("CSR guarded auto-solve row did not use model artifact")
+        if row["learned_model_loaded"] is not True:
+            raise SystemExit("CSR guarded auto-solve row did not load model")
+        if row["learned_policy_source"]["adapter"] != "csr_transformer_ranker_saved_model_v1":
+            raise SystemExit("CSR guarded auto-solve row adapter mismatch")
         if row["learned_guard_status"] != "blocked_quality_gate":
             raise SystemExit("CSR guarded auto-solve learned guard status mismatch")
         if "quality_gate:non_success_eval_selections" not in row["learned_guard_reasons"]:
@@ -2735,6 +4758,10 @@ def _verify_csr_guarded_auto_solve(path: Path) -> None:
             raise SystemExit("CSR guarded auto-solve trace missing guard metadata")
     if manifest.metadata["runtime_selector_changed"] is not False:
         raise SystemExit("CSR guarded auto-solve manifest runtime flag mismatch")
+    if manifest.metadata["learned_prediction_source"] != "model_artifact":
+        raise SystemExit("CSR guarded auto-solve manifest source mismatch")
+    if int(manifest.metadata["saved_model_loaded_count"]) != 2:
+        raise SystemExit("CSR guarded auto-solve manifest saved-model count mismatch")
     if manifest.metadata["quality_gate_blocks"] != 2:
         raise SystemExit("CSR guarded auto-solve manifest quality block mismatch")
 
@@ -4167,30 +6194,88 @@ def _verify_campaign(path: Path) -> None:
     summary = json.loads((path / "campaign_summary.json").read_text(encoding="utf-8"))
     if summary["status"] != "passed":
         raise SystemExit("campaign summary is not passed")
-    if len(summary["stages"]) != 52:
+    stage_ids = {stage["stage_id"] for stage in summary["stages"]}
+    queue_batch_stage_ids = {
+        stage_id
+        for stage_id in stage_ids
+        if stage_id.startswith("csr_queue_batch_")
+        and stage_id.removeprefix("csr_queue_batch_").isdigit()
+    }
+    expected_stage_count = 74 + len(queue_batch_stage_ids)
+    if len(summary["stages"]) != expected_stage_count:
         raise SystemExit("campaign summary stage count check failed")
-    if "csr_learning_readiness" not in {stage["stage_id"] for stage in summary["stages"]}:
+    if "csr_learning_readiness" not in stage_ids:
         raise SystemExit("campaign summary missing CSR learning readiness stage")
-    if "csr_model_contract" not in {stage["stage_id"] for stage in summary["stages"]}:
+    if "csr_model_contract" not in stage_ids:
         raise SystemExit("campaign summary missing CSR model contract stage")
-    if "csr_training_tensors" not in {stage["stage_id"] for stage in summary["stages"]}:
+    if "csr_training_tensors" not in stage_ids:
         raise SystemExit("campaign summary missing CSR training tensor stage")
-    if "csr_linear_ranker" not in {stage["stage_id"] for stage in summary["stages"]}:
+    if "csr_linear_ranker" not in stage_ids:
         raise SystemExit("campaign summary missing CSR linear ranker stage")
-    if "csr_selector_model_eval" not in {stage["stage_id"] for stage in summary["stages"]}:
+    if "csr_selector_model_eval" not in stage_ids:
         raise SystemExit("campaign summary missing CSR selector model eval stage")
-    if "csr_benchmark_expansion_plan" not in {stage["stage_id"] for stage in summary["stages"]}:
+    if "csr_benchmark_expansion_plan" not in stage_ids:
         raise SystemExit("campaign summary missing CSR benchmark expansion plan stage")
+    if "csr_full_dataset_queue" not in stage_ids:
+        raise SystemExit("campaign summary missing CSR full dataset queue stage")
+    if "csr_queue_batch_00001" not in stage_ids:
+        raise SystemExit("campaign summary missing CSR queue batch stage")
+    if "csr_queue_batch_00002" not in stage_ids:
+        raise SystemExit("campaign summary missing CSR queue batch 00002 stage")
+    if "csr_queue_batch_00003" not in stage_ids:
+        raise SystemExit("campaign summary missing CSR queue batch 00003 stage")
+    if "csr_queue_training_pool" not in stage_ids:
+        raise SystemExit("campaign summary missing CSR queue training pool stage")
+    if "csr_queue_batch_training_bundle" not in stage_ids:
+        raise SystemExit("campaign summary missing CSR queue batch training bundle stage")
+    if "csr_queue_batch_reference_ranker" not in stage_ids:
+        raise SystemExit("campaign summary missing CSR queue batch reference ranker stage")
+    if "csr_queue_batch_model_replay" not in {stage["stage_id"] for stage in summary["stages"]}:
+        raise SystemExit("campaign summary missing CSR queue batch model replay stage")
+    if "csr_queue_candidate_coverage" not in {stage["stage_id"] for stage in summary["stages"]}:
+        raise SystemExit("campaign summary missing CSR queue candidate coverage stage")
+    if "csr_gmres_restart_coverage" not in {stage["stage_id"] for stage in summary["stages"]}:
+        raise SystemExit("campaign summary missing CSR GMRES restart coverage stage")
+    if "csr_blocked_gap_probe" not in {stage["stage_id"] for stage in summary["stages"]}:
+        raise SystemExit("campaign summary missing CSR blocked gap probe stage")
+    if "csr_blocked_gap_positive_search" not in {stage["stage_id"] for stage in summary["stages"]}:
+        raise SystemExit("campaign summary missing CSR blocked gap positive search stage")
+    if "csr_blocked_gap_training_integration" not in {stage["stage_id"] for stage in summary["stages"]}:
+        raise SystemExit("campaign summary missing CSR blocked gap training integration stage")
+    if "csr_blocked_gap_augmented_ranker" not in {stage["stage_id"] for stage in summary["stages"]}:
+        raise SystemExit("campaign summary missing CSR blocked gap augmented ranker stage")
+    if "csr_blocked_gap_guarded_replay" not in {stage["stage_id"] for stage in summary["stages"]}:
+        raise SystemExit("campaign summary missing CSR blocked gap guarded replay stage")
+    if "csr_transformer_handoff_bundle" not in {stage["stage_id"] for stage in summary["stages"]}:
+        raise SystemExit("campaign summary missing CSR Transformer handoff bundle stage")
+    if "csr_transformer_training_package" not in {stage["stage_id"] for stage in summary["stages"]}:
+        raise SystemExit("campaign summary missing CSR Transformer training package stage")
+    if "csr_transformer_package_consumer_dry_run" not in {stage["stage_id"] for stage in summary["stages"]}:
+        raise SystemExit("campaign summary missing CSR Transformer package consumer dry run stage")
     if "csr_micro_campaign" not in {stage["stage_id"] for stage in summary["stages"]}:
         raise SystemExit("campaign summary missing CSR micro-campaign stage")
     if "csr_transformer_ready" not in {stage["stage_id"] for stage in summary["stages"]}:
         raise SystemExit("campaign summary missing CSR Transformer-ready stage")
     if "csr_transformer_ranker" not in {stage["stage_id"] for stage in summary["stages"]}:
         raise SystemExit("campaign summary missing CSR Transformer ranker stage")
+    if "csr_external_model_adapter" not in {stage["stage_id"] for stage in summary["stages"]}:
+        raise SystemExit("campaign summary missing CSR external model adapter stage")
+    if "csr_transformer_model_replay" not in {stage["stage_id"] for stage in summary["stages"]}:
+        raise SystemExit("campaign summary missing CSR Transformer model replay stage")
     if "csr_transformer_quality_gate" not in {stage["stage_id"] for stage in summary["stages"]}:
         raise SystemExit("campaign summary missing CSR Transformer quality gate stage")
+    if "csr_policy_model_artifact" not in {stage["stage_id"] for stage in summary["stages"]}:
+        raise SystemExit("campaign summary missing CSR policy model artifact stage")
+    if "csr_policy_model_acceptance" not in {stage["stage_id"] for stage in summary["stages"]}:
+        raise SystemExit("campaign summary missing CSR policy model acceptance stage")
+    if "csr_policy_model_submission" not in {stage["stage_id"] for stage in summary["stages"]}:
+        raise SystemExit("campaign summary missing CSR policy model submission stage")
+    if "csr_external_model_intake" not in {stage["stage_id"] for stage in summary["stages"]}:
+        raise SystemExit("campaign summary missing CSR external model intake stage")
     if "csr_transformer_training_entrypoint" not in {stage["stage_id"] for stage in summary["stages"]}:
         raise SystemExit("campaign summary missing CSR Transformer training entrypoint stage")
+    if "csr_transformer_reference_training_export" not in {stage["stage_id"] for stage in summary["stages"]}:
+        raise SystemExit("campaign summary missing CSR Transformer reference training export stage")
     if "csr_learned_runtime_guard" not in {stage["stage_id"] for stage in summary["stages"]}:
         raise SystemExit("campaign summary missing CSR learned runtime guard stage")
     if "csr_guarded_auto_solve" not in {stage["stage_id"] for stage in summary["stages"]}:

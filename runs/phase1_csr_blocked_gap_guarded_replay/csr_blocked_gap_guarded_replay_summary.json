@@ -1,0 +1,42 @@
+{
+  "acceptance_note": "Actual replay requires the D20 model to remain blocked by quality gate; counterfactual promotion rows only verify existing profiled-success and fallback-chain enforcement.",
+  "actual_artifact_runtime_selections": 5,
+  "actual_quality_gate_blocks": 5,
+  "actual_runtime_selector_changes": 0,
+  "blocked_guard_reason_counts": {
+    "quality_gate:below_runtime_profiled_success_rate": 5,
+    "quality_gate:no_dedicated_runtime_quality_gate": 5,
+    "quality_gate:overall_eval_non_success_selections": 5
+  },
+  "counterfactual_eligible_gate_promotions": 5,
+  "counterfactual_only": true,
+  "counterfactual_runtime_selector_changes": 5,
+  "executes_gpu": false,
+  "fallback_chain_enforced_rows": 5,
+  "learned_differs_from_artifact_request_ids": [
+    "eval:suitesparse:FIDAP/ex5:phase1_csr_blocked_gap_positive_search"
+  ],
+  "learned_differs_from_artifact_rows": 1,
+  "learned_oracle_predictions": 4,
+  "learned_profiled_success_non_oracle_predictions": 1,
+  "learned_success_predictions": 5,
+  "max_learned_confidence": 1.0,
+  "max_learned_regret_vs_artifact_ms": 1098.03906083107,
+  "min_confidence": 0.75,
+  "min_learned_confidence": 0.9884729379717688,
+  "next_step": "add a transformer handoff bundle that packages tensors, D20/D21 summaries, and guard thresholds for external model training",
+  "num_replay_rows": 5,
+  "runtime_selector_changed": false,
+  "schema_version": "phase1_csr_blocked_gap_guarded_replay_v1",
+  "shadow_only": true,
+  "shadow_only_decisions": 5,
+  "source_positive_predictions_path": "runs/phase1_csr_blocked_gap_augmented_ranker/csr_blocked_gap_augmented_ranker_positive_predictions.jsonl",
+  "source_predictions_path": "runs/phase1_csr_blocked_gap_augmented_ranker/csr_blocked_gap_augmented_ranker_predictions.jsonl",
+  "source_ranker_eval_non_success_selection_count": 23,
+  "source_ranker_eval_profiled_success_selection_rate": 0.11538461538461539,
+  "source_ranker_model_id": "csr_blocked_gap_augmented_shadow_ranker_v1",
+  "source_ranker_status": "passed",
+  "source_ranker_summary_path": "runs/phase1_csr_blocked_gap_augmented_ranker/csr_blocked_gap_augmented_ranker_summary.json",
+  "source_selector_rows_path": "runs/phase1_csr_blocked_gap_training_integration/combined_csr_selector_rows.jsonl",
+  "status": "passed"
+}

@@ -1,0 +1,56 @@
+{
+  "artifact_kind": "csr_blocked_gap_augmented_ranker",
+  "command": "scripts/tss_csr_blocked_gap_augmented_ranker.py",
+  "created_at_utc": "2026-06-02T02:51:15.649398+00:00",
+  "file_hashes": [
+    {
+      "path": "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_tensors.json",
+      "sha256": "c33f17f9a44bac32b58621a700050746621e8bab6bee13961d0a25e0055aeab0"
+    },
+    {
+      "path": "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_request_index.jsonl",
+      "sha256": "737679a5e7f7cabb9e6adbf34d3dab4bbdfb4f1849781069a5032620ad89e6a1"
+    },
+    {
+      "path": "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_integration_summary.json",
+      "sha256": "fa90efd16e5e94154f59db9d960af94acffd4df26a4646d2d86d7874f5aff250"
+    },
+    {
+      "path": "runs/phase1_csr_blocked_gap_training_integration/csr_blocked_gap_training_positive_membership.jsonl",
+      "sha256": "e14f506cabe84ea24f28697eb89c661d7f89c3f5dd069507a82e95d6b7450235"
+    },
+    {
+      "path": "runs/phase1_csr_blocked_gap_training_integration/artifact_manifest.json",
+      "sha256": "f55b79b2f30d319fe3393f0b398455d1fa4ec8b960e2fe7a93b2d2018e4ac431"
+    },
+    {
+      "path": "transsolvestack/policies/csr_transformer_ranker.py",
+      "sha256": "0907d1386e794cd18a9e321ad7b10f910fdc1f98abf9e4609d13a533078787f7"
+    },
+    {
+      "path": "transsolvestack/profiling/csr_blocked_gap_augmented_ranker.py",
+      "sha256": "337ffd9baaae7cf3b420d40005627c9ba53641fe7e545f50583716dfc9fc7a2b"
+    },
+    {
+      "path": "scripts/tss_csr_blocked_gap_augmented_ranker.py",
+      "sha256": "89d780c7c09a37d302caf44764f67b31574f920e19f489c205214a86366ba299"
+    }
+  ],
+  "metadata": {
+    "blocked_gap_non_success_predictions": 0,
+    "blocked_gap_oracle_matches": 4,
+    "blocked_gap_positive_candidate_coverage_complete": true,
+    "blocked_gap_prediction_rows": 5,
+    "blocked_gap_success_predictions": 5,
+    "git_commit": "c71452fa04c75c01ad1813409824c42fd937cc49",
+    "model_id": "csr_blocked_gap_augmented_shadow_ranker_v1",
+    "model_trained": true,
+    "ranker_num_global_candidates": 12,
+    "ranker_num_requests": 105,
+    "runtime_selector_changed": false,
+    "schema_version": "phase1_csr_blocked_gap_augmented_ranker_v1",
+    "shadow_only": true,
+    "status": "passed"
+  },
+  "python_version": "3.10.18"
+}

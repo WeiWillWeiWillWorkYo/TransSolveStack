@@ -27,7 +27,7 @@ quality gate -> runtime guard -> fallback chain
 | Diagnostic layer | Computes selector-oriented matrix facts such as shape, symmetry, diagonal health, and precision hints. |
 | GPU runtime layer | Executes Taichi CSR operators, Krylov solvers, preconditioners, residual checks, and smoke benchmarks. |
 | Artifact layer | Stores solver outcomes, manifests, summaries, schemas, and reproducibility reports. |
-| Policy-data layer | Converts diagnostics and solver evidence into selector rows, learning rows, model contracts, and tensors. |
+| Policy-data layer | Converts diagnostics and solver evidence into selector rows, learning rows, model contracts, tensors, and external training packages. |
 | Guard layer | Keeps learned predictions behind quality gates, shadow mode, confidence thresholds, fallback-chain enforcement, and runtime guards. |
 
 ## Integrated Solvers
@@ -80,7 +80,7 @@ letting unverified predictions bypass numerical evidence or fallback safety.
   Chebyshev, symmetric equilibration, row/column equilibration, and ILU0.
 - Selector artifacts covering successes, failures, non-success fallback rows,
   applicability rows, and unresolved matrix diagnostics.
-- Transformer-ready tensor bundle and training entrypoint.
+- Transformer-ready tensor bundle, training entrypoint, external training package, and consumer-side model submission dry run.
 - Offline quality gate for learned selector candidates.
 - Learned runtime guard with shadow/promotion boundaries, confidence checks,
   fallback enforcement, and guarded auto-solve integration.
@@ -129,5 +129,5 @@ letting unverified predictions bypass numerical evidence or fallback safety.
    - Transformer selector training with a model card,
    - runtime guard or fallback-chain improvements.
 4. Add tests and artifact verifier checks.
-5. Record milestone-level evidence in `footage/` when the contribution changes
-   project capability.
+5. Update public documentation only when it clarifies the user-facing capability,
+   contribution path, or reproducibility boundary.
